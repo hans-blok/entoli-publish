@@ -1,0 +1,128 @@
+# ============================================================
+# MkDocs Configuration — Entoli 
+# ============================================================
+
+# ------------------------------------------------------------
+# 1. Site Identity
+# ------------------------------------------------------------
+site_name: "Entoli Modellen"
+site_description: "Publicatie van de Entoli-modellen"
+site_author: "Entoli Team"
+site_url: "https://hans-blok.github.io/entoli-publish/"
+
+# Repository referentie
+repo_name: "entoli-publish"
+repo_url: "https://github.com/hans-blok/entoli-publish"
+edit_uri: "edit/main/doc/"
+
+# ------------------------------------------------------------
+# 2. Documentation Source
+# ------------------------------------------------------------
+docs_dir: "doc"
+site_dir: "site"
+
+# ------------------------------------------------------------
+# 3. Theme & Presentation
+# Entoli house style with Material theme
+# ------------------------------------------------------------
+theme:
+  name: "material"
+  language: "en"
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - content.code.copy
+    - content.code.annotate
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+  palette:
+    # Kleuren komen uit doc/stylesheets/entoli.css (gemeten uit het logo)
+    scheme: "default"
+  font:
+    text: "Segoe UI"
+    code: "Consolas"
+  logo: "assets/entoloi-logo.png"
+  favicon: "assets/entoloi-logo.png"
+
+# ------------------------------------------------------------
+# 4. Custom Styling - Entoli Stylesheet
+# Owner: Presentation Architect
+# ------------------------------------------------------------
+extra_css:
+  - stylesheets/entoli.css
+
+extra_javascript: []
+
+# ------------------------------------------------------------
+# 5. Plugins
+# ------------------------------------------------------------
+plugins:
+  - search:
+      lang: en
+
+# ------------------------------------------------------------
+# 6. Markdown Extensions
+# ------------------------------------------------------------
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# ------------------------------------------------------------
+# 7. Navigation Structure
+# Primary responsibility: Publication Steward
+# ------------------------------------------------------------
+nav:
+  - Home: index.md
+  - Architectuurmodel: views/index.html
+
+# ------------------------------------------------------------
+# 8. Extra Configuration
+# ------------------------------------------------------------
+extra:
+  social: []
+  generator: false  # Verberg "Made with Material for MkDocs"
+
+# ------------------------------------------------------------
+# 9. Copyright
+# ------------------------------------------------------------
+copyright: "Copyright &copy; 2026 Maxia Consultancy. Alle rechten voorbehouden."
+
