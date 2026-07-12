@@ -1,0 +1,169 @@
+<html>
+<head><title>Image map created by yEd</title>
+<style type="text/css">
+.tooltip {
+  font-size:10pt;
+  background-color:#FFFFCC;
+  border:1px solid black;
+  padding:2px
+}
+</style>
+<style type="text/css">
+.tooltip {
+  position:absolute;
+  display:none
+}
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+tooltip = null;
+document.onmousemove = updateTooltip;
+function updateTooltip(e) {
+try {
+if (document.all) {
+if (document.documentElement && document.documentElement.scrollTop) { // Explorer 6 Strict
+x = document.documentElement.scrollLeft + window.event.x;
+y = document.documentElement.scrollTop + window.event.y;
+}
+else { // all other Explorers
+x = document.body.scrollLeft + window.event.x;
+y = document.body.scrollTop + window.event.y;
+}
+}
+else {
+x = e.pageX;
+y = e.pageY;
+}
+if (tooltip != null) {
+o = 20;
+var sx, sy;
+if (self.pageYOffset) { // all except Explorer
+sx = self.pageXOffset;
+sy = self.pageYOffset;
+}
+else if (document.documentElement && document.documentElement.scrollTop) { // Explorer 6 Strict
+sx = document.documentElement.scrollLeft;
+sy = document.documentElement.scrollTop;
+}
+else if (document.body) { // all other Explorers
+sx = document.body.scrollLeft;
+sy = document.body.scrollTop;
+}
+t = y + o + tooltip.offsetHeight;
+w = sy + document.body.clientHeight;
+if (t > w) {
+y = y - o - tooltip.offsetHeight;
+}
+else {
+y = y + o;
+}
+t = x + o + tooltip.offsetWidth;
+w = sx + document.body.clientWidth;
+if (t > w) {
+x = x - o - tooltip.offsetWidth;
+}
+else {
+x = x + o;
+}
+if ((tooltip.style.top == '' || tooltip.style.top == 0) && (tooltip.style.left == '' || tooltip.style.left == 0))
+{
+tooltip.style.width = tooltip.offsetWidth + 'px';
+tooltip.style.height = tooltip.offsetHeight + 'px';
+}
+tooltip.style.left = x + "px";
+tooltip.style.top = y + "px";
+}
+} catch (error) { error = null; }
+}
+function showTooltip(id) {
+try {
+tooltip = document.getElementById(id);
+tooltip.style.display = "block";
+} catch (error) { error = null; }
+}
+function hideTooltip() {
+try {
+tooltip.style.display = "none";
+} catch (error) { error = null; }
+}
+</script>
+
+<div class="tooltip" id="n0">MODELLING_CONTEXT<br>────────────────────────────────────<br>modelling_context_id: int  [PK]<br>domain: string<br>purpose: string<br>scope_boundary: string</div>
+<div class="tooltip" id="n1">INFORMATION_MODEL<br>────────────────────────────────────<br>information_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
+<div class="tooltip" id="n2">INFORMATION_MODEL_ELEMENT<br>────────────────────────────────────<br>information_model_element_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n3">REQUIREMENT<br>────────────────────────────────────<br>requirement_id: int  [PK]<br>type: string<br>text: text<br>condition: string</div>
+<div class="tooltip" id="n4">SOURCE<br>────────────────────────────────────<br>source_id: int  [PK]<br>title: string<br>citation: string<br>effective_date: date<br>jurisdiction: string</div>
+<div class="tooltip" id="n5">SOURCE_TYPE_REF<br>────────────────────────────────────<br>source_type_ref_id: int  [PK]<br>code: string  [UK]<br>description: string</div>
+<div class="tooltip" id="n6">ISSUING_AUTHORITY<br>────────────────────────────────────<br>issuing_authority_id: int  [PK]<br>name: string<br>authority_type: string</div>
+<div class="tooltip" id="n7">CHARACTERISTIC<br>────────────────────────────────────<br>characteristic_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n8">LOGICAL_DATA_MODEL<br>────────────────────────────────────<br>logical_data_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
+<div class="tooltip" id="n9">ENTITY<br>────────────────────────────────────<br>entity_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n10">ATTRIBUTE<br>────────────────────────────────────<br>attribute_id: int  [PK]<br>name: string<br>definition: text<br>attribute_type: string</div>
+<div class="tooltip" id="n11">TECHNICAL_DATA_MODEL<br>────────────────────────────────────<br>technical_data_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
+<div class="tooltip" id="n12">TABLE<br>────────────────────────────────────<br>table_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n13">COLUMN<br>────────────────────────────────────<br>column_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="e0">1 : 1</div>
+<div class="tooltip" id="e1">0..N : 1</div>
+<div class="tooltip" id="e2">issued-by (0..N : 1)</div>
+<div class="tooltip" id="e3">classified-as (0..N : 1)</div>
+<div class="tooltip" id="e4">derives-from (0..N : 1..N)</div>
+<div class="tooltip" id="e5">part-of (0..N : 1)</div>
+<div class="tooltip" id="e6">derives-from (0..N : 1..N)</div>
+<div class="tooltip" id="e7">1 : 1..N</div>
+<div class="tooltip" id="e8">leads-to (1 : 1..N)</div>
+<div class="tooltip" id="e9">1 : 1..N</div>
+<div class="tooltip" id="e10">derived-from (0..N : 1)</div>
+<div class="tooltip" id="e11">1 : 1..N</div>
+<div class="tooltip" id="e12">derived-from (0..N : 0..1)</div>
+<div class="tooltip" id="e13">leads-to (1 : 1)</div>
+<div class="tooltip" id="e14">1 : 1..N</div>
+<div class="tooltip" id="e15">1 : 1..N</div>
+<div class="tooltip" id="e16">derived-from (0..N : 1)</div>
+<div class="tooltip" id="e17">derived-from (0..N : 1)</div>
+
+<map name="image1_1">
+  <area shape="poly" coords="165,875,165,875,165,809,175,809,175,875,175,875" alt="" onmouseover="showTooltip('e17')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="602,879,602,879,602,806,612,806,612,879,612,879" alt="" onmouseover="showTooltip('e16')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="451,939,451,939,333,936,334,926,452,930,452,930" alt="" onmouseover="showTooltip('e15')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="850,940,850,940,771,940,771,930,850,930,850,930" alt="" onmouseover="showTooltip('e14')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1011,813,1011,813,1011,881,1001,881,1001,813,1001,813" alt="" onmouseover="showTooltip('e13')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="165,693,165,693,165,627,175,627,175,693,175,693" alt="" onmouseover="showTooltip('e12')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="451,764,451,764,333,761,334,751,452,755,452,755" alt="" onmouseover="showTooltip('e11')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="602,704,602,704,602,631,612,631,612,704,612,704" alt="" onmouseover="showTooltip('e10')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="850,765,850,765,771,765,771,755,850,755,850,755" alt="" onmouseover="showTooltip('e9')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1011,638,1011,638,1011,697,1001,697,1001,638,1001,638" alt="" onmouseover="showTooltip('e8')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="451,589,451,589,333,586,334,576,452,580,452,580" alt="" onmouseover="showTooltip('e7')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="601,530,601,530,600,409,605,404,841,404,841,414,604,413,605,409,609,408,611,529,611,529" alt="" onmouseover="showTooltip('e6')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="771,580,771,580,850,580,850,590,771,590,771,590" alt="" onmouseover="showTooltip('e5')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1001,522,1001,522,1001,472,1011,472,1011,522,1011,522" alt="" onmouseover="showTooltip('e4')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1000,166,1000,166,1000,107,1009,106,1010,165,1010,165" alt="" onmouseover="showTooltip('e3')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="841,240,841,240,328,242,327,233,841,230,841,230" alt="" onmouseover="showTooltip('e2')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1001,347,1001,347,1001,295,1011,295,1011,347,1011,347" alt="" onmouseover="showTooltip('e1')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1263,590,1263,590,1161,590,1161,580,1263,580,1263,580" alt="" onmouseover="showTooltip('e0')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="15,885,325,977" alt="" onmouseover="showTooltip('n13')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="452,889,762,981" alt="" onmouseover="showTooltip('n12')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="851,882,1161,988" alt="" onmouseover="showTooltip('n11')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="15,703,325,809" alt="" onmouseover="showTooltip('n10')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="452,714,762,806" alt="" onmouseover="showTooltip('n9')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="851,707,1161,813" alt="" onmouseover="showTooltip('n8')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="15,535,325,627" alt="" onmouseover="showTooltip('n7')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="18,192,328,284" alt="" onmouseover="showTooltip('n6')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="850,15,1160,107" alt="" onmouseover="showTooltip('n5')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="851,175,1161,295" alt="" onmouseover="showTooltip('n4')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="851,357,1161,463" alt="" onmouseover="showTooltip('n3')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="452,539,762,631" alt="" onmouseover="showTooltip('n2')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="851,532,1161,638" alt="" onmouseover="showTooltip('n1')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1264,532,1574,638" alt="" onmouseover="showTooltip('n0')" onmouseout="hideTooltip()"/>
+</map>
+
+
+    <table class="yimagetable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td><img class="yimage" src="ldm-datamodelling1_1.png" usemap="#image1_1" border="0" alt=""/></td>
+      </tr>
+    </table>
+
+</body>
+</html>
