@@ -114,6 +114,8 @@ nav:
   - Home: index.md
   - Architectuurmodel: views/index.html
   - Datamodellen: data-models/index.md
+  - Artikelen:
+      - Datamodelleren met Entoli: artikelen/artikel-datamodelleren-entoli.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration

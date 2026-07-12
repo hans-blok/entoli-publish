@@ -7,3 +7,7 @@ Met views en korte beschrijvingen leggen we vast wat we hebben besloten of maken
 ## Naar het model
 
 [Open architectuurmodel](views/index.html){:target="_blank"}
+
+## Artikelen
+
+- [Datamodelleren met Entoli](artikelen/artikel-datamodelleren-entoli.md)
