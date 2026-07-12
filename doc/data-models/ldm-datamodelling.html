@@ -31,7 +31,7 @@ body {
 }
 
 .image-fallback {
-  display: none;
+  display: block;
   max-width: 1200px;
   padding: 18px;
 }
@@ -192,6 +192,13 @@ function onDiagramImageError() {
   }
   renderFallbackView();
 }
+
+function onDiagramImageLoad() {
+  var fallback = document.getElementById("image-fallback");
+  if (fallback) {
+    fallback.style.display = "none";
+  }
+}
 </script>
 
 <div class="tooltip" id="n0">NIAM_ANALYSIS<br>────────────────────────────────────<br>niam_analysis_id: int  [PK]<br>status: string</div>
@@ -292,7 +299,7 @@ function onDiagramImageError() {
     <div class="diagram-shell">
     <table class="yimagetable" cellspacing="0" cellpadding="0" border="0">
       <tr>
-        <td><img id="ldm-image" class="yimage" src="ldm-datamodelling1_1.png" usemap="#image1_1" border="0" alt="Logical data model diagram" onerror="onDiagramImageError()"/></td>
+        <td><img id="ldm-image" class="yimage" src="ldm-datamodelling1_1.png" usemap="#image1_1" border="0" alt="Logical data model diagram" onload="onDiagramImageLoad()" onerror="onDiagramImageError()"/></td>
       </tr>
     </table>
     <section id="image-fallback" class="image-fallback">
