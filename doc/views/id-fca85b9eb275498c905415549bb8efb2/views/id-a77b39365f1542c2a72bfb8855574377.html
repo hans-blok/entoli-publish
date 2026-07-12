@@ -87,25 +87,25 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap">BESCHRIJVING
-Dit diagram is een abstract model van de bedrijfsobjecten binnen het Entoli ecosysteem. Het toont vier samenhangende gebieden: Project, Entoli ecosysteem, Model (met Semantic Foundation) en Language Intelligence Resource als externe context, met hun onderlinge relaties.
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DESCRIPTION
+This diagram is an abstract model of the business objects within the Entoli ecosystem. It shows four interrelated areas: Project, Entoli ecosystem, Model (with Semantic Foundation) and Language Intelligence Resource as external context, with their mutual relationships.
 
-ONZE AANPAK
-We scheiden de omgevingen van de klanten. Iedere klant heeft zijn eigen configuratie voor het gebruik van een LLM (bijvoorbeeld API-keys en de keuze welk model wordt gebruikt). Dit kan een eigen model van de klant zijn, een extern model zoals Anthropic, OpenAI of Google, of een model dat Entoli zelf aanbiedt, bijvoorbeeld Ollama.
-Elke Agent handelt op basis van rules. Deze rules gebruiken uitsluitend concepten die zijn vastgelegd in het semantic-model; andere concepten zijn niet toegestaan. Hierbij passen we graaftheorie toe: een concept is een element of een relatie.
-Dit is aan te raden omdat het semantic-model zo de enige bron van waarheid blijft voor wat een agent mag redeneren en uitvoeren. Door concepten te beperken tot een gesloten, geformaliseerd model voorkom je dat agents afwijkende of inconsistente begrippen introduceren, blijven rules consistent en herbruikbaar over agents heen, en is het gedrag van een agent te herleiden en te controleren aan de hand van het model. De graaftheoretische indeling in elementen en relaties sluit bovendien aan op standaarden zoals ArchiMate, wat het model uitwisselbaar en uitbreidbaar maakt.
+OUR APPROACH
+We separate client environments. Each client has its own configuration for using an LLM (e.g. API keys and the choice of which model is used). This can be a client's own model, an external model such as Anthropic, OpenAI or Google, or a model that Entoli itself offers, for example Ollama.
+Every Agent acts on the basis of rules. These rules exclusively use concepts that are recorded in the semantic model; other concepts are not permitted. Here we apply graph theory: a concept is either an element or a relationship.
+This is advisable because it keeps the semantic model the single source of truth for what an agent may reason about and execute. By limiting concepts to a closed, formalised model, you prevent agents from introducing deviating or inconsistent notions, rules remain consistent and reusable across agents, and an agent's behaviour can be traced back to and checked against the model. The graph-theoretic division into elements and relationships also aligns with standards such as ArchiMate, which makes the model exchangeable and extensible.
 
-WAAROM IS EEN GRAAF HANDIG?
-Zie een LLM als een heel goed getrainde gokker: op basis van de tekst tot nu toe voorspelt het steeds het meest waarschijnlijke volgende woord. Er zit geen database in met vaste feiten of regels, alle "kennis" zit verweven in miljarden getallen (gewichten) die tijdens de training zijn geleerd. Dat maakt een LLM sterk in taal en in flexibel redeneren, maar ook onbetrouwbaar: het kan dingen verzinnen die plausibel klinken maar niet kloppen (hallucineren), en het weet niet vanzelf welke concepten binnen jouw domein wel of niet bestaan.
+WHY IS A GRAPH USEFUL?
+Think of an LLM as a very well-trained gambler: based on the text so far, it keeps predicting the most probable next word. There is no database inside it with fixed facts or rules &#8212; all "knowledge" is woven into billions of numbers (weights) learned during training. That makes an LLM strong at language and flexible reasoning, but also unreliable: it can make up things that sound plausible but are not correct (hallucinate), and it does not inherently know which concepts do or do not exist within your domain.
 
-Een graaf lost precies dat op. Een graaf bestaat uit knopen (elementen) en verbindingen (relaties), zoals het semantic-model hierboven. Door die kennis niet alleen impliciet in het taalmodel te laten zitten, maar expliciet als graaf vast te leggen, geef je de LLM twee dingen die het zelf mist:
+A graph solves exactly that. A graph consists of nodes (elements) and connections (relationships), like the semantic model above. By not leaving that knowledge only implicit in the language model, but explicitly recording it as a graph, you give the LLM two things it otherwise lacks:
 
-- Grounding: je geeft de LLM voorafgaand aan zijn redenering de relevante knopen en relaties uit de graaf mee, in plaats van dat het model moet gokken wat er bestaat en hoe het samenhangt.
-- Begrenzing: door te zeggen "een concept is altijd een element of een relatie uit dit semantic-model", kan het model geen eigen, niet-gedefinieerde concepten verzinnen. De graaf werkt zo als een hek om de redenering heen.
+- Grounding: you supply the LLM, prior to its reasoning, with the relevant nodes and relationships from the graph, instead of the model having to guess what exists and how it relates.
+- Boundary-setting: by stating "a concept is always an element or a relationship from this semantic model", the model cannot invent its own, undefined concepts. The graph thus acts as a fence around the reasoning.
 
-Kortom: de LLM is goed in taal, de graaf is goed in consistentie en controleerbaarheid. Door ze te combineren, redeneert een Entoli-agent binnen de lijnen van het semantic-model in plaats van vrij te associ&#235;ren.
+In short: the LLM is good at language, the graph is good at consistency and checkability. By combining them, an Entoli agent reasons within the lines of the semantic model instead of free-associating.
 
-VERDER LEZEN
+FURTHER READING
 
 From Local to Global: A GraphRAG Approach to Query-Focused Summarization
 https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/RAG-Graph-article.md?ref_type=heads</div>
@@ -187,13 +187,13 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																	</tr>
 
 																	<tr>
-																	    <td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> Normative artifact (rules) </a> </td>
+																	    <td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> Normative artifact </a> </td>
 																	    <td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element" class="i18n-elementtype-BusinessObject">
 																	    </a> </td>
 																	</tr>
 
 																	<tr>
-																	    <td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> Entoli Semantic Model </a> </td>
+																	    <td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> Semantic Model </a> </td>
 																	    <td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element" class="i18n-elementtype-BusinessObject">
 																	    </a> </td>
 																	</tr>
@@ -211,25 +211,25 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																	</tr>
 
 																	<tr>
-																	    <td> <a href="../elements/id-70b0088bd5f64183a6ef17dbcff1bef2.html" target="element"> Domain </a> </td>
+																	    <td> <a href="../elements/id-70b0088bd5f64183a6ef17dbcff1bef2.html" target="element"> Domain Element </a> </td>
 																	    <td> <a href="../elements/id-70b0088bd5f64183a6ef17dbcff1bef2.html" target="element" class="i18n-elementtype-BusinessObject">
 																	    </a> </td>
 																	</tr>
 
 																	<tr>
-																	    <td> <a href="../elements/id-a1833eb002504e44aea29c041263a636.html" target="element"> Para element </a> </td>
+																	    <td> <a href="../elements/id-a1833eb002504e44aea29c041263a636.html" target="element"> Para Element </a> </td>
 																	    <td> <a href="../elements/id-a1833eb002504e44aea29c041263a636.html" target="element" class="i18n-elementtype-BusinessObject">
 																	    </a> </td>
 																	</tr>
 
 																	<tr>
-																	    <td> <a href="../elements/id-0498a286a8834a74abe40965a70ef882.html" target="element"> Classfication element </a> </td>
+																	    <td> <a href="../elements/id-0498a286a8834a74abe40965a70ef882.html" target="element"> Classification Element </a> </td>
 																	    <td> <a href="../elements/id-0498a286a8834a74abe40965a70ef882.html" target="element" class="i18n-elementtype-BusinessObject">
 																	    </a> </td>
 																	</tr>
 
 																	<tr>
-																	    <td> <a href="../elements/id-beac072548d34fdabe5c48ace38edb7f.html" target="element"> Position element </a> </td>
+																	    <td> <a href="../elements/id-beac072548d34fdabe5c48ace38edb7f.html" target="element"> Position Element </a> </td>
 																	    <td> <a href="../elements/id-beac072548d34fdabe5c48ace38edb7f.html" target="element" class="i18n-elementtype-BusinessObject">
 																	    </a> </td>
 																	</tr>
@@ -249,13 +249,13 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 													</tr>
 
 															<tr>
-															    <td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element"> Artiffact </a> </td>
+															    <td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element"> Entoli-artifact </a> </td>
 															    <td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element" class="i18n-elementtype-BusinessObject">
 															    </a> </td>
 															</tr>
 
 															<tr>
-															    <td> <a href="../elements/id-e4a9254e102044fd9aa8de02b2ac4543.html" target="element"> Policy (scope) </a> </td>
+															    <td> <a href="../elements/id-e4a9254e102044fd9aa8de02b2ac4543.html" target="element"> Policy (scope) [UNMAPPED &#8212; no canonical Domain Element; canon references "policies" informally within Agent-contract/Agent-charter] </a> </td>
 															    <td> <a href="../elements/id-e4a9254e102044fd9aa8de02b2ac4543.html" target="element" class="i18n-elementtype-BusinessObject">
 															    </a> </td>
 															</tr>
@@ -267,7 +267,7 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 															</tr>
 
 															<tr>
-															    <td> <a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-execution-configuration </a> </td>
+															    <td> <a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-execution-configuration [UNMAPPED &#8212; likely a technical realisation of the canonical Execution file, not itself a distinct canon concept] </a> </td>
 															    <td> <a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element" class="i18n-elementtype-BusinessObject">
 															    </a> </td>
 															</tr>
@@ -291,25 +291,25 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 											</tr>
 
 													<tr>
-													    <td> <a href="../elements/id-3b5fd0ff2997473bb92ee905634e8af1.html" target="element"> external-resource </a> </td>
+													    <td> <a href="../elements/id-3b5fd0ff2997473bb92ee905634e8af1.html" target="element"> external-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the External-source-bound source space of Source-regime] </a> </td>
 													    <td> <a href="../elements/id-3b5fd0ff2997473bb92ee905634e8af1.html" target="element" class="i18n-elementtype-BusinessObject">
 													    </a> </td>
 													</tr>
 
 													<tr>
-													    <td> <a href="../elements/id-36466e4eb8444f2d8ac075def55235a4.html" target="element"> private-resource </a> </td>
+													    <td> <a href="../elements/id-36466e4eb8444f2d8ac075def55235a4.html" target="element"> private-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the Workspace-bound source space of Source-regime] </a> </td>
 													    <td> <a href="../elements/id-36466e4eb8444f2d8ac075def55235a4.html" target="element" class="i18n-elementtype-BusinessObject">
 													    </a> </td>
 													</tr>
 
 													<tr>
-													    <td> <a href="../elements/id-34a62ff77db64291a32395b192564d8d.html" target="element"> entoli-resource </a> </td>
+													    <td> <a href="../elements/id-34a62ff77db64291a32395b192564d8d.html" target="element"> entoli-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the Canon-bound source space of Source-regime] </a> </td>
 													    <td> <a href="../elements/id-34a62ff77db64291a32395b192564d8d.html" target="element" class="i18n-elementtype-BusinessObject">
 													    </a> </td>
 													</tr>
 
 													<tr>
-													    <td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource </a> </td>
+													    <td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource [UNMAPPED &#8212; no canonical Domain Element; canon refers only generically to "the LLM", and this duplicates the "large language model" data object elsewhere] </a> </td>
 													    <td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element" class="i18n-elementtype-BusinessObject">
 													    </a> </td>
 													</tr>
@@ -343,35 +343,35 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																				<td> <a href="../elements/id-85d191bae5a846b19b93b1a727dfa494.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																				</a> </td>
 																				<td> <a href="../elements/id-a21ac844b75946b0b94ab3450c81ed27.html" target="element"> Entoli-agent </a> </td>
-																				<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> Entoli Semantic Model </a> </td>
+																				<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> Semantic Model </a> </td>
 																			</tr>
 																			<tr>
 																				<td> <a href="../elements/id-e5904bca61a5417b8b42ca23ce50e428.html" target="element"> is constraint by </a> </td>
 																				<td> <a href="../elements/id-e5904bca61a5417b8b42ca23ce50e428.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																				</a> </td>
 																				<td> <a href="../elements/id-a21ac844b75946b0b94ab3450c81ed27.html" target="element"> Entoli-agent </a> </td>
-																				<td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> Normative artifact (rules) </a> </td>
+																				<td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> Normative artifact </a> </td>
 																			</tr>
 																			<tr>
 																				<td> <a href="../elements/id-06408ff8658648138c3e6fdf56329c71.html" target="element"> produces </a> </td>
 																				<td> <a href="../elements/id-06408ff8658648138c3e6fdf56329c71.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																				</a> </td>
 																				<td> <a href="../elements/id-a21ac844b75946b0b94ab3450c81ed27.html" target="element"> Entoli-agent </a> </td>
-																				<td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element"> Artiffact </a> </td>
+																				<td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element"> Entoli-artifact </a> </td>
 																			</tr>
 																			<tr>
 																				<td> <a href="../elements/id-043ee4790c0f4e7181eb401d006df74c.html" target="element"> uses as work source </a> </td>
 																				<td> <a href="../elements/id-043ee4790c0f4e7181eb401d006df74c.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																				</a> </td>
 																				<td> <a href="../elements/id-a21ac844b75946b0b94ab3450c81ed27.html" target="element"> Entoli-agent </a> </td>
-																				<td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element"> Artiffact </a> </td>
+																				<td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element"> Entoli-artifact </a> </td>
 																			</tr>
 																			<tr>
 																				<td> <a href="../elements/id-c10ef2d0836245068d57bf73f59cd9ed.html" target="element"> is constrained by </a> </td>
 																				<td> <a href="../elements/id-c10ef2d0836245068d57bf73f59cd9ed.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																				</a> </td>
 																				<td> <a href="../elements/id-a21ac844b75946b0b94ab3450c81ed27.html" target="element"> Entoli-agent </a> </td>
-																				<td> <a href="../elements/id-e4a9254e102044fd9aa8de02b2ac4543.html" target="element"> Policy (scope) </a> </td>
+																				<td> <a href="../elements/id-e4a9254e102044fd9aa8de02b2ac4543.html" target="element"> Policy (scope) [UNMAPPED &#8212; no canonical Domain Element; canon references "policies" informally within Agent-contract/Agent-charter] </a> </td>
 																			</tr>
 
 													<!-- DEBUG: Skipping element from class com.archimatetool.model.impl.DiagramModelGroup -->
@@ -380,14 +380,14 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																						<td> <a href="../elements/id-5fbc886ab4c042c8b33267a70e267a8e.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																						</a> </td>
 																						<td> <a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation </a> </td>
-																						<td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> Normative artifact (rules) </a> </td>
+																						<td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> Normative artifact </a> </td>
 																					</tr>
 																					<tr>
 																						<td> <a href="../elements/id-4681aef73b15433ea69d5852356fc3c0.html" target="element">  </a> </td>
 																						<td> <a href="../elements/id-4681aef73b15433ea69d5852356fc3c0.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																						</a> </td>
 																						<td> <a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation </a> </td>
-																						<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> Entoli Semantic Model </a> </td>
+																						<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> Semantic Model </a> </td>
 																					</tr>
 																					<tr>
 																						<td> <a href="../elements/id-a1545d7a47724e4fadaa99158a0b52b1.html" target="element">  </a> </td>
@@ -408,28 +408,28 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																						<td> <a href="../elements/id-7d2935a33cb94a54be73bc71f9fcf069.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																						</a> </td>
 																						<td> <a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation </a> </td>
-																						<td> <a href="../elements/id-70b0088bd5f64183a6ef17dbcff1bef2.html" target="element"> Domain </a> </td>
+																						<td> <a href="../elements/id-70b0088bd5f64183a6ef17dbcff1bef2.html" target="element"> Domain Element </a> </td>
 																					</tr>
 																					<tr>
 																						<td> <a href="../elements/id-dc7e3036edfb4e2b937adb501f8af153.html" target="element">  </a> </td>
 																						<td> <a href="../elements/id-dc7e3036edfb4e2b937adb501f8af153.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																						</a> </td>
 																						<td> <a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation </a> </td>
-																						<td> <a href="../elements/id-a1833eb002504e44aea29c041263a636.html" target="element"> Para element </a> </td>
+																						<td> <a href="../elements/id-a1833eb002504e44aea29c041263a636.html" target="element"> Para Element </a> </td>
 																					</tr>
 																					<tr>
 																						<td> <a href="../elements/id-9375f84251114bce963490645129fc1f.html" target="element">  </a> </td>
 																						<td> <a href="../elements/id-9375f84251114bce963490645129fc1f.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																						</a> </td>
 																						<td> <a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation </a> </td>
-																						<td> <a href="../elements/id-0498a286a8834a74abe40965a70ef882.html" target="element"> Classfication element </a> </td>
+																						<td> <a href="../elements/id-0498a286a8834a74abe40965a70ef882.html" target="element"> Classification Element </a> </td>
 																					</tr>
 																					<tr>
 																						<td> <a href="../elements/id-4682c04b0e5a476eb2f0f88c16a0f79e.html" target="element">  </a> </td>
 																						<td> <a href="../elements/id-4682c04b0e5a476eb2f0f88c16a0f79e.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																						</a> </td>
 																						<td> <a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation </a> </td>
-																						<td> <a href="../elements/id-beac072548d34fdabe5c48ace38edb7f.html" target="element"> Position element </a> </td>
+																						<td> <a href="../elements/id-beac072548d34fdabe5c48ace38edb7f.html" target="element"> Position Element </a> </td>
 																					</tr>
 																					<tr>
 																						<td> <a href="../elements/id-58abf294b6474d73a8aa4b558b7d5d99.html" target="element">  </a> </td>
@@ -443,7 +443,7 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																								<td> <a href="../elements/id-effe44360c954b52959324ff6f8e0454.html" target="element">  </a> </td>
 																								<td> <a href="../elements/id-effe44360c954b52959324ff6f8e0454.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																								</a> </td>
-																								<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> Entoli Semantic Model </a> </td>
+																								<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> Semantic Model </a> </td>
 																								<td> <a href="../elements/id-df1eaf40fb2e46b48b5675974dfa3b70.html" target="element"> Entoli-concept </a> </td>
 																							</tr>
 
@@ -467,7 +467,7 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																								<td> <a href="../elements/id-6e23e2a5a3f54712a66f08a4752973d6.html" target="element">  </a> </td>
 																								<td> <a href="../elements/id-6e23e2a5a3f54712a66f08a4752973d6.html" target="element" class="i18n-elementtype-SpecializationRelationship">
 																								</a> </td>
-																								<td> <a href="../elements/id-70b0088bd5f64183a6ef17dbcff1bef2.html" target="element"> Domain </a> </td>
+																								<td> <a href="../elements/id-70b0088bd5f64183a6ef17dbcff1bef2.html" target="element"> Domain Element </a> </td>
 																								<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> Element </a> </td>
 																							</tr>
 
@@ -475,7 +475,7 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																								<td> <a href="../elements/id-c8e83066f5814218b4352be0ee8c852d.html" target="element">  </a> </td>
 																								<td> <a href="../elements/id-c8e83066f5814218b4352be0ee8c852d.html" target="element" class="i18n-elementtype-SpecializationRelationship">
 																								</a> </td>
-																								<td> <a href="../elements/id-a1833eb002504e44aea29c041263a636.html" target="element"> Para element </a> </td>
+																								<td> <a href="../elements/id-a1833eb002504e44aea29c041263a636.html" target="element"> Para Element </a> </td>
 																								<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> Element </a> </td>
 																							</tr>
 
@@ -483,7 +483,7 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																								<td> <a href="../elements/id-9c00dae3b5204ac3b7a7726ce93739d8.html" target="element">  </a> </td>
 																								<td> <a href="../elements/id-9c00dae3b5204ac3b7a7726ce93739d8.html" target="element" class="i18n-elementtype-SpecializationRelationship">
 																								</a> </td>
-																								<td> <a href="../elements/id-0498a286a8834a74abe40965a70ef882.html" target="element"> Classfication element </a> </td>
+																								<td> <a href="../elements/id-0498a286a8834a74abe40965a70ef882.html" target="element"> Classification Element </a> </td>
 																								<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> Element </a> </td>
 																							</tr>
 
@@ -491,7 +491,7 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																								<td> <a href="../elements/id-1e0cdd59413c4ef7ae05a2c6e08f6e82.html" target="element">  </a> </td>
 																								<td> <a href="../elements/id-1e0cdd59413c4ef7ae05a2c6e08f6e82.html" target="element" class="i18n-elementtype-SpecializationRelationship">
 																								</a> </td>
-																								<td> <a href="../elements/id-beac072548d34fdabe5c48ace38edb7f.html" target="element"> Position element </a> </td>
+																								<td> <a href="../elements/id-beac072548d34fdabe5c48ace38edb7f.html" target="element"> Position Element </a> </td>
 																								<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> Element </a> </td>
 																							</tr>
 
@@ -504,14 +504,14 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																				<td> <a href="../elements/id-0b747d1907c94b2b86b0d58af7cc2d22.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																				</a> </td>
 																				<td> <a href="../elements/id-c4f0ed1573f249afa612ea1f259776a4.html" target="element"> entoli client </a> </td>
-																				<td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element"> Artiffact </a> </td>
+																				<td> <a href="../elements/id-9da5117d824b49139c522a80e0842913.html" target="element"> Entoli-artifact </a> </td>
 																			</tr>
 																			<tr>
 																				<td> <a href="../elements/id-df56eb8c06174048945b09e76af10aca.html" target="element">  </a> </td>
 																				<td> <a href="../elements/id-df56eb8c06174048945b09e76af10aca.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																				</a> </td>
 																				<td> <a href="../elements/id-c4f0ed1573f249afa612ea1f259776a4.html" target="element"> entoli client </a> </td>
-																				<td> <a href="../elements/id-e4a9254e102044fd9aa8de02b2ac4543.html" target="element"> Policy (scope) </a> </td>
+																				<td> <a href="../elements/id-e4a9254e102044fd9aa8de02b2ac4543.html" target="element"> Policy (scope) [UNMAPPED &#8212; no canonical Domain Element; canon references "policies" informally within Agent-contract/Agent-charter] </a> </td>
 																			</tr>
 																			<tr>
 																				<td> <a href="../elements/id-142d0c83605b4a96898a911d2457fc90.html" target="element">  </a> </td>
@@ -525,15 +525,15 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																				<td> <a href="../elements/id-624608aa8d674770a60a871cdfdecb82.html" target="element" class="i18n-elementtype-AggregationRelationship">
 																				</a> </td>
 																				<td> <a href="../elements/id-c4f0ed1573f249afa612ea1f259776a4.html" target="element"> entoli client </a> </td>
-																				<td> <a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-execution-configuration </a> </td>
+																				<td> <a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-execution-configuration [UNMAPPED &#8212; likely a technical realisation of the canonical Execution file, not itself a distinct canon concept] </a> </td>
 																			</tr>
 
 																					<tr>
 																						<td> <a href="../elements/id-5cf9561fb3df41078bad3a933994851f.html" target="element"> configures the ussage of  </a> </td>
 																						<td> <a href="../elements/id-5cf9561fb3df41078bad3a933994851f.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																						</a> </td>
-																						<td> <a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-execution-configuration </a> </td>
-																						<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource </a> </td>
+																						<td> <a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-execution-configuration [UNMAPPED &#8212; likely a technical realisation of the canonical Execution file, not itself a distinct canon concept] </a> </td>
+																						<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource [UNMAPPED &#8212; no canonical Domain Element; canon refers only generically to "the LLM", and this duplicates the "large language model" data object elsewhere] </a> </td>
 																					</tr>
 
 													
@@ -545,59 +545,59 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
 																		<td> <a href="../elements/id-3ec4a95860e34bc49c8273733463d345.html" target="element" class="i18n-elementtype-AggregationRelationship">
 																		</a> </td>
 																		<td> <a href="../elements/id-56f8cd9d45b24edd8b37e33a58b4bf8b.html" target="element"> large language model </a> </td>
-																		<td> <a href="../elements/id-3b5fd0ff2997473bb92ee905634e8af1.html" target="element"> external-resource </a> </td>
+																		<td> <a href="../elements/id-3b5fd0ff2997473bb92ee905634e8af1.html" target="element"> external-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the External-source-bound source space of Source-regime] </a> </td>
 																	</tr>
 																	<tr>
 																		<td> <a href="../elements/id-a0b3634e337d4105942ced20e897ac6e.html" target="element">  </a> </td>
 																		<td> <a href="../elements/id-a0b3634e337d4105942ced20e897ac6e.html" target="element" class="i18n-elementtype-AggregationRelationship">
 																		</a> </td>
 																		<td> <a href="../elements/id-56f8cd9d45b24edd8b37e33a58b4bf8b.html" target="element"> large language model </a> </td>
-																		<td> <a href="../elements/id-36466e4eb8444f2d8ac075def55235a4.html" target="element"> private-resource </a> </td>
+																		<td> <a href="../elements/id-36466e4eb8444f2d8ac075def55235a4.html" target="element"> private-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the Workspace-bound source space of Source-regime] </a> </td>
 																	</tr>
 																	<tr>
 																		<td> <a href="../elements/id-d85909514ee34a13a7d8081989f7e4e0.html" target="element">  </a> </td>
 																		<td> <a href="../elements/id-d85909514ee34a13a7d8081989f7e4e0.html" target="element" class="i18n-elementtype-AggregationRelationship">
 																		</a> </td>
 																		<td> <a href="../elements/id-56f8cd9d45b24edd8b37e33a58b4bf8b.html" target="element"> large language model </a> </td>
-																		<td> <a href="../elements/id-34a62ff77db64291a32395b192564d8d.html" target="element"> entoli-resource </a> </td>
+																		<td> <a href="../elements/id-34a62ff77db64291a32395b192564d8d.html" target="element"> entoli-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the Canon-bound source space of Source-regime] </a> </td>
 																	</tr>
 																	<tr>
 																		<td> <a href="../elements/id-baf4aaf550534042813b75a0a508ee38.html" target="element">  </a> </td>
 																		<td> <a href="../elements/id-baf4aaf550534042813b75a0a508ee38.html" target="element" class="i18n-elementtype-AggregationRelationship">
 																		</a> </td>
 																		<td> <a href="../elements/id-56f8cd9d45b24edd8b37e33a58b4bf8b.html" target="element"> large language model </a> </td>
-																		<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource </a> </td>
+																		<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource [UNMAPPED &#8212; no canonical Domain Element; canon refers only generically to "the LLM", and this duplicates the "large language model" data object elsewhere] </a> </td>
 																	</tr>
 
 																			<tr>
 																				<td> <a href="../elements/id-9aad898c1a4e49b5869a0e16da637394.html" target="element">  </a> </td>
 																				<td> <a href="../elements/id-9aad898c1a4e49b5869a0e16da637394.html" target="element" class="i18n-elementtype-SpecializationRelationship">
 																				</a> </td>
-																				<td> <a href="../elements/id-3b5fd0ff2997473bb92ee905634e8af1.html" target="element"> external-resource </a> </td>
-																				<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource </a> </td>
+																				<td> <a href="../elements/id-3b5fd0ff2997473bb92ee905634e8af1.html" target="element"> external-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the External-source-bound source space of Source-regime] </a> </td>
+																				<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource [UNMAPPED &#8212; no canonical Domain Element; canon refers only generically to "the LLM", and this duplicates the "large language model" data object elsewhere] </a> </td>
 																			</tr>
 
 																			<tr>
 																				<td> <a href="../elements/id-9c90707d2a1c4aa7a34b696676fe574b.html" target="element">  </a> </td>
 																				<td> <a href="../elements/id-9c90707d2a1c4aa7a34b696676fe574b.html" target="element" class="i18n-elementtype-SpecializationRelationship">
 																				</a> </td>
-																				<td> <a href="../elements/id-36466e4eb8444f2d8ac075def55235a4.html" target="element"> private-resource </a> </td>
-																				<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource </a> </td>
+																				<td> <a href="../elements/id-36466e4eb8444f2d8ac075def55235a4.html" target="element"> private-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the Workspace-bound source space of Source-regime] </a> </td>
+																				<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource [UNMAPPED &#8212; no canonical Domain Element; canon refers only generically to "the LLM", and this duplicates the "large language model" data object elsewhere] </a> </td>
 																			</tr>
 
 																			<tr>
 																				<td> <a href="../elements/id-7b6c4d6b908c432a8c60e8e996bb9f9e.html" target="element">  </a> </td>
 																				<td> <a href="../elements/id-7b6c4d6b908c432a8c60e8e996bb9f9e.html" target="element" class="i18n-elementtype-SpecializationRelationship">
 																				</a> </td>
-																				<td> <a href="../elements/id-34a62ff77db64291a32395b192564d8d.html" target="element"> entoli-resource </a> </td>
-																				<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource </a> </td>
+																				<td> <a href="../elements/id-34a62ff77db64291a32395b192564d8d.html" target="element"> entoli-resource [UNMAPPED &#8212; no canonical Domain Element; corresponds informally to the Canon-bound source space of Source-regime] </a> </td>
+																				<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource [UNMAPPED &#8212; no canonical Domain Element; canon refers only generically to "the LLM", and this duplicates the "large language model" data object elsewhere] </a> </td>
 																			</tr>
 
 																			<tr>
 																				<td> <a href="../elements/id-7c09f21f4ec040b1a5149a6a2648075c.html" target="element"> is injected in </a> </td>
 																				<td> <a href="../elements/id-7c09f21f4ec040b1a5149a6a2648075c.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																				</a> </td>
-																				<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource </a> </td>
+																				<td> <a href="../elements/id-99ad1258e4564f9b8310b7435ceff52b.html" target="element"> Language Intelligence Resource [UNMAPPED &#8212; no canonical Domain Element; canon refers only generically to "the LLM", and this duplicates the "large language model" data object elsewhere] </a> </td>
 																				<td> <a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set </a> </td>
 																			</tr>
 
