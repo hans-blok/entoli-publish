@@ -90,72 +90,98 @@ tooltip.style.display = "none";
 }
 </script>
 
-<div class="tooltip" id="n0">MODELLING_CONTEXT<br>────────────────────────────────────<br>modelling_context_id: int  [PK]<br>domain: string<br>purpose: string<br>scope_boundary: string</div>
-<div class="tooltip" id="n1">INFORMATION_MODEL<br>────────────────────────────────────<br>information_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
-<div class="tooltip" id="n2">INFORMATION_MODEL_ELEMENT<br>────────────────────────────────────<br>information_model_element_id: int  [PK]<br>name: string<br>definition: text</div>
-<div class="tooltip" id="n3">REQUIREMENT<br>────────────────────────────────────<br>requirement_id: int  [PK]<br>type: string<br>text: text<br>condition: string</div>
-<div class="tooltip" id="n4">SOURCE<br>────────────────────────────────────<br>source_id: int  [PK]<br>title: string<br>citation: string<br>effective_date: date<br>jurisdiction: string</div>
-<div class="tooltip" id="n5">SOURCE_TYPE_REF<br>────────────────────────────────────<br>source_type_ref_id: int  [PK]<br>code: string  [UK]<br>description: string</div>
-<div class="tooltip" id="n6">ISSUING_AUTHORITY<br>────────────────────────────────────<br>issuing_authority_id: int  [PK]<br>name: string<br>authority_type: string</div>
-<div class="tooltip" id="n7">CHARACTERISTIC<br>────────────────────────────────────<br>characteristic_id: int  [PK]<br>name: string<br>definition: text</div>
-<div class="tooltip" id="n8">LOGICAL_DATA_MODEL<br>────────────────────────────────────<br>logical_data_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
-<div class="tooltip" id="n9">ENTITY<br>────────────────────────────────────<br>entity_id: int  [PK]<br>name: string<br>definition: text</div>
-<div class="tooltip" id="n10">ATTRIBUTE<br>────────────────────────────────────<br>attribute_id: int  [PK]<br>name: string<br>definition: text<br>attribute_type: string</div>
-<div class="tooltip" id="n11">TECHNICAL_DATA_MODEL<br>────────────────────────────────────<br>technical_data_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
-<div class="tooltip" id="n12">TABLE<br>────────────────────────────────────<br>table_id: int  [PK]<br>name: string<br>definition: text</div>
-<div class="tooltip" id="n13">COLUMN<br>────────────────────────────────────<br>column_id: int  [PK]<br>name: string<br>definition: text</div>
-<div class="tooltip" id="e0">1 : 1</div>
-<div class="tooltip" id="e1">0..N : 1</div>
-<div class="tooltip" id="e2">issued-by (0..N : 1)</div>
-<div class="tooltip" id="e3">classified-as (0..N : 1)</div>
-<div class="tooltip" id="e4">derives-from (0..N : 1..N)</div>
-<div class="tooltip" id="e5">part-of (0..N : 1)</div>
-<div class="tooltip" id="e6">derives-from (0..N : 1..N)</div>
-<div class="tooltip" id="e7">1 : 1..N</div>
-<div class="tooltip" id="e8">leads-to (1 : 1..N)</div>
-<div class="tooltip" id="e9">1 : 1..N</div>
-<div class="tooltip" id="e10">derived-from (0..N : 1)</div>
-<div class="tooltip" id="e11">1 : 1..N</div>
-<div class="tooltip" id="e12">derived-from (0..N : 0..1)</div>
-<div class="tooltip" id="e13">leads-to (1 : 1)</div>
-<div class="tooltip" id="e14">1 : 1..N</div>
-<div class="tooltip" id="e15">1 : 1..N</div>
-<div class="tooltip" id="e16">derived-from (0..N : 1)</div>
-<div class="tooltip" id="e17">derived-from (0..N : 1)</div>
+<div class="tooltip" id="n0">NIAM_ANALYSIS<br>────────────────────────────────────<br>niam_analysis_id: int  [PK]<br>status: string</div>
+<div class="tooltip" id="n1">NIAM_FACT<br>────────────────────────────────────<br>niam_fact_id: int  [PK]<br>name: string<br>verbalisation: text</div>
+<div class="tooltip" id="n2">NIAM_OBJECT<br>────────────────────────────────────<br>niam_object_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n3">MODELLING_CONTEXT<br>────────────────────────────────────<br>modelling_context_id: int  [PK]<br>domain: string<br>purpose: string<br>scope_boundary: string</div>
+<div class="tooltip" id="n4">INFORMATION_MODEL<br>────────────────────────────────────<br>information_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
+<div class="tooltip" id="n5">INFORMATION_MODEL_ELEMENT<br>────────────────────────────────────<br>information_model_element_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n6">REQUIREMENT<br>────────────────────────────────────<br>requirement_id: int  [PK]<br>type: string<br>text: text<br>condition: string</div>
+<div class="tooltip" id="n7">SOURCE<br>────────────────────────────────────<br>source_id: int  [PK]<br>title: string<br>citation: string<br>effective_date: date<br>jurisdiction: string</div>
+<div class="tooltip" id="n8">SOURCE_TYPE_REF<br>────────────────────────────────────<br>source_type_ref_id: int  [PK]<br>code: string  [UK]<br>description: string</div>
+<div class="tooltip" id="n9">ISSUING_AUTHORITY<br>────────────────────────────────────<br>issuing_authority_id: int  [PK]<br>name: string<br>authority_type: string</div>
+<div class="tooltip" id="n10">SOURCE_SECTION<br>────────────────────────────────────<br>source_section_id: int  [PK]<br>identifier: string<br>text: text<br>type: string</div>
+<div class="tooltip" id="n11">CHARACTERISTIC<br>────────────────────────────────────<br>characteristic_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n12">LOGICAL_DATA_MODEL<br>────────────────────────────────────<br>logical_data_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
+<div class="tooltip" id="n13">ENTITY<br>────────────────────────────────────<br>entity_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n14">ATTRIBUTE<br>────────────────────────────────────<br>attribute_id: int  [PK]<br>name: string<br>definition: text<br>attribute_type: string</div>
+<div class="tooltip" id="n15">TECHNICAL_DATA_MODEL<br>────────────────────────────────────<br>technical_data_model_id: int  [PK]<br>name: string<br>version: string<br>status: string</div>
+<div class="tooltip" id="n16">TABLE<br>────────────────────────────────────<br>table_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="n17">COLUMN<br>────────────────────────────────────<br>column_id: int  [PK]<br>name: string<br>definition: text</div>
+<div class="tooltip" id="e0">feeds</div>
+<div class="tooltip" id="e1">produces</div>
+<div class="tooltip" id="e2">has</div>
+<div class="tooltip" id="e3">derives-from</div>
+<div class="tooltip" id="e4">grounded-in</div>
+<div class="tooltip" id="e5">derives-from</div>
+<div class="tooltip" id="e6">produces</div>
+<div class="tooltip" id="e7">produces</div>
+<div class="tooltip" id="e8">scopes</div>
+<div class="tooltip" id="e9">part-of</div>
+<div class="tooltip" id="e10">derived-from</div>
+<div class="tooltip" id="e11">issued-by</div>
+<div class="tooltip" id="e12">classified-as</div>
+<div class="tooltip" id="e13">derives-from</div>
+<div class="tooltip" id="e14">part-of</div>
+<div class="tooltip" id="e15">derives-from</div>
+<div class="tooltip" id="e16">has</div>
+<div class="tooltip" id="e17">leads-to</div>
+<div class="tooltip" id="e18">has</div>
+<div class="tooltip" id="e19">derived-from</div>
+<div class="tooltip" id="e20">has</div>
+<div class="tooltip" id="e21">derived-from</div>
+<div class="tooltip" id="e22">leads-to</div>
+<div class="tooltip" id="e23">has</div>
+<div class="tooltip" id="e24">has</div>
+<div class="tooltip" id="e25">derived-from</div>
+<div class="tooltip" id="e26">derived-from</div>
 
 <map name="image1_1">
-  <area shape="poly" coords="165,875,165,875,165,809,175,809,175,875,175,875" alt="" onmouseover="showTooltip('e17')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="602,879,602,879,602,806,612,806,612,879,612,879" alt="" onmouseover="showTooltip('e16')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="451,939,451,939,333,936,334,926,452,930,452,930" alt="" onmouseover="showTooltip('e15')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="850,940,850,940,771,940,771,930,850,930,850,930" alt="" onmouseover="showTooltip('e14')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="1011,813,1011,813,1011,881,1001,881,1001,813,1001,813" alt="" onmouseover="showTooltip('e13')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="165,693,165,693,165,627,175,627,175,693,175,693" alt="" onmouseover="showTooltip('e12')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="451,764,451,764,333,761,334,751,452,755,452,755" alt="" onmouseover="showTooltip('e11')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="602,704,602,704,602,631,612,631,612,704,612,704" alt="" onmouseover="showTooltip('e10')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="850,765,850,765,771,765,771,755,850,755,850,755" alt="" onmouseover="showTooltip('e9')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="1011,638,1011,638,1011,697,1001,697,1001,638,1001,638" alt="" onmouseover="showTooltip('e8')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="451,589,451,589,333,586,334,576,452,580,452,580" alt="" onmouseover="showTooltip('e7')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="601,530,601,530,600,409,605,404,841,404,841,414,604,413,605,409,609,408,611,529,611,529" alt="" onmouseover="showTooltip('e6')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="771,580,771,580,850,580,850,590,771,590,771,590" alt="" onmouseover="showTooltip('e5')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="1001,522,1001,522,1001,472,1011,472,1011,522,1011,522" alt="" onmouseover="showTooltip('e4')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="1000,166,1000,166,1000,107,1009,106,1010,165,1010,165" alt="" onmouseover="showTooltip('e3')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="841,240,841,240,328,242,327,233,841,230,841,230" alt="" onmouseover="showTooltip('e2')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="1001,347,1001,347,1001,295,1011,295,1011,347,1011,347" alt="" onmouseover="showTooltip('e1')" onmouseout="hideTooltip()"/>
-  <area shape="poly" coords="1263,590,1263,590,1161,590,1161,580,1263,580,1263,580" alt="" onmouseover="showTooltip('e0')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="15,885,325,977" alt="" onmouseover="showTooltip('n13')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="452,889,762,981" alt="" onmouseover="showTooltip('n12')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="851,882,1161,988" alt="" onmouseover="showTooltip('n11')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="15,703,325,809" alt="" onmouseover="showTooltip('n10')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="452,714,762,806" alt="" onmouseover="showTooltip('n9')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="851,707,1161,813" alt="" onmouseover="showTooltip('n8')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="15,535,325,627" alt="" onmouseover="showTooltip('n7')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="18,192,328,284" alt="" onmouseover="showTooltip('n6')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="850,15,1160,107" alt="" onmouseover="showTooltip('n5')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="851,175,1161,295" alt="" onmouseover="showTooltip('n4')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="851,357,1161,463" alt="" onmouseover="showTooltip('n3')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="452,539,762,631" alt="" onmouseover="showTooltip('n2')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="851,532,1161,638" alt="" onmouseover="showTooltip('n1')" onmouseout="hideTooltip()"/>
-  <area shape="rect" coords="1264,532,1574,638" alt="" onmouseover="showTooltip('n0')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="2280,973,2280,973,2225,973,2225,963,2280,963,2280,963" alt="" onmouseover="showTooltip('e26')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="2280,823,2280,823,2225,823,2225,813,2280,813,2280,813" alt="" onmouseover="showTooltip('e25')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="2450,864,2450,864,2450,912,2440,912,2440,864,2440,864" alt="" onmouseover="showTooltip('e24')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="2450,296,2450,296,2450,762,2440,762,2440,296,2440,296" alt="" onmouseover="showTooltip('e23')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="2225,238,2225,238,2289,238,2289,248,2225,248,2225,248" alt="" onmouseover="showTooltip('e22')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1905,973,1905,973,1850,973,1850,963,1905,963,1905,963" alt="" onmouseover="showTooltip('e21')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="2075,864,2075,864,2075,905,2065,905,2065,864,2065,864" alt="" onmouseover="showTooltip('e20')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1905,823,1905,823,1850,823,1850,813,1905,813,1905,813" alt="" onmouseover="showTooltip('e19')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="2075,296,2075,296,2075,762,2065,762,2065,296,2065,296" alt="" onmouseover="showTooltip('e18')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1850,238,1850,238,1905,238,1905,248,1850,248,1850,248" alt="" onmouseover="showTooltip('e17')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1700,864,1700,864,1700,912,1690,912,1690,864,1690,864" alt="" onmouseover="showTooltip('e16')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1665,762,1665,762,1665,418,1670,418,1670,423,734,423,734,413,1670,413,1675,418,1675,762,1675,762" alt="" onmouseover="showTooltip('e15')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1690,762,1690,762,1690,296,1700,296,1700,762,1700,762" alt="" onmouseover="showTooltip('e14')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1530,273,1530,273,570,273,570,268,575,268,575,355,565,355,565,268,570,263,1530,263,1530,263" alt="" onmouseover="showTooltip('e13')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1109,588,1109,588,1164,588,1164,598,1109,598,1109,598" alt="" onmouseover="showTooltip('e12')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="950,662,950,662,950,696,940,696,940,662,940,662" alt="" onmouseover="showTooltip('e11')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="575,480,575,480,575,539,565,539,565,480,565,480" alt="" onmouseover="showTooltip('e10')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="734,588,734,588,789,588,789,598,734,598,734,598" alt="" onmouseover="showTooltip('e9')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1700,121,1700,121,1700,189,1690,189,1690,121,1690,121" alt="" onmouseover="showTooltip('e8')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="575,873,575,873,575,968,570,968,570,963,1539,963,1539,973,570,973,565,968,565,873,565,873" alt="" onmouseover="showTooltip('e7')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1484,813,1484,813,1539,813,1539,823,1484,823,1484,823" alt="" onmouseover="showTooltip('e6')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="1155,823,1155,823,725,823,725,813,1155,813,1155,813" alt="" onmouseover="showTooltip('e5')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="565,762,565,762,565,646,575,646,575,762,575,762" alt="" onmouseover="showTooltip('e4')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="405,798,405,798,370,798,365,793,365,443,370,438,414,438,414,448,370,448,370,443,375,443,375,793,370,793,370,788,405,788,405,788" alt="" onmouseover="showTooltip('e3')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="175,457,175,457,175,818,170,818,170,813,405,813,405,823,170,823,165,818,165,457,165,457" alt="" onmouseover="showTooltip('e2')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="165,378,165,378,165,243,170,238,1539,238,1539,248,170,248,170,243,175,243,175,378,175,378" alt="" onmouseover="showTooltip('e1')" onmouseout="hideTooltip()"/>
+  <area shape="poly" coords="405,423,405,423,334,423,334,413,405,413,405,413" alt="" onmouseover="showTooltip('e0')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="2290,922,2600,1014" alt="" onmouseover="showTooltip('n17')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="2290,772,2600,864" alt="" onmouseover="showTooltip('n16')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="2290,190,2600,296" alt="" onmouseover="showTooltip('n15')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1915,915,2225,1021" alt="" onmouseover="showTooltip('n14')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1915,772,2225,864" alt="" onmouseover="showTooltip('n13')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1915,190,2225,296" alt="" onmouseover="showTooltip('n12')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1540,922,1850,1014" alt="" onmouseover="showTooltip('n11')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="415,540,725,646" alt="" onmouseover="showTooltip('n10')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="790,697,1100,789" alt="" onmouseover="showTooltip('n9')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1165,547,1475,639" alt="" onmouseover="showTooltip('n8')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="790,533,1100,653" alt="" onmouseover="showTooltip('n7')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="415,365,725,471" alt="" onmouseover="showTooltip('n6')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1540,772,1850,864" alt="" onmouseover="showTooltip('n5')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1540,190,1850,296" alt="" onmouseover="showTooltip('n4')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1540,15,1850,121" alt="" onmouseover="showTooltip('n3')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="1165,772,1475,864" alt="" onmouseover="showTooltip('n2')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="415,772,725,864" alt="" onmouseover="showTooltip('n1')" onmouseout="hideTooltip()"/>
+  <area shape="rect" coords="15,379,325,457" alt="" onmouseover="showTooltip('n0')" onmouseout="hideTooltip()"/>
 </map>
 
 
