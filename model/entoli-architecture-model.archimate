@@ -788,118 +788,46 @@ Accountability information is made available to relevant stakeholders.&#xD;
       </element>
     </folder>
     <element xsi:type="archimate:Capability" name="Normative Specification" id="id-66d4eb74005f45abbf27ac809e8534ea">
-      <documentation># Capability: Normative&#xD;
+      <documentation>The ability of the ecosystem to translate structured knowledge into binding, testable, and enforceable directives that govern realisation.&#xD;
 &#xD;
-## Name&#xD;
-Normative&#xD;
+Purpose&#xD;
+  To create normative clarity and enforceable intent for implementation and validation.&#xD;
 &#xD;
-## Definition&#xD;
-The *Normative* capability establishes binding frameworks, principles and guidelines that give direction to design, realisation and testing within the workspace.&#xD;
-&#xD;
-It determines what holds.&#xD;
-&#xD;
-## Purpose&#xD;
-Ensuring consistent, explicit and enforceable starting points within the workspace.&#xD;
-&#xD;
-## Characteristics&#xD;
-- Prescriptive in nature&#xD;
-- Establishes interpretive frameworks&#xD;
-- Creates directive artefacts&#xD;
-- Has formal authority within scope&#xD;
-- Changes or establishes rules&#xD;
-&#xD;
-## Scope&#xD;
-- Establishing THEME frameworks&#xD;
-- Establishing architecture principles&#xD;
-- Defining guidelines and standards&#xD;
-- Recording quality norms&#xD;
-- Determining scope and delimitation&#xD;
-&#xD;
-## Output&#xD;
-- Directive artefacts&#xD;
-- Established principles&#xD;
-- Normative guidelines&#xD;
-- Standards and agreements&#xD;
-- Governance decisions&#xD;
-&#xD;
-## Success criterion&#xD;
-The established norms are explicit, consistent, traceable and applicable within the workspace.</documentation>
+Scope&#xD;
+  Requirement specification&#xD;
+  Logical data modelling&#xD;
+  Constraint definition&#xD;
+  Testability design</documentation>
     </element>
     <element xsi:type="archimate:Capability" name="Knowledge Structuring" id="id-4732496fbe224a74904e6af2c58f8517">
-      <documentation># Capability: Evaluative&#xD;
+      <documentation>The ability of the ecosystem to transform acquired knowledge into coherent, consistent, and explicit structural representations without introducing normative commitment.&#xD;
 &#xD;
-## Name&#xD;
-Evaluative&#xD;
+Purpose&#xD;
+  To create shared understanding and semantic coherence as a prerequisite for specification.&#xD;
 &#xD;
-## Definition&#xD;
-The *Evaluative* capability assesses recorded or realised structures for quality, coherence, risk and compliance with established norms.&#xD;
-&#xD;
-It adds explicit judgment or interpretation without itself establishing norms or realising structure.&#xD;
-&#xD;
-## Purpose&#xD;
-Providing insight into the quality and suitability of work within the workspace.&#xD;
-&#xD;
-## Characteristics&#xD;
-- Interpretive in nature&#xD;
-- Adds judgment or interpretation&#xD;
-- Does not change norms&#xD;
-- Does not realise structure&#xD;
-- Supports decision-making&#xD;
-&#xD;
-## Scope&#xD;
-- Assessing domain models&#xD;
-- Reviewing requirements&#xD;
-- Evaluating implementations&#xD;
-- Performing risk analyses&#xD;
-- Testing coherence and consistency&#xD;
-&#xD;
-## Output&#xD;
-- Review reports&#xD;
-- Risk analyses&#xD;
-- Quality assessments&#xD;
-- Advice&#xD;
-- Evaluation reports&#xD;
-&#xD;
-## Success criterion&#xD;
-The evaluation is substantiated, transparent and traceable to explicit assessment criteria.</documentation>
+Scope&#xD;
+  Concept identification and definition&#xD;
+  Relationship modelling&#xD;
+  Structural consistency and reduction&#xD;
+  Model consolidation</documentation>
     </element>
     <element xsi:type="archimate:Capability" name="Knowledge Acquisition" id="id-ce7573af6de14faca976848c20aefcba">
-      <documentation># Capability: Explanatory&#xD;
+      <documentation>The ability of the ecosystem to identify, obtain, and contextualise relevant knowledge from internal and external sources under explicit source constraints.&#xD;
 &#xD;
-## Name&#xD;
-Explanatory&#xD;
+Purpose&#xD;
+  To ensure that all downstream structuring and specification activities are grounded in traceable and explicitly selected sources.&#xD;
 &#xD;
-## Definition&#xD;
-The *Explanatory* capability explicitly records existing structures, decisions or results for the purpose of explanation, transferability and insight.&#xD;
+Scope&#xD;
+ Source identification and selection&#xD;
+ Source ingestion and preparation&#xD;
+ Interpretation of source content (non-normative)&#xD;
+ Hypothesis formation under uncertainty&#xD;
+ Realisation (Behavior elements)&#xD;
+ Source Selection&#xD;
+ Source Interpretation&#xD;
+ Hypothesis Formulation&#xD;
 &#xD;
-It adds no norm and realises no structure, but makes work understandable and transparent.&#xD;
-&#xD;
-## Purpose&#xD;
-Ensuring that work, choices and results are explainable and transferable within and beyond the workspace.&#xD;
-&#xD;
-## Characteristics&#xD;
-- Explanatory in nature&#xD;
-- No normative effect&#xD;
-- No binding recording&#xD;
-- Supports communication and knowledge retention&#xD;
-- Can be derived from other artefacts&#xD;
-&#xD;
-## Scope&#xD;
-- Documenting realised systems&#xD;
-- Explaining architecture choices&#xD;
-- Recording decision-making&#xD;
-- Drafting release notes&#xD;
-- Writing manuals or explanations&#xD;
-&#xD;
-## Output&#xD;
-- Architecture explanations&#xD;
-- System documentation&#xD;
-- Release notes&#xD;
-- Decision-making reports&#xD;
-- Explanatory documents&#xD;
-&#xD;
-## Success criterion&#xD;
-The description is clear, consistent and makes the work reproducible and understandable for those involved.</documentation>
+</documentation>
     </element>
   </folder>
   <folder name="Business" id="id-a2041084116e42ea80c1b0c940e528c9" type="business">
