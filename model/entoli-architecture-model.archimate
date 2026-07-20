@@ -701,7 +701,7 @@ Anchoring the new structure as regular, ongoing reality.&#xD;
 - Formal inclusion in governance  &#xD;
 - Structural budgeting  </documentation>
       </element>
-      <element xsi:type="archimate:ValueStream" name="6. Recording" id="id-6ea14b588b3a421a863ef753cbc4678e">
+      <element xsi:type="archimate:ValueStream" name="6. Registering" id="id-6ea14b588b3a421a863ef753cbc4678e">
         <documentation>## Accountability&#xD;
 &#xD;
 **Accountability** is the phase in which the process, the choices made and the judgments reached are made explicit, transparent and traceable within the ecosystem.&#xD;
@@ -786,6 +786,7 @@ Accountability information is made available to relevant stakeholders.&#xD;
 &#xD;
 [documentation newly defined for this element — see alignment report]</documentation>
       </element>
+      <element xsi:type="archimate:Capability" name="Tooling capability (Entoli Spec Foundry)" id="id-32525c801b5d4649880403b425777aa0"/>
     </folder>
     <element xsi:type="archimate:Capability" name="Normative Specification" id="id-66d4eb74005f45abbf27ac809e8534ea">
       <documentation>The ability of the ecosystem to translate structured knowledge into binding, testable, and enforceable directives that govern realisation.&#xD;
@@ -931,10 +932,10 @@ Anthropic</documentation>
   </folder>
   <folder name="Application" id="id-1b7f4bd17a8a4ccca4de4ed0056a7792" type="application">
     <folder name="data objects" id="id-1a54c7e5da3f46c1b129f6b8d854a643">
-      <element xsi:type="archimate:DataObject" name="Entoli-agent" id="id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d">
+      <element xsi:type="archimate:DataObject" name="Agent" id="id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d">
         <documentation>An entoli-agent is an explicitly defined, autonomous software entity within the Entoli ecosystem that, on the basis of a formal agent-charter and agent-contract, executes specific tasks, produces Entoli artifacts or delivers information, and always operates within a demarcated agent-boundary and according to applicable governance.</documentation>
       </element>
-      <element xsi:type="archimate:DataObject" name="Agent-contract" id="id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e">
+      <element xsi:type="archimate:DataObject" name="Agent-intent" id="id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e">
         <documentation>An agent-contract formally defines the intent (agent-capability) of the entoli-agent, the input it expects and the output (artifact) it creates or answers it gives, as well as the policies and constraints under which those capabilities are accessible.</documentation>
       </element>
       <element xsi:type="archimate:DataObject" name="Agent-capability" id="id-3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c">
@@ -999,18 +1000,31 @@ POSITIONS &#xD;
       <element xsi:type="archimate:DataObject" name="Instruction Set" id="id-fd42a7d492c64cbe8d99c4b403501755">
         <documentation>An Instruction Set is an ordered collection of Instructions assembled by coordination and handed off to the execution layer as a single unit of work.</documentation>
       </element>
-      <element xsi:type="archimate:DataObject" name="Interpretation Mode" id="id-74040cc1deff420a8806a4db047c18b8">
-        <documentation>Interpretation Mode is the classification axis that specifies, per agent-intent, within what interpretive boundaries the LLM is permitted to operate when executing the task. It defines what the LLM is allowed to do, what it is forbidden to do, and what output form is expected.&#xD;
+      <element xsi:type="archimate:DataObject" name="Task Mode" id="id-74040cc1deff420a8806a4db047c18b8">
+        <documentation>Task Mode is the data object that records, per agent-intent, which type of operation is to be executed and what output structure must be produced. It carries exactly one enumerated value per agent-intent, drawn from a fixed set of five.&#xD;
 &#xD;
-POSITIONS INTERPRETATION MODE&#xD;
-- Explotarory&#xD;
-- Explanatory&#xD;
-- Structure-realising — produces structural artefacts (templates, schemas, patterns)&#xD;
-- Normative — produces artefacts that establish norms, rules, or obligations&#xD;
-- Realising — produces implementations, code, or deployable artefacts&#xD;
-- Evaluative — produces assessments, reports, or validation outcomes&#xD;
-- Ordering — produces ranked or ordered artefacts&#xD;
-- Validating — produces validation or conformity findings</documentation>
+It answers a question distinct from the other objects it is associated with: Source Regime records which sources may be loaded; Synthesis Regime records what may be done to meaning; Execution Strategy records how execution progresses; Task Mode records what kind of operation is performed and how the result must be structured.&#xD;
+&#xD;
+Enumeration values&#xD;
+&#xD;
+- Extracting: isolate explicitly present elements from source material; output is a list or set of elements; no additional relationships introduced; all elements MUST be directly traceable to source.&#xD;
+- Structuring: organise and relate existing elements without altering meaning; output is a structured artifact (e.g. hierarchy, relations, sections); no new meaning or relationships beyond source.&#xD;
+- Transforming: reformulate content into a different representation while preserving meaning; output is an equivalent artifact in a new form; semantic equivalence MUST be maintained.&#xD;
+- Evaluating: assess content against explicitly defined criteria; output consists of criteria, per-criterion assessment, and explicit conclusion; criteria MUST be stated and traceable.&#xD;
+- Generating: produce new content not fully present in the source; output is a coherent artifact fulfilling the task goal; new meaning is allowed only as governed by Synthesis Regime.&#xD;
+&#xD;
+&#xD;
+Constraints&#xD;
+&#xD;
+- MUST be declared explicitly per agent-intent; never inferred from Source Regime, Synthesis Regime, or Execution Strategy.&#xD;
+- MUST define:&#xD;
+  - the type of operation performed&#xD;
+  - the structure of the output produced&#xD;
+- MUST NOT define:&#xD;
+  - iteration or looping&#xD;
+  - branching or step selection&#xD;
+  - progression logic&#xD;
+- Extracted from language previously embedded in Interpretation Mode and task descriptions - a relocation and formalisation of existing behaviour, not a new capability.</documentation>
       </element>
       <element xsi:type="archimate:DataObject" name="Template" id="id-01a25f721c954045b2c20d63486f16f1">
         <documentation>A template is a pre-structured pattern that defines the expected form, sections, or skeleton of a business artifact. It does not prescribe content but provides the structural starting point from which a concrete business artifact can be created. Templates are derived from or aligned with business artifacts and ensure consistency in artifact production across agents and value stream phases.</documentation>
@@ -1072,8 +1086,8 @@ SOURCE REGIME&#xD;
 - Input-bound — the agent works from explicitly provided input&#xD;
 - Canon-bound — the agent draws from the canonical foundations&#xD;
 - Workspace-bound — the agent draws from workspace artefacts&#xD;
-- Externally-bound — the agent draws from an external source (web, API)&#xD;
-- Exploratory — the agent explores without a fixed source regime</documentation>
+- External-source-bound — the agent draws from an external source (web, API)&#xD;
+- Open  — Not pre-limited source space; assumptions made explicit (max 3) | Probabilistic |</documentation>
     </element>
     <element xsi:type="archimate:DataObject" name="Business Artiffact" id="id-107ef8b5fd9b446a88363d2b824b1325">
       <documentation>A business artifact is a concrete, durable work product that records content, decisions, analyses, or deliverables produced by an Entoli agent within a value stream phase. It represents substantive output — such as a design, plan, report, code file, or specification — and serves as transferable value within the workspace. A business artifact is one of two subtypes of artifact, distinct from a normative artifact in that it conveys substance rather than prescribing rules or norms.</documentation>
@@ -1170,6 +1184,64 @@ POSITIONS ORIGIN POSITION&#xD;
     <element xsi:type="archimate:DataObject" name="handoff" id="id-b83f1680d847426d8f503918be294fef"/>
     <element xsi:type="archimate:DataObject" name="large language model" id="id-46cf5218d3164951a8bacc8cc3c5e16f"/>
     <element xsi:type="archimate:DataObject" name="llm-execution-configuration" id="id-d6e9cf7205704d9ba617c4fda8a49057"/>
+    <element xsi:type="archimate:DataObject" name="Synthesis-regime" id="id-bbcbfcd279104c52b55b4973d859dcdd">
+      <documentation>Synthesis Regime is the data object that records, per agent-intent, which meaning-transformations the LLM is permitted to perform once its sources are loaded and its task shape is fixed. It carries exactly one enumerated value per agent-intent, drawn from a fixed set of three.&#xD;
+&#xD;
+It answers a question distinct from the two objects it is associated with: Source Regime records which sources may be loaded; Interpretation Mode records what shape of task this is; Synthesis Regime records what may be done to meaning once both of those are settled.&#xD;
+&#xD;
+Attributes&#xD;
+&#xD;
+- value (Enumeration): One of: Faithful, Structuring, Generative&#xD;
+- scope (Reference): The agent-intent this value applies to&#xD;
+- epistemicGuarantee (Derived boolean): true for Faithful/Structuring, false for Generative unless the generated content has since been validated and canonised&#xD;
+&#xD;
+Enumeration values&#xD;
+&#xD;
+- Faithful: no new meaning introduced; rephrasing, summarising, and strict derivation from source only.&#xD;
+- Structuring: meaning unaltered; only reorganisation, relation-making, or structural exposure of existing content permitted.&#xD;
+- Generative: new meaning (hypotheses, assumptions, alternative framings) may be introduced; every such instance must be explicitly marked and carries no epistemic guarantee until validated and canonised.&#xD;
+&#xD;
+Relationships&#xD;
+&#xD;
+- Association -> Agent Contract: every agent-intent within a contract carries exactly one Synthesis Regime value.&#xD;
+- Association (orthogonal) -> Source Regime: independent axes; an Open source regime does not by itself grant Generative permission.&#xD;
+- Association (orthogonal) -> Interpretation Mode: independent axes; the same task shape may be declared under any Synthesis Regime value.&#xD;
+- Realization -> Epistemic Guarantee: Faithful and Structuring preserve it on every claim; Generative suspends it for newly introduced content.&#xD;
+&#xD;
+Constraints&#xD;
+&#xD;
+- MUST be declared explicitly per agent-intent; never inferred from Source Regime or Interpretation Mode.&#xD;
+- Extracted from language previously embedded in Source Regime's Open position and in Interpretation Mode's per-position constraints - a relocation of existing behaviour, not a new permission.&#xD;
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Execution strategy" id="id-9d7b079582fe4c5e9b58993c759ea4cc">
+      <documentation>Execution Strategy is the data object that records, per agent-contract, how Task Modes are selected, sequenced, and iterated during execution. It carries exactly one enumerated value per agent-contract, drawn from a fixed set of three.&#xD;
+&#xD;
+It answers a question distinct from the other objects it is associated with: Source Regime records which sources may be loaded; Synthesis Regime records what may be done to meaning; Task Mode records what type of operation is performed; Execution Strategy records how execution progresses across those operations.&#xD;
+&#xD;
+Attributes&#xD;
+&#xD;
+- value (Enumeration): One of: Linear, Exploratory, Convergent&#xD;
+- scope (Reference): The agent-contract this value applies to&#xD;
+- progressionDeterminism (Derived enumeration): deterministic for Linear, adaptive for Exploratory, selective for Convergent&#xD;
+&#xD;
+Enumeration values&#xD;
+&#xD;
+- Linear: execution follows a predefined sequence of Task Modes; no iteration or branching; progression is fully deterministic and terminates upon completion of the sequence.&#xD;
+- Exploratory: execution proceeds iteratively; Task Modes are selected based on intermediate results; progression is adaptive and continues until sufficient understanding or stability is reached.&#xD;
+- Convergent: execution begins with multiple candidates (options, hypotheses, alternatives) and reduces them over successive iterations; progression is driven by evaluation and elimination toward a single validated outcome.&#xD;
+&#xD;
+&#xD;
+Constraints&#xD;
+&#xD;
+- MUST be declared explicitly per agent-contract; never inferred from Task Mode, Source Regime, or Synthesis Regime.&#xD;
+- MUST be realised explicitly in orchestration; execution flows must reflect the declared strategy.&#xD;
+- MUST NOT define:&#xD;
+  - allowed sources&#xD;
+  - allowed meaning transformations&#xD;
+  - structure of individual tasks&#xD;
+- Extracted from previously implicit sequencing, iteration, and decision logic embedded in orchestration flows - a relocation and formalisation of existing behaviour, not a new capability.</documentation>
+    </element>
   </folder>
   <folder name="Technology &amp; Physical" id="id-20c3f05dbb724c1ea4cdad75c4e34cba" type="technology">
     <element xsi:type="archimate:SystemSoftware" name="MongoDB" id="id-cc3381a941454e95aae20381d6ee0bb6"/>
@@ -1179,21 +1251,21 @@ POSITIONS ORIGIN POSITION&#xD;
   <folder name="Motivation" id="id-aeb7b54d4a7f4f979dc20cd0246b4e9c" type="motivation">
     <folder name="req" id="id-0b3e3e1e890e4d6fb0d5688b7385f000">
       <folder name="source regime" id="id-041c22bf4f464036a853f3352f063653">
-        <element xsi:type="archimate:Constraint" name="Canon-bound" id="id-31c5d3ed2e9c4cefbc28d7b187301c16">
+        <element xsi:type="archimate:Constraint" name="SOURCE-REGIME: canon-bound" id="id-31c5d3ed2e9c4cefbc28d7b187301c16">
           <documentation>- **Canon-bound**  &#xD;
   Only explicitly recorded canonical artefacts may be used as a source.  &#xD;
   Interpretation within the canon is permitted; external sources are not.&#xD;
 &#xD;
 </documentation>
         </element>
-        <element xsi:type="archimate:Constraint" name="External-source-bound" id="id-a76a558cb861412b98059d6a31db5a8f">
+        <element xsi:type="archimate:Constraint" name="SOURCE-REGIME: External-source-bound" id="id-a76a558cb861412b98059d6a31db5a8f">
           <documentation>- **External-source-bound**  &#xD;
   Specifically named external sources (e.g. legislation, standards, market information) may be consulted.  &#xD;
   The sources used must be explicitly traceable.&#xD;
 &#xD;
 </documentation>
         </element>
-        <element xsi:type="archimate:Constraint" name="Input-bound" id="id-69edef7ff33a4efcb6a5f5bef66d1762">
+        <element xsi:type="archimate:Constraint" name="SOURCE-REGIME: Input-bound" id="id-69edef7ff33a4efcb6a5f5bef66d1762">
           <documentation> **Input-bound**  &#xD;
   Only the explicitly supplied input forms the permitted source space.  &#xD;
   No external sources, no canonical artefacts, no additional knowledge.  &#xD;
@@ -1201,7 +1273,7 @@ POSITIONS ORIGIN POSITION&#xD;
 &#xD;
 </documentation>
         </element>
-        <element xsi:type="archimate:Constraint" name="Open" id="id-7c1a94cf3c1e455fadfb98818b1c5c02">
+        <element xsi:type="archimate:Constraint" name="SOURCE-REGIME Open" id="id-7c1a94cf3c1e455fadfb98818b1c5c02">
           <documentation>- **Exploratory**  &#xD;
   The source space is open. New sources may be explored and identified.  &#xD;
   Results have no normative status until selection has taken place.</documentation>
@@ -1386,6 +1458,7 @@ In such dilemmas:&#xD;
         </element>
       </folder>
     </folder>
+    <element xsi:type="archimate:Constraint" name="Constraint" id="id-6dab4333a69243a3bcc6d91154836c16"/>
   </folder>
   <folder name="Implementation &amp; Migration" id="id-89140577efd14100bd8a584dbe3a43f6" type="implementation_migration"/>
   <folder name="Other" id="id-264d65da29dc4627a459d13c37553187" type="other">
@@ -1734,6 +1807,12 @@ In such dilemmas:&#xD;
     <element xsi:type="archimate:TriggeringRelationship" id="id-8fa592d9e07349458d22922cba8ebb16" source="id-7c4392a32bf94d418fab669eb8c8a981" target="id-bb2b622aa3b64e61935debdadcb1e4bf"/>
     <element xsi:type="archimate:TriggeringRelationship" id="id-de050447d2a64218b79d529e6fee6b5b" source="id-bb2b622aa3b64e61935debdadcb1e4bf" target="id-25aa769ab0d5467aa92f5c16a572c680"/>
     <element xsi:type="archimate:TriggeringRelationship" id="id-6ecd8a97472a4155931573556e7cc83f" source="id-25aa769ab0d5467aa92f5c16a572c680" target="id-e61fe6d8c32a45f0be7342d811e4a51b"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-bda082f26be84244946fbbde4903cbb0" source="id-32525c801b5d4649880403b425777aa0" target="id-97cbf8471d0d489fba13c9e3f2d14bd1"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-a15b64fbc4a34fe5a3ef434bfc59bfdf" source="id-32525c801b5d4649880403b425777aa0" target="id-647ee4ad868c438ba52f62a416598df7"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-2610a63a69d14444875589220778e207" source="id-32525c801b5d4649880403b425777aa0" target="id-6ea14b588b3a421a863ef753cbc4678e"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-4af3969de8884ef59af440fefbb1976c" source="id-32525c801b5d4649880403b425777aa0" target="id-1a741fb46b3d410c8eda68bf5a6a5fdc"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-5cbf7e4b906940028efc92f3a9030f8f" source="id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e" target="id-bbcbfcd279104c52b55b4973d859dcdd"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-3dfbe94b114147e2a07ed5daa1aab311" source="id-9d7b079582fe4c5e9b58993c759ea4cc" target="id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d"/>
   </folder>
   <folder name="Views" id="id-ca7ad8080a214939a0e88c60169a9612" type="diagrams">
     <folder name=".prelimanary" id="id-b6a723fd32f9454b94c62fd4198f1e82">
@@ -1895,24 +1974,24 @@ In such dilemmas:&#xD;
             <bounds x="299" y="36" width="144" height="55"/>
           </child>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-967181d1c364415caecb4e8d2c013326" targetConnections="id-8a477cc6d3514a19ba64b1ffc6bccd24" archimateElement="id-647ee4ad868c438ba52f62a416598df7">
+        <child xsi:type="archimate:DiagramObject" id="id-967181d1c364415caecb4e8d2c013326" targetConnections="id-8a477cc6d3514a19ba64b1ffc6bccd24 id-70ec539c20114b3e8d4fa17bb0b51e6c" archimateElement="id-647ee4ad868c438ba52f62a416598df7">
           <bounds x="2088" y="480" width="565" height="109"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-d8b3644e3ddb4c7a98785216431a6a49" source="id-967181d1c364415caecb4e8d2c013326" target="id-4ec92a1c063c4ae2959af2c80a2242ab" archimateRelationship="id-ef65924ebc0c4d7b9c9d4913371ce5bb"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-f85158935450429f8a0bf5382bbb04d7" source="id-967181d1c364415caecb4e8d2c013326" target="id-6b8d7f4ed27c46d6a64b209ddec864bb" archimateRelationship="id-c4fa97e691664cf8a458713dd6337174"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-2a4b588435dd47fbb4aa199be9e4ca13" source="id-967181d1c364415caecb4e8d2c013326" target="id-71db8323f77d4889bcee65909141c19e" archimateRelationship="id-d7c539c09747484b833b72479b2f8d03"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-852a2bc8262047a2bcdf4fa8679badfd" source="id-967181d1c364415caecb4e8d2c013326" target="id-21209428eeea4c30b1ddcc4545524df8" archimateRelationship="id-4745fe98c28948dcb4a630e49f5a97fe"/>
           <child xsi:type="archimate:DiagramObject" id="id-6b8d7f4ed27c46d6a64b209ddec864bb" targetConnections="id-f85158935450429f8a0bf5382bbb04d7" textPosition="1" archimateElement="id-b64ecc3211a14ac6b2aa25ffda668cb8" type="1">
-            <bounds x="432" y="36" width="120" height="55"/>
+            <bounds x="396" y="36" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-9d2e3308cc454be6bf5870bd71f5c287" source="id-6b8d7f4ed27c46d6a64b209ddec864bb" target="id-e55df3be19664623baea0aa1e5d2285c" archimateRelationship="id-1a3c787b629e46788ff3bda865e35e97">
               <bendpoint startX="-12" startY="130" endX="-498" endY="-14"/>
             </sourceConnection>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-71db8323f77d4889bcee65909141c19e" targetConnections="id-2a4b588435dd47fbb4aa199be9e4ca13" textPosition="1" archimateElement="id-86005bc0d7204e6c9e83b9aab56e2fe5" type="1">
-            <bounds x="156" y="36" width="120" height="55"/>
+            <bounds x="84" y="36" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-e76687917d3b4826a4d7a03ae835e90d" source="id-71db8323f77d4889bcee65909141c19e" target="id-b0e8de86d1994a81923dc8e9463d8a36" archimateRelationship="id-e6d5fa572052487cb1d63d0864c15bd9"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-4ec92a1c063c4ae2959af2c80a2242ab" targetConnections="id-d8b3644e3ddb4c7a98785216431a6a49" textPosition="1" archimateElement="id-e8af859499b34e57a11972b4d6f49b1f" type="1">
-            <bounds x="300" y="36" width="120" height="55"/>
+            <bounds x="240" y="36" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-dee3019040794f919ffc5e61ce823923" source="id-4ec92a1c063c4ae2959af2c80a2242ab" target="id-e55df3be19664623baea0aa1e5d2285c" archimateRelationship="id-4d827dbb6bde4709a6cdb61c5c0504b5">
               <bendpoint startX="-12" startY="154" endX="-630" endY="10"/>
             </sourceConnection>
@@ -1921,7 +2000,7 @@ In such dilemmas:&#xD;
         <child xsi:type="archimate:DiagramObject" id="id-b0e8de86d1994a81923dc8e9463d8a36" targetConnections="id-e76687917d3b4826a4d7a03ae835e90d" textPosition="1" archimateElement="id-69edef7ff33a4efcb6a5f5bef66d1762">
           <bounds x="2124" y="660" width="253" height="55"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-21209428eeea4c30b1ddcc4545524df8" targetConnections="id-852a2bc8262047a2bcdf4fa8679badfd" archimateElement="id-6ea14b588b3a421a863ef753cbc4678e">
+        <child xsi:type="archimate:DiagramObject" id="id-21209428eeea4c30b1ddcc4545524df8" targetConnections="id-852a2bc8262047a2bcdf4fa8679badfd id-a9b46915e5e94daba14f894012d6d53c" archimateElement="id-6ea14b588b3a421a863ef753cbc4678e">
           <bounds x="2676" y="480" width="601" height="109"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-34da80377bed481bb5ccb6d506a3ea4a" source="id-21209428eeea4c30b1ddcc4545524df8" target="id-fdd8ccfbaae84531875d3ef05e7f2f3d" archimateRelationship="id-287dc69a52244d9f97ea0f18b4c3ac99"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-d764df288a174078af8f83d396d83326" source="id-21209428eeea4c30b1ddcc4545524df8" target="id-2e21fd5b343643bf8edcbdbf2e8a9851" archimateRelationship="id-dcceb85ea3154a50b9d822a9c44f116d"/>
@@ -1945,7 +2024,7 @@ In such dilemmas:&#xD;
         <child xsi:type="archimate:DiagramObject" id="id-e55df3be19664623baea0aa1e5d2285c" targetConnections="id-31d71bae02784427b5b4811997464d8b id-b174287df18a46f0bbb36ca95f833d7c id-1aaa7417edaa4f909eec56efeed08988 id-dee3019040794f919ffc5e61ce823923 id-9d2e3308cc454be6bf5870bd71f5c287" textPosition="1" archimateElement="id-31c5d3ed2e9c4cefbc28d7b187301c16">
           <bounds x="2676" y="660" width="781" height="55"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-8cd86d4abffd4aef8f2ff45c641d9a55" targetConnections="id-1df5dad88fc34b21ab3b4be13e48fc25 id-690b18b119f842d085a36b652740816e" archimateElement="id-97cbf8471d0d489fba13c9e3f2d14bd1">
+        <child xsi:type="archimate:DiagramObject" id="id-8cd86d4abffd4aef8f2ff45c641d9a55" targetConnections="id-1df5dad88fc34b21ab3b4be13e48fc25 id-690b18b119f842d085a36b652740816e id-967c3609b56341babed6d8def9bbc456" archimateElement="id-97cbf8471d0d489fba13c9e3f2d14bd1">
           <bounds x="1596" y="480" width="468" height="109"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-bcdde791c1f74fbaa00105434772040d" source="id-8cd86d4abffd4aef8f2ff45c641d9a55" target="id-92075d23ca054edab11696028edd8d26" archimateRelationship="id-d1a59d60916842ab99c8147fc299f8f9"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-4bf67940d31747889d1f8ee899f4741b" source="id-8cd86d4abffd4aef8f2ff45c641d9a55" target="id-f24c2f5780a54d359d5822eefdcaf752" archimateRelationship="id-82b3667df02149f5b0cc99f016326896"/>
@@ -1960,7 +2039,7 @@ In such dilemmas:&#xD;
             <bounds x="299" y="36" width="144" height="55"/>
           </child>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-5e218a4a827241bc9944ff20253bd5bd" targetConnections="id-ed588580b0fc4d278339021565d83bd0" archimateElement="id-1a741fb46b3d410c8eda68bf5a6a5fdc">
+        <child xsi:type="archimate:DiagramObject" id="id-5e218a4a827241bc9944ff20253bd5bd" targetConnections="id-ed588580b0fc4d278339021565d83bd0 id-64986c90ca74459b9a13c536760b9530" archimateElement="id-1a741fb46b3d410c8eda68bf5a6a5fdc">
           <bounds x="3300" y="480" width="613" height="109"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-2065d4fdb79f43ef96c2295b46ebef25" source="id-5e218a4a827241bc9944ff20253bd5bd" target="id-90ab0c5ab84c4550b5124e2403f09828" archimateRelationship="id-dd9895046b8e461aaa48b75734741092"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-5f4cebee500e4f99ba591a031e97a9b5" source="id-5e218a4a827241bc9944ff20253bd5bd" target="id-d10889c16b4147d48fc8de101202c193" archimateRelationship="id-39e624a2b3ff4c6e85171f35a23c60a3"/>
@@ -2010,6 +2089,16 @@ In such dilemmas:&#xD;
             <bounds x="1008" y="48" width="482" height="91"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-e4a75056abee4ea4805e3c5868aec61f" source="id-8aa75c08a90240a3b4be504339a7e3e9" target="id-c074f3e869ca49099ee6750b31044c27" archimateRelationship="id-db658d5e35914235951bdfd04afeac04"/>
           </child>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-55adabbffba043d78a0f43b78b43909a" textPosition="1" archimateElement="id-32525c801b5d4649880403b425777aa0">
+          <bounds x="1656" y="309" width="1884" height="88"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-967c3609b56341babed6d8def9bbc456" source="id-55adabbffba043d78a0f43b78b43909a" target="id-8cd86d4abffd4aef8f2ff45c641d9a55" archimateRelationship="id-bda082f26be84244946fbbde4903cbb0"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-70ec539c20114b3e8d4fa17bb0b51e6c" source="id-55adabbffba043d78a0f43b78b43909a" target="id-967181d1c364415caecb4e8d2c013326" archimateRelationship="id-a15b64fbc4a34fe5a3ef434bfc59bfdf"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-a9b46915e5e94daba14f894012d6d53c" source="id-55adabbffba043d78a0f43b78b43909a" target="id-21209428eeea4c30b1ddcc4545524df8" archimateRelationship="id-2610a63a69d14444875589220778e207"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-64986c90ca74459b9a13c536760b9530" source="id-55adabbffba043d78a0f43b78b43909a" target="id-5e218a4a827241bc9944ff20253bd5bd" archimateRelationship="id-4af3969de8884ef59af440fefbb1976c"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-1d27c21727b54469a9b3bf055c2af2e2" archimateElement="id-6dab4333a69243a3bcc6d91154836c16">
+          <bounds x="2182" y="176" width="120" height="55"/>
         </child>
       </element>
     </folder>
@@ -2403,7 +2492,6 @@ FURTHER READING&#xD;
 From Local to Global: A GraphRAG Approach to Query-Focused Summarization&#xD;
 https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/RAG-Graph-article.md?ref_type=heads</documentation>
       </element>
-      <element xsi:type="archimate:ArchimateDiagramModel" name="entoli-value-stream" id="id-13ef94c11e484552bf963720d9f8e9ec"/>
       <element xsi:type="archimate:ArchimateDiagramModel" name="proces-datamodelling" id="id-611ff2ee4da04ae2bf763c461f9a6d1c">
         <child xsi:type="archimate:DiagramObject" id="id-3e5b67a19e104e5d9d93cdeabb3b5a2e" archimateElement="id-a7b23e914b734aad890e83af19c7983c">
           <bounds x="204" y="228" width="132" height="55"/>
@@ -2445,8 +2533,9 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
           <sourceConnection xsi:type="archimate:Connection" id="id-81d2d413e12948f1820b99c5a669a83e" source="id-607ae57960b848079492de0acfd5b662" target="id-4eca995c002f41e681359e5e0aec4476" archimateRelationship="id-8b04b1c9cf51498d801cc1b2428d1143"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-4d78d61f09544d39ae25dc947bfb1c08" source="id-607ae57960b848079492de0acfd5b662" target="id-f88c0c597e864894b034be01c7578d50" archimateRelationship="id-d593150723c34a0b8d1632bb10ce6043"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-cd691ada5c184520be183e0a91d01b9f" source="id-607ae57960b848079492de0acfd5b662" target="id-397f8615f71e4f96a9c874f7c1a977d6" archimateRelationship="id-3677c9de049a4d5092d95a50ea8acb88"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d3eb567addd244c3a0c3430b44f651b4" source="id-607ae57960b848079492de0acfd5b662" target="id-997eeb940fc547a79b807e8aa154e6e6" archimateRelationship="id-5cbf7e4b906940028efc92f3a9030f8f"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-4eca995c002f41e681359e5e0aec4476" targetConnections="id-81d2d413e12948f1820b99c5a669a83e id-ea0b92038d9f4556861366a4e8451e91" textPosition="1" archimateElement="id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d">
+        <child xsi:type="archimate:DiagramObject" id="id-4eca995c002f41e681359e5e0aec4476" targetConnections="id-81d2d413e12948f1820b99c5a669a83e id-ea0b92038d9f4556861366a4e8451e91 id-071959a43ba443c7bdae9feca05d53e7" textPosition="1" archimateElement="id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d">
           <bounds x="192" y="324" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-74f70230ff864684ab31b0f7c68e145b" source="id-4eca995c002f41e681359e5e0aec4476" target="id-abced834a8cc4681a61f400c900978e3" archimateRelationship="id-26a8d79bde704a589c41684c4b598a55"/>
         </child>
@@ -2462,6 +2551,13 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-397f8615f71e4f96a9c874f7c1a977d6" targetConnections="id-cd691ada5c184520be183e0a91d01b9f" textPosition="1" archimateElement="id-4906771e6247482ca99b3edec7d325f6">
           <bounds x="624" y="324" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-997eeb940fc547a79b807e8aa154e6e6" targetConnections="id-d3eb567addd244c3a0c3430b44f651b4" textPosition="1" archimateElement="id-bbcbfcd279104c52b55b4973d859dcdd">
+          <bounds x="444" y="432" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-910dbc5264014b81a5d97d0ba2db4b2e" textPosition="1" archimateElement="id-9d7b079582fe4c5e9b58993c759ea4cc">
+          <bounds x="12" y="324" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-071959a43ba443c7bdae9feca05d53e7" source="id-910dbc5264014b81a5d97d0ba2db4b2e" target="id-4eca995c002f41e681359e5e0aec4476" archimateRelationship="id-3dfbe94b114147e2a07ed5daa1aab311"/>
         </child>
       </element>
       <element xsi:type="archimate:ArchimateDiagramModel" name="components-and-services" id="id-4eeb3931b57c4fffa5d5f3ec1b9b6280">
