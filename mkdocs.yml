@@ -116,7 +116,7 @@ nav:
   - Datamodellen: data-models/index.md
   - Artikelen:
       - Datamodelleren met Entoli: artikelen/artikel-datamodelleren-entoli.md
-  - Source Regime en Synthesis Regime: artikelen/source-regime-en-synthesis-regime.md
+      - Source-regime, Synthesis-regime en Task Mode: artikelen/source-regime-synthesis-regime-task-mode.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration
