@@ -117,6 +117,8 @@ nav:
   - Artikelen:
       - Datamodelleren met Entoli: artikelen/artikel-datamodelleren-entoli.md
       - Source-regime, Synthesis-regime en Task Mode: artikelen/source-regime-synthesis-regime-task-mode.md
+  - Codes:
+      - Classification Register: codes/classification-register.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration
