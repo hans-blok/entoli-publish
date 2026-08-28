@@ -62,155 +62,66 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"># Entoli Execution &amp; Agent Model &#8212; Relations and Cardinalities
+						<div class="convertlinks documentation" style="white-space:pre-wrap">View documentation &#8212; Canon Structure
 
-This view defines the **canonical relationships and cardinalities** between core concepts in the Entoli ecosystem.  
-It supports **traceability, determinism, and contract-driven execution**.
+Name: Canon Structure
 
----
+Purpose
+This view describes the structural composition of a Canon and the relationship between its semantic model and normative rules. It shows how a knowledge specification is realized as a Canon and how the Canon makes domain knowledge explicit through semantic elements, relationships, and rules.
 
-## 1. Value Stream Structure
+Scope
+The view covers the conceptual structure of a Canon. It does not describe the physical representation, storage technology, file structure, or execution of the Canon.
 
-- **Value Stream &#8594; Value Stream Phase**  
-  - *is decomposed into*  
-  - `1 &#8594; 1..n`  
-  - Each value stream consists of one or more phases  
-  - Each phase belongs to exactly one value stream  
+Viewpoint
+Conceptual / semantic structure.
 
----
+Description
+A Knowledge Specification specifies a Knowledge Domain and is realized by a Canon.
 
-## 2. Agent Positioning
+A Canon is composed of two complementary parts:
 
-- **Agent &#8594; Value Stream Phase**  
-  - *operates in*  
-  - `n &#8594; 1`  
-  - Each agent operates in one primary phase  
+a Semantic Model, which makes the relevant domain semantics explicit;
+Rules, which express normative constraints governing those semantics.
 
-- **Agent &#8594; Formation Phase**  
-  - *is positioned in*  
-  - `n &#8594; 1`  
-  - Formation phase is a classification attribute  
+The Semantic Model is composed of Elements and Relationships. Elements represent the concepts or other semantic objects recognised by the model. Relationships connect those elements and make their semantic structure explicit.
 
-- **Agent &#8594; Operation Mode**  
-  - *operates under*  
-  - `n &#8594; 1`  
-  - Defines how the agent operates (stable characteristic)  
+A Relationship is directed. It has:
 
----
+a source &#8212; the Element from which the relationship originates;
+a target &#8212; the Element to which the relationship points.
 
-## 3. Agent and Capabilities
+The source and target describe the structural anatomy of a relationship. They are distinct from the relationship type, which expresses the semantic meaning of that relationship, such as is-composed-of, specifies, realizes, or constrains.
 
-- **Agent &#8594; Agent Contract**  
-  - *exposes capabilities via*  
-  - `1 &#8594; 1..n`  
-  - An agent exposes one or more capabilities  
-  - Each contract belongs to exactly one agent  
+Rules constrain elements of the Semantic Model. Together, the Semantic Model and Rules form the Canon: the Semantic Model establishes what is recognised and how it is related; the Rules establish what is normatively required, permitted, or prohibited.
 
----
+Relationship semantics
 
-## 4. Capability Definition (Agent Contract)
+Source	Relationship	Target	Meaning
+Knowledge Specification	specifies	Knowledge Domain	Identifies the knowledge domain whose semantics are being specified.
+Canon	realizes	Knowledge Specification	Makes the knowledge specification explicit and authoritative.
+Canon	is composed of	Semantic Model	The Semantic Model is a constituting part of the Canon.
+Canon	is composed of	Rule	Rules are constituting parts of the Canon.
+Semantic Model	is composed of	Element	Elements constitute the semantic content of the model.
+Semantic Model	is composed of	Relationship	Relationships constitute the semantic structure of the model.
+Relationship	has source	Element	Identifies the originating Element of a directed relationship.
+Relationship	has target	Element	Identifies the receiving Element of a directed relationship.
+Rule	constrains	Element	Expresses a normative constraint concerning an Element.
 
-- **Agent Contract &#8594; Intervention Type**  
-  - *defines*  
-  - `n &#8594; 1`  
-  - Each capability has exactly one intervention type  
+Modelling principle
+The view deliberately separates semantic meaning from technical representation. source and target are properties of the abstract Relationship concept; they do not imply a particular graph technology. A graph database may implement these as from and to, but that implementation is outside the scope of this view.
 
-- **Agent Contract &#8594; Source Regime**  
-  - *applies*  
-  - `n &#8594; 1`  
-  - Defines how the capability uses sources  
+Interpretation
+The view should be read according to the following conceptual chain:
 
-- **Agent Contract &#8594; Agent Contract Rule**  
-  - *is constrained by*  
-  - `1 &#8594; 0..n`  
-  - A contract may have zero or more rules  
+Knowledge Domain &#8592; Knowledge Specification &#8592; Canon &#8594; { Semantic Model + Rules }
 
----
+Within the Semantic Model:
 
-## 5. Input and Output Definition
+Element &#8592; source &#8212; Relationship &#8212; target &#8594; Element
 
-- **Agent Contract &#8594; Artifact Type (input)**  
-  - *requires*  
-  - `1 &#8594; 0..n`  
-  - Input may be optional  
+The essential proposition expressed by the view is:
 
-- **Agent Contract &#8594; Artifact Type (output)**  
-  - *produces*  
-  - `1 &#8594; 1..n`  
-  - Each capability must produce at least one artifact  
-
----
-
-## 6. Execution Layer
-
-- **Execution &#8594; Agent Contract**  
-  - *executes*  
-  - `n &#8594; 1`  
-  - Each execution is an instance of one contract  
-
-- **Orchestration Run &#8594; Execution**  
-  - *consists of*  
-  - `1 &#8594; 1..n`  
-  - A run groups one or more executions  
-
----
-
-## 7. LLM Interaction
-
-- **Execution &#8594; LLM Call**  
-  - *invokes*  
-  - `1 &#8594; 0..n`  
-  - An execution may result in multiple LLM calls  
-
----
-
-## 8. Artifact Flow
-
-- **Execution &#8594; Artifact (produces)**  
-  - *produces*  
-  - `1 &#8594; 1..n`  
-  - Each execution produces one or more artifacts  
-
-- **Execution &#8596; Artifact (consumes)**  
-  - *consumes*  
-  - `n &#8596; n`  
-  - Executions may consume multiple artifacts  
-  - Artifacts may be reused across executions  
-
----
-
-## 9. Artifact Typing
-
-- **Artifact &#8594; Artifact Type**  
-  - *is of type*  
-  - `n &#8594; 1`  
-  - Each artifact has exactly one type  
-
-## 10. Doctrine Binding
-
-- **Agent Contract Rule &#8594; Doctrine Rule**  
-  - *derives from*  
-  - `n &#8594; 1`  
-  - Each agent contract rule is a contextual binding of exactly one doctrine rule  
-  - A doctrine rule may be bound to zero or many agent contracts via agent contract rules  
-
----
-
-## 11. Key Design Constraints
-
-- **Intervention Type is defined at capability level (Agent Contract), not Agent level**
-- **Source Regime is defined per capability**
-- **Execution is strictly bound to one contract**
-- **Produced and consumed artifacts are distinct relations**
-- **Determinism is enforced through one-to-many and many-to-one constraints (avoid uncontrolled many-to-many)**
-
----
-
-## 11. Architectural Principle
-
-&gt; **Agents provide capabilities, contracts define behavior, coordination prepares execution, and execution produces traceable artifacts.**
-
-Agent Contract Rules are contextual bindings that derive from canonical Doctrine Rules and constrain the behavior of specific capabilities.</div>
+A Canon realizes a knowledge specification through an explicit semantic model and normative rules. The semantic model establishes the elements and their relationships; the rules constrain the semantics expressed by that model.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
