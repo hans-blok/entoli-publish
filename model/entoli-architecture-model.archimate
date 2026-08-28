@@ -844,23 +844,27 @@ Scope&#xD;
     <element xsi:type="archimate:BusinessObject" name="Source-regime" id="id-fe950c3ebad04932a87cb572b191e4ff"/>
     <element xsi:type="archimate:BusinessObject" name="Development phase" id="id-85976594d9b24ea68b752ad1b5cd8719"/>
     <element xsi:type="archimate:BusinessObject" name="Task Mode" id="id-3969a1acce774516911bb973b0ff59ee">
-      <documentation>Interpretation Mode is the classification axis that specifies, per agent-intent, within what interpretive boundaries the LLM is permitted to operate when executing the task. [renamed from non-canonical &quot;Intervention Type&quot; — see alignment report]</documentation>
+      <documentation>POS-TMD-EXT	Extracting	&#xD;
+POS-TMD-STR	Structuring	&#xD;
+POS-TMD-TRF	Transforming&#xD;
+POS-TMD-EVL	Evaluating	&#xD;
+POS-TMD-ORI	Originating	</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="Execution Strategy" id="id-b0aa2469bd5c465bacc1122e45254a86"/>
     <element xsi:type="archimate:BusinessObject" name="Value stream phase" id="id-c4110ee27b2644a59ca54a4c3ad15350"/>
     <element xsi:type="archimate:BusinessObject" name="Value stream" id="id-d568ba0e747140fe9548894e6fc784bc"/>
-    <element xsi:type="archimate:BusinessObject" name="Rule" id="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
-    <element xsi:type="archimate:BusinessObject" name="Semantic Model" id="id-1fa6202fbcb84810a487e731d399058b"/>
+    <element xsi:type="archimate:BusinessObject" name="llm-constraint (rule)" id="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
+    <element xsi:type="archimate:BusinessObject" name="semantic model" id="id-1fa6202fbcb84810a487e731d399058b"/>
     <element xsi:type="archimate:BusinessObject" name="Semantic Scope" id="id-2a6ed230ccee40588fafaaf91e026a3c">
       <documentation>A Semantic Scope is an explicitly defined, context-specific subset of the Semantic Model, selected for use by a specific agent contract or coordination context.</documentation>
     </element>
     <element xsi:type="archimate:Product" name="Entoli-ecosystem" id="id-13cb9b3b65d24d1fb85aabf9085a47a5"/>
     <element xsi:type="archimate:BusinessObject" name="Semantic Foundation [UNMAPPED — no canonical Domain Element equivalent]" id="id-80ac7471a6494f0ca5750484251b474f"/>
     <element xsi:type="archimate:BusinessObject" name="Entoli-concept" id="id-df1eaf40fb2e46b48b5675974dfa3b70"/>
-    <element xsi:type="archimate:BusinessObject" name="Relationship" id="id-9c775a49c62f4d49a90673446cec6a64">
+    <element xsi:type="archimate:BusinessObject" name="relationship" id="id-9c775a49c62f4d49a90673446cec6a64">
       <documentation>A relationship is an explicit, directed semantic link between two elements. Relationships carry the meaning of the graph; elements without relationships have meaning, but not structure.</documentation>
     </element>
-    <element xsi:type="archimate:BusinessObject" name="Element" id="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+    <element xsi:type="archimate:BusinessObject" name="element" id="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
       <documentation>An element is an explicitly defined, named unit of meaning within the Entoli semantic graph. Every entry in this register is an element. Elements are distinguished by their element classification and by the relationships they hold to other elements.</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="Domain Element" id="id-70b0088bd5f64183a6ef17dbcff1bef2"/>
@@ -951,6 +955,11 @@ enforces architectural doctrine</documentation>
       <documentation>Definition&#xD;
 A rule that is defined at the level of an agent or intent, is human-readable, and may be configured or adapted within defined boundaries.</documentation>
     </element>
+    <element xsi:type="archimate:BusinessObject" name="Reasing mode" id="id-6cd1f6f39e864f16855d0eda7857df01"/>
+    <element xsi:type="archimate:BusinessObject" name="knowledge specification" id="id-1d62c68e5893433f81d1472f83cfad2d"/>
+    <element xsi:type="archimate:BusinessObject" name="knowledge specification (copy)" id="id-07f48909088f4837988d9cde7c202ca0"/>
+    <element xsi:type="archimate:BusinessObject" name="knowledge-domain" id="id-4e02ad03bf6d4963b101fdad1d0f7b7b"/>
+    <element xsi:type="archimate:BusinessObject" name="canon" id="id-6d66d6cdd2534270b0f3732e4ecec8cc"/>
   </folder>
   <folder name="Application" id="id-1b7f4bd17a8a4ccca4de4ed0056a7792" type="application">
     <folder name="data objects" id="id-1a54c7e5da3f46c1b129f6b8d854a643">
@@ -1005,9 +1014,7 @@ A rule that is defined at the level of an agent or intent, is human-readable, an
       <element xsi:type="archimate:DataObject" name="Normative artifact" id="id-e94775ce53da4b1487ade465168978ea">
         <documentation>A normative artifact is a document that prescribes how something must be or be done within the Entoli ecosystem.</documentation>
       </element>
-      <element xsi:type="archimate:DataObject" name="Interpretation Mode" id="id-ed6c25557b1944309960b3ed32f2463e">
-        <documentation>Interpretation Mode is the classification axis that specifies, per agent-intent, within what interpretive boundaries the LLM is permitted to operate when executing the task. It defines what the LLM is allowed to do, what it is forbidden to do, and what output form is expected.</documentation>
-      </element>
+      <element xsi:type="archimate:DataObject" name="Task mode" id="id-ed6c25557b1944309960b3ed32f2463e"/>
       <element xsi:type="archimate:DataObject" name="Execution Step Specification" id="id-c8ff51438a5a43e0b2d9f5eb28840a43">
         <documentation>An Execution Step Specification is a predefined, configuration-level description of execution behavior. It specifies which Agent-intent is to be invoked and under what conditions, defined independently of runtime state and independently of LLM input.</documentation>
       </element>
@@ -1055,7 +1062,7 @@ Constraints&#xD;
       <element xsi:type="archimate:ApplicationService" name="Provide Service Contracts" id="id-90eb99aba3de40f69d4c769ba6307b6d"/>
     </folder>
     <folder name="components" id="id-483edd418793453b969d483c91d89389">
-      <element xsi:type="archimate:ApplicationComponent" name="Entoli Model &amp; Config" id="id-5c60a9024f7d4e049cf444841ac667fd"/>
+      <element xsi:type="archimate:ApplicationComponent" name="Entoli Model" id="id-5c60a9024f7d4e049cf444841ac667fd"/>
       <element xsi:type="archimate:ApplicationComponent" name="Entoli Coordination" id="id-e91a272da5ec446a9b29435872d6762f"/>
       <element xsi:type="archimate:ApplicationComponent" name="Entoli Execution" id="id-6bb224a49ad745689e8fff12bc46e137">
         <documentation>Application Service: Deliver Traceable Execution Records&#xD;
@@ -1103,7 +1110,7 @@ SOURCE REGIME&#xD;
 - External-source-bound — the agent draws from an external source (web, API)&#xD;
 - Open  — Not pre-limited source space; assumptions made explicit (max 3) | Probabilistic |</documentation>
     </element>
-    <element xsi:type="archimate:DataObject" name="Business Artiffact" id="id-107ef8b5fd9b446a88363d2b824b1325">
+    <element xsi:type="archimate:DataObject" name="Business Artifact" id="id-107ef8b5fd9b446a88363d2b824b1325">
       <documentation>A business artifact is a concrete, durable work product that records content, decisions, analyses, or deliverables produced by an Entoli agent within a value stream phase. It represents substantive output — such as a design, plan, report, code file, or specification — and serves as transferable value within the workspace. A business artifact is one of two subtypes of artifact, distinct from a normative artifact in that it conveys substance rather than prescribing rules or norms.</documentation>
     </element>
     <element xsi:type="archimate:DataObject" name="Representation" id="id-3dc8f4bf9af34905bc794e8e24e37ec1">
@@ -1255,6 +1262,41 @@ Constraints&#xD;
   - allowed meaning transformations&#xD;
   - structure of individual tasks&#xD;
 - Extracted from previously implicit sequencing, iteration, and decision logic embedded in orchestration flows - a relocation and formalisation of existing behaviour, not a new capability.</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Reasoning mode" id="id-53c6d3a2ddf84087bb2f6e66e5ab0334">
+      <documentation>Reasning mode is a classification axis that gates whether an agent's work is subject to the content-governance model — the combination of **Source-regime**, **Synthesis-regime**, and **Task Mode** — based on one question: does this step require an LLM to reason at all.&#xD;
+&#xD;
+Leading question Does this agent-intent require an LLM to reason about meaning, or does it execute by fixed procedure with no reasoning?&#xD;
+&#xD;
+**Provenance**: replaces the retired **Mode of operation** concept (see Appendix — Deprecated terms). Mode of operation's three positions (Content, Representation-transforming, Conditional) answered three loosely related questions under one label; Determinism asks exactly one, and collapses the two non-content positions — both of which were, on inspection, already mechanical/rule-based rather than meaning-blind-with-exceptions — into a single **Deterministic** position. See `temp/claude-code-plans/plan-execution-nature.md` for the full migration record.&#xD;
+&#xD;
+### Characteristics ⭐&#xD;
+- One of two **agent-intent** classification axes (alongside **Development phase**, which is agent-level — see Development phase, Explanation)&#xD;
+- Is a **gate**, not a scale: each position determines *whether* Source-regime/Synthesis-regime/Task Mode apply, not *how much* meaning-transformation is permitted&#xD;
+- Independent of other axes, including **Execution Strategy**: Execution Strategy governs how a *sequence* of steps progresses and has no vocabulary for whether one step is mechanical; Determinism governs whether one step requires reasoning at all and has no vocabulary for sequencing. A single Orchestration Specification may freely compose Deterministic and Cognitive steps under any Execution Strategy — neither axis may be inferred from, or used to infer, the other (see Execution Strategy, Relationships)&#xD;
+- A **Deterministic** agent-intent is realised as a script, never as an LLM call; a **Cognitive** agent-intent is realised as an LLM call with full content-governance applying&#xD;
+&#xD;
+### What it is not ❌&#xD;
+- Not a meaning-transformation scale (that is **Synthesis-regime**)&#xD;
+- Not a task-shape classification (that is **Task Mode**)&#xD;
+- Not a progression-logic constraint (that is **Execution Strategy**) — see Characteristics&#xD;
+- Not redundant with Synthesis-regime or Task Mode: its positions gate whether those two axes (and Source-regime) apply, they do not duplicate a value on either axis's scale&#xD;
+&#xD;
+### Synonyms 🏷️&#xD;
+- Cognitive gate&#xD;
+&#xD;
+### Explanation 💬&#xD;
+Determinism distinguishes agent-intents that require an LLM to reason from work that is realised as a script and never invokes an LLM at all — mechanical representation-conversion and rule-based condition/hygiene checks alike. Because a Deterministic step never invokes an LLM, it never has content to govern and never has a temperature to calibrate (see `foundations/.canonical/data-model/logical-seed/seed.model.md` §7, collapsed to the Cognitive dimension only as part of this migration).&#xD;
+&#xD;
+**Binding level**: bound to **agent-intent**, matching Mode of operation's corrected binding level (not Agent) — declared per intent, alongside Source-regime, Synthesis-regime, and Task Mode where those apply.&#xD;
+&#xD;
+### Positions (Position Elements) 📋&#xD;
+&#xD;
+| Position | Element classification | Description | Content-governance model applies? |&#xD;
+|---|---|---|---|&#xD;
+| **Cognitive** | Position Element | Requires an LLM to reason about supplied material | Yes — Source-regime, Synthesis-regime, and Task Mode all apply and MUST be declared |&#xD;
+| **Deterministic** | Position Element | Executes by fixed procedure with zero reasoning; realised as a script, never an LLM call | No — not applicable; a script has no Source-regime, Synthesis-regime, or Task Mode to declare, for the same reason it is not an agent-intent in the reasoning sense |&#xD;
+</documentation>
     </element>
   </folder>
   <folder name="Technology &amp; Physical" id="id-20c3f05dbb724c1ea4cdad75c4e34cba" type="technology">
@@ -1826,6 +1868,20 @@ In such dilemmas:&#xD;
     <element xsi:type="archimate:AssociationRelationship" name="specify" id="id-38adee02377c428394b74a3f91a59c25" source="id-fe950c3ebad04932a87cb572b191e4ff" target="id-697686712c9f40faa2f23c8994eaef05"/>
     <element xsi:type="archimate:AssociationRelationship" name="specify" id="id-223a6f2e191149ffaf02293cf9ca11e1" source="id-3969a1acce774516911bb973b0ff59ee" target="id-697686712c9f40faa2f23c8994eaef05"/>
     <element xsi:type="archimate:AssociationRelationship" name="is operationalised in" id="id-b84cf61254cf4b5c80f22056765480c7" source="id-1fa6202fbcb84810a487e731d399058b" target="id-a4319ee116ab41dda18d476242ca88da"/>
+    <element xsi:type="archimate:AssociationRelationship" name="comes to reasoning by using" id="id-20c0c4d0699047d39210f1a1d24b467c" source="id-6cd1f6f39e864f16855d0eda7857df01" target="id-a21ac844b75946b0b94ab3450c81ed27"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-af421ae7816e4b3482283107913e951f" source="id-bbcbfcd279104c52b55b4973d859dcdd" target="id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-7e936589482743f181bc75d28ca48e3a" source="id-8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d" target="id-fd42a7d492c64cbe8d99c4b403501755"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-25b0ce3199b74828b3e5a398b13ea5bf" source="id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d" target="id-53c6d3a2ddf84087bb2f6e66e5ab0334"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-2e979449450b4c9b9e8d5dc9ff10465f" source="id-6d66d6cdd2534270b0f3732e4ecec8cc" target="id-1fa6202fbcb84810a487e731d399058b"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-2b83d6df1fc84eb9b6b9f316a61accc5" source="id-6d66d6cdd2534270b0f3732e4ecec8cc" target="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-d8f6c34248da4d458a463ef76c4d227a" source="id-4e02ad03bf6d4963b101fdad1d0f7b7b" target="id-1d62c68e5893433f81d1472f83cfad2d"/>
+    <element xsi:type="archimate:SpecializationRelationship" name="specifies" id="id-872887d3610346e19f253cd9039660c4" source="id-1d62c68e5893433f81d1472f83cfad2d" target="id-4e02ad03bf6d4963b101fdad1d0f7b7b"/>
+    <element xsi:type="archimate:AssociationRelationship" name="is realized by" id="id-dee315f400a040c1888aa29b9ed2f160" source="id-6d66d6cdd2534270b0f3732e4ecec8cc" target="id-1d62c68e5893433f81d1472f83cfad2d"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-020e6f63415c407d90ba1932ffbe78b1" source="id-1fa6202fbcb84810a487e731d399058b" target="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
+    <element xsi:type="archimate:AssociationRelationship" name="is defined using an" id="id-b5437823c2804a05b0294c81e50418f5" source="id-a248b6e4d5a04c6c995cc9ecb4872d2e" target="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
+    <element xsi:type="archimate:AssociationRelationship" name="to" id="id-aed44c80476b4f04900f75e7973d8831" source="id-9c775a49c62f4d49a90673446cec6a64" target="id-a248b6e4d5a04c6c995cc9ecb4872d2e"/>
+    <element xsi:type="archimate:AssociationRelationship" name="from" id="id-a910f844d5e747cf921c8657b7088c32" source="id-9c775a49c62f4d49a90673446cec6a64" target="id-a248b6e4d5a04c6c995cc9ecb4872d2e"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-7c6b2a0008a2465ab8b6bd597a3904a3" source="id-1fa6202fbcb84810a487e731d399058b" target="id-a248b6e4d5a04c6c995cc9ecb4872d2e"/>
   </folder>
   <folder name="Views" id="id-ca7ad8080a214939a0e88c60169a9612" type="diagrams">
     <folder name=".prelimanary" id="id-b6a723fd32f9454b94c62fd4198f1e82">
@@ -2117,7 +2173,7 @@ In such dilemmas:&#xD;
     </folder>
     <folder name="b.business-architecture" id="id-8d30105a9173467b9223284456bb6627">
       <element xsi:type="archimate:ArchimateDiagramModel" name="conceptual-data-model" id="id-794973f14ef4494086f1dc12b8e5961a">
-        <child xsi:type="archimate:DiagramObject" id="id-382c5df970084a65805efaefaa8ae38d" targetConnections="id-eda33f082b9d4ea98f5408d5aed39d98 id-b080d852ff25482b8040bbcb83b03d87 id-7f15be86c18e4cccac632629f7fdf337" textPosition="1" archimateElement="id-a21ac844b75946b0b94ab3450c81ed27">
+        <child xsi:type="archimate:DiagramObject" id="id-382c5df970084a65805efaefaa8ae38d" targetConnections="id-eda33f082b9d4ea98f5408d5aed39d98 id-b080d852ff25482b8040bbcb83b03d87 id-7f15be86c18e4cccac632629f7fdf337 id-fa3d57a2ea0e4f3f9e06cb0d7aa7d339" textPosition="1" archimateElement="id-a21ac844b75946b0b94ab3450c81ed27">
           <bounds x="252" y="324" width="216" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-5c105026dcd346038e4ce50d1d69204f" source="id-382c5df970084a65805efaefaa8ae38d" target="id-9e19e4eeaa5146f583d867f3de8c0495" archimateRelationship="id-f26194e40baf4fd8b8af3bec6068f427"/>
         </child>
@@ -2159,7 +2215,7 @@ In such dilemmas:&#xD;
           <sourceConnection xsi:type="archimate:Connection" id="id-0649ccf1028b45ac93e2e456243b7936" source="id-857ff95611704de2b7c024ac3dfb06d2" target="id-01525bd317a242ec800ae0b0dd6cf4db" archimateRelationship="id-38adee02377c428394b74a3f91a59c25"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-080e252e68f04594a66422af38f8b64a" textPosition="1" archimateElement="id-85976594d9b24ea68b752ad1b5cd8719">
-          <bounds x="228" y="210" width="120" height="55"/>
+          <bounds x="84" y="210" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-b080d852ff25482b8040bbcb83b03d87" source="id-080e252e68f04594a66422af38f8b64a" target="id-382c5df970084a65805efaefaa8ae38d" archimateRelationship="id-2e70243a1169472f87227e0ba4f426d7"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-b7038f4bef194d35b2241e1da903e416" targetConnections="id-7c03d87ee5b54eeaabed2d6266b03330" textPosition="1" archimateElement="id-3969a1acce774516911bb973b0ff59ee">
@@ -2213,6 +2269,10 @@ In such dilemmas:&#xD;
           <bounds x="948" y="360" width="144" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-9398f716fd4b499787791ab4f7a7f998" source="id-43c979bba9b24b16b123c0d81a66fe00" target="id-01e36e1ea1454ce8adc62313f7c364c1" archimateRelationship="id-002b70b66cce4964a129d5db78c7bd59"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-d35a8fbf709443dbaeb9360b02d25427" source="id-43c979bba9b24b16b123c0d81a66fe00" target="id-095626f6f0174b4c83b339f1a75b06f2" archimateRelationship="id-91e0659d25d24292bd128a36f20e3da9"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-2c07cb1f0ca6433999c5553b78809a51" textPosition="1" archimateElement="id-6cd1f6f39e864f16855d0eda7857df01">
+          <bounds x="84" y="444" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-fa3d57a2ea0e4f3f9e06cb0d7aa7d339" source="id-2c07cb1f0ca6433999c5553b78809a51" target="id-382c5df970084a65805efaefaa8ae38d" archimateRelationship="id-20c0c4d0699047d39210f1a1d24b467c"/>
         </child>
         <documentation># Entoli Execution &amp; Agent Model — Relations and Cardinalities&#xD;
 &#xD;
@@ -2554,36 +2614,262 @@ https://gitlab-maxia.basetide.com/entoli/entoli-arch/-/blob/main/docs/articles/R
           <sourceConnection xsi:type="archimate:Connection" id="id-92075452a448473dbdc9ebbf4379b41d" source="id-da245325df7e40ea9d3a7184f4af894b" target="id-5eb82f6bab61466bb61e0f3fa88458d2" archimateRelationship="id-de050447d2a64218b79d529e6fee6b5b"/>
         </child>
       </element>
+      <element xsi:type="archimate:ArchimateDiagramModel" name="conceptual-data-model-canon" id="id-5e523aad2f8d4de290c5e246ba80079c">
+        <child xsi:type="archimate:DiagramObject" id="id-252d94302bdc47d9b9f5e981cf5b8a38" targetConnections="id-d660fc0af1ba4b7b81c9084db350226f id-ec4a1413e6c04f46bda3ce71c2bb4b09" textPosition="1" archimateElement="id-b7cb33c7b50e48dabb3f0d830de8698f">
+          <bounds x="924" y="965" width="157" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-aa6ed9e668554da59c5ddfedfc8f64ef" targetConnections="id-c127039a88ce430abfa0d93a372d92f0" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
+          <bounds x="576" y="965" width="313" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-2ee9acbdac1c4eba960d35e4a9cc9323" source="id-aa6ed9e668554da59c5ddfedfc8f64ef" target="id-edb1b54dd93b4743a431c585c282f4f5" archimateRelationship="id-f014d40ec6a04da2b5cafbbe24bcfb03"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-a7c503dafb2a4964924ba81e9192ebe4" source="id-aa6ed9e668554da59c5ddfedfc8f64ef" target="id-e3b088902a474dfd864345d49a50e550" archimateRelationship="id-7c6b2a0008a2465ab8b6bd597a3904a3"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-893995f8a415445f89a58fa1fb527d38" targetConnections="id-5cdfe27cf2044e34bb37b0271cb0d7ea" textPosition="1" archimateElement="id-1d62c68e5893433f81d1472f83cfad2d">
+          <bounds x="576" y="744" width="171" height="70"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-a76e93f7097e4082bb90067fd24f9564" source="id-893995f8a415445f89a58fa1fb527d38" target="id-5c6634e71338483baec71d02a4d1f9b6" archimateRelationship="id-872887d3610346e19f253cd9039660c4"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-5c6634e71338483baec71d02a4d1f9b6" targetConnections="id-a76e93f7097e4082bb90067fd24f9564" textPosition="1" archimateElement="id-4e02ad03bf6d4963b101fdad1d0f7b7b">
+          <bounds x="324" y="744" width="145" height="70"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-4db6dcda06fe4187a1e7aaea71460475" textPosition="1" archimateElement="id-6d66d6cdd2534270b0f3732e4ecec8cc">
+          <bounds x="576" y="864" width="505" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-c127039a88ce430abfa0d93a372d92f0" source="id-4db6dcda06fe4187a1e7aaea71460475" target="id-aa6ed9e668554da59c5ddfedfc8f64ef" archimateRelationship="id-2e979449450b4c9b9e8d5dc9ff10465f"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d660fc0af1ba4b7b81c9084db350226f" source="id-4db6dcda06fe4187a1e7aaea71460475" target="id-252d94302bdc47d9b9f5e981cf5b8a38" archimateRelationship="id-2b83d6df1fc84eb9b6b9f316a61accc5"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-5cdfe27cf2044e34bb37b0271cb0d7ea" source="id-4db6dcda06fe4187a1e7aaea71460475" target="id-893995f8a415445f89a58fa1fb527d38" archimateRelationship="id-dee315f400a040c1888aa29b9ed2f160"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-e3b088902a474dfd864345d49a50e550" targetConnections="id-5fbebdc59e664dd792c250a12c13a62c id-d596d2ee154448609c93527bd5b96b8d id-a7c503dafb2a4964924ba81e9192ebe4" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+          <bounds x="792" y="1092" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ec4a1413e6c04f46bda3ce71c2bb4b09" source="id-e3b088902a474dfd864345d49a50e550" target="id-252d94302bdc47d9b9f5e981cf5b8a38" archimateRelationship="id-b5437823c2804a05b0294c81e50418f5">
+            <bendpoint startX="156" startY="-3" endX="6" endY="124"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-edb1b54dd93b4743a431c585c282f4f5" targetConnections="id-2ee9acbdac1c4eba960d35e4a9cc9323" textPosition="1" archimateElement="id-9c775a49c62f4d49a90673446cec6a64">
+          <bounds x="576" y="1092" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-5fbebdc59e664dd792c250a12c13a62c" source="id-edb1b54dd93b4743a431c585c282f4f5" target="id-e3b088902a474dfd864345d49a50e550" archimateRelationship="id-aed44c80476b4f04900f75e7973d8831">
+            <bendpoint startX="24" startY="45" endX="-192" endY="45"/>
+            <bendpoint startX="180" startY="45" endX="-36" endY="45"/>
+          </sourceConnection>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d596d2ee154448609c93527bd5b96b8d" source="id-edb1b54dd93b4743a431c585c282f4f5" target="id-e3b088902a474dfd864345d49a50e550" archimateRelationship="id-a910f844d5e747cf921c8657b7088c32">
+            <bendpoint startX="24" startY="-39" endX="-192" endY="-39"/>
+            <bendpoint startX="180" startY="-39" endX="-36" endY="-39"/>
+          </sourceConnection>
+        </child>
+        <documentation># Entoli Execution &amp; Agent Model — Relations and Cardinalities&#xD;
+&#xD;
+This view defines the **canonical relationships and cardinalities** between core concepts in the Entoli ecosystem.  &#xD;
+It supports **traceability, determinism, and contract-driven execution**.&#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 1. Value Stream Structure&#xD;
+&#xD;
+- **Value Stream → Value Stream Phase**  &#xD;
+  - *is decomposed into*  &#xD;
+  - `1 → 1..n`  &#xD;
+  - Each value stream consists of one or more phases  &#xD;
+  - Each phase belongs to exactly one value stream  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 2. Agent Positioning&#xD;
+&#xD;
+- **Agent → Value Stream Phase**  &#xD;
+  - *operates in*  &#xD;
+  - `n → 1`  &#xD;
+  - Each agent operates in one primary phase  &#xD;
+&#xD;
+- **Agent → Formation Phase**  &#xD;
+  - *is positioned in*  &#xD;
+  - `n → 1`  &#xD;
+  - Formation phase is a classification attribute  &#xD;
+&#xD;
+- **Agent → Operation Mode**  &#xD;
+  - *operates under*  &#xD;
+  - `n → 1`  &#xD;
+  - Defines how the agent operates (stable characteristic)  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 3. Agent and Capabilities&#xD;
+&#xD;
+- **Agent → Agent Contract**  &#xD;
+  - *exposes capabilities via*  &#xD;
+  - `1 → 1..n`  &#xD;
+  - An agent exposes one or more capabilities  &#xD;
+  - Each contract belongs to exactly one agent  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 4. Capability Definition (Agent Contract)&#xD;
+&#xD;
+- **Agent Contract → Intervention Type**  &#xD;
+  - *defines*  &#xD;
+  - `n → 1`  &#xD;
+  - Each capability has exactly one intervention type  &#xD;
+&#xD;
+- **Agent Contract → Source Regime**  &#xD;
+  - *applies*  &#xD;
+  - `n → 1`  &#xD;
+  - Defines how the capability uses sources  &#xD;
+&#xD;
+- **Agent Contract → Agent Contract Rule**  &#xD;
+  - *is constrained by*  &#xD;
+  - `1 → 0..n`  &#xD;
+  - A contract may have zero or more rules  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 5. Input and Output Definition&#xD;
+&#xD;
+- **Agent Contract → Artifact Type (input)**  &#xD;
+  - *requires*  &#xD;
+  - `1 → 0..n`  &#xD;
+  - Input may be optional  &#xD;
+&#xD;
+- **Agent Contract → Artifact Type (output)**  &#xD;
+  - *produces*  &#xD;
+  - `1 → 1..n`  &#xD;
+  - Each capability must produce at least one artifact  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 6. Execution Layer&#xD;
+&#xD;
+- **Execution → Agent Contract**  &#xD;
+  - *executes*  &#xD;
+  - `n → 1`  &#xD;
+  - Each execution is an instance of one contract  &#xD;
+&#xD;
+- **Orchestration Run → Execution**  &#xD;
+  - *consists of*  &#xD;
+  - `1 → 1..n`  &#xD;
+  - A run groups one or more executions  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 7. LLM Interaction&#xD;
+&#xD;
+- **Execution → LLM Call**  &#xD;
+  - *invokes*  &#xD;
+  - `1 → 0..n`  &#xD;
+  - An execution may result in multiple LLM calls  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 8. Artifact Flow&#xD;
+&#xD;
+- **Execution → Artifact (produces)**  &#xD;
+  - *produces*  &#xD;
+  - `1 → 1..n`  &#xD;
+  - Each execution produces one or more artifacts  &#xD;
+&#xD;
+- **Execution ↔ Artifact (consumes)**  &#xD;
+  - *consumes*  &#xD;
+  - `n ↔ n`  &#xD;
+  - Executions may consume multiple artifacts  &#xD;
+  - Artifacts may be reused across executions  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 9. Artifact Typing&#xD;
+&#xD;
+- **Artifact → Artifact Type**  &#xD;
+  - *is of type*  &#xD;
+  - `n → 1`  &#xD;
+  - Each artifact has exactly one type  &#xD;
+&#xD;
+## 10. Doctrine Binding&#xD;
+&#xD;
+- **Agent Contract Rule → Doctrine Rule**  &#xD;
+  - *derives from*  &#xD;
+  - `n → 1`  &#xD;
+  - Each agent contract rule is a contextual binding of exactly one doctrine rule  &#xD;
+  - A doctrine rule may be bound to zero or many agent contracts via agent contract rules  &#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 11. Key Design Constraints&#xD;
+&#xD;
+- **Intervention Type is defined at capability level (Agent Contract), not Agent level**&#xD;
+- **Source Regime is defined per capability**&#xD;
+- **Execution is strictly bound to one contract**&#xD;
+- **Produced and consumed artifacts are distinct relations**&#xD;
+- **Determinism is enforced through one-to-many and many-to-one constraints (avoid uncontrolled many-to-many)**&#xD;
+&#xD;
+---&#xD;
+&#xD;
+## 11. Architectural Principle&#xD;
+&#xD;
+> **Agents provide capabilities, contracts define behavior, coordination prepares execution, and execution produces traceable artifacts.**&#xD;
+&#xD;
+Agent Contract Rules are contextual bindings that derive from canonical Doctrine Rules and constrain the behavior of specific capabilities.</documentation>
+      </element>
     </folder>
     <folder name="c.information-systems-architecture" id="id-3aa3b2c42b4c4f949fe4d376d9a488a6">
       <element xsi:type="archimate:ArchimateDiagramModel" name="agent-classification" id="id-1804920721c441e99fa0b0cee4c77f6a">
-        <child xsi:type="archimate:DiagramObject" id="id-607ae57960b848079492de0acfd5b662" textPosition="1" archimateElement="id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e">
-          <bounds x="444" y="324" width="120" height="55"/>
+        <child xsi:type="archimate:DiagramObject" id="id-607ae57960b848079492de0acfd5b662" targetConnections="id-bdb08d5b3b6a46bfa74b5b0b044f5829" textPosition="1" archimateElement="id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e">
+          <bounds x="636" y="348" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-81d2d413e12948f1820b99c5a669a83e" source="id-607ae57960b848079492de0acfd5b662" target="id-4eca995c002f41e681359e5e0aec4476" archimateRelationship="id-8b04b1c9cf51498d801cc1b2428d1143"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-4d78d61f09544d39ae25dc947bfb1c08" source="id-607ae57960b848079492de0acfd5b662" target="id-f88c0c597e864894b034be01c7578d50" archimateRelationship="id-d593150723c34a0b8d1632bb10ce6043"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-cd691ada5c184520be183e0a91d01b9f" source="id-607ae57960b848079492de0acfd5b662" target="id-397f8615f71e4f96a9c874f7c1a977d6" archimateRelationship="id-3677c9de049a4d5092d95a50ea8acb88"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-d3eb567addd244c3a0c3430b44f651b4" source="id-607ae57960b848079492de0acfd5b662" target="id-997eeb940fc547a79b807e8aa154e6e6" archimateRelationship="id-5cbf7e4b906940028efc92f3a9030f8f"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-4eca995c002f41e681359e5e0aec4476" targetConnections="id-81d2d413e12948f1820b99c5a669a83e id-071959a43ba443c7bdae9feca05d53e7" textPosition="1" archimateElement="id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d">
-          <bounds x="240" y="324" width="120" height="55"/>
+          <bounds x="408" y="348" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-74f70230ff864684ab31b0f7c68e145b" source="id-4eca995c002f41e681359e5e0aec4476" target="id-abced834a8cc4681a61f400c900978e3" archimateRelationship="id-26a8d79bde704a589c41684c4b598a55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-5aac4adc8e4b44198c893cdf7db7d714" source="id-4eca995c002f41e681359e5e0aec4476" target="id-dc96bc39a4564c48ac9175dfc6a6cb7b" archimateRelationship="id-25b0ce3199b74828b3e5a398b13ea5bf"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-f88c0c597e864894b034be01c7578d50" targetConnections="id-4d78d61f09544d39ae25dc947bfb1c08" textPosition="1" archimateElement="id-74040cc1deff420a8806a4db047c18b8">
-          <bounds x="444" y="216" width="120" height="55"/>
+          <bounds x="636" y="264" width="120" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-abced834a8cc4681a61f400c900978e3" targetConnections="id-74f70230ff864684ab31b0f7c68e145b" textPosition="1" archimateElement="id-18b7abd4c44941fa91015f313a842f0b">
-          <bounds x="240" y="216" width="120" height="55"/>
+          <bounds x="228" y="348" width="120" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-397f8615f71e4f96a9c874f7c1a977d6" targetConnections="id-cd691ada5c184520be183e0a91d01b9f" textPosition="1" archimateElement="id-4906771e6247482ca99b3edec7d325f6">
-          <bounds x="624" y="324" width="120" height="55"/>
+          <bounds x="816" y="348" width="120" height="55"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-997eeb940fc547a79b807e8aa154e6e6" targetConnections="id-d3eb567addd244c3a0c3430b44f651b4" textPosition="1" archimateElement="id-bbcbfcd279104c52b55b4973d859dcdd">
-          <bounds x="444" y="432" width="120" height="55"/>
+        <child xsi:type="archimate:DiagramObject" id="id-997eeb940fc547a79b807e8aa154e6e6" textPosition="1" archimateElement="id-bbcbfcd279104c52b55b4973d859dcdd">
+          <bounds x="636" y="432" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-bdb08d5b3b6a46bfa74b5b0b044f5829" source="id-997eeb940fc547a79b807e8aa154e6e6" target="id-607ae57960b848079492de0acfd5b662" archimateRelationship="id-af421ae7816e4b3482283107913e951f"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-910dbc5264014b81a5d97d0ba2db4b2e" textPosition="1" archimateElement="id-9d7b079582fe4c5e9b58993c759ea4cc">
-          <bounds x="240" y="432" width="120" height="55"/>
+          <bounds x="408" y="432" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-071959a43ba443c7bdae9feca05d53e7" source="id-910dbc5264014b81a5d97d0ba2db4b2e" target="id-4eca995c002f41e681359e5e0aec4476" archimateRelationship="id-3dfbe94b114147e2a07ed5daa1aab311"/>
         </child>
+        <child xsi:type="archimate:DiagramObject" id="id-dc96bc39a4564c48ac9175dfc6a6cb7b" targetConnections="id-5aac4adc8e4b44198c893cdf7db7d714" textPosition="1" archimateElement="id-53c6d3a2ddf84087bb2f6e66e5ab0334">
+          <bounds x="408" y="264" width="120" height="55"/>
+        </child>
+        <documentation>Reasinon mode  is a classification axis that gates whether an **agent-intent**'s work is subject to the content-governance model — the combination of **Source-regime**, **Synthesis-regime**, and **Task Mode** — based on one question: does this step require an LLM to reason at all.&#xD;
+&#xD;
+**Leading question:** Does this agent-intent require an LLM to reason about meaning, or does it execute by fixed procedure with no reasoning?&#xD;
+&#xD;
+**Provenance**: replaces the retired **Mode of operation** concept (see Appendix — Deprecated terms). Mode of operation's three positions (Content, Representation-transforming, Conditional) answered three loosely related questions under one label; Determinism asks exactly one, and collapses the two non-content positions — both of which were, on inspection, already mechanical/rule-based rather than meaning-blind-with-exceptions — into a single **Deterministic** position. See `temp/claude-code-plans/plan-execution-nature.md` for the full migration record.&#xD;
+&#xD;
+### Characteristics ⭐&#xD;
+- One of two **agent-intent** classification axes (alongside **Development phase**, which is agent-level — see Development phase, Explanation)&#xD;
+- Is a **gate**, not a scale: each position determines *whether* Source-regime/Synthesis-regime/Task Mode apply, not *how much* meaning-transformation is permitted&#xD;
+- Independent of other axes, including **Execution Strategy**: Execution Strategy governs how a *sequence* of steps progresses and has no vocabulary for whether one step is mechanical; Determinism governs whether one step requires reasoning at all and has no vocabulary for sequencing. A single Orchestration Specification may freely compose Deterministic and Cognitive steps under any Execution Strategy — neither axis may be inferred from, or used to infer, the other (see Execution Strategy, Relationships)&#xD;
+- A **Deterministic** agent-intent is realised as a script, never as an LLM call; a **Cognitive** agent-intent is realised as an LLM call with full content-governance applying&#xD;
+&#xD;
+### What it is not ❌&#xD;
+- Not a meaning-transformation scale (that is **Synthesis-regime**)&#xD;
+- Not a task-shape classification (that is **Task Mode**)&#xD;
+- Not a progression-logic constraint (that is **Execution Strategy**) — see Characteristics&#xD;
+- Not redundant with Synthesis-regime or Task Mode: its positions gate whether those two axes (and Source-regime) apply, they do not duplicate a value on either axis's scale&#xD;
+&#xD;
+### Synonyms 🏷️&#xD;
+- Cognitive gate&#xD;
+&#xD;
+### Explanation 💬&#xD;
+Reasoning mode distinguishes agent-intents that require an LLM to reason from work that is realised as a script and never invokes an LLM at all — mechanical representation-conversion and rule-based condition/hygiene checks alike. Because a Deterministic step never invokes an LLM, it never has content to govern and never has a temperature to calibrate (see `foundations/.canonical/data-model/logical-seed/seed.model.md` §7, collapsed to the Cognitive dimension only as part of this migration).&#xD;
+&#xD;
+**Binding level**: bound to **agent-intent**, matching Mode of operation's corrected binding level (not Agent) — declared per intent, alongside Source-regime, Synthesis-regime, and Task Mode where those apply.&#xD;
+&#xD;
+### Positions (Position Elements) 📋&#xD;
+&#xD;
+| Position | Element classification | Description | Content-governance model applies? |&#xD;
+|---|---|---|---|&#xD;
+| **Cognitive** | Position Element | Requires an LLM to reason about supplied material | Yes — Source-regime, Synthesis-regime, and Task Mode all apply and MUST be declared |&#xD;
+| **Deterministic** | Position Element | Executes by fixed procedure with zero reasoning; realised as a script, never an LLM call | No — not applicable; a script has no Source-regime, Synthesis-regime, or Task Mode to declare, for the same reason it is not an agent-intent in the reasoning sense |&#xD;
+</documentation>
       </element>
       <element xsi:type="archimate:ArchimateDiagramModel" name="components-and-services" id="id-4eeb3931b57c4fffa5d5f3ec1b9b6280">
         <child xsi:type="archimate:DiagramObject" id="id-938c2adf15c24a8a862912b79e900871" targetConnections="id-ab0ee56af9a84931a1f7248a839325b7" textPosition="1" archimateElement="id-62eb32a5010a493bb7e266d2706af3e2">
@@ -2952,8 +3238,9 @@ no execution</documentation>
           <sourceConnection xsi:type="archimate:Connection" id="id-307ef2d26743412ea2f3b2edbf2f3d75" source="id-0e883f9923904cd3b81608ef81617793" target="id-8f4cf857338c466784542abb724bc910" archimateRelationship="id-09659729889740de8c2fc0b9e79674d4"/>
           <child xsi:type="archimate:DiagramObject" id="id-293e4d0029614022ac86e4bf71821302" targetConnections="id-2f278744cbe44860b69f954bff514d3a" textPosition="1" archimateElement="id-8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d">
             <bounds x="120" y="336" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-c6407643ac664214b05541bcf9b2d0d2" source="id-293e4d0029614022ac86e4bf71821302" target="id-c7d01f6f976041fda551b862447ad162" archimateRelationship="id-7e936589482743f181bc75d28ca48e3a"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-c7d01f6f976041fda551b862447ad162" targetConnections="id-46526f6d60d8461baf55f2699dc22a0d" textPosition="1" archimateElement="id-fd42a7d492c64cbe8d99c4b403501755">
+          <child xsi:type="archimate:DiagramObject" id="id-c7d01f6f976041fda551b862447ad162" targetConnections="id-46526f6d60d8461baf55f2699dc22a0d id-c6407643ac664214b05541bcf9b2d0d2" textPosition="1" archimateElement="id-fd42a7d492c64cbe8d99c4b403501755">
             <bounds x="120" y="420" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-e62737cbb3d944ff9023c63eb93a6470" source="id-c7d01f6f976041fda551b862447ad162" target="id-bc31b48762e44292963950501b5f52df" archimateRelationship="id-c4a2f8390c5d4435be91400119ff8834"/>
           </child>

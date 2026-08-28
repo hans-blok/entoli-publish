@@ -1,0 +1,18 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run apply-archi-branding",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"call",
+				"apply-archi-branding.bat"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

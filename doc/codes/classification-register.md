@@ -1,10 +1,10 @@
 ---
 type: classification-register
 name: Entoli Classification Register
-version: 1.0.0
+version: 1.2.0
 date: 2026-07-24
 status: current
-source: foundations/.canonical/general/entoli-concepts.md v4.13.0
+source: foundations/.canonical/general/entoli-concepts.md v4.15.0
 origin-position: derivative
 ---
 # Entoli Classification Register
@@ -36,7 +36,7 @@ Position Element codes follow the pattern `POS-{parent-code}-{position-abbreviat
 | CLA-SRL | Source-role            | Classification Element |
 | CLA-OPO | Origin-position        | Classification Element |
 | CLA-DEP | Development phase      | Classification Element |
-| CLA-MOO | Mode of operation      | Classification Element |
+| CLA-DET | Reasoning Mode         | Classification Element |
 | CLA-EXS | Execution Strategy     | Classification Element |
 
 ---
@@ -75,9 +75,8 @@ Position Element codes follow the pattern `POS-{parent-code}-{position-abbreviat
 | POS-DEP-TST | Testing                      | Position Element       | Development phase      |
 | POS-DEP-REG | Registering                  | Position Element       | Development phase      |
 | POS-DEP-OPR | Operationalisation           | Position Element       | Development phase      |
-| POS-MOO-CNT | Content                      | Position Element       | Mode of operation      |
-| POS-MOO-RTR | Representation-transforming  | Position Element       | Mode of operation      |
-| POS-MOO-CON | Conditional                  | Position Element       | Mode of operation      |
+| POS-DET-COG | Cognitive                    | Position Element       | Reasoning Mode          |
+| POS-DET-DTM | Deterministic                | Position Element       | Reasoning Mode          |
 | POS-EXS-LIN | Linear Execution             | Position Element       | Execution Strategy     |
 | POS-EXS-EXP | Exploratory Execution        | Position Element       | Execution Strategy     |
 | POS-EXS-CNV | Convergent Execution         | Position Element       | Execution Strategy     |

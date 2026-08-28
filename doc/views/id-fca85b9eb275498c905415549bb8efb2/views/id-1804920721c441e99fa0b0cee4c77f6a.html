@@ -33,13 +33,14 @@
 		    <!-- If this is a digram model (has children and no bounds) show the image -->
 			   <img class="diagram" src="../images/id-1804920721c441e99fa0b0cee4c77f6a.png" alt="agent-classification" usemap="#id-1804920721c441e99fa0b0cee4c77f6amap"/>
 			   <map name="id-1804920721c441e99fa0b0cee4c77f6amap">
-				  		<area shape="rect" coords="10,226,130,281" href="../elements/id-9d7b079582fe4c5e9b58993c759ea4cc.html"  target="element">
-				  		<area shape="rect" coords="214,226,334,281" href="../elements/id-bbcbfcd279104c52b55b4973d859dcdd.html"  target="element">
-				  		<area shape="rect" coords="394,118,514,173" href="../elements/id-4906771e6247482ca99b3edec7d325f6.html"  target="element">
-				  		<area shape="rect" coords="10,10,130,65" href="../elements/id-18b7abd4c44941fa91015f313a842f0b.html"  target="element">
-				  		<area shape="rect" coords="214,10,334,65" href="../elements/id-74040cc1deff420a8806a4db047c18b8.html"  target="element">
-				  		<area shape="rect" coords="10,118,130,173" href="../elements/id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d.html"  target="element">
-				  		<area shape="rect" coords="214,118,334,173" href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html"  target="element">
+				  		<area shape="rect" coords="190,10,310,65" href="../elements/id-53c6d3a2ddf84087bb2f6e66e5ab0334.html"  target="element">
+				  		<area shape="rect" coords="190,178,310,233" href="../elements/id-9d7b079582fe4c5e9b58993c759ea4cc.html"  target="element">
+				  		<area shape="rect" coords="418,178,538,233" href="../elements/id-bbcbfcd279104c52b55b4973d859dcdd.html"  target="element">
+				  		<area shape="rect" coords="598,94,718,149" href="../elements/id-4906771e6247482ca99b3edec7d325f6.html"  target="element">
+				  		<area shape="rect" coords="10,94,130,149" href="../elements/id-18b7abd4c44941fa91015f313a842f0b.html"  target="element">
+				  		<area shape="rect" coords="418,10,538,65" href="../elements/id-74040cc1deff420a8806a4db047c18b8.html"  target="element">
+				  		<area shape="rect" coords="190,94,310,149" href="../elements/id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d.html"  target="element">
+				  		<area shape="rect" coords="418,94,538,149" href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html"  target="element">
 
 			   </map>
 
@@ -62,7 +63,39 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">Reasinon mode  is a classification axis that gates whether an **agent-intent**'s work is subject to the content-governance model &#8212; the combination of **Source-regime**, **Synthesis-regime**, and **Task Mode** &#8212; based on one question: does this step require an LLM to reason at all.
+
+**Leading question:** Does this agent-intent require an LLM to reason about meaning, or does it execute by fixed procedure with no reasoning?
+
+**Provenance**: replaces the retired **Mode of operation** concept (see Appendix &#8212; Deprecated terms). Mode of operation's three positions (Content, Representation-transforming, Conditional) answered three loosely related questions under one label; Determinism asks exactly one, and collapses the two non-content positions &#8212; both of which were, on inspection, already mechanical/rule-based rather than meaning-blind-with-exceptions &#8212; into a single **Deterministic** position. See `temp/claude-code-plans/plan-execution-nature.md` for the full migration record.
+
+### Characteristics &#11088;
+- One of two **agent-intent** classification axes (alongside **Development phase**, which is agent-level &#8212; see Development phase, Explanation)
+- Is a **gate**, not a scale: each position determines *whether* Source-regime/Synthesis-regime/Task Mode apply, not *how much* meaning-transformation is permitted
+- Independent of other axes, including **Execution Strategy**: Execution Strategy governs how a *sequence* of steps progresses and has no vocabulary for whether one step is mechanical; Determinism governs whether one step requires reasoning at all and has no vocabulary for sequencing. A single Orchestration Specification may freely compose Deterministic and Cognitive steps under any Execution Strategy &#8212; neither axis may be inferred from, or used to infer, the other (see Execution Strategy, Relationships)
+- A **Deterministic** agent-intent is realised as a script, never as an LLM call; a **Cognitive** agent-intent is realised as an LLM call with full content-governance applying
+
+### What it is not &#10060;
+- Not a meaning-transformation scale (that is **Synthesis-regime**)
+- Not a task-shape classification (that is **Task Mode**)
+- Not a progression-logic constraint (that is **Execution Strategy**) &#8212; see Characteristics
+- Not redundant with Synthesis-regime or Task Mode: its positions gate whether those two axes (and Source-regime) apply, they do not duplicate a value on either axis's scale
+
+### Synonyms &#55356;&#57335;&#65039;
+- Cognitive gate
+
+### Explanation &#55357;&#56492;
+Reasoning mode distinguishes agent-intents that require an LLM to reason from work that is realised as a script and never invokes an LLM at all &#8212; mechanical representation-conversion and rule-based condition/hygiene checks alike. Because a Deterministic step never invokes an LLM, it never has content to govern and never has a temperature to calibrate (see `foundations/.canonical/data-model/logical-seed/seed.model.md` &#167;7, collapsed to the Cognitive dimension only as part of this migration).
+
+**Binding level**: bound to **agent-intent**, matching Mode of operation's corrected binding level (not Agent) &#8212; declared per intent, alongside Source-regime, Synthesis-regime, and Task Mode where those apply.
+
+### Positions (Position Elements) &#55357;&#56523;
+
+| Position | Element classification | Description | Content-governance model applies? |
+|---|---|---|---|
+| **Cognitive** | Position Element | Requires an LLM to reason about supplied material | Yes &#8212; Source-regime, Synthesis-regime, and Task Mode all apply and MUST be declared |
+| **Deterministic** | Position Element | Executes by fixed procedure with zero reasoning; realised as a script, never an LLM call | No &#8212; not applicable; a script has no Source-regime, Synthesis-regime, or Task Mode to declare, for the same reason it is not an agent-intent in the reasoning sense |
+</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -153,6 +186,12 @@
 											    </a> </td>
 											</tr>
 
+											<tr>
+											    <td> <a href="../elements/id-53c6d3a2ddf84087bb2f6e66e5ab0334.html" target="element"> Reasoning mode </a> </td>
+											    <td> <a href="../elements/id-53c6d3a2ddf84087bb2f6e66e5ab0334.html" target="element" class="i18n-elementtype-DataObject">
+											    </a> </td>
+											</tr>
+
 
 								</tbody>
 							</table>
@@ -189,13 +228,6 @@
 																		<td> <a href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html" target="element"> Agent-intent </a> </td>
 																		<td> <a href="../elements/id-4906771e6247482ca99b3edec7d325f6.html" target="element"> Source-regime </a> </td>
 																	</tr>
-																	<tr>
-																		<td> <a href="../elements/id-5cbf7e4b906940028efc92f3a9030f8f.html" target="element">  </a> </td>
-																		<td> <a href="../elements/id-5cbf7e4b906940028efc92f3a9030f8f.html" target="element" class="i18n-elementtype-AssociationRelationship">
-																		</a> </td>
-																		<td> <a href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html" target="element"> Agent-intent </a> </td>
-																		<td> <a href="../elements/id-bbcbfcd279104c52b55b4973d859dcdd.html" target="element"> Synthesis-regime </a> </td>
-																	</tr>
 
 																	<tr>
 																		<td> <a href="../elements/id-26a8d79bde704a589c41684c4b598a55.html" target="element">  </a> </td>
@@ -203,6 +235,21 @@
 																		</a> </td>
 																		<td> <a href="../elements/id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d.html" target="element"> Agent </a> </td>
 																		<td> <a href="../elements/id-18b7abd4c44941fa91015f313a842f0b.html" target="element"> Development phase </a> </td>
+																	</tr>
+																	<tr>
+																		<td> <a href="../elements/id-25b0ce3199b74828b3e5a398b13ea5bf.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-25b0ce3199b74828b3e5a398b13ea5bf.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																		</a> </td>
+																		<td> <a href="../elements/id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d.html" target="element"> Agent </a> </td>
+																		<td> <a href="../elements/id-53c6d3a2ddf84087bb2f6e66e5ab0334.html" target="element"> Reasoning mode </a> </td>
+																	</tr>
+
+																	<tr>
+																		<td> <a href="../elements/id-af421ae7816e4b3482283107913e951f.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-af421ae7816e4b3482283107913e951f.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																		</a> </td>
+																		<td> <a href="../elements/id-bbcbfcd279104c52b55b4973d859dcdd.html" target="element"> Synthesis-regime </a> </td>
+																		<td> <a href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html" target="element"> Agent-intent </a> </td>
 																	</tr>
 
 																	<tr>
