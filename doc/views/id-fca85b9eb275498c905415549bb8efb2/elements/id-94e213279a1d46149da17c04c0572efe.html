@@ -48,7 +48,23 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Operational Context is een klantgebonden, persistente operationele omgeving waarbinnen Executions plaatsvinden en waarin de voor die omgeving relevante operationele toestand wordt behouden. De context is onafhankelijk van de technische applicaties, systemen of workspaces waarmee deze omgeving wordt gerealiseerd.
+
+DOEL
+Het afbakenen van de operationele omgeving waarbinnen Entoli voor een specifieke Customer Context wordt gebruikt. Hierdoor kunnen binnen &#233;&#233;n Customer Context meerdere van elkaar gescheiden operationele omgevingen bestaan, ieder met hun eigen uitvoering en toestand.
+
+LEIDENDE VRAAG
+Binnen welke klantgebonden operationele omgeving vindt deze Execution plaats?
+
+RELATIES
+Een Customer Context heeft &#233;&#233;n of meer Operational Contexts. Iedere Operational Context behoort tot precies &#233;&#233;n Customer Context. Een Operational Context is de context voor nul of meer Executions. Iedere Execution vindt plaats binnen precies &#233;&#233;n Operational Context.
+
+BEPERKINGEN
+Een Operational Context is geen Customer Context, Agent Package, Execution, applicatie, IT-systeem of technische workspace. Een tenant workspace kan een technische realisatie van een Operational Context zijn, maar definieert het concept niet. De Operational Context bepaalt evenmin welke Agent Packages beschikbaar zijn; het gebruik daarvan is afleidbaar via de Executions die binnen de Operational Context plaatsvinden. Dit sluit aan op de bronde&#64257;nitie waarin Operational Context expliciet als operationele container en niet als software- of systeemgrens wordt onderscheiden.
+
+INVARIANTEN
+Iedere Operational Context behoort tot precies &#233;&#233;n Customer Context. Iedere Execution vindt plaats binnen precies &#233;&#233;n Operational Context. De operationele context van een Instruction Set wordt afgeleid van de Execution die door die Instruction Set wordt ge&#239;nstrueerd; de Instruction Set heeft daarom geen zelfstandige Operational Context nodig.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,8 +88,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-0c596ab9b0794409ac9d390d8b45d265">
-																	<td><a href="../views/id-0c596ab9b0794409ac9d390d8b45d265.html" target="view" title="entoli-tenant-workspace"> entoli-tenant-workspace </a></td>
+								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -90,14 +106,25 @@
 							</thead>
 							<tbody>
 									<tr>
+											<td><a href="../elements/id-a401c42120b34456a44a589011de5758.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
+											<td><a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-configuration</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-b9f7a77a44a6474a89b4cb8daf8addb8.html" target="element" title="1 defines 0..*">1 defines 0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
+											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
+										</tr>
+									<tr>
 											<td><a href="../elements/id-74f305dc55d34ea7b145903ff9f3a2c5.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-d3fcff5baeba4dd3b317abea7e44f3c3.html" target="element"> OPERATIONAL CONTEXT EXECUTION</a></td>
 											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-52e8a41211ac48ec92309e5f7284831c.html" target="element" title=""></a></td>
+											<td><a href="../elements/id-71d01ab060014200848c2fc9f8e01748.html" target="element" title="1 provides scope for 1..*">1 provides scope for 1..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-a89ed8ab6b514f15b697f1bf8a3e6c4c.html" target="element"> operational context agent</a></td>
+											<td><a href="../elements/id-fe7e9177ff87428e83ada3d9c79a468c.html" target="element"> customer context</a></td>
 											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
 										</tr>
 							</tbody>

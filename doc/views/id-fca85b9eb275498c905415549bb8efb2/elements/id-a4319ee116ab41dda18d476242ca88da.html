@@ -2,7 +2,7 @@
 <html class="frame" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<title>Instruction Set</title>
+	<title>instruction set</title>
 
 	<!-- JQUERY -->
 	<script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
@@ -21,7 +21,7 @@
 
 		<div class="panel-heading root-panel-heading">
             <!-- Name -->
-               <b>Instruction Set</b>
+               <b>instruction set</b>
 
             <!-- If a View with Viewpoint -->
 			   (<span class="i18n-elementtype-BusinessObject"></span>)
@@ -48,7 +48,26 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Instruction Set is de samengestelde, execution-specifieke set van instructies en context die bepaalt op basis waarvan een Execution wordt uitgevoerd.
+
+DOEL
+Het samenbrengen van alle normatieve, semantische en overgedragen context die voor &#233;&#233;n concrete Execution van toepassing is, zodat de Execution vanuit een expliciete en reproduceerbare instructiebasis wordt uitgevoerd.
+
+LEIDENDE VRAAG
+Welke instructies en context moeten voor deze Execution beschikbaar zijn?
+
+SAMENSTELLING
+Een Instruction Set kan toepasselijke Rules, relevante Elements en Relationships uit het Semantic Model en een Handoff uit een voorafgaande Execution bevatten. De Instruction Set vormt daarmee geen zelfstandig Semantic Model, maar een voor de Execution samengestelde selectie van relevante betekenis, regels en context.
+
+RELATIES
+Een Instruction Set wordt samengesteld voor &#233;&#233;n Agent Intent. Een Agent Intent kan de samenstelling van nul of meerdere Instruction Sets initi&#235;ren. Een Instruction Set bevat &#233;&#233;n of meer toepasselijke Rules en kan relevante Elements, Relationships en Handoffs bevatten. Een Instruction Set instrueert precies &#233;&#233;n Execution. Iedere Execution wordt door precies &#233;&#233;n Instruction Set ge&#239;nstrueerd.
+
+BEPERKINGEN
+Een Instruction Set introduceert geen nieuwe canonieke betekenis. Opgenomen Elements en Relationships blijven afkomstig uit het Semantic Model en opgenomen Rules behouden hun oorspronkelijke normatieve betekenis. Een Handoff brengt context uit een voorafgaande Execution over, maar cre&#235;ert geen directe relatie tussen die voorafgaande en de volgende Execution.
+
+INVARIANTEN
+Iedere Execution wordt ge&#239;nstrueerd door precies &#233;&#233;n Instruction Set. Alle opgenomen semantische elementen en relaties moeten herleidbaar zijn tot hun Semantic Model. Alle opgenomen Rules moeten voor de betreffende Execution van toepassing zijn. Een opgenomen Handoff moet geproduceerd zijn door een eerdere Execution.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,8 +91,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-0c596ab9b0794409ac9d390d8b45d265">
-																	<td><a href="../views/id-0c596ab9b0794409ac9d390d8b45d265.html" target="view" title="entoli-tenant-workspace"> entoli-tenant-workspace </a></td>
+								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -90,51 +109,66 @@
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-67bb08825671474586240ab415b74536.html" target="element" title="are operationalised in">are operationalised in</a></td>
+											<td><a href="../elements/id-67bb08825671474586240ab415b74536.html" target="element" title="1..* is included in 0 ..*">1..* is included in 0 ..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
-											<td><a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> canon rule</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+											<td><a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> rule</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-d19d1dd3331848b2a94022ee38ea840b.html" target="element" title="uses as working source">uses as working source</a></td>
+											<td><a href="../elements/id-d19d1dd3331848b2a94022ee38ea840b.html" target="element" title="0..* is used as working source in 0..*">0..* is used as working source in 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
-											<td><a href="../elements/id-4e0f720907c34ad186ec8a6958817d41.html" target="element"> Artifact</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+											<td><a href="../elements/id-4e0f720907c34ad186ec8a6958817d41.html" target="element"> artifact</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-4678b57ce9f740ce9101202a0b600698.html" target="element" title="1 instructs 1">1 instructs 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
 										</tr>
 									<tr>
 											<td><a href="../elements/id-r5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-RealizationRelationship" /></td>
 											<td><a href="../elements/id-6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b.html" target="element"> Prompt</a></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-225354b1d58c450ab4c0693643ae8105.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-326b4417ddfa49fe93b3794b5cfa7032.html" target="element"> execution</a></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-55d73ab4fd71403d95d4b38656a10e94.html" target="element" title="is used to create">is used to create</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-2a6ed230ccee40588fafaaf91e026a3c.html" target="element"> Semantic Scope</a></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-142d0c83605b4a96898a911d2457fc90.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-AggregationRelationship" /></td>
 											<td><a href="../elements/id-c4f0ed1573f249afa612ea1f259776a4.html" target="element"> entoli client</a></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-b84cf61254cf4b5c80f22056765480c7.html" target="element" title="is operationalised in">is operationalised in</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-d9b156810bf046759b7660060d24442b.html" target="element" title="is used as input for">is used as input for</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-b17565f47652459ba3e82817a1eaf088.html" target="element"> Execution</a></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-8db8e49715494a5aafedd68761740efd.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-d3fcff5baeba4dd3b317abea7e44f3c3.html" target="element"> OPERATIONAL CONTEXT EXECUTION</a></td>
-											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> Instruction Set</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-8ef81509a3e145e38a07c7c0ffbaabf8.html" target="element" title="1..* is included in 0 ..*">1..* is included in 0 ..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-3c01609d16af41d7a4d1e54524f31557.html" target="element" title="1  drives assembly of  0..*">1  drives assembly of  0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-a8d902efdfdc4fe983beb2813d6c206b.html" target="element" title="0..* is included in 1">0..* is included in 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-4215cbb5ea2e4b41bf3966ed673a5740.html" target="element"> handoff</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-17cc5eb103e545b0842a1f5f9f18f604.html" target="element" title="0..1 is included in 1">0..1 is included in 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-7970b9b7176341039f2e4af29e4d2d3a.html" target="element"> human context</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-59e56e7d6a75461f99649f0a6c1e549c.html" target="element" title="1..* is included in 0 ..*">1..* is included in 0 ..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
 										</tr>
 							</tbody>
 						</table>

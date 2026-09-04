@@ -2,7 +2,7 @@
 <html class="frame" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<title>Execution Step Specification</title>
+	<title>orchestration specification</title>
 
 	<!-- JQUERY -->
 	<script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
@@ -21,7 +21,7 @@
 
 		<div class="panel-heading root-panel-heading">
             <!-- Name -->
-               <b>Execution Step Specification</b>
+               <b>orchestration specification</b>
 
             <!-- If a View with Viewpoint -->
 			   (<span class="i18n-elementtype-BusinessObject"></span>)
@@ -48,7 +48,26 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Orchestration Specification is de binnen een Operational Context vastgelegde specificatie van welke Agent Intents gezamenlijk worden georchestreerd en in welke volgorde zij worden uitgevoerd. De specificatie beschrijft daarmee de samenhang van het werk, niet de concrete uitvoering ervan.
+
+DOEL
+Het expliciet en reproduceerbaar vastleggen van de orchestratie die binnen een specifieke Operational Context geldt, zodat duidelijk is welke Agent Intents deelnemen en in welke volgorde zij worden uitgevoerd.
+
+LEIDENDE VRAAG
+Welke Agent Intents worden binnen deze Operational Context georchestreerd en in welke volgorde worden zij uitgevoerd?
+
+SAMENSTELLING
+Een Orchestration Specification bestaat conceptueel uit &#233;&#233;n of meerdere geordende Agent Intents. De volgorde behoort tot de specificatie. Hoe deze volgorde logisch of technisch wordt vastgelegd, bijvoorbeeld met een volgnummer of een verwijzing naar een voorganger, behoort niet tot het conceptuele model.
+
+RELATIES
+Een Operational Context definieert nul of meerdere Orchestration Specifications. Iedere Orchestration Specification wordt door precies &#233;&#233;n Operational Context gedefinieerd. Een Orchestration Specification orchestreert &#233;&#233;n of meerdere Agent Intents. Iedere Agent Intent behoort binnen het huidige conceptuele model tot precies &#233;&#233;n Orchestration Specification. Iedere Orchestration Specification wordt in haar uitvoering bestuurd door precies &#233;&#233;n Execution Strategy. Een Execution Strategy kan de uitvoering van nul of meerdere Orchestration Specifications besturen. Een Orchestration Specification kan nul of meerdere keren als Execution worden uitgevoerd. Iedere Execution is de concrete uitvoering van precies &#233;&#233;n Orchestration Specification.
+
+BEPERKINGEN
+Een Orchestration Specification is geen Execution en beschrijft geen concrete runtime-instantie. Zij specificeert evenmin de interne werking van een Agent Intent. De technische representatie van stappen, volgorde, branching, status en runtime-besturing behoort tot het logisch, functioneel of technisch ontwerp.
+
+INVARIANTEN
+Iedere Orchestration Specification behoort tot precies &#233;&#233;n Operational Context en bevat minimaal &#233;&#233;n Agent Intent. De Agent Intents binnen een Orchestration Specification hebben een eenduidige uitvoeringsvolgorde. Iedere Orchestration Specification heeft precies &#233;&#233;n Execution Strategy. De Operational Context van een Execution is afleidbaar via de Orchestration Specification waarvan die Execution een concrete uitvoering is.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,6 +91,10 @@
 								</tr>
 							</thead>
 							<tbody>
+								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr>
 							</tbody>
 						</table>
 						<table class="table table-striped table-hover table-condensed" id="model-relations">
@@ -86,15 +109,36 @@
 							</thead>
 							<tbody>
 									<tr>
+											<td><a href="../elements/id-8b7a986c5a9a40828765a0062107646e.html" target="element" title="1 is executed as 0..*">1 is executed as 0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
+											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
+										</tr>
+									<tr>
 											<td><a href="../elements/id-r4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-RealizationRelationship" /></td>
 											<td><a href="../elements/id-5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a.html" target="element"> Execution Step</a></td>
-											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> Execution Step Specification</a></td>
+											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-2f9b7502a4a6406d896efc016aff5003.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-4f2cec5a34a94ad9b1b2ce6fe224581c.html" target="element"> coordination</a></td>
-											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> Execution Step Specification</a></td>
+											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-dba4ff33005844069bec66f442fc900b.html" target="element" title="1..* is orchestrated by 1">1..* is orchestrated by 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
+											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-4374318074134af7b62b0827bb2370e2.html" target="element" title="1 governs execution of 0..*">1 governs execution of 0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-9217fc1f04894f4486fd95f0dff34488.html" target="element"> execution strategy</a></td>
+											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-b9f7a77a44a6474a89b4cb8daf8addb8.html" target="element" title="1 defines 0..*">1 defines 0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
+											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
 										</tr>
 							</tbody>
 						</table>

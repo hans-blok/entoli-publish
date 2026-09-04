@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="frame" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>model assignment</title>
+
+	<!-- JQUERY -->
+	<script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<link type="text/css" rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.yeti.css">
+	<script type="text/javascript" src="../../lib/bootstrap/js/bootstrap-3.4.1.min.js"></script>
+	<!-- REPORT SPECIFIC -->
+	<link type="text/css" rel="stylesheet" href="../../css/model.css">
+	<link type="text/css" rel="stylesheet" href="../../css/i18n.css">
+	<script type="text/javascript" src="../../js/frame.js"></script>
+	<script type="text/javascript" src="../../js/imageMapResizer.min.js"></script>
+</head>
+
+<body>
+	<div class="panel panel-default root-panel">
+
+		<div class="panel-heading root-panel-heading">
+            <!-- Name -->
+               <b>model assignment</b>
+
+            <!-- If a View with Viewpoint -->
+			   (<span class="i18n-elementtype-BusinessObject"></span>)
+			   <a class="glyphicon glyphicon-info-sign" id="hint-BusinessObject" target="hint"></a>
+		</div>
+
+		<div class="panel-body root-panel-body">
+		    <!-- If this is a digram model (has children and no bounds) show the image -->
+
+			<div role="tabpanel">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+                    <!-- Purpose / Documentation / Content -->
+					   <li role="presentation" class="active"><a href="#documentation" aria-controls="documentation" role="tab" data-toggle="tab" class="i18n-documentation"></a></li>
+
+                    <!-- Properties -->
+                    <li role="presentation"><a href="#properties" aria-controls="properties" role="tab" data-toggle="tab" class="i18n-properties"></a></li>
+
+                    <!-- Analysis -->
+                    	<li role="presentation"><a href="#analysis" aria-controls="analysis" role="tab" data-toggle="tab" class="i18n-analysis"></a></li>
+
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="documentation">
+						<div class="convertlinks documentation" style="white-space:pre-wrap">MODEL ASSIGNMENT (MODELTOEWIJZING)
+
+DEFINITIE
+Een Model Assignment legt vast welk LLM Model, via welk LLM Account en met welke modelparameters wordt gebruikt voor een Execution wanneer de betreffende toewijzing van toepassing is.
+
+DOEL
+Maakt de keuze en configuratie van een LLM voor uitvoering expliciet, zonder deze vast te leggen in de Agent, Agent Intent of het LLM Model zelf.
+Hierdoor kan hetzelfde LLM Model voor verschillende soorten werk met verschillende instellingen worden ingezet.
+
+LEIDENDE VRAAG
+Welk LLM Model moet via welk LLM Account en met welke instellingen voor deze Execution worden gebruikt?
+
+VOORBEELDEN
+
+Default
+Model: GPT-5.4
+Temperature: 0.2
+Toepassing: standaard wanneer geen specifiekere Model Assignment van toepassing is.
+
+Architecture Exploration
+Model: GPT-5.4
+Temperature: 0.7
+Development Phase: Exploration
+Toepassing: verkennend werk waarbij variatie en het onderzoeken van alternatieven gewenst zijn.
+
+Architecture Specification
+Model: GPT-5.4
+Temperature: 0.2
+Development Phase: Specification
+Toepassing: specificerend werk waarbij consistentie en nauwkeurigheid belangrijk zijn.
+
+Architecture Review
+Model: GPT-5.4
+Temperature: 0.1
+Development Phase: Testing
+Toepassing: toetsend werk waarbij reproduceerbaarheid en strikte beoordeling gewenst zijn.
+
+Fast Operational Task
+Model: GPT-5.4-mini
+Temperature: 0.1
+Toepassing: relatief eenvoudige uitvoeringen waarbij snelheid en kosten zwaarder wegen.
+
+De modelnamen en temperaturewaarden hierboven zijn voorbeelden, geen canonieke voorgeschreven waarden.
+
+RELATIES
+Een Model Assignment selecteert precies &#233;&#233;n LLM Model.
+Een Model Assignment gebruikt precies &#233;&#233;n LLM Account.
+Een Model Assignment kan van toepassing zijn op een Development Phase. Een Model Assignment zonder specifieke Development Phase kan als standaardtoewijzing fungeren.
+Een Model Assignment kan door nul of meer Executions worden gebruikt. Iedere Execution gebruikt precies &#233;&#233;n Model Assignment.
+
+CONFIGURATIE
+Een Model Assignment bevat de modelparameters die voor de uitvoering gelden. Temperature is zo'n parameter en bepaalt de mate van variatie in de gegenereerde output.
+Andere modelparameters kunnen worden toegevoegd wanneer deze conceptueel relevant worden voor modelselectie en uitvoering.
+
+INVARIANTEN
+Het geselecteerde LLM Model en het gebruikte LLM Account moeten compatibel zijn met dezelfde LLM Provider.
+Het gebruikte LLM Account moet beschikbaar zijn binnen de Customer Context waarin de Execution plaatsvindt.
+Voor iedere Execution moet eenduidig &#233;&#233;n toepasselijke Model Assignment kunnen worden bepaald.
+Een specifieke Model Assignment heeft voorrang op de standaardtoewijzing wanneer aan de toepassingsvoorwaarde wordt voldaan.</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="properties">
+						<table class="table table-striped table-hover table-condensed">
+							<thead>
+								<tr>
+									<th class="i18n-key"></th>
+									<th class="i18n-value"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="analysis">
+						<table class="table table-striped table-hover table-condensed" id="used-in-views">
+							<thead>
+								<tr><th colspan="2" class="i18n-used-in-views" /></tr>
+								<tr>
+									<th class="i18n-name"></th>
+									<th class="i18n-viewpoint"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr>
+							</tbody>
+						</table>
+						<table class="table table-striped table-hover table-condensed" id="model-relations">
+							<thead>
+								<tr><th colspan="4" class="i18n-model-relations" /></tr>
+								<tr>
+									<th class="i18n-name"></th>
+									<th class="i18n-type"></th>
+									<th class="i18n-source"></th>
+									<th class="i18n-target"></th>
+								</tr>
+							</thead>
+							<tbody>
+									<tr>
+											<td><a href="../elements/id-478037499a934c57a353226c3694f575.html" target="element" title="1 is used by 0..*">1 is used by 0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
+											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
+										</tr>
+									<tr>
+											<td><a href="../elements/id-47dae23558094f908395d35e076e681d.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-configuration</a></td>
+											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-50fce052e7c6478abe8917cdae9c3760.html" target="element" title="0 applies to 0..* ">0 applies to 0..* </a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-2e25dc5832d04ffb907846209ef549b7.html" target="element"> development phase</a></td>
+											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-d3e81c1dcc624b7ab204c64934bd57e3.html" target="element" title="1 is selected by 0..*">1 is selected by 0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-47c7669317cf4b9aaec0c64751602214.html" target="element"> llm-model</a></td>
+											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-604ad10b0d05477d92723a64e79ad511.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-abdf3fc1a9504d1eb988ab196a0ecf67.html" target="element"> llm-account</a></td>
+											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
+										</tr>
+							</tbody>
+						</table>
+					</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">imageMapResize();</script>
+</body>
+</html>
