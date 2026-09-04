@@ -2,7 +2,7 @@
 <html class="frame" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<title>conceptual-data-model-canon</title>
+	<title>entoli-canon</title>
 
 	<!-- JQUERY -->
 	<script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
@@ -21,7 +21,7 @@
 
 		<div class="panel-heading root-panel-heading">
             <!-- Name -->
-               <b>conceptual-data-model-canon</b>
+               <b>entoli-canon</b>
 
             <!-- If a View with Viewpoint -->
 			   (<span class="i18n-viewpoint-"></span>)
@@ -31,15 +31,18 @@
 
 		<div class="panel-body root-panel-body">
 		    <!-- If this is a digram model (has children and no bounds) show the image -->
-			   <img class="diagram" src="../images/id-5e523aad2f8d4de290c5e246ba80079c.png" alt="conceptual-data-model-canon" usemap="#id-5e523aad2f8d4de290c5e246ba80079cmap"/>
+			   <img class="diagram" src="../images/id-5e523aad2f8d4de290c5e246ba80079c.png" alt="entoli-canon" usemap="#id-5e523aad2f8d4de290c5e246ba80079cmap"/>
 			   <map name="id-5e523aad2f8d4de290c5e246ba80079cmap">
-				  		<area shape="rect" coords="262,358,382,413" href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html"  target="element">
-				  		<area shape="rect" coords="478,358,598,413" href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html"  target="element">
-				  		<area shape="rect" coords="262,130,767,185" href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html"  target="element">
-				  		<area shape="rect" coords="10,10,155,80" href="../elements/id-4e02ad03bf6d4963b101fdad1d0f7b7b.html"  target="element">
-				  		<area shape="rect" coords="262,10,433,80" href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html"  target="element">
-				  		<area shape="rect" coords="262,231,575,286" href="../elements/id-1fa6202fbcb84810a487e731d399058b.html"  target="element">
-				  		<area shape="rect" coords="610,231,767,286" href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html"  target="element">
+				  		<area shape="rect" coords="10,10,1126,442" href="../elements/id-18268a62e3434d87b521791f7570594d.html"  target="element">
+				  				<area shape="rect" coords="706,711,863,766" href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html"  target="element">
+				  				<area shape="rect" coords="358,490,529,560" href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html"  target="element">
+				  				<area shape="rect" coords="358,838,478,893" href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html"  target="element">
+				  				<area shape="rect" coords="574,838,694,893" href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html"  target="element">
+				  				<area shape="rect" coords="358,711,671,766" href="../elements/id-1fa6202fbcb84810a487e731d399058b.html"  target="element">
+				  				<area shape="rect" coords="106,490,251,560" href="../elements/id-4e02ad03bf6d4963b101fdad1d0f7b7b.html"  target="element">
+				  				<area shape="rect" coords="358,610,863,665" href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html"  target="element">
+
+				  		<area shape="rect" coords="10,466,1126,982" href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html"  target="element">
 
 			   </map>
 
@@ -62,66 +65,13 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap">View documentation &#8212; Canon Structure
+						<div class="convertlinks documentation" style="white-space:pre-wrap">De view beschrijft de kernstructuur van de Entoli Canon en de samenhang tussen kennis, semantiek en canonieke regels.
 
-Name: Canon Structure
+Een Knowledge Specification (Kennisspecificatie) specificeert een Knowledge Domain (Kennisdomein) en kan worden gerealiseerd door een Canon. De Canon vormt daarmee de gezaghebbende realisatie van de kennisspecificatie.
 
-Purpose
-This view describes the structural composition of a Canon and the relationship between its semantic model and normative rules. It shows how a knowledge specification is realized as a Canon and how the Canon makes domain knowledge explicit through semantic elements, relationships, and rules.
+De Canon definieert het Semantic Model (Semantisch model) en de Canon Rules (Canonregels). Het Semantic Model bestaat uit Elements (Elementen) en Relationships (Relaties). De Elementen dragen de betekenis; de Relationships structureren die betekenis door gerichte verbindingen tussen Elementen te leggen en vormen zo de semantische graaf.
 
-Scope
-The view covers the conceptual structure of a Canon. It does not describe the physical representation, storage technology, file structure, or execution of the Canon.
-
-Viewpoint
-Conceptual / semantic structure.
-
-Description
-A Knowledge Specification specifies a Knowledge Domain and is realized by a Canon.
-
-A Canon is composed of two complementary parts:
-
-a Semantic Model, which makes the relevant domain semantics explicit;
-Rules, which express normative constraints governing those semantics.
-
-The Semantic Model is composed of Elements and Relationships. Elements represent the concepts or other semantic objects recognised by the model. Relationships connect those elements and make their semantic structure explicit.
-
-A Relationship is directed. It has:
-
-a source &#8212; the Element from which the relationship originates;
-a target &#8212; the Element to which the relationship points.
-
-The source and target describe the structural anatomy of a relationship. They are distinct from the relationship type, which expresses the semantic meaning of that relationship, such as is-composed-of, specifies, realizes, or constrains.
-
-Rules constrain elements of the Semantic Model. Together, the Semantic Model and Rules form the Canon: the Semantic Model establishes what is recognised and how it is related; the Rules establish what is normatively required, permitted, or prohibited.
-
-Relationship semantics
-
-Source	Relationship	Target	Meaning
-Knowledge Specification	specifies	Knowledge Domain	Identifies the knowledge domain whose semantics are being specified.
-Canon	realizes	Knowledge Specification	Makes the knowledge specification explicit and authoritative.
-Canon	is composed of	Semantic Model	The Semantic Model is a constituting part of the Canon.
-Canon	is composed of	Rule	Rules are constituting parts of the Canon.
-Semantic Model	is composed of	Element	Elements constitute the semantic content of the model.
-Semantic Model	is composed of	Relationship	Relationships constitute the semantic structure of the model.
-Relationship	has source	Element	Identifies the originating Element of a directed relationship.
-Relationship	has target	Element	Identifies the receiving Element of a directed relationship.
-Rule	constrains	Element	Expresses a normative constraint concerning an Element.
-
-Modelling principle
-The view deliberately separates semantic meaning from technical representation. source and target are properties of the abstract Relationship concept; they do not imply a particular graph technology. A graph database may implement these as from and to, but that implementation is outside the scope of this view.
-
-Interpretation
-The view should be read according to the following conceptual chain:
-
-Knowledge Domain &#8592; Knowledge Specification &#8592; Canon &#8594; { Semantic Model + Rules }
-
-Within the Semantic Model:
-
-Element &#8592; source &#8212; Relationship &#8212; target &#8594; Element
-
-The essential proposition expressed by the view is:
-
-A Canon realizes a knowledge specification through an explicit semantic model and normative rules. The semantic model establishes the elements and their relationships; the rules constrain the semantics expressed by that model.</div>
+Canon Rules leggen de normatieve regels van de Canon vast. Een Canon Rule kan nul of meer Elements gebruiken wanneer de canonieke betekenis van die Elementen nodig is voor de interpretatie of toepassing van de regel.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -171,44 +121,57 @@ A Canon realizes a knowledge specification through an explicit semantic model an
 								</thead>
 								<tbody>
 											<tr>
-											    <td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> canon rule </a> </td>
-											    <td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element" class="i18n-elementtype-BusinessObject">
+											    <td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON </a> </td>
+											    <td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element" class="i18n-elementtype-Grouping">
 											    </a> </td>
 											</tr>
 
-											<tr>
-											    <td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a> </td>
-											    <td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element" class="i18n-elementtype-BusinessObject">
-											    </a> </td>
-											</tr>
+													<tr>
+													    <td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
+													    <td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element" class="i18n-elementtype-BusinessObject">
+													    </a> </td>
+													</tr>
 
-											<tr>
-											    <td> <a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element"> knowledge specification </a> </td>
-											    <td> <a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element" class="i18n-elementtype-BusinessObject">
-											    </a> </td>
-											</tr>
+													<tr>
+													    <td> <a href="../elements/id-4e02ad03bf6d4963b101fdad1d0f7b7b.html" target="element"> knowledge-domain </a> </td>
+													    <td> <a href="../elements/id-4e02ad03bf6d4963b101fdad1d0f7b7b.html" target="element" class="i18n-elementtype-BusinessObject">
+													    </a> </td>
+													</tr>
 
-											<tr>
-											    <td> <a href="../elements/id-4e02ad03bf6d4963b101fdad1d0f7b7b.html" target="element"> knowledge-domain </a> </td>
-											    <td> <a href="../elements/id-4e02ad03bf6d4963b101fdad1d0f7b7b.html" target="element" class="i18n-elementtype-BusinessObject">
-											    </a> </td>
-											</tr>
+													<tr>
+													    <td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a> </td>
+													    <td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element" class="i18n-elementtype-BusinessObject">
+													    </a> </td>
+													</tr>
 
-											<tr>
-											    <td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
-											    <td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element" class="i18n-elementtype-BusinessObject">
-											    </a> </td>
-											</tr>
+													<tr>
+													    <td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
+													    <td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element" class="i18n-elementtype-BusinessObject">
+													    </a> </td>
+													</tr>
 
-											<tr>
-											    <td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
-											    <td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element" class="i18n-elementtype-BusinessObject">
-											    </a> </td>
-											</tr>
+													<tr>
+													    <td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
+													    <td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element" class="i18n-elementtype-BusinessObject">
+													    </a> </td>
+													</tr>
 
+													<tr>
+													    <td> <a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element"> knowledge specification </a> </td>
+													    <td> <a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element" class="i18n-elementtype-BusinessObject">
+													    </a> </td>
+													</tr>
+
+													<tr>
+													    <td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> canon rule </a> </td>
+													    <td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element" class="i18n-elementtype-BusinessObject">
+													    </a> </td>
+													</tr>
+
+											
 											<tr>
-											    <td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
-											    <td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element" class="i18n-elementtype-BusinessObject">
+											    <td> <a href="../elements/id-18268a62e3434d87b521791f7570594d.html" target="element"> ENTOLI CORE </a> </td>
+											    <td> <a href="../elements/id-18268a62e3434d87b521791f7570594d.html" target="element" class="i18n-elementtype-Grouping">
 											    </a> </td>
 											</tr>
 
@@ -228,73 +191,125 @@ A Canon realizes a knowledge specification through an explicit semantic model an
 								</thead>
 								<tbody>
 																	<tr>
-																		<td> <a href="../elements/id-f014d40ec6a04da2b5cafbbe24bcfb03.html" target="element">  </a> </td>
-																		<td> <a href="../elements/id-f014d40ec6a04da2b5cafbbe24bcfb03.html" target="element" class="i18n-elementtype-CompositionRelationship">
+																		<td> <a href="../elements/id-81fa40ddc5ea4b8c81f40cfd997f84bf.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-81fa40ddc5ea4b8c81f40cfd997f84bf.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																		</a> </td>
-																		<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a> </td>
-																		<td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
+																		<td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON </a> </td>
+																		<td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
 																	</tr>
 																	<tr>
-																		<td> <a href="../elements/id-7c6b2a0008a2465ab8b6bd597a3904a3.html" target="element">  </a> </td>
-																		<td> <a href="../elements/id-7c6b2a0008a2465ab8b6bd597a3904a3.html" target="element" class="i18n-elementtype-CompositionRelationship">
+																		<td> <a href="../elements/id-f066be1fc0ff4760b0d9af92a9b15197.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-f066be1fc0ff4760b0d9af92a9b15197.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																		</a> </td>
-																		<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a> </td>
-																		<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
-																	</tr>
-
-																	<tr>
-																		<td> <a href="../elements/id-872887d3610346e19f253cd9039660c4.html" target="element"> specifies </a> </td>
-																		<td> <a href="../elements/id-872887d3610346e19f253cd9039660c4.html" target="element" class="i18n-elementtype-SpecializationRelationship">
-																		</a> </td>
-																		<td> <a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element"> knowledge specification </a> </td>
+																		<td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON </a> </td>
 																		<td> <a href="../elements/id-4e02ad03bf6d4963b101fdad1d0f7b7b.html" target="element"> knowledge-domain </a> </td>
 																	</tr>
-
 																	<tr>
-																		<td> <a href="../elements/id-2e979449450b4c9b9e8d5dc9ff10465f.html" target="element">  </a> </td>
-																		<td> <a href="../elements/id-2e979449450b4c9b9e8d5dc9ff10465f.html" target="element" class="i18n-elementtype-CompositionRelationship">
+																		<td> <a href="../elements/id-712b54ee8ac64265a991fddf90d99e0c.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-712b54ee8ac64265a991fddf90d99e0c.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																		</a> </td>
-																		<td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
+																		<td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON </a> </td>
 																		<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a> </td>
 																	</tr>
 																	<tr>
-																		<td> <a href="../elements/id-2b83d6df1fc84eb9b6b9f316a61accc5.html" target="element">  </a> </td>
-																		<td> <a href="../elements/id-2b83d6df1fc84eb9b6b9f316a61accc5.html" target="element" class="i18n-elementtype-CompositionRelationship">
+																		<td> <a href="../elements/id-a424eb47962c48fc9d58bbe8d5679ab3.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-a424eb47962c48fc9d58bbe8d5679ab3.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																		</a> </td>
-																		<td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
-																		<td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> canon rule </a> </td>
+																		<td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON </a> </td>
+																		<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
 																	</tr>
 																	<tr>
-																		<td> <a href="../elements/id-dee315f400a040c1888aa29b9ed2f160.html" target="element"> is realized by </a> </td>
-																		<td> <a href="../elements/id-dee315f400a040c1888aa29b9ed2f160.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																		<td> <a href="../elements/id-a9b477b9cdba485b96f8a7c2235ad361.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-a9b477b9cdba485b96f8a7c2235ad361.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																		</a> </td>
-																		<td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
+																		<td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON </a> </td>
+																		<td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
+																	</tr>
+																	<tr>
+																		<td> <a href="../elements/id-24981020ea9c495fbac8f8782c55960c.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-24981020ea9c495fbac8f8782c55960c.html" target="element" class="i18n-elementtype-CompositionRelationship">
+																		</a> </td>
+																		<td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON </a> </td>
 																		<td> <a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element"> knowledge specification </a> </td>
 																	</tr>
-
 																	<tr>
-																		<td> <a href="../elements/id-b5437823c2804a05b0294c81e50418f5.html" target="element"> is defined using an </a> </td>
-																		<td> <a href="../elements/id-b5437823c2804a05b0294c81e50418f5.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																		<td> <a href="../elements/id-4114337091934964ac0b03bf5fe6a73e.html" target="element">  </a> </td>
+																		<td> <a href="../elements/id-4114337091934964ac0b03bf5fe6a73e.html" target="element" class="i18n-elementtype-CompositionRelationship">
 																		</a> </td>
-																		<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
+																		<td> <a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON </a> </td>
 																		<td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> canon rule </a> </td>
 																	</tr>
 
-																	<tr>
-																		<td> <a href="../elements/id-aed44c80476b4f04900f75e7973d8831.html" target="element"> to </a> </td>
-																		<td> <a href="../elements/id-aed44c80476b4f04900f75e7973d8831.html" target="element" class="i18n-elementtype-AssociationRelationship">
-																		</a> </td>
-																		<td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
-																		<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
-																	</tr>
-																	<tr>
-																		<td> <a href="../elements/id-a910f844d5e747cf921c8657b7088c32.html" target="element"> from </a> </td>
-																		<td> <a href="../elements/id-a910f844d5e747cf921c8657b7088c32.html" target="element" class="i18n-elementtype-AssociationRelationship">
-																		</a> </td>
-																		<td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
-																		<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
-																	</tr>
+																			<tr>
+																				<td> <a href="../elements/id-dee315f400a040c1888aa29b9ed2f160.html" target="element"> 1 is realized by 0..1 </a> </td>
+																				<td> <a href="../elements/id-dee315f400a040c1888aa29b9ed2f160.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
+																				<td> <a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element"> knowledge specification </a> </td>
+																			</tr>
+																			<tr>
+																				<td> <a href="../elements/id-3a220be3cfb94eb3bcddc1a0ccdd9f8d.html" target="element"> 1 defines 1 </a> </td>
+																				<td> <a href="../elements/id-3a220be3cfb94eb3bcddc1a0ccdd9f8d.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
+																				<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a> </td>
+																			</tr>
 
+																			<tr>
+																				<td> <a href="../elements/id-e617219ea1d44ddda848bafc8aa91de8.html" target="element"> 1 consists of 1..* </a> </td>
+																				<td> <a href="../elements/id-e617219ea1d44ddda848bafc8aa91de8.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a> </td>
+																				<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
+																			</tr>
+																			<tr>
+																				<td> <a href="../elements/id-aba60ccef7794a86b6ec9521783551e2.html" target="element"> 1 consists of 0..* </a> </td>
+																				<td> <a href="../elements/id-aba60ccef7794a86b6ec9521783551e2.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a> </td>
+																				<td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
+																			</tr>
+
+																			<tr>
+																				<td> <a href="../elements/id-b5437823c2804a05b0294c81e50418f5.html" target="element"> 0..* uses 0..*  </a> </td>
+																				<td> <a href="../elements/id-b5437823c2804a05b0294c81e50418f5.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
+																				<td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> canon rule </a> </td>
+																			</tr>
+
+																			<tr>
+																				<td> <a href="../elements/id-aed44c80476b4f04900f75e7973d8831.html" target="element"> 0..* to 1 </a> </td>
+																				<td> <a href="../elements/id-aed44c80476b4f04900f75e7973d8831.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
+																				<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
+																			</tr>
+																			<tr>
+																				<td> <a href="../elements/id-a910f844d5e747cf921c8657b7088c32.html" target="element"> 0..* from 1 </a> </td>
+																				<td> <a href="../elements/id-a910f844d5e747cf921c8657b7088c32.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a> </td>
+																				<td> <a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element </a> </td>
+																			</tr>
+
+																			<tr>
+																				<td> <a href="../elements/id-872887d3610346e19f253cd9039660c4.html" target="element"> specifies </a> </td>
+																				<td> <a href="../elements/id-872887d3610346e19f253cd9039660c4.html" target="element" class="i18n-elementtype-SpecializationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element"> knowledge specification </a> </td>
+																				<td> <a href="../elements/id-4e02ad03bf6d4963b101fdad1d0f7b7b.html" target="element"> knowledge-domain </a> </td>
+																			</tr>
+
+																			<tr>
+																				<td> <a href="../elements/id-0206eb08e648418db3a0c7023b76bfd6.html" target="element"> 1 defines 0..* </a> </td>
+																				<td> <a href="../elements/id-0206eb08e648418db3a0c7023b76bfd6.html" target="element" class="i18n-elementtype-AssociationRelationship">
+																				</a> </td>
+																				<td> <a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> canon rule </a> </td>
+																				<td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
+																			</tr>
+
+											
 
 								</tbody>
 							</table>

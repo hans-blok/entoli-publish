@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="frame" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>ENTOLI AGENT SERVICES</title>
+
+	<!-- JQUERY -->
+	<script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<link type="text/css" rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.yeti.css">
+	<script type="text/javascript" src="../../lib/bootstrap/js/bootstrap-3.4.1.min.js"></script>
+	<!-- REPORT SPECIFIC -->
+	<link type="text/css" rel="stylesheet" href="../../css/model.css">
+	<link type="text/css" rel="stylesheet" href="../../css/i18n.css">
+	<script type="text/javascript" src="../../js/frame.js"></script>
+	<script type="text/javascript" src="../../js/imageMapResizer.min.js"></script>
+</head>
+
+<body>
+	<div class="panel panel-default root-panel">
+
+		<div class="panel-heading root-panel-heading">
+            <!-- Name -->
+               <b>ENTOLI AGENT SERVICES</b>
+
+            <!-- If a View with Viewpoint -->
+			   (<span class="i18n-elementtype-Grouping"></span>)
+			   <a class="glyphicon glyphicon-info-sign" id="hint-Grouping" target="hint"></a>
+		</div>
+
+		<div class="panel-body root-panel-body">
+		    <!-- If this is a digram model (has children and no bounds) show the image -->
+
+			<div role="tabpanel">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+                    <!-- Purpose / Documentation / Content -->
+					   <li role="presentation" class="active"><a href="#documentation" aria-controls="documentation" role="tab" data-toggle="tab" class="i18n-documentation"></a></li>
+
+                    <!-- Properties -->
+                    <li role="presentation"><a href="#properties" aria-controls="properties" role="tab" data-toggle="tab" class="i18n-properties"></a></li>
+
+                    <!-- Analysis -->
+                    	<li role="presentation"><a href="#analysis" aria-controls="analysis" role="tab" data-toggle="tab" class="i18n-analysis"></a></li>
+
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="documentation">
+						<div class="convertlinks documentation" style="white-space:pre-wrap">Entoli Agent Services
+1. Doel van de view
+
+De view Entoli Agent Services beschrijft hoe een Agent als dienst wordt gespecificeerd, welke capabilities via Agent Intents beschikbaar worden gesteld en hoe het gedrag daarvan wordt bestuurd door regimes, regels en canonieke semantiek.
+
+De view verbindt daarmee kennis, dienstverlening, gedragsbesturing, regels en packaging.
+
+2. Kernstructuur
+
+Een Knowledge Specification (Kennisspecificatie) specificeert de kennis waarbinnen &#233;&#233;n of meer Agents (Functies) opereren. Een Agent stelt zijn capabilities beschikbaar via &#233;&#233;n of meer Agent Intents (Agent-intenties). Een Agent Intent representeert daarmee een afzonderlijk aanroepbare bedoeling of functie van de Agent.
+
+De primaire structuur is daarmee:
+Knowledge Specification &#8594; Agent &#8594; Agent Intent
+
+3. Besturing
+
+Het gedrag van Agent en Agent Intent wordt langs verschillende onafhankelijke assen bestuurd.
+
+Reasoning Mode bestuurt het redeneren van de Agent. Source-regime bestuurt de omgang met bronnen, Synthesis-regime de wijze waarop betekenis mag worden behouden, gerelateerd of gegenereerd, en Task Mode de aard van de taakuitvoering van een Agent Intent.
+Source-regime, Synthesis-regime en Task Mode worden op hun beurt bestuurd door Core Rules.
+
+4. Regels en semantische gronding
+
+Regels begrenzen het gedrag op verschillende niveaus. Agent Rules gelden voor de Agent als geheel, terwijl Agent Intent Rules specifieke Agent Intents begrenzen. Core Rules leggen generieke regels vast die samenhangen met de gedragsregimes.
+
+Deze regels kunnen Elements gebruiken als semantische context. Daarmee wordt expliciet vastgelegd welke canonieke begrippen en definities nodig zijn om een regel correct te interpreteren en toe te passen.
+
+Er ontstaat zo een onderscheid tussen wat wordt bestuurd &#8212; Agent en Agent Intent &#8212; en waarmee de regels semantisch worden gegrond &#8212; Elements.
+
+5. Packaging
+
+Een Agent Package brengt de voor inzet benodigde specificatie bijeen. De Knowledge Specification bepaalt de scope van het package en het package behoort tot maximaal &#233;&#233;n Agent.
+
+Het package vormt daarmee de overdraagbare vorm waarin de gespecificeerde Agent beschikbaar kan worden gemaakt.
+
+6. Kern in &#233;&#233;n zin
+
+De Knowledge Specification bepaalt de kenniscontext, de Agent en zijn Agent Intents bepalen de aangeboden dienstverlening, regimes bepalen de gedragsruimte, regels begrenzen die ruimte en Elements leveren waar nodig de canonieke betekenis waarmee die regels worden ge&#239;nterpreteerd.
+
+Deze zesdelige structuur zou ik ook voor de eerdere Entoli Canon-view gebruiken. Daardoor krijgen de viewbeschrijvingen een herkenbaar architectuurformat, terwijl alleen de relevante secties per view hoeven te worden ingevuld.</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="properties">
+						<table class="table table-striped table-hover table-condensed">
+							<thead>
+								<tr>
+									<th class="i18n-key"></th>
+									<th class="i18n-value"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="analysis">
+						<table class="table table-striped table-hover table-condensed" id="used-in-views">
+							<thead>
+								<tr><th colspan="2" class="i18n-used-in-views" /></tr>
+								<tr>
+									<th class="i18n-name"></th>
+									<th class="i18n-viewpoint"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="used-in-views-id-794973f14ef4494086f1dc12b8e5961a">
+																	<td><a href="../views/id-794973f14ef4494086f1dc12b8e5961a.html" target="view" title="entoli-agent-services"> entoli-agent-services </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr>
+							</tbody>
+						</table>
+						<table class="table table-striped table-hover table-condensed" id="model-relations">
+							<thead>
+								<tr><th colspan="4" class="i18n-model-relations" /></tr>
+								<tr>
+									<th class="i18n-name"></th>
+									<th class="i18n-type"></th>
+									<th class="i18n-source"></th>
+									<th class="i18n-target"></th>
+								</tr>
+							</thead>
+							<tbody>
+									<tr>
+											<td><a href="../elements/id-fc6627ef5ca246c6bc7513495f884d6e.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-a2b9d71e443c49c58b44615551eb4f5b.html" target="element"> synthesis-regime</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-106495a6a6314b9f9b5170f28b7a390b.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-97eb76d10f924f2e94ed85c64063ccdb.html" target="element"> core rule</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-0aa51ec2844648b489565ac89fe1b927.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-a21ac844b75946b0b94ab3450c81ed27.html" target="element"> agent</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-9ecd667bf0824b2abe87ee46db2295bc.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element"> knowledge specification</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-104205c024184f46bbe803addb132762.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-9dd7d63f3bda44a6919074aa6bd45c04.html" target="element"> agent rule</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-1cc4022a136c4942851ca8525e16ea57.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-a5736e6c7c874d5589622b6158eae9ee.html" target="element"> agent package</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-a786a2f2bdf047e9bef927802667d0bb.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task mode</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-0d6a24eec1144b55b0d99fec1ebdc451.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-fe950c3ebad04932a87cb572b191e4ff.html" target="element"> source-regime</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-ea86101cb7ca4047935f28ae678c61fc.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-918b2c7e1fba4b43b4c8d676815e3ce1.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-7c826e60007f41aeaaddbcb4fc50958d.html" target="element"> agent intent rule</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-b2cf4af9ee774bbfbb09547a5d3ef910.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-6cd1f6f39e864f16855d0eda7857df01.html" target="element"> reasing mode</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-c27e73939c4848118e0007e3970c7260.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
+										</tr>
+							</tbody>
+						</table>
+					</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">imageMapResize();</script>
+</body>
+</html>
