@@ -830,73 +830,339 @@ Scope&#xD;
 &#xD;
 </documentation>
     </element>
+    <element xsi:type="archimate:Capability" name="knowledge definition" id="id-7a97ee5143ed472ebd8b507c0cfb768e">
+      <documentation>Het vermogen om domeinkennis expliciet te specificeren en te canoniseren tot een gezaghebbend semantisch fundament van concepten, relaties en regels. Maakt kennis onafhankelijk van individuele agents en uitvoeringen en daarmee overdraagbaar, controleerbaar en herbruikbaar.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="agent packaging" id="id-57f90fbd1ed4451fbcd3bdbf363f15ec">
+      <documentation>Het vermogen om een agent inzetbaar te maken voor een specifiek kennisgebied door de agent te verbinden met een vaste Knowledge Specification en de bijbehorende kennis en regels. Een package vormt daarmee een domeinspecifieke inzetvorm van een agent.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="agent definition" id="id-fd356012553b471f86496bfc289eb2e3">
+      <documentation>Het vermogen om een professionele functie te definiëren in termen van verantwoordelijkheid, aangeboden intents, redeneerwijze en positie in het ontwikkelproces. Beschrijft wat een agent als service kan betekenen, onafhankelijk van een concrete uitvoering.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="operational configuration" id="id-0b5101711bd94470a5c7c352a5d0b284">
+      <documentation>Het vermogen om voor een Customer Context een duurzame operationele omgeving in te richten waarin werk kan worden georganiseerd en uitgevoerd. Deze capability bepaalt de context waarbinnen orchestraties, beschikbare voorzieningen en operationele keuzes betekenis krijgen.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="orchestration" id="id-b2ede837bb224fa0ba4ee99da9a9984e">
+      <documentation>Het vermogen om binnen een Operational Context één of meer Agent Intents tot een doelgerichte, geordende samenwerking te specificeren. De Orchestration Specification legt vast welke intents deelnemen, in welke volgorde zij worden uitgevoerd en volgens welke Execution Strategy de uitvoering wordt bestuurd.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="instruction assembly" id="id-d5f8b308e2674c518c473d3fe97e7dbf">
+      <documentation>Het vermogen om voor een concrete uitvoering de benodigde instructies samen te stellen uit toepasselijke regels, relevante semantische kennis en beschikbare context. Hierdoor krijgt iedere uitvoering een expliciete en herleidbare grondslag in plaats van impliciet beschikbare kennis.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="execution" id="id-93d6718dd75e402c911b7dc7845b8f4e">
+      <documentation>Het vermogen om gespecificeerd werk daadwerkelijk uit te voeren binnen de daarvoor geldende orchestratie, instructies en modelkeuze. Een Execution is de concrete occurrence waarin een intent operationeel resultaat oplevert.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="context &amp; work transfer" id="id-4c09c480acb64af68d114c1d0663c4ef">
+      <documentation>Het vermogen om betekenis en werkresultaten duurzaam tussen uitvoeringen over te dragen. Handoffs dragen expliciete interpretatie en context over naar vervolgwerk; Artifacts vormen duurzame werkproducten die als bron voor ander werk kunnen worden gebruikt.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="model assignment" id="id-9834ceacc1244471b3cb7dd2ed871e88">
+      <documentation>Het vermogen om te bepalen welk beschikbaar LLM Model, met welke modelparameters, voor een Execution wordt ingezet. Model Assignment maakt de keuze van het uitvoerende model expliciet en configureerbaar, zodat dezelfde agentfunctionaliteit en orchestratie met verschillende modellen kan worden uitgevoerd zonder de definitie daarvan te wijzigen.</documentation>
+    </element>
+    <element xsi:type="archimate:Capability" name="model provisioning" id="id-75a603d93bad4e71bdbee7c7fec4ec3e">
+      <documentation>Het vermogen om binnen een Customer Context toegang tot LLM Providers en hun beschikbare LLM Models te ontsluiten en beheersbaar beschikbaar te stellen voor AI-uitvoering. Hierdoor kan ENTOLI gebruikmaken van verschillende modelproviders en modellen zonder dat agents, orchestraties of kennisdefinities daarvan afhankelijk worden.</documentation>
+    </element>
+    <element xsi:type="archimate:ValueStream" name="establish knowledge" id="id-a4e6ce0a5f174bcaac4f8c51f1321c5c"/>
+    <element xsi:type="archimate:ValueStream" name="Prepare Professional Capability" id="id-6619640fcb9d41afae30213805ad9d86"/>
+    <element xsi:type="archimate:ValueStream" name="Configure Operational Delivery" id="id-18e1574f95594d87b6b841c28e6910dd"/>
+    <element xsi:type="archimate:ValueStream" name="Prepare Work" id="id-4123b36a2e324687be745599e8455ad3"/>
+    <element xsi:type="archimate:ValueStream" name="Perform Work" id="id-fd9e7ccc1a354a228ed8f115bb2ca9f0"/>
+    <element xsi:type="archimate:ValueStream" name="Deliver &amp; Transfer Results" id="id-1ccffb4f33194bcca879915bbdfa4da4"/>
   </folder>
   <folder name="Business" id="id-a2041084116e42ea80c1b0c940e528c9" type="business">
-    <element xsi:type="archimate:BusinessObject" name="agent" id="id-a21ac844b75946b0b94ab3450c81ed27"/>
-    <element xsi:type="archimate:BusinessObject" name="agent intent" id="id-fc519c97c3c04fb3b43a50b72f0aef38"/>
-    <element xsi:type="archimate:BusinessObject" name="orchestration specification" id="id-0a67e6f41ebb45b9b7a3fc306bc08cd1">
+    <element xsi:type="archimate:BusinessObject" name="agent" id="id-a21ac844b75946b0b94ab3450c81ed27">
       <documentation>DEFINITIE&#xD;
-Een Orchestration Specification is de binnen een Operational Context vastgelegde specificatie van welke Agent Intents gezamenlijk worden georchestreerd en in welke volgorde zij worden uitgevoerd. De specificatie beschrijft daarmee de samenhang van het werk, niet de concrete uitvoering ervan.&#xD;
+Een Agent (canoniek: Entoli-agent) is een expliciet gedefinieerde, autonome softwareentiteit binnen het Entoli-ecosysteem die op basis van een formeel agent-charter en agent-contract taken uitvoert, Entoli-artifacts produceert of informatie levert, en die altijd opereert binnen een afgebakende agent-boundary en volgens het toepasselijke governance-regime.&#xD;
 &#xD;
 DOEL&#xD;
-Het expliciet en reproduceerbaar vastleggen van de orchestratie die binnen een specifieke Operational Context geldt, zodat duidelijk is welke Agent Intents deelnemen en in welke volgorde zij worden uitgevoerd.&#xD;
+Verantwoordelijkheid, bevoegdheid en gedrag expliciet en herleidbaar toekennen aan één autonome uitvoerder binnen het ecosysteem, zodat capabilities nooit impliciet of ad hoc worden uitgevoerd, maar altijd via een formeel gelegitimeerde Agent.&#xD;
 &#xD;
 LEIDENDE VRAAG&#xD;
-Welke Agent Intents worden binnen deze Operational Context georchestreerd en in welke volgorde worden zij uitgevoerd?&#xD;
-&#xD;
-SAMENSTELLING&#xD;
-Een Orchestration Specification bestaat conceptueel uit één of meerdere geordende Agent Intents. De volgorde behoort tot de specificatie. Hoe deze volgorde logisch of technisch wordt vastgelegd, bijvoorbeeld met een volgnummer of een verwijzing naar een voorganger, behoort niet tot het conceptuele model.&#xD;
+Welke autonome, formeel gelegitimeerde uitvoerder is verantwoordelijk voor deze capability?&#xD;
 &#xD;
 RELATIES&#xD;
-Een Operational Context definieert nul of meerdere Orchestration Specifications. Iedere Orchestration Specification wordt door precies één Operational Context gedefinieerd. Een Orchestration Specification orchestreert één of meerdere Agent Intents. Iedere Agent Intent behoort binnen het huidige conceptuele model tot precies één Orchestration Specification. Iedere Orchestration Specification wordt in haar uitvoering bestuurd door precies één Execution Strategy. Een Execution Strategy kan de uitvoering van nul of meerdere Orchestration Specifications besturen. Een Orchestration Specification kan nul of meerdere keren als Execution worden uitgevoerd. Iedere Execution is de concrete uitvoering van precies één Orchestration Specification.&#xD;
+Een Agent behoort tot ten hoogste één Agent Package. Een Agent wordt geclassificeerd door precies één Reasoning Mode, die bepaalt of de Agent Intents van de Agent aan het content-governance-model (Source-regime, Synthesis-regime, Task Regime) zijn onderworpen. Een Agent intervenieert in precies één Development Phase. Een Agent stelt zijn capabilities beschikbaar via één of meer Agent Intents. Een Agent wordt niet rechtstreeks door een Knowledge Specification gescoped: die scoping werkt via het Agent Package waartoe de Agent behoort (zie Agent Package, Knowledge Specification).&#xD;
 &#xD;
 BEPERKINGEN&#xD;
-Een Orchestration Specification is geen Execution en beschrijft geen concrete runtime-instantie. Zij specificeert evenmin de interne werking van een Agent Intent. De technische representatie van stappen, volgorde, branching, status en runtime-besturing behoort tot het logisch, functioneel of technisch ontwerp.&#xD;
+Een Agent is geen Agent Intent: een Agent Intent is één aanroepbare capability binnen de grenzen van de Agent, niet de Agent zelf. Een Agent is geen technische implementatie, tooling of prompt-structuur: de agent-boundary is onafhankelijk van de wijze waarop de Agent technisch wordt gerealiseerd.&#xD;
 &#xD;
 INVARIANTEN&#xD;
-Iedere Orchestration Specification behoort tot precies één Operational Context en bevat minimaal één Agent Intent. De Agent Intents binnen een Orchestration Specification hebben een eenduidige uitvoeringsvolgorde. Iedere Orchestration Specification heeft precies één Execution Strategy. De Operational Context van een Execution is afleidbaar via de Orchestration Specification waarvan die Execution een concrete uitvoering is.</documentation>
+Iedere Agent heeft precies één Reasoning Mode en precies één Development Phase. Alle Agent Intents van een Agent opereren binnen de ene, gedeelde agent-boundary van die Agent.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- NIAM-analist — Cognitieve professionele functie die domeinuitspraken, voorbeelden en bronmateriaal analyseert om begrippen, feittypen, rollen en semantische ambiguïteiten expliciet te maken volgens NIAM-principes.&#xD;
+- Logisch modelleur — Cognitieve professionele functie die vastgestelde conceptuele betekenis vertaalt naar een logisch datamodel met entiteiten, relaties, cardinaliteiten en relevante constraints, zonder de conceptuele betekenis zelfstandig te wijzigen.&#xD;
+- Canon Architect — Cognitieve professionele functie die concepten, definities, grenzen, relaties en invarianten expliciet maakt en de onderlinge samenhang van de canon bewaakt.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="agent intent" id="id-fc519c97c3c04fb3b43a50b72f0aef38">
+      <documentation>DEFINITIE&#xD;
+Een Agent Intent is een expliciet aanroepbare capability van een Agent: één samenhangende eenheid van werk die de Agent binnen zijn agent-boundary aanbiedt, vastgelegd in het agent-contract van die Agent.&#xD;
+&#xD;
+DOEL&#xD;
+Het werk van een Agent opdelen in expliciet aanroepbare, afzonderlijk classificeerbare eenheden, zodat elke eenheid werk zijn eigen bronregime, synthese-toestemming en taakvorm kan dragen zonder de grenzen van de Agent zelf te wijzigen.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke specifieke, aanroepbare capability van deze Agent wordt hier uitgevoerd?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Agent stelt zijn capabilities beschikbaar via één of meer Agent Intents; iedere Agent Intent behoort tot precies één Agent. Een Agent Intent wordt aangeroepen door nul of meer Execution Step Specifications; iedere Execution Step Specification roept precies één Agent Intent aan. Alleen wanneer de Reasoning Mode van de Agent Cognitive is, declareert een Agent Intent precies één positie op elk van de drie specialisaties van Execution Regime (Source Regime, Synthesis Regime, Task Regime); onder Deterministic declareert de Agent Intent geen van de drie (zie Reasoning Mode, Execution Regime). Een Agent Intent drijft de samenstelling van nul of meer Instruction Sets aan. Een Agent Intent Rule beperkt precies één Agent Intent.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Agent Intent is geen Agent: het is één capability binnen de grenzen van een Agent, niet de Agent zelf, en overschrijdt nooit de agent-boundary van zijn Agent. Een Agent Intent is geen Execution Step Specification: de Execution Step Specification specificeert wanneer en hoe een Agent Intent wordt aangeroepen, maar is niet de capability zelf. Een Agent Intent is geen Execution: de Execution is de concrete, tijdgebonden uitvoering; de Agent Intent is de aanroepbare capability die daarbij wordt aangesproken. Een Agent Intent declareert nooit zijn eigen Reasoning Mode: het erft die van zijn Agent (zie Reasoning Mode).&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Agent Intent behoort tot precies één Agent en opereert altijd binnen de agent-boundary van die Agent. Iedere Agent Intent van een Agent met Reasoning Mode Cognitive wordt gegoverneerd door precies één Execution Regime van elke specialisatie; iedere Agent Intent van een Agent met Reasoning Mode Deterministic wordt door geen enkele specialisatie gegoverneerd.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Analyseer domeinuitspraken — Aanroepbare capability van de NIAM-analist om uit natuurlijke taal kandidaat-begrippen, feittypen en rollen af te leiden.&#xD;
+- Ontwerp logisch datamodel — Aanroepbare capability van de Logisch modelleur om een vastgesteld conceptueel model te vertalen naar een logisch model.&#xD;
+- Review conceptueel model — Aanroepbare capability van de Canon Architect om semantische inconsistenties en ontbrekende architectuurbesluiten te identificeren.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="orchestration specification" id="id-0a67e6f41ebb45b9b7a3fc306bc08cd1">
+      <documentation>DEFINITIE&#xD;
+Een Orchestration Specification is de binnen een Operational Context vastgelegde specificatie van een samenhangende, geordende reeks Execution Step Specifications die gezamenlijk een doelgericht proces vormen.&#xD;
+&#xD;
+DOEL&#xD;
+Het expliciet en reproduceerbaar vastleggen van hoe meerdere uitvoeringsstappen binnen een Operational Context worden gecombineerd en geordend tot één samenhangende orchestratie.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke uitvoeringsstappen vormen samen de orchestratie en in welke volgorde worden zij uitgevoerd?&#xD;
+&#xD;
+SAMENSTELLING&#xD;
+Een Orchestration Specification bestaat uit één of meerdere Execution Step Specifications. De volgorde van deze stappen maakt onderdeel uit van de orchestratiespecificatie. De wijze waarop deze volgorde technisch wordt vastgelegd behoort niet tot het conceptuele model.&#xD;
+&#xD;
+RELATIES&#xD;
+Iedere Orchestration Specification wordt door precies één Operational Context gedefinieerd. Een Operational Context kan nul of meerdere Orchestration Specifications definiëren. Iedere Orchestration Specification bestaat uit één of meerdere Execution Step Specifications. Iedere Execution Step Specification behoort tot precies één Orchestration Specification.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Orchestration Specification is geen concrete uitvoering en specificeert niet zelf welke Agent Intent of welk LLM Model voor een individuele stap wordt gebruikt. Die verantwoordelijkheid ligt bij de Execution Step Specification en de daaraan gerelateerde configuratie.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Orchestration Specification behoort tot precies één Operational Context, bevat minimaal één Execution Step Specification en legt een eenduidige ordening van haar Execution Step Specifications vast.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Van domeinuitspraken naar logisch model — Geordende orchestratie: NIAM-analyse → conceptuele modellering → logisch modelleren → modelreview.&#xD;
+- Herzien Agent Development Canon — Geordende reeks stappen voor inventariseren → semantisch reviewen → besluiten → herschrijven → conformance review.&#xD;
+- Review conceptueel datamodel — Orchestratie voor modelinspectie → inconsistentieanalyse → besluitvorming → reviewartifact.</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="instruction set" id="id-a4319ee116ab41dda18d476242ca88da">
       <documentation>DEFINITIE&#xD;
-Een Instruction Set is de samengestelde, execution-specifieke set van instructies en context die bepaalt op basis waarvan een Execution wordt uitgevoerd.&#xD;
+Een Instruction Set is de execution-specifieke samenstelling van normatieve, semantische en aangeleverde context die één concrete Execution instrueert.&#xD;
 &#xD;
 DOEL&#xD;
-Het samenbrengen van alle normatieve, semantische en overgedragen context die voor één concrete Execution van toepassing is, zodat de Execution vanuit een expliciete en reproduceerbare instructiebasis wordt uitgevoerd.&#xD;
+Voor één Execution expliciet en reproduceerbaar vastleggen welke regels, betekenis en context beschikbaar moeten zijn, zodat de uitvoering niet afhankelijk is van impliciete of niet-herleidbare informatie.&#xD;
 &#xD;
 LEIDENDE VRAAG&#xD;
-Welke instructies en context moeten voor deze Execution beschikbaar zijn?&#xD;
+Welke normatieve, semantische en aangeleverde context moet voor deze Execution beschikbaar zijn?&#xD;
 &#xD;
 SAMENSTELLING&#xD;
-Een Instruction Set kan toepasselijke Rules, relevante Elements en Relationships uit het Semantic Model en een Handoff uit een voorafgaande Execution bevatten. De Instruction Set vormt daarmee geen zelfstandig Semantic Model, maar een voor de Execution samengestelde selectie van relevante betekenis, regels en context.&#xD;
+Een Instruction Set kan toepasselijke Rules, relevante Elements en Relationships uit een Semantic Model, maximaal één Human Context, nul of meer Handoffs en nul of meer Artifacts als working source bevatten. De precieze samenstelling volgt uit het uit te voeren werk. Het Instruction Set vormt geen zelfstandig Semantic Model, maar gebruikt waar nodig een execution-specifieke selectie uit bestaande canonieke betekenis.&#xD;
 &#xD;
 RELATIES&#xD;
-Een Instruction Set wordt samengesteld voor één Agent Intent. Een Agent Intent kan de samenstelling van nul of meerdere Instruction Sets initiëren. Een Instruction Set bevat één of meer toepasselijke Rules en kan relevante Elements, Relationships en Handoffs bevatten. Een Instruction Set instrueert precies één Execution. Iedere Execution wordt door precies één Instruction Set geïnstrueerd.&#xD;
+Een Agent Intent drijft de samenstelling van nul of meer Instruction Sets aan. Een Instruction Set instrueert precies één Execution en iedere Execution wordt door precies één Instruction Set geïnstrueerd. Een Human Context wordt in precies één Instruction Set opgenomen en een Instruction Set bevat maximaal één Human Context. Een Handoff wordt in precies één Instruction Set opgenomen en een Instruction Set kan nul of meer Handoffs bevatten. Artifacts kunnen als working source in nul of meer Instruction Sets worden gebruikt.&#xD;
 &#xD;
 BEPERKINGEN&#xD;
-Een Instruction Set introduceert geen nieuwe canonieke betekenis. Opgenomen Elements en Relationships blijven afkomstig uit het Semantic Model en opgenomen Rules behouden hun oorspronkelijke normatieve betekenis. Een Handoff brengt context uit een voorafgaande Execution over, maar creëert geen directe relatie tussen die voorafgaande en de volgende Execution.&#xD;
+Een Instruction Set introduceert geen nieuwe canonieke betekenis. Opgenomen Elements en Relationships blijven herleidbaar tot hun Semantic Model en opgenomen Rules behouden hun normatieve betekenis. Een Handoff draagt context uit een eerdere Execution over; een Artifact is een duurzaam werkproduct dat als working source kan worden hergebruikt. Deze functies zijn niet onderling uitwisselbaar.&#xD;
 &#xD;
 INVARIANTEN&#xD;
-Iedere Execution wordt geïnstrueerd door precies één Instruction Set. Alle opgenomen semantische elementen en relaties moeten herleidbaar zijn tot hun Semantic Model. Alle opgenomen Rules moeten voor de betreffende Execution van toepassing zijn. Een opgenomen Handoff moet geproduceerd zijn door een eerdere Execution.</documentation>
+Iedere Execution wordt geïnstrueerd door precies één Instruction Set. Alle opgenomen semantische Elements en Relationships zijn herleidbaar tot hun Semantic Model. Iedere opgenomen Rule is voor de betreffende Execution van toepassing. Iedere opgenomen Handoff is afkomstig uit precies één eerdere Execution.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Instruction Set — NIAM-analyse Agent Development #001 — Execution-specifieke samenstelling van relevante canonieke concepten, regels, bronartefacten en Human Context voor één NIAM-analyse.&#xD;
+- Instruction Set — Logisch model Agent Development #004 — Instructiebasis voor één uitvoering van de Logisch modelleur, inclusief conceptueel model als working source en relevante semantische constraints.&#xD;
+- Instruction Set — CDM Review #009 — Instructiebasis voor één architectuurreview met toepasselijke canon, reviewcontext en eventuele Handoffs.</documentation>
     </element>
-    <element xsi:type="archimate:BusinessObject" name="artifact" id="id-4e0f720907c34ad186ec8a6958817d41"/>
-    <element xsi:type="archimate:BusinessObject" name="source-regime" id="id-fe950c3ebad04932a87cb572b191e4ff"/>
+    <element xsi:type="archimate:BusinessObject" name="artifact" id="id-4e0f720907c34ad186ec8a6958817d41">
+      <documentation>DEFINITIE&#xD;
+Een Artifact (canoniek: Entoli artifact) is een duurzame, expliciete en overdraagbare vastlegging van een resultaat of beslissing, die waarde vertegenwoordigt en als input kan dienen voor vervolgwerk.&#xD;
+&#xD;
+DOEL&#xD;
+Het resultaat van uitvoering herleidbaar, overdraagbaar en duurzaam vastleggen, zodat het onafhankelijk van de uitvoering die het heeft voortgebracht, bruikbaar blijft voor vervolgwerk.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welk duurzaam, overdraagbaar resultaat is hier vastgelegd?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Execution produceert nul of meer Artifacts; iedere Artifact komt voort uit precies één Execution. Eén of meer Artifacts worden door nul of meer Instruction Sets als working source gebruikt.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Artifact is geen Handoff: een Handoff draagt interpretatie en context over tussen Executions, maar is zelf geen duurzaam werkproduct. Een Artifact is geen Instruction Set: het is het resultaat van uitvoering, niet de samengestelde instructiebasis waarmee wordt uitgevoerd.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Artifact komt voort uit precies één Execution. Een Artifact blijft, onafhankelijk van de Execution die het heeft voortgebracht, bruikbaar als working source voor nul of meer Instruction Sets.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Conceptueel datamodel Agent Development — Duurzaam werkproduct van modelleerwerk en bruikbaar als working source voor vervolgwerk.&#xD;
+- Logisch datamodel Agent Development — Duurzaam logisch model dat door een uitvoering van de Logisch modelleur is geproduceerd.&#xD;
+- Architectuurreview CDM — Reviewdocument met bevindingen, inconsistenties en voorgestelde besluiten.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="source-regime" id="id-fe950c3ebad04932a87cb572b191e4ff">
+      <documentation>DEFINITIE&#xD;
+Source-regime is de classificatie-as die per Agent Intent vastlegt welke categorieën kennis epistemisch toelaatbaar zijn om als grondslag te dienen tijdens een uitvoering, en onder welke voorwaarden elke categorie de inhoud van de output mag beïnvloeden.&#xD;
+&#xD;
+DOEL&#xD;
+De epistemische grens van een Agent Intent expliciet maken: welke Work-Sources geladen mogen worden, en of en hoe de eigen algemene kennis van het LLM de output mag informeren — zodat vertrouwen, governance en kwaliteitsborging niet afhankelijk zijn van impliciete aannames.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke categorieën kennis — aangeleverde Work-Sources, canonieke artifacts, met naam genoemde externe bronnen, of de eigen algemene kennis van het model — mag deze Agent Intent aanspreken, en onder welke voorwaarde mag elke categorie de output informeren?&#xD;
+&#xD;
+WAARDEN&#xD;
+Input-bound — het toelaatbare Work-Source-domein is beperkt tot uitsluitend de expliciet aangeleverde input voor de uitvoering; situationeel en niet-normatief van gezag.&#xD;
+Canon-bound — het toelaatbare Work-Source-domein is beperkt tot expliciet vastgelegde canonieke artifacts; normatief en gezaghebbend van aard.&#xD;
+External-source-bound — het toelaatbare Work-Source-domein is beperkt tot specifiek met naam genoemde externe bronnen, elk verplicht te citeren.&#xD;
+Open — het toelaatbare Work-Source-domein is niet vooraf begrensd; algemene kennis mag het verst worden benut van alle posities, zonder dat dit op zichzelf het introduceren van nieuwe betekenis toestaat (dat is exclusief aan Synthesis-regime).&#xD;
+&#xD;
+RELATIES&#xD;
+Source-regime is onafhankelijk van (orthogonaal aan) Task Mode en Synthesis regime: elke as wordt afzonderlijk gedeclareerd per Agent Intent. Source-regime is één van de drie specialisaties van Execution Regime, naast Synthesis Regime en Task Regime.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Source-regime is geen kwaliteitsmaat van de output en geen technische implementatiekeuze. Source-regime beperkt uitsluitend wélke kennis mag worden aangesproken, nooit wát daarmee mag worden gedaan zodra zij is toegelaten (dat is Synthesis regime).&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere domeinspecifieke bewering in de output van een Agent Intent moet herleidbaar zijn tot een toegelaten bron binnen het gedeclareerde Source-regime.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Input-bound — De uitvoering mag alleen expliciet aangeboden working sources als grondslag gebruiken.&#xD;
+- Canon-bound — De uitvoering wordt begrensd tot expliciet canonieke bronnen.&#xD;
+- External-source-bound — De uitvoering mag benoemde externe bronnen gebruiken en moet de herkomst daarvan expliciet houden.&#xD;
+- Open — De bronruimte is niet vooraf door dit regime begrensd.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" id="id-85976594d9b24ea68b752ad1b5cd8719"/>
     <element xsi:type="archimate:BusinessObject" name="task regime" id="id-3969a1acce774516911bb973b0ff59ee">
-      <documentation>POS-TMD-EXT	Extracting	&#xD;
-POS-TMD-STR	Structuring	&#xD;
-POS-TMD-TRF	Transforming&#xD;
-POS-TMD-EVL	Evaluating	&#xD;
-POS-TMD-ORI	Originating	</documentation>
+      <documentation>DEFINITIE&#xD;
+Task Regime is de classificatie-as die per Agent Intent vastlegt welke vorm van bewerking wordt uitgevoerd en welke outputstructuur daaruit moet volgen: wat voor type operatie op het aangeleverde materiaal wordt toegepast, en hoe het resultaat gestructureerd moet zijn.&#xD;
+&#xD;
+DOEL&#xD;
+Voor iedere Agent Intent expliciet maken welk type bewerking wordt uitgevoerd en welke outputvorm daarbij hoort, zodat dit vooraf ondubbelzinnig vaststaat, onafhankelijk van welke kennis toegankelijk is (Source Regime) en welke betekenistransformatie is toegestaan (Synthesis Regime).&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welk type bewerking voert deze Agent Intent uit op het aangeleverde materiaal, en welke outputstructuur moet daaruit volgen?&#xD;
+&#xD;
+WAARDEN&#xD;
+Extracting — specifieke elementen uit het aangeleverde materiaal identificeren en overnemen; de output is een afgebakende deelverzameling van de bron (lijst, uittreksel, tabel), zonder auteurschap voorbij wat werd gelokaliseerd.&#xD;
+Structuring — relaties, ordening of architectuur binnen het materiaal expliciet maken; de output maakt bestaande samenhang zichtbaar, zonder narratieve of analytische toevoeging.&#xD;
+Transforming — output afleiden of omzetten vanuit het bronmateriaal in een andere vorm, strikt herleidbaar tot die bron.&#xD;
+Evaluating — het materiaal beoordelen tegen expliciete criteria; elk oordeel is herleidbaar tot het specifieke criterium waarop het is gebaseerd.&#xD;
+Originating — content produceren die niet in het bronmateriaal aanwezig is en er niet strikt uit afleidbaar is; elke instantie van zulke content moet expliciet als zodanig gemarkeerd worden.&#xD;
+&#xD;
+RELATIES&#xD;
+Task Regime is onafhankelijk van (orthogonaal aan) Source Regime en Synthesis Regime: elke as wordt afzonderlijk gedeclareerd per Agent Intent. Task Regime is één van de drie specialisaties van Execution Regime, naast Source Regime en Synthesis Regime. Alleen wanneer de Reasoning Mode van de Agent Cognitive is, declareert een Agent Intent precies één positie op Task Regime (zie Reasoning Mode, Execution Regime).&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Task Regime is geen brontoegangsbeperking (dat is Source Regime): Task Regime bepaalt niet welke kennis mag worden aangesproken. Task Regime is geen betekenistransformatiebeperking (dat is Synthesis Regime): Task Regime bepaalt niet wat met toegelaten betekenis mag worden gedaan, alleen welke vorm en structuur de bewerking zelf heeft. Task Regime is geen classificatie van voortgangslogica: geen enkele waarde definieert iteratie, vertakking of meerstaps-gedrag — elke waarde is uitvoerbaar als één deterministische stap.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Agent Intent waarvoor Task Regime van toepassing is (zie Execution Regime, Reasoning Mode) heeft precies één waarde op deze as. De vijf waarden zijn onderling uitsluitend: geen twee waarden staan dezelfde combinatie van toegestaan en verboden gedrag toe.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Extracting — Bijvoorbeeld: haal alle expliciete definities van Business Objects uit een canonbestand.&#xD;
+- Structuring — Bijvoorbeeld: orden gevonden domeinuitspraken in begrippen, feittypen en rollen.&#xD;
+- Transforming — Bijvoorbeeld: zet een vastgesteld conceptueel model om naar een logisch model met behoud van betekenis.&#xD;
+- Evaluating — Bijvoorbeeld: toets een logisch model tegen het conceptuele model en rapporteer afwijkingen.&#xD;
+- Originating — Bijvoorbeeld: formuleer kandidaat-concepten voor een nieuw kennisgebied waarvoor nog geen brondefinitie bestaat.</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="Value stream phase" id="id-c4110ee27b2644a59ca54a4c3ad15350"/>
     <element xsi:type="archimate:BusinessObject" name="Value stream" id="id-d568ba0e747140fe9548894e6fc784bc"/>
-    <element xsi:type="archimate:BusinessObject" name="rule" id="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
-    <element xsi:type="archimate:BusinessObject" name="semantic model" id="id-1fa6202fbcb84810a487e731d399058b"/>
+    <element xsi:type="archimate:BusinessObject" name="rule" id="id-b7cb33c7b50e48dabb3f0d830de8698f">
+      <documentation>DEFINITIE&#xD;
+Rule is de verzamelnaam voor een normatieve regel binnen het conceptuele model. De onderkende specialisaties zijn Canon Rule, Agent Rule, Agent Intent Rule en Core Rule. Zij verschillen in herkomst, toepassingsbereik en functie, maar delen dat zij gedrag of betekenis binnen een expliciete context normeren.&#xD;
+&#xD;
+DOEL&#xD;
+Eén gemeenschappelijk begrip bieden waarmee verschillende vormen van normering consistent kunnen worden gemodelleerd, terwijl hun specifieke gezag, toepassingsbereik en verantwoordelijkheid expliciet blijven.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke normatieve regel is hier van toepassing, en tot welke van de vier specialisaties van Rule behoort zij?&#xD;
+&#xD;
+SAMENSTELLING&#xD;
+Rule kent vier specialisaties: Canon Rule, Agent Rule, Agent Intent Rule en Core Rule.&#xD;
+&#xD;
+RELATIES&#xD;
+Een Canon definieert nul of meer Rules. Een Rule kan nul of meer Elements gebruiken en een Element kan door nul of meer Rules worden gebruikt. Rules kunnen in Instruction Sets worden opgenomen wanneer zij voor de betreffende Execution van toepassing zijn. Agent Rule, Agent Intent Rule en Core Rule hebben daarnaast hun eigen specifieke constrain- of governance-relaties.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Rule is geen homogeen toepassingsniveau: uitspraken over gezag, muteerbaarheid of reikwijdte moeten worden bepaald vanuit de concrete specialisatie. Dat een Rule canoniek van oorsprong is, zegt op zichzelf niet hoe zij tijdens een specifieke Execution wordt toegepast.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Wanneer een Rule voor haar betekenis afhankelijk is van een canoniek Element, wordt die afhankelijkheid expliciet vastgelegd via de relatie uses.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Een downstream model mag betekenis niet stilzwijgend wijzigen — Voorbeeld van een normatieve regel; de concrete Rule-specialisatie bepaalt gezag en toepassingsbereik.&#xD;
+- Maak ambiguïteit expliciet — Voorbeeld van een regel die bij een specifieke Agent of Agent Intent kan worden toegepast.&#xD;
+- Preserving introduceert geen nieuwe betekenis — Voorbeeld van een Rule waarvan de concrete specialisatie Core Rule is.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="semantic model" id="id-1fa6202fbcb84810a487e731d399058b">
+      <documentation>DEFINITIE&#xD;
+Het Semantic Model is de volledige, autoritatieve semantische graaf die door één Canon wordt gedefinieerd. Het bestaat uit de canonieke Elements en de Relationships die hun onderlinge betekenis en structuur expliciet maken.&#xD;
+&#xD;
+DOEL&#xD;
+Eén volledige en gezaghebbende structuur van betekenis per Canon bieden, zodat betekenis eenduidig, herleidbaar en onafhankelijk van een specifieke Agent of Execution beschikbaar is en contextspecifieke selecties daarvan reproduceerbaar kunnen worden afgeleid.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke Elements en Relationships vormen samen de volledige, gezaghebbende semantische structuur die deze Canon definieert?&#xD;
+&#xD;
+SAMENSTELLING&#xD;
+Een Semantic Model bestaat uit één of meer Elements en nul of meer Relationships. Iedere Relationship heeft precies één from-Element en precies één to-Element; beide endpoints behoren tot hetzelfde Semantic Model als de Relationship.&#xD;
+&#xD;
+RELATIES&#xD;
+Een Canon definieert precies één Semantic Model. Een Semantic Model bestaat uit één of meer Elements en nul of meer Relationships.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Het Semantic Model is geen Canon: de Canon is de autoritatieve semantische grondslag die het Semantic Model definieert. Het Semantic Model is geen Semantic Scope: het Semantic Model is volledig en canon-breed, terwijl een Semantic Scope een contextspecifieke selectie uit het Semantic Model is. Het Semantic Model is evenmin een execution-specifiek artifact en verandert niet per Execution. De technische wijze waarop het Semantic Model wordt samengesteld, gecompileerd of opgeslagen behoort niet tot het conceptuele begrip.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Ieder Semantic Model wordt door precies één Canon gedefinieerd. Iedere Relationship in het Semantic Model verwijst met zowel from als to naar een Element binnen datzelfde Semantic Model. Het Semantic Model is read-only tijdens uitvoering en wordt niet door een Agent of Execution gewijzigd.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Semantic Core Semantic Model — Autoritatieve graaf van de canonieke Semantic Core-concepten en hun Relationships.&#xD;
+- Agent Development Semantic Model — Autoritatieve graaf met onder andere Agent, Agent Intent, Instruction Set, Execution en hun onderlinge relaties.&#xD;
+- Data Modelling Semantic Model — Semantische graaf voor concepten rond conceptuele en logische datamodellering.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="relationship" id="id-9c775a49c62f4d49a90673446cec6a64">
-      <documentation>A relationship is an explicit, directed semantic link between two elements. Relationships carry the meaning of the graph; elements without relationships have meaning, but not structure.</documentation>
+      <documentation>DEFINITIE&#xD;
+Een Relationship is een expliciete, gerichte semantische verbinding tussen twee Elements. Relationships dragen de betekenis van de graaf; Elements zonder Relationships hebben wel betekenis, maar geen structuur.&#xD;
+&#xD;
+DOEL&#xD;
+De onderlinge samenhang tussen Elements expliciet en herleidbaar maken, zodat betekenis niet alleen bestaat als losse, geïsoleerde eenheden, maar als een navigeerbare, gerichte structuur.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke gerichte verbinding bestaat hier tussen welke twee Elements, en tot welk Semantic Model behoort deze verbinding?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Relationship heeft precies één from-Element en precies één to-Element; een Element kan het from- of to-eindpunt zijn van nul of meer Relationships. Een Semantic Model bestaat uit nul of meer Relationships. Een Relationship kan worden opgenomen in nul of meer Instruction Sets.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Relationship is geen Element: zij verbindt twee Elements, maar is zelf geen betekeniseenheid. Een Relationship zonder gedeclareerd from- of to-Element bestaat niet: beide eindpunten zijn verplicht.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Relationship heeft precies één from-Element en precies één to-Element. Beide eindpunten van een Relationship behoren tot hetzelfde Semantic Model als de Relationship zelf.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Agent — exposes capabilities via → Agent Intent — Gerichte semantische relatie tussen twee Elements in het Agent Development Semantic Model.&#xD;
+- Execution Step Specification — is executed as → Execution — Relatie die specification en concrete runtime occurrence van elkaar onderscheidt.&#xD;
+- Execution — produces → Artifact — Relatie die vastlegt dat het duurzame werkproduct door de concrete uitvoering wordt geproduceerd.</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="element" id="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
-      <documentation>An element is an explicitly defined, named unit of meaning within the Entoli semantic graph. Every entry in this register is an element. Elements are distinguished by their element classification and by the relationships they hold to other elements.</documentation>
+      <documentation>DEFINITIE&#xD;
+Een Element is een expliciet gedefinieerde, benoemde betekeniseenheid binnen de Entoli semantische graaf. Elk Element wordt onderscheiden door zijn elementclassificatie en door de Relationships die het met andere Elements onderhoudt.&#xD;
+&#xD;
+DOEL&#xD;
+Eén ondeelbare, herleidbare betekeniseenheid bieden waaruit een Semantic Model is opgebouwd, zodat canonieke betekenis niet impliciet of ongestructureerd blijft, maar altijd terug te voeren is op met naam benoemde, classificeerbare eenheden.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke expliciet benoemde betekeniseenheid wordt hier gebruikt, en tot welk Semantic Model behoort zij?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Semantic Model bestaat uit één of meer Elements. Een Element vormt het from- of het to-eindpunt van nul of meer Relationships. Een Element wordt in nul of meer Rules gebruikt; een Rule kan nul of meer Elements gebruiken. Een Element kan worden opgenomen in nul of meer Instruction Sets.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Element is geen Relationship: het Element is de betekeniseenheid zelf, de Relationship is de expliciete, gerichte verbinding tussen twee Elements. Een Element is geen Semantic Model: het Semantic Model is de volledige graaf waarvan het Element één samenstellend onderdeel is.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Ieder Element behoort tot precies één Semantic Model. Elke Relationship waarvan een Element het from- of to-eindpunt is, behoort tot hetzelfde Semantic Model als dat Element.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Agent — Named unit of meaning binnen het Agent Development Semantic Model.&#xD;
+- Agent Intent — Canoniek begrip voor een aanroepbare capability van een Agent.&#xD;
+- Execution — Canoniek begrip voor een concrete occurrence van één Execution Step Specification.&#xD;
+- Relationship — Named unit of meaning binnen de Semantic Core.</documentation>
     </element>
     <element xsi:type="archimate:Product" name="llm-constraints.rules.yaml" id="id-963f2aa34316454fa2b28022048c0696">
       <documentation>foundations\.injection-sources\rules\llm-constraints.rules.yaml</documentation>
@@ -911,197 +1177,484 @@ POS-TMD-ORI	Originating	</documentation>
     <element xsi:type="archimate:BusinessProcess" name="Define sources (explore)" id="id-a087f1740e1b45988762b281b172aeb1"/>
     <element xsi:type="archimate:BusinessProcess" name="Define requirements (specification)" id="id-236ef1b141ad4cf9baa5c425fc35d1f3"/>
     <element xsi:type="archimate:BusinessProcess" name="Define bounded (order)" id="id-bb2b622aa3b64e61935debdadcb1e4bf"/>
-    <element xsi:type="archimate:BusinessObject" name="synthesis-regime" id="id-a2b9d71e443c49c58b44615551eb4f5b"/>
+    <element xsi:type="archimate:BusinessObject" name="synthesis-regime" id="id-a2b9d71e443c49c58b44615551eb4f5b">
+      <documentation>DEFINITIE&#xD;
+Synthesis regime is de classificatie-as die per Agent Intent vastlegt welke transformaties van betekenis het LLM mag uitvoeren zodra bronnen zijn geladen en de taakvorm is gedeclareerd.&#xD;
+&#xD;
+DOEL&#xD;
+Expliciet maken hoeveel ruimte het LLM heeft om betekenis te wijzigen, uit te breiden of te verzinnen boven op wat de bronnen en de taakvorm al aanleveren — een vraag die noch Source-regime (welke bronnen), noch Task Mode (welke taakvorm) beantwoordt.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke transformatie van betekenis mag deze Agent Intent uitvoeren — geen enkele boven op de bron, uitsluitend herordening, of het genereren van nieuwe betekenis?&#xD;
+&#xD;
+WAARDEN&#xD;
+Preserving — geen nieuwe betekenis wordt geïntroduceerd; herformuleren, samenvatten en strikt uit de bron afleiden is toegestaan, verzinnen niet.&#xD;
+Relating — betekenis wordt niet gewijzigd; uitsluitend herordening, het leggen van relaties of het structureel expliciet maken van bestaande inhoud is toegestaan.&#xD;
+Generating — nieuwe betekenis mag worden geïntroduceerd (hypotheses, aannames, alternatieve framingen); elke instantie van geïntroduceerde betekenis moet expliciet als zodanig gemarkeerd worden en draagt geen epistemic guarantee totdat zij is gevalideerd en gecanoniseerd.&#xD;
+&#xD;
+RELATIES&#xD;
+Synthesis regime is onafhankelijk van (orthogonaal aan) Source-regime en Task Mode: elke as wordt afzonderlijk gedeclareerd per Agent Intent. Synthesis regime is één van de drie specialisaties van Execution Regime, naast Source Regime en Task Regime.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Synthesis regime is geen bronrestrictie (dat is Source-regime) en geen taakvormrestrictie (dat is Task Mode). Synthesis regime is geen kwaliteits- of correctheidsmaat van de output en wordt nooit geïmpliceerd door een waarde van Source-regime of Task Mode — zij moet altijd expliciet worden gedeclareerd.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Onder Preserving en Relating blijft de epistemic guarantee van elke aangesproken bewering intact; onder Generating wordt deze voor nieuw geïntroduceerde inhoud expliciet opgeschort totdat validatie en canonisatie hebben plaatsgevonden.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Preserving — De uitvoering behoudt de betekenis van de bron en introduceert geen nieuwe betekenis.&#xD;
+- Relating — De uitvoering mag bestaande betekenis ordenen en met elkaar in verband brengen zonder de betekenis zelf te wijzigen.&#xD;
+- Generating — De uitvoering mag nieuwe hypothesen, voorstellen of interpretaties formuleren wanneer die als zodanig herkenbaar blijven.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="core rule" id="id-697686712c9f40faa2f23c8994eaef05">
-      <documentation>Definition&#xD;
-A rule that originates from the canon and is not alterable by the user, and whose purpose is to guarantee structural and behavioural integrity of the system.&#xD;
+      <documentation>DEFINITIE&#xD;
+Een Core Rule is een regel die afkomstig is uit de canon, niet door de gebruiker wijzigbaar is, en tot doel heeft de structurele en gedragsmatige integriteit van het systeem te waarborgen. Een Core Rule governt precies één Execution Regime.&#xD;
 &#xD;
-Characteristics&#xD;
+DOEL&#xD;
+Een canoniek gezaghebbende, voor de gebruiker onveranderlijke waarborg vastleggen die de integriteit van Execution Regime beschermt, onafhankelijk van en niet noodzakelijk zichtbaar binnen enig Instruction Set.&#xD;
 &#xD;
-Origin: canon (foundations)&#xD;
-Visibility: obfuscated or hidden&#xD;
-Mutability: immutable for users&#xD;
-Scope: cross-agent, cross-intent&#xD;
-Stability: high (versioned with canon)&#xD;
+LEIDENDE VRAAG&#xD;
+Welke canoniek gezaghebbende waarborg beschermt de integriteit van dit Execution Regime?&#xD;
 &#xD;
-Function&#xD;
+RELATIES&#xD;
+Een Core Rule governt precies één Execution Regime; een Execution Regime kan door nul of meer Core Rules worden gegovernd. Een Core Rule is één van de vier specialisaties van Rule, naast Agent Rule, Agent Intent Rule en Canon Rule.&#xD;
 &#xD;
-safeguards invariants&#xD;
-prevents illegal behaviour&#xD;
-enforces architectural doctrine</documentation>
+BEPERKINGEN&#xD;
+Een Core Rule is geen Canon Rule: beide zijn canoniek afgeleid en onveranderlijk voor gebruikers, maar een Canon Rule normeert agent- en agent-intentgedrag en is zichtbaar als inhoud binnen een Instruction Set, terwijl een Core Rule specifiek de integriteit van Execution Regime bewaakt en niet noodzakelijk instruction-set-zichtbaar is — het gezag is gedeeld, de functie en zichtbaarheid niet. Een Core Rule is geen Agent Rule of Agent Intent Rule: geen van beide is canoniek afgeleid of onveranderlijk.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Een Core Rule is voor de gebruiker te allen tijde onveranderlijk. Iedere Core Rule is herleidbaar tot precies één Execution Regime waarvan zij de integriteit waarborgt.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Preserving introduceert geen nieuwe betekenis — Core Rule die de integriteit van de positie Preserving binnen Synthesis Regime bewaakt.&#xD;
+- Input-bound gebruikt alleen expliciet aangeboden bronnen — Core Rule die de toegestane bronruimte van een Source Regime bewaakt.</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="agent intent rule" id="id-7c826e60007f41aeaaddbcb4fc50958d">
-      <documentation>Definition&#xD;
-A rule that is defined at the level of an agent or intent, is human-readable, and may be configured or adapted within defined boundaries.</documentation>
+      <documentation>DEFINITIE&#xD;
+Een Agent Intent Rule is een normatieve regel die specifiek aan één Agent Intent is gebonden en uitsluitend binnen de eigen werking van die Agent Intent van toepassing is — niet gedeeld met enige andere Agent Intent van dezelfde Agent.&#xD;
+&#xD;
+DOEL&#xD;
+Operationeel gedrag vastleggen dat specifiek is voor één afzonderlijke capability van een Agent, zodat verschillen tussen Agent Intents van dezelfde Agent expliciet en herleidbaar kunnen worden vastgelegd zonder de gedeelde, agentbrede normen van Agent Rule te hoeven wijzigen.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke norm geldt uitsluitend voor deze ene Agent Intent, en niet voor de andere Agent Intents van dezelfde Agent?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Agent Intent Rule beperkt precies één Agent Intent; een Agent Intent kan door nul of meer Agent Intent Rules worden beperkt. Een Agent Intent Rule is één van de vier specialisaties van Rule, naast Agent Rule, Canon Rule en Core Rule.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Agent Intent Rule is geen Agent Rule: die geldt voor alle Agent Intents van een Agent gezamenlijk, niet voor één specifieke Agent Intent. Een Agent Intent Rule is geen Canon Rule: zij is niet canoniek afgeleid, niet ecosysteembreed, en configureerbaar binnen de grenzen die het agent-contract stelt.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Een Agent Intent Rule is uitsluitend van toepassing binnen de eigen werking van de ene Agent Intent waaraan zij is gekoppeld, en wordt nooit gedeeld met een andere Agent Intent van dezelfde Agent.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Behoud de conceptuele betekenis — Regel voor het intent Ontwerp logisch datamodel: logische modellering mag de betekenis van het conceptuele model niet stilzwijgend wijzigen.&#xD;
+- Maak ambiguïteit expliciet — Regel voor het intent Analyseer domeinuitspraken: meerdere plausibele interpretaties worden als ambiguïteit gerapporteerd in plaats van willekeurig opgelost.</documentation>
     </element>
-    <element xsi:type="archimate:BusinessObject" name="reasoning mode" id="id-6cd1f6f39e864f16855d0eda7857df01"/>
+    <element xsi:type="archimate:BusinessObject" name="reasoning mode" id="id-6cd1f6f39e864f16855d0eda7857df01">
+      <documentation>DEFINITIE&#xD;
+Reasoning Mode is de classificatie-as die op agentniveau bepaalt of de Agent Intents van een Agent onderworpen zijn aan het content-governance-model — de combinatie van Source-regime, Synthesis-regime en Task Mode — op basis van één vraag: vereist het werk van deze Agent redeneren door een LLM, of niet.&#xD;
+&#xD;
+DOEL&#xD;
+Onderscheid maken tussen Agents die redeneren over betekenis via een LLM en Agents die volgens een vast, mechanisch procedé werken zonder enige LLM-aanroep, zodat alleen voor de eerste categorie het content-governance-model daadwerkelijk van toepassing is.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Vereist deze Agent dat een LLM redeneert over betekenis, of voert de Agent uit volgens een vaste procedure zonder redeneren?&#xD;
+&#xD;
+WAARDEN&#xD;
+Cognitive — de Agent vereist dat een LLM redeneert over aangeleverd materiaal; elke Agent Intent van de Agent declareert Source-regime, Synthesis-regime en Task Mode.&#xD;
+Deterministic — de Agent voert uit volgens een vaste procedure zonder redeneren, gerealiseerd als een script, nooit als een LLM-aanroep; geen van de Agent Intents declareert Source-regime, Synthesis-regime of Task Mode.&#xD;
+&#xD;
+RELATIES&#xD;
+Een Reasoning Mode governt de reasoning van nul of meer Agents; iedere Agent heeft precies één Reasoning Mode, eenmalig gedeclareerd op agentniveau en overgeërfd door elke Agent Intent van die Agent.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Reasoning Mode is geen schaal van hoeveel betekenistransformatie is toegestaan (dat is Synthesis Regime); het is een poort (gate) die bepaalt óf Source Regime, Synthesis Regime en Task Regime überhaupt van toepassing zijn. Een Agent Intent declareert nooit zijn eigen Reasoning Mode; het erft de waarde van de Agent waartoe het behoort.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Alle Agent Intents van dezelfde Agent delen dezelfde Reasoning Mode. Onder Deterministic zijn Source Regime, Synthesis Regime en Task Regime niet van toepassing op enige Agent Intent van die Agent.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Cognitive — Reasoning Mode voor bijvoorbeeld NIAM-analist, Logisch modelleur en Canon Architect wanneer interpretatie en semantische afweging nodig zijn.&#xD;
+- Deterministic — Reasoning Mode voor functies die volgens een vastgelegde procedure uitvoeren zonder semantische LLM-redenering.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="knowledge specification" id="id-1d62c68e5893433f81d1472f83cfad2d">
-      <documentation>Definition&#xD;
+      <documentation>DEFINITIE&#xD;
+Een Knowledge Specification is de expliciete specificatie van de kennis uit een Knowledge Domain die voor een bepaald doel gerepresenteerd en gegoverneerd moet worden. Zij bepaalt welke kennis uit het domein expliciet gemaakt moet worden en met welke bedoeling, zonder zelf die kennis te zijn of noodzakelijk al de concrete Canon.&#xD;
 &#xD;
-Knowledge Specification — An explicit specification of the knowledge from a Knowledge Domain that must be represented and governed for a defined purpose.&#xD;
+DOEL&#xD;
+Vooraf en onafhankelijk van een concrete Canon vastleggen welke kennis uit een Knowledge Domain gerepresenteerd en gegoverneerd moet worden, zodat kennisgovernance kan bestaan voordat een Canon of een daarvan afhankelijke structuur, zoals een Agent Package, tot stand is gekomen.&#xD;
 &#xD;
-De Knowledge Specification bepaalt daarmee welke kennis uit het domein expliciet gemaakt moet worden en met welke bedoeling.&#xD;
+LEIDENDE VRAAG&#xD;
+Welke kennis uit dit Knowledge Domain moet expliciet worden gerepresenteerd en gegoverneerd, en met welk doel?&#xD;
 &#xD;
-Het is dus niet de kennis zelf en ook nog niet noodzakelijk de concrete Canon.&#xD;
+RELATIES&#xD;
+Een Knowledge Specification specificeert precies één Knowledge Domain. Een Knowledge Specification wordt door nul of maximaal één Canon gerealiseerd. Een Knowledge Specification scopet nul of meer Agent Packages; iedere Agent Package wordt door precies één Knowledge Specification gescoped.&#xD;
 &#xD;
-Bijvoorbeeld:&#xD;
+BEPERKINGEN&#xD;
+Een Knowledge Specification is geen Knowledge Domain: het Domein is waar de kennis over gaat, de Specification is wat daarover expliciet gerepresenteerd en gegoverneerd moet worden. Een Knowledge Specification is geen Canon: de Canon is de daadwerkelijke, autoritatieve realisatie van wat de Specification vereist; de Specification stelt alleen vast wat expliciet gemaakt moet worden, niet de canonieke antwoorden zelf. Een Knowledge Specification is geen eigendom van een specifieke Customer Context of Ecosystem Context enkel omdat zij daar wordt gebruikt.&#xD;
 &#xD;
-Knowledge Domain&#xD;
-    Data Modelling&#xD;
+INVARIANTEN&#xD;
+Iedere Knowledge Specification specificeert precies één Knowledge Domain. Een Knowledge Specification kan bestaan voordat enige Canon haar realiseert of enige Agent Package die zij scopet bestaat.&#xD;
 &#xD;
-        ↓ specified by&#xD;
+VOORBEELD&#xD;
+Knowledge Domain "Data Modelling" wordt gespecificeerd door Knowledge Specification "Entoli Logical Data Modelling", die onder andere verlangt dat expliciet wordt gemaakt wat een Entity, een Reference Entity, een Relationship en Cardinality zijn, hoe entities worden geïdentificeerd, hoe relaties worden gerepresenteerd, en welke modelleerregels normatief zijn. De Canon realiseert vervolgens die specificatie door de daadwerkelijke concepten, relaties en rules vast te leggen.&#xD;
 &#xD;
-Knowledge Specification&#xD;
-    Entoli Logical Data Modelling&#xD;
-&#xD;
-De Knowledge Specification kan dan verlangen dat onder andere expliciet wordt gemaakt:&#xD;
-&#xD;
-What is an Entity?&#xD;
-What is a Reference Entity?&#xD;
-What is a Relationship?&#xD;
-What is Cardinality?&#xD;
-How are entities identified?&#xD;
-How are relationships represented?&#xD;
-Which modelling rules are normative?&#xD;
-&#xD;
-De Canon realiseert vervolgens die specification door de daadwerkelijke concepten, relaties en rules vast te leggen.</documentation>
+Voorbeelden:&#xD;
+- Semantic Core — Specificeert welke kennis nodig is om canonieke betekenis, Elements, Relationships, Rules en Semantic Models eenduidig te begrijpen.&#xD;
+- Agent Development — Specificeert de kennis die nodig is om professionele functies, intents, orchestratie, instructie en uitvoering te definiëren.&#xD;
+- Data Modelling — Specificeert de kennis die nodig is voor conceptuele en logische datamodellering.</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="knowledge-domain" id="id-4e02ad03bf6d4963b101fdad1d0f7b7b">
-      <documentation>Definition&#xD;
+      <documentation>DEFINITIE&#xD;
+Een Knowledge Domain is een samenhangend vakgebied of afgebakend kennisdomein van concepten, relaties, praktijken en terminologie, onafhankelijk van enig specifiek framework, standaard of methodologie waarmee dat kennisdomein wordt beschreven.&#xD;
 &#xD;
-Knowledge Domain — A bounded area of knowledge, concepts, relationships, practices, and terminology concerning a coherent subject of interest.&#xD;
+DOEL&#xD;
+Vaststellen waar een kennisdomein inhoudelijk over gaat, los van welke canonieke interpretatie Entoli daaraan geeft, zodat kennisgovernance kan beginnen bij het domein zelf, voordat enige Knowledge Specification of Canon dat domein interpreteert.&#xD;
 &#xD;
-Een Knowledge Domain bepaalt dus primair waarover de kennis gaat. Het zegt nog niet welke interpretatie Entoli daarvan canoniek hanteert.&#xD;
+LEIDENDE VRAAG&#xD;
+Over welk samenhangend kennisdomein gaat deze verzameling concepten, relaties en terminologie?&#xD;
 &#xD;
-Voorbeeld&#xD;
+RELATIES&#xD;
+Een Knowledge Domain wordt door nul of meer Knowledge Specifications gespecificeerd; iedere Knowledge Specification specificeert precies één Knowledge Domain.&#xD;
 &#xD;
-Agent Development kan een Knowledge Domain zijn. Daarbinnen vallen bijvoorbeeld onderwerpen als:&#xD;
+BEPERKINGEN&#xD;
+Een Knowledge Domain is geen Knowledge Specification: de Specification is een autoritatieve beschrijving van het domein, niet het domein zelf. Een Knowledge Domain is geen Canon: een Canon refereert nooit rechtstreeks aan een Knowledge Domain, maar uitsluitend via de keten Canon → Knowledge Specification → Knowledge Domain. Een Knowledge Domain is niet het eigendom van, of gedefinieerd door, één enkele Canon enkel omdat de inhoud van die Canon binnen het domein valt.&#xD;
 &#xD;
-agent;&#xD;
-intent;&#xD;
-boundary;&#xD;
-capability;&#xD;
-orchestration;&#xD;
-semantic scope;&#xD;
-agent package.&#xD;
+INVARIANTEN&#xD;
+Een Knowledge Domain kan groter zijn dan wat enige Knowledge Specification of Canon er uiteindelijk van vastlegt. Een Knowledge Domain vereist geen bestaande Knowledge Specification om als domein te worden erkend.&#xD;
 &#xD;
-Het domein kan groter zijn dan wat je uiteindelijk in een specifieke canon vastlegt. Niet alles wat over Agent Development bekend is, hoeft onderdeel te zijn van de canon.&#xD;
+VOORBEELDEN&#xD;
+Agent Development kan een Knowledge Domain zijn. Daarbinnen vallen bijvoorbeeld onderwerpen als agent, intent, boundary, capability, orchestration, semantic scope en agent package; niet alles wat over Agent Development bekend is, hoeft onderdeel te zijn van de canon. Data Modelling is een tweede voorbeeld van een Knowledge Domain, waarin begrippen zoals Entity, Attribute, Relationship, Cardinality en Logical Data Model relevant zijn.&#xD;
 &#xD;
-Een tweede voorbeeld:&#xD;
-&#xD;
-Data Modelling is een Knowledge Domain waarin begrippen zoals Entity, Attribute, Relationship, Cardinality en Logical Data Model relevant zijn.</documentation>
+Voorbeelden:&#xD;
+- Semantic Modelling — Gedeeld kennisgebied rond expliciete betekenis, semantische elementen, relaties en canonieke modellen.&#xD;
+- Agent Development — Gedeeld kennisgebied rond het ontwerpen en beheren van professionele functies en hun uitvoering.&#xD;
+- Data Modelling — Gedeeld kennisgebied rond conceptuele, logische en fysieke representaties van data en betekenis.</documentation>
     </element>
-    <element xsi:type="archimate:BusinessObject" name="canon" id="id-6d66d6cdd2534270b0f3732e4ecec8cc"/>
-    <element xsi:type="archimate:BusinessObject" name="agent rule" id="id-9dd7d63f3bda44a6919074aa6bd45c04"/>
+    <element xsi:type="archimate:BusinessObject" name="canon" id="id-6d66d6cdd2534270b0f3732e4ecec8cc">
+      <documentation>DEFINITIE&#xD;
+Canon is de autoritatieve semantische grondslag voor een domein. De Canon definieert de canonieke betekenis, het Semantic Model en de normatieve Rules die nodig zijn voor eenduidige interpretatie, herleidbaarheid en reproduceerbaar gebruik van die betekenis.&#xD;
+&#xD;
+DOEL&#xD;
+Eén gezaghebbende bron van betekenis en normering vastleggen voor een domein, zodat interpretatie niet afhankelijk is van impliciete kennis, conventie of de werking van een individuele Agent.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Wat is voor dit domein de gezaghebbende, versiebeheerde grondslag van betekenis en normering?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Canon definieert precies één Semantic Model. Een Canon definieert nul of meer Rules, waaronder Canon Rules. Een Knowledge Specification wordt door nul of maximaal één Canon gerealiseerd.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Canon is geen Semantic Model: de Canon is de autoritatieve grondslag; het Semantic Model is de volledige semantische graaf die door die Canon wordt gedefinieerd. Canon is geen Canon Rule: een Canon Rule is één normatieve regel die haar gezag aan de Canon ontleent. Canon is geen execution-specifiek Artifact en verandert niet per Execution.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Canon definieert precies één Semantic Model. Canonieke betekenis en normering zijn tijdens uitvoering niet muteerbaar door een Agent of Execution. De technische representatie of compilatie van de Canon behoort niet tot het conceptuele begrip Canon.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Semantic Core Canon — Autoritatieve semantische grondslag voor de kernbegrippen waarmee canonieke betekenis wordt gemodelleerd.&#xD;
+- Agent Development Canon — Autoritatieve semantische grondslag voor begrippen rond professionele functies, intents, orchestratie en uitvoering.&#xD;
+- Data Modelling Canon — Autoritatieve semantische grondslag voor de binnen Entoli gebruikte datamodelleringsbegrippen.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="agent rule" id="id-9dd7d63f3bda44a6919074aa6bd45c04">
+      <documentation>DEFINITIE&#xD;
+Een Agent Rule is een normatieve regel, vastgelegd in een agent-contract, die van toepassing is op elke Agent Intent van een gegeven Agent — gedeelde normatieve structuur op agentniveau, niet specifiek voor één afzonderlijke Agent Intent.&#xD;
+&#xD;
+DOEL&#xD;
+Een gemeenschappelijke, agentbrede norm vastleggen die alle Agent Intents van dezelfde Agent bindt, zodat verschillende capabilities van één Agent zich consistent gedragen zonder dat elke Agent Intent die norm afzonderlijk hoeft te herhalen.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke norm geldt voor elke Agent Intent van deze ene Agent, ongeacht welke specifieke capability wordt aangeroepen?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Agent Rule beperkt precies één Agent. Een Agent Rule is één van de vier specialisaties van Rule, naast Agent Intent Rule, Canon Rule en Core Rule.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Agent Rule is geen Agent Intent Rule: die geldt voor precies één Agent Intent, niet voor alle intents van een Agent gezamenlijk. Een Agent Rule is geen Canon Rule: zij is niet canoniek afgeleid, niet ecosysteembreed, en configureerbaar binnen de grenzen van het agent-contract.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Een Agent Rule is uniform van toepassing op alle Agent Intents van de Agent waaraan zij is gekoppeld.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Werk uitsluitend vanuit expliciete semantiek — Regel voor de Logisch modelleur: structurele ontwerpkeuzes moeten herleidbaar zijn tot expliciete conceptuele betekenis of als ontwerpbesluit worden gemarkeerd.&#xD;
+- Scheid observatie van architectuurbesluit — Regel voor de Canon Architect: een gevonden inconsistentie is niet automatisch een wijziging van de canon.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="core rule" id="id-97eb76d10f924f2e94ed85c64063ccdb">
       <documentation>Definition&#xD;
 A rule that is defined at the level of an agent or intent, is human-readable, and may be configured or adapted within defined boundaries.</documentation>
     </element>
-    <element xsi:type="archimate:BusinessObject" name="llm-provider" id="id-9c36c275b1bc4801a5e76a6db8a16571"/>
-    <element xsi:type="archimate:BusinessObject" name="llm-model" id="id-47c7669317cf4b9aaec0c64751602214"/>
-    <element xsi:type="archimate:BusinessObject" name="operational context" id="id-94e213279a1d46149da17c04c0572efe">
+    <element xsi:type="archimate:BusinessObject" name="llm-provider" id="id-9c36c275b1bc4801a5e76a6db8a16571">
       <documentation>DEFINITIE&#xD;
-Een Operational Context is een klantgebonden, persistente operationele omgeving waarbinnen Executions plaatsvinden en waarin de voor die omgeving relevante operationele toestand wordt behouden. De context is onafhankelijk van de technische applicaties, systemen of workspaces waarmee deze omgeving wordt gerealiseerd.&#xD;
+Een LLM Provider is de aanbieder die één of meer LLM Models beschikbaar stelt en via wie een LLM Account wordt verstrekt.&#xD;
 &#xD;
 DOEL&#xD;
-Het afbakenen van de operationele omgeving waarbinnen Entoli voor een specifieke Customer Context wordt gebruikt. Hierdoor kunnen binnen één Customer Context meerdere van elkaar gescheiden operationele omgevingen bestaan, ieder met hun eigen uitvoering en toestand.&#xD;
+Expliciet vastleggen via welke aanbieder een LLM Model wordt afgenomen, zodat compatibiliteit tussen een gekozen LLM Model en het gebruikte LLM Account controleerbaar is.&#xD;
 &#xD;
 LEIDENDE VRAAG&#xD;
-Binnen welke klantgebonden operationele omgeving vindt deze Execution plaats?&#xD;
+Via welke aanbieder wordt dit LLM Model aangeboden en dit LLM Account verstrekt?&#xD;
 &#xD;
 RELATIES&#xD;
-Een Customer Context heeft één of meer Operational Contexts. Iedere Operational Context behoort tot precies één Customer Context. Een Operational Context is de context voor nul of meer Executions. Iedere Execution vindt plaats binnen precies één Operational Context.&#xD;
+Een LLM Provider verstrekt één of meer LLM Models. Een LLM Account wordt verstrekt door precies één LLM Provider.&#xD;
 &#xD;
 BEPERKINGEN&#xD;
-Een Operational Context is geen Customer Context, Agent Package, Execution, applicatie, IT-systeem of technische workspace. Een tenant workspace kan een technische realisatie van een Operational Context zijn, maar definieert het concept niet. De Operational Context bepaalt evenmin welke Agent Packages beschikbaar zijn; het gebruik daarvan is afleidbaar via de Executions die binnen de Operational Context plaatsvinden. Dit sluit aan op de brondeﬁnitie waarin Operational Context expliciet als operationele container en niet als software- of systeemgrens wordt onderscheiden.&#xD;
+LLM Provider is geen LLM Model: de Provider is de aanbieder, het Model is wat wordt aangeboden. LLM Provider is geen LLM Account: het Account is de toegang die via de Provider wordt verkregen, niet de Provider zelf.&#xD;
 &#xD;
 INVARIANTEN&#xD;
-Iedere Operational Context behoort tot precies één Customer Context. Iedere Execution vindt plaats binnen precies één Operational Context. De operationele context van een Instruction Set wordt afgeleid van de Execution die door die Instruction Set wordt geïnstrueerd; de Instruction Set heeft daarom geen zelfstandige Operational Context nodig.</documentation>
+Een LLM Model en een LLM Account zijn alleen onderling compatibel wanneer zij door dezelfde LLM Provider worden aangeboden, respectievelijk verstrekt.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- OpenAI — Voorbeeld van een leverancier die één of meer LLM Models aanbiedt.&#xD;
+- Anthropic — Voorbeeld van een andere leverancier van LLM Models.&#xD;
+- Microsoft Azure OpenAI — Voorbeeld van een providercontext waarlangs modellen beschikbaar kunnen worden gesteld.</documentation>
     </element>
-    <element xsi:type="archimate:BusinessObject" name="agent package" id="id-a5736e6c7c874d5589622b6158eae9ee"/>
+    <element xsi:type="archimate:BusinessObject" name="llm-model" id="id-47c7669317cf4b9aaec0c64751602214">
+      <documentation>DEFINITIE&#xD;
+Een LLM Model is het specifieke taalmodel, aangeboden door precies één LLM Provider, dat door een Model Assignment kan worden geselecteerd voor gebruik tijdens een Execution.&#xD;
+&#xD;
+DOEL&#xD;
+Expliciet vastleggen welk specifiek model wordt ingezet, onafhankelijk van de Agent, de Agent Intent of de Model Assignment die het selecteert, zodat hetzelfde model voor verschillende soorten werk met verschillende configuraties kan worden ingezet.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welk specifiek taalmodel, van welke LLM Provider, wordt hier geselecteerd?&#xD;
+&#xD;
+RELATIES&#xD;
+Een LLM Provider verstrekt één of meer LLM Models; ieder LLM Model wordt verstrekt door precies één LLM Provider. Een LLM Model wordt geselecteerd door nul of meer Model Assignments.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+LLM Model is geen LLM Provider en geen LLM Account. LLM Model is geen Model Assignment: de Model Assignment selecteert en configureert het gebruik van een LLM Model voor een Execution, maar is niet het model zelf.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Ieder LLM Model wordt verstrekt door precies één LLM Provider. Een LLM Model kan door nul of meer Model Assignments worden geselecteerd, zonder dat het model daardoor zelf van aanbieder wijzigt.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- GPT-5.4 — Voorbeeld van een LLM Model dat door een Provider wordt aangeboden en via een Model Assignment kan worden geselecteerd.&#xD;
+- Claude Sonnet 4.6 — Voorbeeld van een ander LLM Model dat voor dezelfde professionele capability geselecteerd zou kunnen worden.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="operational context" id="id-94e213279a1d46149da17c04c0572efe">
+      <documentation>DEFINITIE&#xD;
+Een Operational Context is een operationele scheiding binnen een Ecosystem Context waarbinnen een samenhangende operationele inrichting wordt gedefinieerd en relevante operationele toestand kan worden behouden. De context is onafhankelijk van de technische applicaties, systemen of workspaces waarmee zij wordt gerealiseerd, en is niet gelijk aan een klant, aan Entoli, aan het volledige ecosysteem, of aan het ontwikkelproces waarmee de Agent Architecture zelf tot stand komt.&#xD;
+&#xD;
+DOEL&#xD;
+Een duurzame operationele scope afbakenen binnen één Ecosystem Context, zodat meerdere operationele inrichtingen binnen datzelfde begrensde gebruik — met eigen doel, governance, bronnen, toegankelijkheid, levenscyclus, configuratie of operationele verantwoordelijkheden — betekenisvol van elkaar kunnen worden onderscheiden en orchestraties aan de juiste operationele context kunnen worden verbonden.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Binnen welke operationele context van deze Ecosystem Context is deze orchestratie gedefinieerd?&#xD;
+&#xD;
+RELATIES&#xD;
+Iedere Operational Context behoort tot precies één Ecosystem Context; een Ecosystem Context scopet nul of meer Operational Contexts. Een Operational Context definieert nul of meer Orchestration Specifications; iedere Orchestration Specification wordt door precies één Operational Context gedefinieerd. De Operational Context van een concrete Execution is afleidbaar via de keten Operational Context → Orchestration Specification → Execution Step Specification → Execution.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Operational Context is geen Ecosystem Context, Customer Context, Agent Package, Orchestration Specification, Execution, applicatie, IT-systeem of technische workspace. Een technische tenant of workspace kan een Operational Context realiseren, maar definieert het concept niet. Operational Context heeft geen directe relatie met Execution, Agent Package, Instruction Set, Artifact of LLM Account zolang die context via bestaande relaties eenduidig afleidbaar is. Operational Context is niet het ontwikkelproces waarmee agents, canons, canon rules, packages of deze architectuur zelf worden ontworpen, beheerd of doorontwikkeld: dat ontwikkelsysteem valt buiten deze CDM (zie Scope).&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Operational Context behoort tot precies één Ecosystem Context. Iedere Orchestration Specification wordt door precies één Operational Context gedefinieerd. Iedere Execution is via haar Execution Step Specification en Orchestration Specification tot precies één Operational Context herleidbaar.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Gemeente Utrecht — Zaakgericht werken — Persistente klantgebonden operationele context waarbinnen orchestraties voor een specifiek werkgebied worden gedefinieerd.&#xD;
+- Rabobank — Hypotheekacceptatie Nederland — Operationele context voor hypotheekgerelateerd agentic work binnen één Customer Context.&#xD;
+- Entoli klantomgeving — Architectuurontwikkeling — Illustratief afgebakende operationele context voor architectuur- en modelleerwerk.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="agent package" id="id-a5736e6c7c874d5589622b6158eae9ee">
+      <documentation>DEFINITIE&#xD;
+Een Agent Package is een beheerde bundel van één of meer Agents die intrinsiek is gescoped door precies één Knowledge Specification. Het package verbindt daarmee een verzameling professionele functies aan een vaste kenniscontext waarin zij bedoeld zijn te opereren.&#xD;
+&#xD;
+DOEL&#xD;
+Agents als samenhangende, kennisgebonden bundel beheren en overdraagbaar maken, zodat expliciet is welke Knowledge Specification de semantische scope van het package bepaalt.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke Agents vormen samen deze bundel en door welke Knowledge Specification wordt hun package gescoped?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Agent Package bevat één of meer Agents; een Agent behoort tot ten hoogste één Agent Package. Iedere Agent Package wordt door precies één Knowledge Specification gescoped; een Knowledge Specification kan nul of meer Agent Packages scopen.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Agent Package is geen Agent: het bundelt Agents maar voert zelf geen Agent Intent uit. Een Agent Package is geen Knowledge Specification: de Knowledge Specification bepaalt de kennisinhoudelijke scope van het package. Een Agent Package is evenmin een Ecosystem Context of Customer Context. De positie of het beheer van een package in het ecosysteem mag niet worden verward met de Knowledge Specification die het package inhoudelijk scopet.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Agent Package heeft precies één Knowledge Specification als vaste conceptuele scope. Een Agent Package wisselt niet van Knowledge Specification; een andere kennisinhoudelijke scope betekent conceptueel een ander Agent Package.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Data Modelling Package — Bundel met onder andere de NIAM-analist en Logisch modelleur, gescoped door een Knowledge Specification voor datamodellering.&#xD;
+- Agent Development Package — Bundel van professionele functies voor het definiëren, reviewen en beheren van agent-developmentconcepten.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="execution strategy" id="id-9217fc1f04894f4486fd95f0dff34488"/>
-    <element xsi:type="archimate:BusinessObject" name="canon rule" id="id-03e98ce0196345b599d814c30d4a986a"/>
-    <element xsi:type="archimate:BusinessObject" name="execution regime" id="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
-    <element xsi:type="archimate:BusinessObject" name="ecosystem context" id="id-a99dcf9067d84b2b9ddf4b7a8f40c647"/>
-    <element xsi:type="archimate:BusinessObject" name="entoli context" id="id-071282f95ced4cc8a12a5b85cdc8189d"/>
-    <element xsi:type="archimate:BusinessObject" name="customer context" id="id-fe7e9177ff87428e83ada3d9c79a468c"/>
-    <element xsi:type="archimate:BusinessObject" name="execution" id="id-2e8c595bfedb4d8ba8cedbdf2eb284f2"/>
-    <element xsi:type="archimate:BusinessObject" name="llm-account" id="id-abdf3fc1a9504d1eb988ab196a0ecf67"/>
+    <element xsi:type="archimate:BusinessObject" name="canon rule" id="id-03e98ce0196345b599d814c30d4a986a">
+      <documentation>DEFINITIE&#xD;
+Een Canon Rule is een regel die haar normatieve gezag ontleent aan de Canon, en de systeemintegriteit en architecturale invarianten bewaakt binnen het geldigheidsbereik dat voor die regel is vastgelegd.&#xD;
+&#xD;
+DOEL&#xD;
+Een canoniek gezaghebbende, niet-onderhandelbare ondergrens van gedrag vastleggen die geen enkele Agent Rule of Agent Intent Rule binnen haar geldigheidsbereik mag overschrijven — zonder daarmee te veronderstellen dat elke Canon Rule op elke Agent en Agent Intent van toepassing is.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke regel ontleent haar gezag aan de Canon, en binnen welk geldigheidsbereik geldt zij?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Canon definieert nul of meer Canon Rules. Een Canon Rule is één van de vier specialisaties van Rule, naast Agent Rule, Agent Intent Rule en Core Rule.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Canon Rule is geen Agent Rule: een Agent Rule is agent-gebonden en configureerbaar binnen de grenzen van het agent-contract; een Canon Rule ontleent haar gezag aan de Canon en is niet door de gebruiker bewerkbaar. Een Canon Rule is geen Agent Intent Rule: die is smaller in reikwijdte (één intent) en eveneens configureerbaar. Canonieke autoriteit is niet hetzelfde als universele toepasselijkheid: dat een Canon Rule canoniek gezaghebbend is, betekent niet automatisch dat zij op elke Agent en elke Agent Intent van toepassing is — het geldigheidsbereik van een Canon Rule wordt expliciet vastgelegd, niet verondersteld.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Geen Agent Rule of Agent Intent Rule mag een Canon Rule tegenspreken binnen het geldigheidsbereik van die Canon Rule. Een Canon Rule is uniform van toepassing op alle Agents en Agent Intents binnen haar vastgelegde geldigheidsbereik, niet noodzakelijk daarbuiten.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Een Relationship heeft precies één from- en één to-Element — Canonieke regel die de structurele integriteit van een semantische relatie vastlegt.&#xD;
+- Een downstream model mag conceptuele betekenis niet stilzwijgend herdefiniëren — Voorbeeld van een normatieve regel voor de relatie tussen conceptuele en afgeleide modellen.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="execution regime" id="id-4cab30c96f5d468d98f0c6624bc3bd5d">
+      <documentation>DEFINITIE&#xD;
+Execution Regime is de verzamelnaam voor de drie classificatie-assen die gezamenlijk bepalen wat een Agent Intent mag doen: Source Regime (welke kennis toegankelijk is), Synthesis Regime (welke betekenistransformatie is toegestaan) en Task Regime (welke bewerkings- en uitvoervorm de stap heeft).&#xD;
+&#xD;
+DOEL&#xD;
+Voor iedere Agent Intent waarvan de Reasoning Mode van de Agent Cognitive is, in één samenhangend geheel vastleggen welke combinatie van bron-, synthese- en taakregime van toepassing is, zodat deze drie onafhankelijk gedeclareerde assen gezamenlijk als één governance-mechanisme kunnen worden aangesproken en gecontroleerd.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke combinatie van bron-, synthese- en taakregime governt deze Agent Intent, indien van toepassing?&#xD;
+&#xD;
+SAMENSTELLING&#xD;
+Execution Regime bestaat uit precies drie specialisaties: Source Regime, Synthesis Regime en Task Regime.&#xD;
+&#xD;
+RELATIES&#xD;
+Execution Regime bestaat uit (compositie) Source Regime, Synthesis Regime en Task Regime. Een Core Rule governt precies één Execution Regime. Reasoning Mode bepaalt of alle drie de specialisaties op een Agent Intent van toepassing zijn: onder Cognitive declareert een Agent Intent precies één positie op elk van Source Regime, Synthesis Regime en Task Regime; onder Deterministic declareert de Agent Intent geen van de drie (zie Reasoning Mode).&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+De drie specialisaties van Execution Regime zijn onderling orthogonaal: geen enkele specialisatie is afleidbaar uit, of impliceert, een waarde van de andere twee. Execution Regime is geen enkelvoudige schaal waarop de drie specialisaties inwisselbare posities zijn; elke specialisatie beantwoordt een eigen, onafhankelijke vraag. Execution Regime is niet universeel van toepassing op elke Agent Intent: toepasselijkheid is voorwaardelijk aan de Reasoning Mode van de Agent (Cognitive), niet een vast gegeven van elke Agent Intent.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Agent Intent van een Agent met Reasoning Mode Cognitive wordt gegoverneerd door precies één Source Regime, precies één Synthesis Regime en precies één Task Regime. Iedere Agent Intent van een Agent met Reasoning Mode Deterministic wordt door geen van de drie gegoverneerd.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="ecosystem context" id="id-a99dcf9067d84b2b9ddf4b7a8f40c647">
+      <documentation>DEFINITIE&#xD;
+Ecosystem Context is de generieke, afgebakende afbakening van één begrensd gebruik van de Agent Architecture: een omgeving waarbinnen Operational Contexts worden gescoped en LLM Accounts beschikbaar worden gemaakt, ongeacht of dat gebruik voor een klant is, voor Entoli zelf, of voor beide.&#xD;
+&#xD;
+DOEL&#xD;
+Eén generiek concept bieden waarmee elk begrensd gebruik van de Agent Architecture kan worden afgebakend en waaraan Operational Context en LLM Account rechtstreeks kunnen worden gescoped, zonder dat de architectuur zelf een klant-specifiek of Entoli-specifiek mechanisme nodig heeft om te functioneren.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Binnen welk begrensd gebruik van de Agent Architecture worden deze Operational Contexts gescoped en deze LLM Accounts beschikbaar gemaakt?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Ecosystem Context scopet nul of meer Operational Contexts; iedere Operational Context behoort tot precies één Ecosystem Context. Een Ecosystem Context maakt nul of meer LLM Accounts beschikbaar; ieder LLM Account wordt door precies één Ecosystem Context beschikbaar gemaakt. Een Ecosystem Context kan optioneel worden geïdentificeerd door precies één Customer Context, wanneer het gebruik klantgebonden is (zie Customer Context); dit is geen uitputtende specialisatie — Ecosystem Context veronderstelt geen vaste, gesloten verzameling van dit soort identificerende specialisaties. Reasoning Mode heeft geen relatie met Ecosystem Context; Reasoning Mode governt de reasoning van een Agent, niet van een Ecosystem Context.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Ecosystem Context is geen tenant, workspace, Agent Package of technische omgeving; het is een conceptuele afbakening, geen implementatiemechanisme. Ecosystem Context is niet exclusief klantgebonden of Entoli-gebonden: eenzelfde generieke afbakening geldt voor beide gevallen en voor elk ander begrensd gebruik. Het bestaan of gebruik van een Agent, Agent Package, Knowledge Domain of Knowledge Specification binnen een Ecosystem Context impliceert niet dat die Ecosystem Context daarvan eigenaar is. Knowledge Domain en Knowledge Specification zijn niet intrinsiek klant- of Entoli-gebonden.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Operational Context behoort tot precies één Ecosystem Context. Ieder LLM Account wordt door precies één Ecosystem Context beschikbaar gemaakt. Een Ecosystem Context heeft ten hoogste één identificerende Customer Context.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Entoli Context — Concrete positie op de contextdimensie voor wat aan de Entoli-zijde van het ecosysteem wordt gepositioneerd.&#xD;
+- Customer Context — Concrete positie op de contextdimensie voor wat aan de zijde van één specifieke klant wordt gepositioneerd.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="customer context" id="id-fe7e9177ff87428e83ada3d9c79a468c">
+      <documentation>DEFINITIE&#xD;
+Customer Context is een optionele specialisatie van Ecosystem Context die identificeert tot welke specifieke klantorganisatie een gegeven Ecosystem Context behoort. Waar Ecosystem Context de generieke, klant-onafhankelijke afbakening is van één begrensd gebruik van de Agent Architecture, voegt Customer Context daaraan toe wélke concrete organisatie dat specifieke gebruik toebehoort, wanneer dat gebruik klantgebonden is.&#xD;
+&#xD;
+DOEL&#xD;
+Expliciet vastleggen tot welke specifieke klantorganisatie een Ecosystem Context behoort, zodat verschillende klanten van elkaar kunnen worden onderscheiden zonder dat de Agent Architecture zelf een klant-specifiek mechanisme nodig heeft.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Tot welke specifieke klantorganisatie behoort deze Ecosystem Context, indien van toepassing?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Ecosystem Context kan ten hoogste één Customer Context hebben; een Customer Context identificeert precies één Ecosystem Context. Customer Context is niet langer één van twee uitputtende posities op een as: Ecosystem Context kent geen vaste, uitputtende opsomming van specialisaties (zie Ecosystem Context). Customer Context scopet Operational Context of LLM Account niet rechtstreeks: beide worden rechtstreeks door Ecosystem Context gescoped, ongeacht of die Ecosystem Context een Customer Context heeft (zie Ecosystem Context, Operational Context, LLM Account).&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Customer Context is geen Operational Context: het identificeert een klantorganisatie, het is geen operationele omgeving zelf. Customer Context is geen Ecosystem Context: het is een optionele, identificerende specialisatie ervan, niet de generieke afbakening zelf. Customer Context bezit of beheert geen Operational Contexts of LLM Accounts.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Gemeente Utrecht — Voorbeeld van de klantzijde van het ecosysteem voor één specifieke organisatie.&#xD;
+- Rabobank — Voorbeeld van een andere Customer Context met eigen operationele contexten en beschikbare LLM Accounts.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="execution" id="id-2e8c595bfedb4d8ba8cedbdf2eb284f2">
+      <documentation>DEFINITIE&#xD;
+Een Execution is een tijdgebonden, concrete uitvoering van precies één Execution Step Specification. Tijdens de Execution wordt het gespecificeerde werk uitgevoerd op basis van precies één Instruction Set en met precies één daadwerkelijk gebruikte Model Assignment.&#xD;
+&#xD;
+DOEL&#xD;
+Eén concrete occurrence van werk herleidbaar vastleggen, zodat de voorafgaande specificatie, de gebruikte instructiebasis, de toegepaste modelconfiguratie en de geproduceerde resultaten expliciet met elkaar verbonden zijn.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke concrete uitvoering vond plaats, op basis van welke stap-specificatie, instructiebasis en modeltoewijzing?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Execution Step Specification kan nul of meer keren als Execution worden uitgevoerd; iedere Execution is de uitvoering van precies één Execution Step Specification. Iedere Execution wordt door precies één Instruction Set geïnstrueerd en gebruikt precies één Model Assignment. Een Execution produceert nul of meer Artifacts en nul of maximaal één Handoff.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Execution is geen Execution Step Specification: de specification beschrijft vooraf één uitvoeringsstap, terwijl de Execution de concrete occurrence daarvan is. Een Execution is geen Instruction Set en geen Model Assignment; deze instrueren respectievelijk configureren de concrete uitvoering. Een Execution heeft geen directe Operational Context-relatie wanneer die context eenduidig afleidbaar is via Execution Step Specification en Orchestration Specification.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Execution is herleidbaar tot precies één Execution Step Specification, precies één Instruction Set, precies één daadwerkelijk gebruikte Model Assignment en via haar Orchestration Specification tot precies één Operational Context.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- NIAM-analyse van Agent Development — run 2026-09-05-01 — Concrete uitvoering van één NIAM-analysestap met een specifiek Instruction Set en daadwerkelijk gebruikte Model Assignment.&#xD;
+- Logisch modelleren Agent Development — run 2026-09-05-03 — Concrete uitvoering waarin de Logisch modelleur een vastgesteld conceptueel model vertaalt naar een logisch model.&#xD;
+- Review CDM Agent Development — run 2026-09-05-05 — Concrete uitvoering van een reviewstap op het conceptuele model.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="llm-account" id="id-abdf3fc1a9504d1eb988ab196a0ecf67">
+      <documentation>DEFINITIE&#xD;
+Een LLM Account is de door een LLM Provider verstrekte toegang tot die Provider die binnen één Ecosystem Context beschikbaar wordt gemaakt voor het kunnen gebruiken van LLM Models van die Provider.&#xD;
+&#xD;
+DOEL&#xD;
+Provider-toegang expliciet en onafhankelijk van modelkeuze modelleren, zodat beschikbaarheid van toegang binnen een Ecosystem Context niet wordt vastgelegd in een Agent, Agent Intent of Model Assignment.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke toegang tot deze LLM Provider is binnen de Ecosystem Context beschikbaar?&#xD;
+&#xD;
+RELATIES&#xD;
+Ieder LLM Account wordt door precies één LLM Provider verstrekt. Een LLM Provider kan nul of meer LLM Accounts verstrekken. Ieder LLM Account wordt door precies één Ecosystem Context beschikbaar gemaakt; een Ecosystem Context kan nul of meer LLM Accounts beschikbaar maken.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+LLM Account is geen LLM Provider, LLM Model of Model Assignment. Een Model Assignment selecteert een LLM Model en niet rechtstreeks een LLM Account. Wanneer meerdere LLM Accounts voor dezelfde Provider binnen één Ecosystem Context beschikbaar zijn, bepaalt dit conceptuele model niet welk account technisch wordt gerouteerd; daarvoor is een afzonderlijke routeringsbeslissing nodig indien die semantiek relevant wordt.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Een LLM Account behoort tot precies één LLM Provider en wordt binnen precies één Ecosystem Context beschikbaar gemaakt. Voor het daadwerkelijk gebruiken van een geselecteerd LLM Model moet passende toegang tot de Provider van dat model beschikbaar zijn.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Entoli — OpenAI productieaccount — Provider-toegang die binnen een relevante Customer Context beschikbaar kan worden gemaakt.&#xD;
+- Gemeente Utrecht — Anthropic-account — Voorbeeld van klantgebonden toegang tot een LLM Provider.&#xD;
+- Rabobank — Azure OpenAI-account — Voorbeeld van een provideraccount dat binnen één Customer Context beschikbaar is.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="model assignment" id="id-3208e79172454362b69c0661b8e55589">
       <documentation>MODEL ASSIGNMENT (MODELTOEWIJZING)&#xD;
 &#xD;
 DEFINITIE&#xD;
-Een Model Assignment legt vast welk LLM Model, via welk LLM Account en met welke modelparameters wordt gebruikt voor een Execution wanneer de betreffende toewijzing van toepassing is.&#xD;
+Een Model Assignment legt vast welk LLM Model, met welke modelparameters, voor een Execution wordt gebruikt wanneer de toewijzing van toepassing is. Een Model Assignment kan vooraf aan een Execution Step Specification worden gekoppeld en wordt bij de concrete Execution als daadwerkelijk gebruikte toewijzing vastgelegd.&#xD;
 &#xD;
 DOEL&#xD;
-Maakt de keuze en configuratie van een LLM voor uitvoering expliciet, zonder deze vast te leggen in de Agent, Agent Intent of het LLM Model zelf.&#xD;
-Hierdoor kan hetzelfde LLM Model voor verschillende soorten werk met verschillende instellingen worden ingezet.&#xD;
+Modelkeuze en modelconfiguratie expliciet scheiden van Agent, Agent Intent en LLM Model, zodat dezelfde professionele capability en dezelfde uitvoeringsspecificatie met verschillende modellen of instellingen kunnen worden uitgevoerd zonder hun betekenis te wijzigen.&#xD;
 &#xD;
 LEIDENDE VRAAG&#xD;
-Welk LLM Model moet via welk LLM Account en met welke instellingen voor deze Execution worden gebruikt?&#xD;
-&#xD;
-VOORBEELDEN&#xD;
-&#xD;
-Default&#xD;
-Model: GPT-5.4&#xD;
-Temperature: 0.2&#xD;
-Toepassing: standaard wanneer geen specifiekere Model Assignment van toepassing is.&#xD;
-&#xD;
-Architecture Exploration&#xD;
-Model: GPT-5.4&#xD;
-Temperature: 0.7&#xD;
-Development Phase: Exploration&#xD;
-Toepassing: verkennend werk waarbij variatie en het onderzoeken van alternatieven gewenst zijn.&#xD;
-&#xD;
-Architecture Specification&#xD;
-Model: GPT-5.4&#xD;
-Temperature: 0.2&#xD;
-Development Phase: Specification&#xD;
-Toepassing: specificerend werk waarbij consistentie en nauwkeurigheid belangrijk zijn.&#xD;
-&#xD;
-Architecture Review&#xD;
-Model: GPT-5.4&#xD;
-Temperature: 0.1&#xD;
-Development Phase: Testing&#xD;
-Toepassing: toetsend werk waarbij reproduceerbaarheid en strikte beoordeling gewenst zijn.&#xD;
-&#xD;
-Fast Operational Task&#xD;
-Model: GPT-5.4-mini&#xD;
-Temperature: 0.1&#xD;
-Toepassing: relatief eenvoudige uitvoeringen waarbij snelheid en kosten zwaarder wegen.&#xD;
-&#xD;
-De modelnamen en temperaturewaarden hierboven zijn voorbeelden, geen canonieke voorgeschreven waarden.&#xD;
+Welk beschikbaar LLM Model moet met welke instellingen voor deze uitvoering worden gebruikt?&#xD;
 &#xD;
 RELATIES&#xD;
-Een Model Assignment selecteert precies één LLM Model.&#xD;
-Een Model Assignment gebruikt precies één LLM Account.&#xD;
-Een Model Assignment kan van toepassing zijn op een Development Phase. Een Model Assignment zonder specifieke Development Phase kan als standaardtoewijzing fungeren.&#xD;
-Een Model Assignment kan door nul of meer Executions worden gebruikt. Iedere Execution gebruikt precies één Model Assignment.&#xD;
+Een Model Assignment selecteert precies één LLM Model. Een Model Assignment kan op nul of één Development Phase van toepassing zijn; een Development Phase kan nul of meer Model Assignments hebben. Een Execution Step Specification kan vooraf door maximaal één Model Assignment worden geconfigureerd; één Model Assignment kan nul of meer Execution Step Specifications configureren. Iedere Execution gebruikt precies één daadwerkelijk toegepaste Model Assignment; één Model Assignment kan door nul of meer Executions worden gebruikt.&#xD;
 &#xD;
 CONFIGURATIE&#xD;
-Een Model Assignment bevat de modelparameters die voor de uitvoering gelden. Temperature is zo'n parameter en bepaalt de mate van variatie in de gegenereerde output.&#xD;
-Andere modelparameters kunnen worden toegevoegd wanneer deze conceptueel relevant worden voor modelselectie en uitvoering.&#xD;
+Een Model Assignment bevat de modelparameters die voor het geselecteerde LLM Model bij uitvoering gelden. Temperature is een voorbeeld van zo'n parameter. Andere modelparameters kunnen worden opgenomen wanneer zij conceptueel relevant zijn voor de modelconfiguratie.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Model Assignment is geen LLM Model en geen LLM Account. Het selecteert een LLM Model, maar selecteert niet rechtstreeks het LLM Account waarmee toegang tot de Provider wordt verkregen. De beschikbaarheid van provider-toegang behoort tot de Ecosystem Context en de daar beschikbare LLM Accounts. Een vooraf geconfigureerde Model Assignment op een Execution Step Specification en de daadwerkelijk gebruikte Model Assignment op een Execution zijn twee onderscheiden feiten.&#xD;
 &#xD;
 INVARIANTEN&#xD;
-Het geselecteerde LLM Model en het gebruikte LLM Account moeten compatibel zijn met dezelfde LLM Provider.&#xD;
-Het gebruikte LLM Account moet beschikbaar zijn binnen de Customer Context waarin de Execution plaatsvindt.&#xD;
-Voor iedere Execution moet eenduidig één toepasselijke Model Assignment kunnen worden bepaald.&#xD;
-Een specifieke Model Assignment heeft voorrang op de standaardtoewijzing wanneer aan de toepassingsvoorwaarde wordt voldaan.</documentation>
+Iedere Execution gebruikt precies één Model Assignment en iedere Model Assignment selecteert precies één LLM Model. Wanneer een Model Assignment vooraf op een Execution Step Specification is vastgelegd, is dat er maximaal één. Voor daadwerkelijke aanroep van het geselecteerde model moet binnen de relevante Ecosystem Context toegang beschikbaar zijn tot de LLM Provider die het model aanbiedt.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- NIAM-analyse — GPT-5.4 — temperature 0.2 — Modelkeuze en parameters voor een cognitieve NIAM-analysestap.&#xD;
+- Logisch modelleren — GPT-5.4 — temperature 0.1 — Model Assignment met lage variatie voor werk waarbij conceptuele betekenis zo stabiel mogelijk moet worden behouden.&#xD;
+- Architectuurverkenning — GPT-5.4 — temperature 0.7 — Illustratieve toewijzing voor exploratief werk waarbij meer oplossingsruimte gewenst is.</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="development phase" id="id-2e25dc5832d04ffb907846209ef549b7">
-      <documentation>Development Phase (Ontwikkelfase)&#xD;
+      <documentation>DEFINITIE&#xD;
+Development Phase is de classificatie-as die aangeeft in welke fase van de totstandkoming van werk een Agent intervenieert, gepositioneerd in de keten van eerste verkenning tot operationalisering.&#xD;
 &#xD;
-Definition&#xD;
-Een classificatie-as die aangeeft in welke fase van de totstandkoming van werk een Agent intervenieert. De as positioneert het werk in de keten van eerste verkenning tot operationalisering.&#xD;
+DOEL&#xD;
+Expliciet maken waar in het ontwikkelproces een Agent opereert, onafhankelijk van het soort handeling dat de Agent uitvoert, zodat ordening, bestuurbaarheid en herleidbaarheid van Agents binnen het ecosysteem mogelijk worden.&#xD;
 &#xD;
-Purpose&#xD;
-Maakt expliciet waar in het ontwikkelproces een Agent opereert, onafhankelijk van het soort handeling dat de Agent uitvoert. Dit ondersteunt ordening, bestuurbaarheid en traceerbaarheid.&#xD;
+LEIDENDE VRAAG&#xD;
+Waar in de totstandkoming van het werk vindt de interventie van deze Agent plaats?&#xD;
 &#xD;
-Leading question&#xD;
-Waar in de totstandkoming van het werk vindt de interventie plaats?&#xD;
-&#xD;
-Values&#xD;
-&#xD;
+WAARDEN&#xD;
 Exploration (Verkenning) — onderzoeken van intentie, probleemstelling of richting.&#xD;
 Ordering (Ordening) — structureren van de intentie en expliciet maken van samenhang.&#xD;
 Specification (Specificatie) — betekenis bindend vastleggen binnen de workspace.&#xD;
@@ -1110,13 +1663,48 @@ Testing (Toetsing) — het gerealiseerde toetsen aan een vastgelegde norm.&#xD;
 Registering (Registratie) — vastleggen en verantwoordbaar maken van wat gerealiseerd is, inclusief traceerbaarheid, contextualisering en publicatie.&#xD;
 Operationalisation (Operationalisering) — de gerealiseerde structuur formeel in werking brengen.&#xD;
 &#xD;
-Relationships&#xD;
-Development Phase classificeert een Agent. Iedere positie is part-of Development Phase. Concrete Value Stream Phases kunnen vanuit deze generieke ontwikkelfasen worden gepositioneerd.&#xD;
+RELATIES&#xD;
+Iedere Agent intervenieert in precies één Development Phase; een Development Phase geldt voor nul of meer Agents. Een Model Assignment kan van toepassing zijn op nul of één Development Phase; een Development Phase geldt voor nul of meer Model Assignments.&#xD;
 &#xD;
-Constraints&#xD;
-Development Phase classificeert de fase van interventie, niet het type activiteit, outputgedrag of een technische implementatiestap. Het is bovendien geen waardeschaal: een latere fase is niet belangrijker dan een eerdere fase.</documentation>
+BEPERKINGEN&#xD;
+Development Phase classificeert de fase van interventie, niet het type activiteit, outputgedrag of een technische implementatiestap. Het is bovendien geen waardeschaal: een latere fase is niet belangrijker dan een eerdere fase. Development Phase is geen Reasoning Mode, Source Regime, Synthesis Regime of Task Regime: die bepalen wat een Agent Intent mag doen, terwijl Development Phase uitsluitend bepaalt waar de Agent zich in de keten van totstandkoming bevindt.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Agent heeft precies één Development Phase. Geen enkele Development Phase-positie is per definitie belangrijker of gezaghebbender dan een andere.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Exploration — Positie waarin een professionele functie intervenieert terwijl probleem, richting of mogelijke oplossing nog wordt verkend.&#xD;
+- Ordering — Positie waarin ruwe kennis en observaties worden geordend tot explicietere betekenis.&#xD;
+- Specification — Positie waarin betekenis voldoende expliciet wordt gemaakt om als specificatie te dienen.&#xD;
+- Realisation — Positie waarin vastgestelde betekenis werkend wordt gemaakt in systemen of processen, bijvoorbeeld het daadwerkelijk bouwen van een logisch model.&#xD;
+- Testing — Positie waarin gerealiseerd werk tegen een expliciete norm of specificatie wordt getoetst.&#xD;
+- Registering — Positie waarin het gerealiseerde wordt vastgelegd en verantwoordbaar gemaakt, inclusief traceerbaarheid, contextualisering en publicatie.&#xD;
+- Operationalisation — Positie waarin de gerealiseerde structuur formeel in werking wordt gebracht, bijvoorbeeld het daadwerkelijk in gebruik nemen van een goedgekeurd canoniek model.</documentation>
     </element>
-    <element xsi:type="archimate:BusinessObject" name="handoff" id="id-4215cbb5ea2e4b41bf3966ed673a5740"/>
+    <element xsi:type="archimate:BusinessObject" name="handoff" id="id-4215cbb5ea2e4b41bf3966ed673a5740">
+      <documentation>DEFINITIE&#xD;
+Een Handoff is de expliciete overdracht van relevante interpretatie en context vanuit een afgeronde Execution naar vervolgwerk. Het legt vast wat een volgende uitvoering nodig heeft om het werk betekenisvol voort te zetten, zonder afhankelijk te zijn van impliciete kennis over de voorafgaande uitvoering.&#xD;
+&#xD;
+DOEL&#xD;
+Het gecontroleerd en herleidbaar overdragen van context tussen opeenvolgende Executions, zodat vervolgwerk kan voortbouwen op eerder uitgevoerd werk zonder de volledige voorgaande uitvoering opnieuw te hoeven interpreteren.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke interpretatie en context uit deze Execution moeten beschikbaar zijn om vervolgwerk correct te kunnen uitvoeren?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Execution produceert nul of maximaal één Handoff. Iedere Handoff wordt door precies één Execution geproduceerd. Een Handoff wordt opgenomen in precies één Instruction Set; een Instruction Set kan nul of meerdere Handoffs bevatten. Via het Instruction Set wordt de Handoff beschikbaar voor een volgende Execution.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Handoff is geen Artifact en vertegenwoordigt niet het duurzame werkproduct van een Execution. Het is evenmin een directe koppeling tussen twee Executions. Een Handoff draagt context over via het Instruction Set van vervolgwerk. De technische representatie, bijvoorbeeld als bestand, behoort niet tot het conceptuele begrip Handoff.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Handoff is afkomstig uit precies één Execution en wordt opgenomen in precies één Instruction Set. Een Handoff kan uitsluitend context overdragen die voortkomt uit de Execution die de Handoff heeft geproduceerd. De ontvangende Execution is afleidbaar via het Instruction Set waarin de Handoff is opgenomen.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Semantische bevindingen voor conceptuele modellering — Overdracht van relevante interpretaties, ambiguïteiten en besluiten uit NIAM-analyse naar de volgende uitvoeringsstap.&#xD;
+- Conceptuele modelbesluiten voor logisch modelleren — Overdracht van de interpretatie die de Logisch modelleur nodig heeft om het conceptuele model correct te realiseren.&#xD;
+- Reviewbevindingen voor canonherziening — Context uit een afgeronde review die nodig is om gericht canonieke concepten te herzien.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="human context" id="id-7970b9b7176341039f2e4af29e4d2d3a">
       <documentation>DEFINITIE&#xD;
 Een Human Context is de samenhangende inhoudelijke context die door een mens wordt aangeleverd om een Agent Intent voor een concrete uitvoering te initiëren en inhoudelijk te specificeren.&#xD;
@@ -1137,10 +1725,39 @@ BEPERKINGEN&#xD;
 Een Human Context is geen Artifact, Handoff of Instruction Set. Het beschrijft evenmin het formulier, de invoervelden of de gebruikersinterface waarmee de informatie wordt verkregen. Deze behoren tot het functionele of technische ontwerp. Human Context representeert uitsluitend de betekenisvolle, door een mens aangeleverde context.&#xD;
 &#xD;
 INVARIANTEN&#xD;
-Een Human Context heeft altijd een menselijke oorsprong. De inhoud moet betekenisvol zijn voor de Agent Intent waarvoor de Instruction Set wordt samengesteld. Het geheel van aangeleverde waarden vormt één Human Context; individuele parameters worden conceptueel niet als afzonderlijke bedrijfsobjecten gemodelleerd.</documentation>
+Een Human Context heeft altijd een menselijke oorsprong. De inhoud moet betekenisvol zijn voor de Agent Intent waarvoor de Instruction Set wordt samengesteld. Het geheel van aangeleverde waarden vormt één Human Context; individuele parameters worden conceptueel niet als afzonderlijke bedrijfsobjecten gemodelleerd.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Analyseer deze domeinuitspraken en maak de onderliggende feittypen expliciet — Samenhangende menselijke opdracht die één concrete NIAM-analyse initieert.&#xD;
+- Maak op basis van dit conceptuele model een logisch model; wijzig de betekenis niet — Menselijke context voor een concrete uitvoering van de Logisch modelleur.&#xD;
+- Review dit bestand en neem de architectuurbesluiten uit deze sessie mee — Menselijke context waarmee een concrete architectuurreview wordt gestart.</documentation>
     </element>
     <element xsi:type="archimate:BusinessObject" name="Business Object" id="id-24080b1bc72f4db3bb52ad69dfabd797"/>
     <element xsi:type="archimate:BusinessObject" name="Business Object" id="id-56891299dfaf43d998b552b08cc4e1d2"/>
+    <element xsi:type="archimate:BusinessObject" name="execution step specification" id="id-95a0e0e6f3e1431da1195ba095f3435d">
+      <documentation>DEFINITIE&#xD;
+Een Execution Step Specification is de vooraf vastgelegde specificatie van één uitvoeringsstap binnen een Orchestration Specification. De stap bepaalt welke Agent Intent wordt aangeroepen en kan vooraf worden geconfigureerd met een Model Assignment.&#xD;
+&#xD;
+DOEL&#xD;
+Het expliciet en herhaalbaar specificeren van één afzonderlijke uitvoeringsstap, zodat dezelfde stapconfiguratie nul, één of meerdere keren als concrete Execution kan worden uitgevoerd.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welke Agent Intent moet in deze stap worden uitgevoerd en welke vooraf bepaalde configuratie geldt daarvoor?&#xD;
+&#xD;
+RELATIES&#xD;
+Iedere Execution Step Specification behoort tot precies één Orchestration Specification; een Orchestration Specification bevat één of meerdere Execution Step Specifications. Iedere Execution Step Specification roept precies één Agent Intent aan; een Agent Intent kan door nul of meerdere Execution Step Specifications worden aangeroepen. Een Execution Step Specification kan door maximaal één Model Assignment vooraf worden geconfigureerd; een Model Assignment kan nul of meerdere Execution Step Specifications configureren. Een Execution Step Specification kan nul of meerdere keren als Execution worden uitgevoerd; iedere Execution is de concrete uitvoering van precies één Execution Step Specification.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Execution Step Specification is geen Execution en bevat geen runtime-resultaat. Zij vertegenwoordigt één gespecificeerde stap en niet de volledige orchestratie. De interne werking van de aangeroepen Agent Intent behoort evenmin tot de Execution Step Specification.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Execution Step Specification behoort tot precies één Orchestration Specification en roept precies één Agent Intent aan. Indien een Model Assignment vooraf is bepaald, is maximaal één Model Assignment aan de Execution Step Specification gekoppeld. Een concrete Execution is altijd herleidbaar tot precies één Execution Step Specification.&#xD;
+&#xD;
+Voorbeelden:&#xD;
+- Stap 10 — Analyseer domeinuitspraken — Gespecificeerde stap die het Agent Intent Analyseer domeinuitspraken van de NIAM-analist aanroept.&#xD;
+- Stap 20 — Stel conceptueel model vast — Gespecificeerde stap waarin de uitkomsten van semantische analyse tot een expliciet conceptueel model worden verwerkt.&#xD;
+- Stap 30 — Ontwerp logisch datamodel — Gespecificeerde stap die het gelijknamige Agent Intent van de Logisch modelleur aanroept.</documentation>
+    </element>
   </folder>
   <folder name="Application" id="id-1b7f4bd17a8a4ccca4de4ed0056a7792" type="application">
     <folder name="data objects" id="id-1a54c7e5da3f46c1b129f6b8d854a643">
@@ -1730,6 +2347,14 @@ In such dilemmas:&#xD;
       </folder>
     </folder>
     <element xsi:type="archimate:Constraint" name="Constraint" id="id-6dab4333a69243a3bcc6d91154836c16"/>
+    <element xsi:type="archimate:Outcome" name="Trusted work result" id="id-e9cda5d58e7e432dae3c73938d1d135e">
+      <documentation>Een professioneel werkresultaat dat bruikbaar is voor het beoogde doel en waarvan voldoende herleidbaar is hoe het tot stand is gekomen, op basis van welke kennis, regels, context en AI-uitvoering.</documentation>
+    </element>
+    <element xsi:type="archimate:Value" name="Trusted AI-powered Professional Work" id="id-8830e09764df4c0cb699ed7a673b1f85">
+      <documentation>Professioneel kenniswerk sneller en schaalbaarder uitvoeren met AI, terwijl de gebruikte kennis, regels, context en uitvoering expliciet beheerst en herleidbaar blijven.&#xD;
+&#xD;
+Dat brengt drie commerciële beloften samen: productiviteit, schaalbaarheid en vertrouwen/beheersing.</documentation>
+    </element>
   </folder>
   <folder name="Implementation &amp; Migration" id="id-89140577efd14100bd8a584dbe3a43f6" type="implementation_migration"/>
   <folder name="Other" id="id-264d65da29dc4627a459d13c37553187" type="other">
@@ -2097,7 +2722,7 @@ Deze zesdelige structuur zou ik ook voor de eerdere Entoli Canon-view gebruiken.
     <element xsi:type="archimate:CompositionRelationship" id="id-e1a8752005bc40f69c35603b2dce0c66" source="id-4f9b24ed736348a1a8235b9ca2fd5011" target="id-3b8f2f8c40c5411c8b5cfaa516909bc1"/>
     <element xsi:type="archimate:CompositionRelationship" id="id-0005adde863f46cb875ceb5809041003" source="id-7d4fb89b37be4413ab38bfe3005524e3" target="id-d6aad2f176fe4321bc1c0e2199e75ac6"/>
     <element xsi:type="archimate:CompositionRelationship" id="id-a054d444be4641bd8f6046c03c18cc4f" source="id-3023a65bee0f47debc1128a2f8c77e92" target="id-60084b2c64c44088b95e1219c2edc894"/>
-    <element xsi:type="archimate:AssociationRelationship" name="0..* is used as working source in 0..*" id="id-d19d1dd3331848b2a94022ee38ea840b" source="id-a4319ee116ab41dda18d476242ca88da" target="id-4e0f720907c34ad186ec8a6958817d41"/>
+    <element xsi:type="archimate:AssociationRelationship" name="0..* use as working source 0..**" id="id-d19d1dd3331848b2a94022ee38ea840b" source="id-a4319ee116ab41dda18d476242ca88da" target="id-4e0f720907c34ad186ec8a6958817d41"/>
     <element xsi:type="archimate:CompositionRelationship" id="id-08628e232dcc4040943e5e86b6f85166" source="id-dcdb53b36a684e4fbdcbf1e0c39cb195" target="id-11cb4c633bb2454c83163110df5837c0"/>
     <element xsi:type="archimate:CompositionRelationship" id="id-dfef63e04247440b8558de7156b7e582" source="id-dcdb53b36a684e4fbdcbf1e0c39cb195" target="id-9fdf0b06d265475185174e2ea2b9a81c"/>
     <element xsi:type="archimate:CompositionRelationship" id="id-f5838bb317444f97ac8e7ed03f1b2060" source="id-dcdb53b36a684e4fbdcbf1e0c39cb195" target="id-21c2594fbcd4463fa2b9a4c0977f6eda"/>
@@ -2167,16 +2792,15 @@ Deze zesdelige structuur zou ik ook voor de eerdere Entoli Canon-view gebruiken.
     <element xsi:type="archimate:SpecializationRelationship" id="id-1ae5414b4a37463086a92804f896802a" source="id-3969a1acce774516911bb973b0ff59ee" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..* is governed by 3" id="id-a67b931f5f1d48bca0054f50b03d595b" source="id-fc519c97c3c04fb3b43a50b72f0aef38" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..* governs 1" id="id-91a5511abcf545e198f98a4d4559ec82" source="id-697686712c9f40faa2f23c8994eaef05" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
-    <element xsi:type="archimate:SpecializationRelationship" id="id-57750625cff74bd1bbf5591b1e751ec4" source="id-071282f95ced4cc8a12a5b85cdc8189d" target="id-a99dcf9067d84b2b9ddf4b7a8f40c647"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-b0cea3cc639746bbbb159300b2ebc9ba" source="id-fe7e9177ff87428e83ada3d9c79a468c" target="id-a99dcf9067d84b2b9ddf4b7a8f40c647"/>
-    <element xsi:type="archimate:AssociationRelationship" name="1 provides scope for 1..*" id="id-71d01ab060014200848c2fc9f8e01748" source="id-fe7e9177ff87428e83ada3d9c79a468c" target="id-94e213279a1d46149da17c04c0572efe"/>
+    <element xsi:type="archimate:AssociationRelationship" name="1 provides scope for 1..*" id="id-71d01ab060014200848c2fc9f8e01748" source="id-a99dcf9067d84b2b9ddf4b7a8f40c647" target="id-94e213279a1d46149da17c04c0572efe"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 owns 0..*" id="id-435ad9a37bc742a0a234df55c31fd377" source="id-a99dcf9067d84b2b9ddf4b7a8f40c647" target="id-a5736e6c7c874d5589622b6158eae9ee"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 owns 0..*" id="id-3b5859f3412f4b7fa911bae9864284c7" source="id-a99dcf9067d84b2b9ddf4b7a8f40c647" target="id-a21ac844b75946b0b94ab3450c81ed27"/>
     <element xsi:type="archimate:AssociationRelationship" id="id-a401c42120b34456a44a589011de5758" source="id-94e213279a1d46149da17c04c0572efe" target="id-5ce9924ee4a2498b98b13bdf9cfe5d4a"/>
     <element xsi:type="archimate:AssociationRelationship" name="1..* is included in 0 ..*" id="id-8ef81509a3e145e38a07c7c0ffbaabf8" source="id-a248b6e4d5a04c6c995cc9ecb4872d2e" target="id-a4319ee116ab41dda18d476242ca88da"/>
     <element xsi:type="archimate:AssociationRelationship" name="1..* is included in 0 ..*" id="id-59e56e7d6a75461f99649f0a6c1e549c" source="id-9c775a49c62f4d49a90673446cec6a64" target="id-a4319ee116ab41dda18d476242ca88da"/>
     <element xsi:type="archimate:AssociationRelationship" name="1  drives assembly of  0..*" id="id-3c01609d16af41d7a4d1e54524f31557" source="id-fc519c97c3c04fb3b43a50b72f0aef38" target="id-a4319ee116ab41dda18d476242ca88da"/>
-    <element xsi:type="archimate:AssociationRelationship" name="1 instructs 1" id="id-4678b57ce9f740ce9101202a0b600698" source="id-a4319ee116ab41dda18d476242ca88da" target="id-2e8c595bfedb4d8ba8cedbdf2eb284f2"/>
+    <element xsi:type="archimate:AssociationRelationship" name="1 is instructed by" id="id-4678b57ce9f740ce9101202a0b600698" source="id-a4319ee116ab41dda18d476242ca88da" target="id-2e8c595bfedb4d8ba8cedbdf2eb284f2"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..* is used in  0..* " id="id-824876d2f29644da9f54d78b9ceb11a8" source="id-a248b6e4d5a04c6c995cc9ecb4872d2e" target="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 is used by 0..*" id="id-bd386b46a00d43b28ceac3723bff0330" source="id-5ce9924ee4a2498b98b13bdf9cfe5d4a" target="id-2e8c595bfedb4d8ba8cedbdf2eb284f2"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..* is provided by 1" id="id-5245ef5310b847a099cd0f8be3dfd18d" source="id-9c36c275b1bc4801a5e76a6db8a16571" target="id-abdf3fc1a9504d1eb988ab196a0ecf67"/>
@@ -2184,44 +2808,39 @@ Deze zesdelige structuur zou ik ook voor de eerdere Entoli Canon-view gebruiken.
     <element xsi:type="archimate:AssociationRelationship" id="id-47dae23558094f908395d35e076e681d" source="id-5ce9924ee4a2498b98b13bdf9cfe5d4a" target="id-3208e79172454362b69c0661b8e55589"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..* intervenes in 1" id="id-87c1c3c5826a4ba9be48f454b49086dd" source="id-2e25dc5832d04ffb907846209ef549b7" target="id-a21ac844b75946b0b94ab3450c81ed27"/>
     <element xsi:type="archimate:AssociationRelationship" name="0 applies to 0..* " id="id-50fce052e7c6478abe8917cdae9c3760" source="id-2e25dc5832d04ffb907846209ef549b7" target="id-3208e79172454362b69c0661b8e55589"/>
-    <element xsi:type="archimate:AssociationRelationship" name="1 is executed as 0..*" id="id-8b7a986c5a9a40828765a0062107646e" source="id-0a67e6f41ebb45b9b7a3fc306bc08cd1" target="id-2e8c595bfedb4d8ba8cedbdf2eb284f2">
-      <documentation>DEFINITIE&#xD;
-Een classificatie-as die aangeeft in welke fase van de totstandkoming van werk een Agent intervenieert. De as positioneert het werk in de keten van eerste verkenning tot operationalisering.&#xD;
-&#xD;
-DOEL&#xD;
-Maakt expliciet waar in het ontwikkelproces een Agent opereert, onafhankelijk van het soort handeling dat de Agent uitvoert. Dit ondersteunt ordening, bestuurbaarheid en traceerbaarheid.&#xD;
-&#xD;
-LEIDENDE VRAAG&#xD;
-Waar in de totstandkoming van het werk vindt de interventie plaats?&#xD;
-&#xD;
-WAARDEN&#xD;
-Exploration (Verkenning)&#xD;
-Ordering (Ordening)&#xD;
-Specification (Specificatie)&#xD;
-Realisation (Realisatie)&#xD;
-Testing (Toetsing)&#xD;
-Registering (Registratie)&#xD;
-Operationalisation (Operationalisering)&#xD;
-&#xD;
-RELATIES&#xD;
-Development Phase classificeert een Agent. De afzonderlijke waarden zijn posities binnen Development Phase.&#xD;
-&#xD;
-BEPERKINGEN&#xD;
-Development Phase classificeert de fase van interventie, niet het type activiteit, het outputgedrag of een technische implementatiestap. De posities vormen geen waardeschaal: een latere fase is niet belangrijker dan een eerdere fase.</documentation>
-    </element>
     <element xsi:type="archimate:AssociationRelationship" name="1 is used by 0..*" id="id-478037499a934c57a353226c3694f575" source="id-3208e79172454362b69c0661b8e55589" target="id-2e8c595bfedb4d8ba8cedbdf2eb284f2"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 is selected by 0..*" id="id-d3e81c1dcc624b7ab204c64934bd57e3" source="id-47c7669317cf4b9aaec0c64751602214" target="id-3208e79172454362b69c0661b8e55589"/>
-    <element xsi:type="archimate:AssociationRelationship" name="1 makes available 0..*" id="id-9b38a34b372d42bc806dde4f867eb05f" source="id-fe7e9177ff87428e83ada3d9c79a468c" target="id-abdf3fc1a9504d1eb988ab196a0ecf67"/>
-    <element xsi:type="archimate:AssociationRelationship" name="1..* is orchestrated by 1" id="id-dba4ff33005844069bec66f442fc900b" source="id-fc519c97c3c04fb3b43a50b72f0aef38" target="id-0a67e6f41ebb45b9b7a3fc306bc08cd1"/>
+    <element xsi:type="archimate:AssociationRelationship" name="1 makes available 0..*" id="id-9b38a34b372d42bc806dde4f867eb05f" source="id-a99dcf9067d84b2b9ddf4b7a8f40c647" target="id-abdf3fc1a9504d1eb988ab196a0ecf67"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 produces 0..*" id="id-94cb072ef97e43b0866fb9f05a31c7d6" source="id-4e0f720907c34ad186ec8a6958817d41" target="id-2e8c595bfedb4d8ba8cedbdf2eb284f2"/>
     <element xsi:type="archimate:AssociationRelationship" id="id-604ad10b0d05477d92723a64e79ad511" source="id-abdf3fc1a9504d1eb988ab196a0ecf67" target="id-3208e79172454362b69c0661b8e55589"/>
     <element xsi:type="archimate:AssociationRelationship" id="id-1c3ea4cabce4418db1d7edc85a960290" source="id-abdf3fc1a9504d1eb988ab196a0ecf67" target="id-9c36c275b1bc4801a5e76a6db8a16571"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 governs execution of 0..*" id="id-4374318074134af7b62b0827bb2370e2" source="id-9217fc1f04894f4486fd95f0dff34488" target="id-0a67e6f41ebb45b9b7a3fc306bc08cd1"/>
-    <element xsi:type="archimate:AssociationRelationship" name="1 is produced by 1" id="id-d6ecd9b4e5384121810029675c6fd3c5" source="id-4215cbb5ea2e4b41bf3966ed673a5740" target="id-2e8c595bfedb4d8ba8cedbdf2eb284f2"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..* is included in 1" id="id-a8d902efdfdc4fe983beb2813d6c206b" source="id-4215cbb5ea2e4b41bf3966ed673a5740" target="id-a4319ee116ab41dda18d476242ca88da"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..1 is included in 1" id="id-17cc5eb103e545b0842a1f5f9f18f604" source="id-7970b9b7176341039f2e4af29e4d2d3a" target="id-a4319ee116ab41dda18d476242ca88da"/>
     <element xsi:type="archimate:AssociationRelationship" id="id-f931cb08494f401992a76c86f60328c6" source="id-9c775a49c62f4d49a90673446cec6a64" target="id-56891299dfaf43d998b552b08cc4e1d2"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 defines 0..*" id="id-b9f7a77a44a6474a89b4cb8daf8addb8" source="id-94e213279a1d46149da17c04c0572efe" target="id-0a67e6f41ebb45b9b7a3fc306bc08cd1"/>
+    <element xsi:type="archimate:InfluenceRelationship" id="id-c1144bcf18b2403ea0967bda40cddf96" source="id-e9cda5d58e7e432dae3c73938d1d135e" target="id-8830e09764df4c0cb699ed7a673b1f85"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-63120a3216ec4460b05b61de7cdac65a" source="id-1ccffb4f33194bcca879915bbdfa4da4" target="id-e9cda5d58e7e432dae3c73938d1d135e"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-4884feffcf2f4cbdb7b8d0dd969312b2" source="id-7a97ee5143ed472ebd8b507c0cfb768e" target="id-a4e6ce0a5f174bcaac4f8c51f1321c5c"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-d483fec2b95a4c01b7751c77fbfbdc86" source="id-fd356012553b471f86496bfc289eb2e3" target="id-6619640fcb9d41afae30213805ad9d86"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-271a2dfd33d84874a1efed4034c17fed" source="id-57f90fbd1ed4451fbcd3bdbf363f15ec" target="id-6619640fcb9d41afae30213805ad9d86"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-5663c186e67c446ea712695c4dbba69e" source="id-d5f8b308e2674c518c473d3fe97e7dbf" target="id-4123b36a2e324687be745599e8455ad3"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-eaeb1933f68348db9e2922c661a3c9e7" source="id-4c09c480acb64af68d114c1d0663c4ef" target="id-1ccffb4f33194bcca879915bbdfa4da4"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-b77ab15e036e406ba240c23bf20fce5f" source="id-75a603d93bad4e71bdbee7c7fec4ec3e" target="id-18e1574f95594d87b6b841c28e6910dd"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-a269b743f1554a5694f9ca0ae6faa3c6" source="id-9834ceacc1244471b3cb7dd2ed871e88" target="id-4123b36a2e324687be745599e8455ad3"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-93dc3d324b004b6387bfc5ebb97efa85" source="id-93d6718dd75e402c911b7dc7845b8f4e" target="id-fd9e7ccc1a354a228ed8f115bb2ca9f0"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-71b2d158f2db411280c16d6af6c768aa" source="id-0b5101711bd94470a5c7c352a5d0b284" target="id-18e1574f95594d87b6b841c28e6910dd"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-61a0860d2c3a443f8290fc253a5a3bc6" source="id-b2ede837bb224fa0ba4ee99da9a9984e" target="id-18e1574f95594d87b6b841c28e6910dd"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-192667f5d7d945ef84a37c1c08595530" source="id-a4e6ce0a5f174bcaac4f8c51f1321c5c" target="id-6619640fcb9d41afae30213805ad9d86"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-db2c45dd5e3d4ff99faf8894be6d5d4f" source="id-6619640fcb9d41afae30213805ad9d86" target="id-18e1574f95594d87b6b841c28e6910dd"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-92db1634a8874d119ced1359e332079c" source="id-18e1574f95594d87b6b841c28e6910dd" target="id-4123b36a2e324687be745599e8455ad3"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-e0edbc84498b4fd2a2f95ec5e23c1280" source="id-4123b36a2e324687be745599e8455ad3" target="id-fd9e7ccc1a354a228ed8f115bb2ca9f0"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-456daf2596dc4d6eb719c1c81ebec239" source="id-fd9e7ccc1a354a228ed8f115bb2ca9f0" target="id-1ccffb4f33194bcca879915bbdfa4da4"/>
+    <element xsi:type="archimate:AssociationRelationship" name="1 is invoked by 0..*" id="id-f636a1c2b36f4eacba8024402f6ff432" source="id-fc519c97c3c04fb3b43a50b72f0aef38" target="id-95a0e0e6f3e1431da1195ba095f3435d"/>
+    <element xsi:type="archimate:AssociationRelationship" name="1 is executed as 0..*" id="id-3250936c0c2d4b10a755764cfdee12cd" source="id-95a0e0e6f3e1431da1195ba095f3435d" target="id-2e8c595bfedb4d8ba8cedbdf2eb284f2"/>
+    <element xsi:type="archimate:AssociationRelationship" name="1 ..* is part  of 1" id="id-2eb3594f56934a6bbc5c450280a7fce6" source="id-0a67e6f41ebb45b9b7a3fc306bc08cd1" target="id-95a0e0e6f3e1431da1195ba095f3435d"/>
+    <element xsi:type="archimate:AssociationRelationship" name="0..1 configures 0..8" id="id-1c71d1b3599b4163a5f573d06a429888" source="id-3208e79172454362b69c0661b8e55589" target="id-95a0e0e6f3e1431da1195ba095f3435d"/>
+    <element xsi:type="archimate:AssociationRelationship" name="1 produces 1" id="id-02698825725c4cbc8456ace57933a08f" source="id-2e8c595bfedb4d8ba8cedbdf2eb284f2" target="id-4215cbb5ea2e4b41bf3966ed673a5740"/>
   </folder>
   <folder name="Views" id="id-ca7ad8080a214939a0e88c60169a9612" type="diagrams">
     <folder name=".prelimanary" id="id-b6a723fd32f9454b94c62fd4198f1e82">
@@ -2513,54 +3132,54 @@ Development Phase classificeert de fase van interventie, niet het type activitei
       <folder name="entoli-conceptual" id="id-b21f0a292a224fffb7a7ec1d95477481">
         <element xsi:type="archimate:ArchimateDiagramModel" name="entoli-conceptual" id="id-e370b29df1904e7aa3dff365806a402d">
           <child xsi:type="archimate:DiagramObject" id="id-24c3f387ec6449eab58dc888463f4420" targetConnections="id-a2970d909d254f52b466d8534355637d" textPosition="1" archimateElement="id-4e02ad03bf6d4963b101fdad1d0f7b7b">
-            <bounds x="84" y="300" width="145" height="70"/>
+            <bounds x="85" y="300" width="145" height="55"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-605d256225cc49978f50c9f56b3230fc" targetConnections="id-309356a9ea7440f19f16e242ead7e23b id-f818f905444e42b3b26d32a3888df373 id-905f16cc3c2d4156b90c8b41912df167 id-9e7562b0e2b048858ec690e230311791 id-f267f3032aeb452ab71109d27255e18c id-7981a4d4306149379d0126a82656b337" textPosition="2" archimateElement="id-b7cb33c7b50e48dabb3f0d830de8698f">
-            <bounds x="612" y="554" width="169" height="371"/>
+            <bounds x="612" y="516" width="168" height="432"/>
             <child xsi:type="archimate:DiagramObject" id="id-941cb96ff57b47579a60262cbeaa02e8" textPosition="1" archimateElement="id-697686712c9f40faa2f23c8994eaef05">
-              <bounds x="24" y="276" width="120" height="55"/>
+              <bounds x="24" y="336" width="120" height="55"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-309356a9ea7440f19f16e242ead7e23b" source="id-941cb96ff57b47579a60262cbeaa02e8" target="id-605d256225cc49978f50c9f56b3230fc" archimateRelationship="id-730f27f6b9a74a53a238b76db48ff9d9"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-2d774d468daf4cdf8ae12076d1ffedd3" source="id-941cb96ff57b47579a60262cbeaa02e8" target="id-27531222f6c24180819711441ffabac5" archimateRelationship="id-91a5511abcf545e198f98a4d4559ec82"/>
             </child>
             <child xsi:type="archimate:DiagramObject" id="id-f8934a87a15a4932ab88a94914c4f4ba" textPosition="1" archimateElement="id-9dd7d63f3bda44a6919074aa6bd45c04">
-              <bounds x="24" y="96" width="120" height="55"/>
+              <bounds x="24" y="110" width="120" height="55"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-b7a26fb1bebd469ba5fcc6a3d17680f3" source="id-f8934a87a15a4932ab88a94914c4f4ba" target="id-74f914fb741647c0966999fa95ebcb58" archimateRelationship="id-c3ff3f9db22f48e883bd64060c6565b2"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-f818f905444e42b3b26d32a3888df373" source="id-f8934a87a15a4932ab88a94914c4f4ba" target="id-605d256225cc49978f50c9f56b3230fc" archimateRelationship="id-88e400565d554f7891047d5ce27ffa91"/>
             </child>
             <child xsi:type="archimate:DiagramObject" id="id-9904626dc46848d389bbe6e1a556007a" textPosition="1" archimateElement="id-7c826e60007f41aeaaddbcb4fc50958d">
-              <bounds x="24" y="192" width="120" height="55"/>
+              <bounds x="24" y="218" width="120" height="55"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-2e04211ade30463ea18e7a57c8016806" source="id-9904626dc46848d389bbe6e1a556007a" target="id-9fb4c1a72ec84e5f9168f3d09c43e022" archimateRelationship="id-002b70b66cce4964a129d5db78c7bd59"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-905f16cc3c2d4156b90c8b41912df167" source="id-9904626dc46848d389bbe6e1a556007a" target="id-605d256225cc49978f50c9f56b3230fc" archimateRelationship="id-ea7251b20c8144aebd564840a1f64469"/>
             </child>
             <child xsi:type="archimate:DiagramObject" id="id-caccdcde402c4ff383c57542fe2e171c" targetConnections="id-a368d235473842bbadcf9f92758b137c" textPosition="1" archimateElement="id-03e98ce0196345b599d814c30d4a986a">
-              <bounds x="24" y="12" width="120" height="55"/>
+              <bounds x="24" y="30" width="120" height="55"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-9e7562b0e2b048858ec690e230311791" source="id-caccdcde402c4ff383c57542fe2e171c" target="id-605d256225cc49978f50c9f56b3230fc" archimateRelationship="id-fe774c675e914eb58c4bb632b8f0fb2d"/>
             </child>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-38694a3db0d843edb67f7353aae7863c" textPosition="1" archimateElement="id-6d66d6cdd2534270b0f3732e4ecec8cc">
-            <bounds x="84" y="420" width="685" height="55"/>
+            <bounds x="85" y="420" width="685" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-df9da9b2113443058d3af2a7f822b374" source="id-38694a3db0d843edb67f7353aae7863c" target="id-7545971a4676440cabf1627a109b7f96" archimateRelationship="id-dee315f400a040c1888aa29b9ed2f160"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-b9a1102a8ae040afbd26d8d9715a9343" source="id-38694a3db0d843edb67f7353aae7863c" target="id-df6ca2a7dd4047e0b1e3be3837cdb741" archimateRelationship="id-3a220be3cfb94eb3bcddc1a0ccdd9f8d"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-a368d235473842bbadcf9f92758b137c" source="id-38694a3db0d843edb67f7353aae7863c" target="id-caccdcde402c4ff383c57542fe2e171c" archimateRelationship="id-290269a462ea47a4a187c2eb39c96089"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-7545971a4676440cabf1627a109b7f96" targetConnections="id-df9da9b2113443058d3af2a7f822b374 id-75096fd07cd04ecda4bfaf7d5b92d637 id-edf05f861b9c47dea56c9a748fd9489e" textPosition="1" archimateElement="id-1d62c68e5893433f81d1472f83cfad2d">
-            <bounds x="336" y="300" width="433" height="70"/>
+            <bounds x="336" y="300" width="433" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-a2970d909d254f52b466d8534355637d" source="id-7545971a4676440cabf1627a109b7f96" target="id-24c3f387ec6449eab58dc888463f4420" archimateRelationship="id-872887d3610346e19f253cd9039660c4"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-df6ca2a7dd4047e0b1e3be3837cdb741" targetConnections="id-b9a1102a8ae040afbd26d8d9715a9343" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
-            <bounds x="84" y="576" width="313" height="55"/>
+            <bounds x="85" y="540" width="313" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-eecec6daa0214ccc95396c7544f575c3" source="id-df6ca2a7dd4047e0b1e3be3837cdb741" target="id-174111967a214c97918fbedabcf30e1f" archimateRelationship="id-e617219ea1d44ddda848bafc8aa91de8">
               <bendpoint startX="102" startY="136" endX="-12" endY="-147"/>
             </sourceConnection>
             <sourceConnection xsi:type="archimate:Connection" id="id-9cb0741203914e7596418d047a2db8ed" source="id-df6ca2a7dd4047e0b1e3be3837cdb741" target="id-98e24cb58b8149249b5ef5fc90cf507f" archimateRelationship="id-aba60ccef7794a86b6ec9521783551e2"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-174111967a214c97918fbedabcf30e1f" targetConnections="id-eecec6daa0214ccc95396c7544f575c3 id-79ef12c126ec446697d23186cc68e908 id-93f39997583e4047b8a43c828a81f1ac" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
-            <bounds x="276" y="720" width="132" height="55"/>
+            <bounds x="277" y="738" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-5be8dfc5abf5420088b074d729e87485" source="id-174111967a214c97918fbedabcf30e1f" target="id-bafce8d49b1c4374b7c95459218d0325" archimateRelationship="id-8ef81509a3e145e38a07c7c0ffbaabf8"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-7981a4d4306149379d0126a82656b337" source="id-174111967a214c97918fbedabcf30e1f" target="id-605d256225cc49978f50c9f56b3230fc" archimateRelationship="id-824876d2f29644da9f54d78b9ceb11a8"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-98e24cb58b8149249b5ef5fc90cf507f" targetConnections="id-9cb0741203914e7596418d047a2db8ed" textPosition="1" archimateElement="id-9c775a49c62f4d49a90673446cec6a64">
-            <bounds x="84" y="720" width="120" height="55"/>
+            <bounds x="85" y="738" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-79ef12c126ec446697d23186cc68e908" source="id-98e24cb58b8149249b5ef5fc90cf507f" target="id-174111967a214c97918fbedabcf30e1f" archimateRelationship="id-a910f844d5e747cf921c8657b7088c32">
               <bendpoint startX="24" startY="45" endX="-126" endY="45"/>
               <bendpoint startX="36" startY="57" endX="-114" endY="57"/>
@@ -2575,39 +3194,31 @@ Development Phase classificeert de fase van interventie, niet het type activitei
             </sourceConnection>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-74f914fb741647c0966999fa95ebcb58" targetConnections="id-161f4aac72d54f88ac08356cfedffdbd id-963f8614fa304d7e991d9f3872311701 id-e667b68b3d3b462ea5af2d04576046ed id-b7a26fb1bebd469ba5fcc6a3d17680f3 id-5e2e931b9107459c9d0b51c2ad21f284 id-29d1d302c00a4694a478cac5d59a04f6" textPosition="1" archimateElement="id-a21ac844b75946b0b94ab3450c81ed27">
-            <bounds x="936" y="600" width="409" height="97"/>
+            <bounds x="936" y="630" width="409" height="61"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-75096fd07cd04ecda4bfaf7d5b92d637" source="id-74f914fb741647c0966999fa95ebcb58" target="id-7545971a4676440cabf1627a109b7f96" archimateRelationship="id-e5d39f4f626d48ecbff17945f7cdd771">
               <bendpoint startX="-168" startY="-168" endX="420" endY="145"/>
               <bendpoint startX="-168" startY="-300" endX="420" endY="13"/>
             </sourceConnection>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-6c0c392dcf86433aa320671c5505928f" textPosition="1" archimateElement="id-a5736e6c7c874d5589622b6158eae9ee">
-            <bounds x="1020" y="480" width="120" height="58"/>
+            <bounds x="1020" y="480" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-161f4aac72d54f88ac08356cfedffdbd" source="id-6c0c392dcf86433aa320671c5505928f" target="id-74f914fb741647c0966999fa95ebcb58" archimateRelationship="id-618c3c02c19f479c9b0dd270d4491be8"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-edf05f861b9c47dea56c9a748fd9489e" source="id-6c0c392dcf86433aa320671c5505928f" target="id-7545971a4676440cabf1627a109b7f96" archimateRelationship="id-896337c7a96a4fb39fad8791d8f6b662">
               <bendpoint startY="-185" endX="528" endY="-11"/>
             </sourceConnection>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-e78e331f1e9146109cdf6701ebe7554a" textPosition="1" archimateElement="id-6cd1f6f39e864f16855d0eda7857df01">
-            <bounds x="1308" y="481" width="120" height="55"/>
+            <bounds x="1248" y="480" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-963f8614fa304d7e991d9f3872311701" source="id-e78e331f1e9146109cdf6701ebe7554a" target="id-74f914fb741647c0966999fa95ebcb58" archimateRelationship="id-20c0c4d0699047d39210f1a1d24b467c"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-9fb4c1a72ec84e5f9168f3d09c43e022" targetConnections="id-2e04211ade30463ea18e7a57c8016806" textPosition="1" archimateElement="id-fc519c97c3c04fb3b43a50b72f0aef38">
-            <bounds x="936" y="744" width="409" height="55"/>
+            <bounds x="936" y="735" width="409" height="61"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-e667b68b3d3b462ea5af2d04576046ed" source="id-9fb4c1a72ec84e5f9168f3d09c43e022" target="id-74f914fb741647c0966999fa95ebcb58" archimateRelationship="id-55addc35268644c88cbbdd5b9fa21acf"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-a870e875f56346dcbc05a9811e0b45ad" source="id-9fb4c1a72ec84e5f9168f3d09c43e022" target="id-27531222f6c24180819711441ffabac5" archimateRelationship="id-a67b931f5f1d48bca0054f50b03d595b"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-59591265053b4654b6771b2de10153cf" source="id-9fb4c1a72ec84e5f9168f3d09c43e022" target="id-bafce8d49b1c4374b7c95459218d0325" archimateRelationship="id-3c01609d16af41d7a4d1e54524f31557">
               <bendpoint startX="156" startY="153" endX="312" endY="-270"/>
             </sourceConnection>
-            <sourceConnection xsi:type="archimate:Connection" id="id-067f5d52f0244175a743cf57c39761c8" source="id-9fb4c1a72ec84e5f9168f3d09c43e022" target="id-6a87d3e23ce140e08f13d7b56b7aa13f" archimateRelationship="id-dba4ff33005844069bec66f442fc900b">
-              <bendpoint startX="312" startY="-3" endX="-120" endY="-153"/>
-              <bendpoint startX="312" startY="45" endX="-120" endY="-105"/>
-              <bendpoint startX="312" startY="153" endX="-120" endY="3"/>
-            </sourceConnection>
-          </child>
-          <child xsi:type="archimate:DiagramObject" id="id-129dd80bdd78443abb80b093fcfd3fca" textPosition="1" archimateElement="id-9217fc1f04894f4486fd95f0dff34488">
-            <bounds x="1513" y="780" width="120" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-017ed7a5d0cd47ac8a69bdc8a8f47ae0" source="id-129dd80bdd78443abb80b093fcfd3fca" target="id-6a87d3e23ce140e08f13d7b56b7aa13f" archimateRelationship="id-4374318074134af7b62b0827bb2370e2"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-df64f3acfadd4643a280f468e0632682" source="id-9fb4c1a72ec84e5f9168f3d09c43e022" target="id-519a2e279a6e40aca02f3378af4d4ee4" archimateRelationship="id-f636a1c2b36f4eacba8024402f6ff432"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-27531222f6c24180819711441ffabac5" targetConnections="id-c01ad7d6adc14189aeff776af1409e43 id-780041b33e804bada0df41fdcbdaf248 id-ef6596ee80dd4d6db0f4d420dc5d2bfd id-a870e875f56346dcbc05a9811e0b45ad id-2d774d468daf4cdf8ae12076d1ffedd3" archimateElement="id-4cab30c96f5d468d98f0c6624bc3bd5d">
             <bounds x="936" y="876" width="168" height="277"/>
@@ -2625,89 +3236,73 @@ Development Phase classificeert de fase van interventie, niet het type activitei
             </child>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-946b02099c0e41da802e078bd128bf75" targetConnections="id-17e1eaed8e464ff8a15d5662703ba834" textPosition="1" archimateElement="id-94e213279a1d46149da17c04c0572efe">
-            <bounds x="2160" y="147" width="241" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-15c40e2945134ccb8474f486e7ae0b59" source="id-946b02099c0e41da802e078bd128bf75" target="id-6a87d3e23ce140e08f13d7b56b7aa13f" archimateRelationship="id-b9f7a77a44a6474a89b4cb8daf8addb8">
-              <bendpoint startY="774" endX="708" endY="-9"/>
-            </sourceConnection>
+            <bounds x="2172" y="156" width="241" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-15c40e2945134ccb8474f486e7ae0b59" source="id-946b02099c0e41da802e078bd128bf75" target="id-6a87d3e23ce140e08f13d7b56b7aa13f" archimateRelationship="id-b9f7a77a44a6474a89b4cb8daf8addb8"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-143bf9840f24455a8de1992f78f50907" targetConnections="id-0fcecf57d51d4ee59e96fab3cfcd0c49 id-ce48abf7ff0d4ae2a520d216e8d678f6" archimateElement="id-a99dcf9067d84b2b9ddf4b7a8f40c647">
-            <bounds x="1092" y="108" width="348" height="133"/>
+          <child xsi:type="archimate:DiagramObject" id="id-143bf9840f24455a8de1992f78f50907" textPosition="1" archimateElement="id-a99dcf9067d84b2b9ddf4b7a8f40c647">
+            <bounds x="1129" y="156" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-5e2e931b9107459c9d0b51c2ad21f284" source="id-143bf9840f24455a8de1992f78f50907" target="id-74f914fb741647c0966999fa95ebcb58" archimateRelationship="id-3b5859f3412f4b7fa911bae9864284c7"/>
-            <child xsi:type="archimate:DiagramObject" id="id-247b9f4580b04f348512b8fd1b0d40a6" textPosition="1" archimateElement="id-071282f95ced4cc8a12a5b85cdc8189d">
-              <bounds x="30" y="48" width="120" height="67"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-0fcecf57d51d4ee59e96fab3cfcd0c49" source="id-247b9f4580b04f348512b8fd1b0d40a6" target="id-143bf9840f24455a8de1992f78f50907" archimateRelationship="id-57750625cff74bd1bbf5591b1e751ec4"/>
-            </child>
-            <child xsi:type="archimate:DiagramObject" id="id-d2106e76f23f444a8a9b6f859869faff" textPosition="1" archimateElement="id-fe7e9177ff87428e83ada3d9c79a468c">
-              <bounds x="174" y="48" width="120" height="67"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-ce48abf7ff0d4ae2a520d216e8d678f6" source="id-d2106e76f23f444a8a9b6f859869faff" target="id-143bf9840f24455a8de1992f78f50907" archimateRelationship="id-b0cea3cc639746bbbb159300b2ebc9ba"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-17e1eaed8e464ff8a15d5662703ba834" source="id-d2106e76f23f444a8a9b6f859869faff" target="id-946b02099c0e41da802e078bd128bf75" archimateRelationship="id-71d01ab060014200848c2fc9f8e01748"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-7626e3a19ecf47979b7709a0ca65c670" source="id-d2106e76f23f444a8a9b6f859869faff" target="id-7dcb02dbf508415faa22eadfade04b6e" archimateRelationship="id-9b38a34b372d42bc806dde4f867eb05f">
-                <bendpoint startX="258" startY="3" endX="11" endY="-171"/>
-              </sourceConnection>
-            </child>
+            <sourceConnection xsi:type="archimate:Connection" id="id-7626e3a19ecf47979b7709a0ca65c670" source="id-143bf9840f24455a8de1992f78f50907" target="id-7dcb02dbf508415faa22eadfade04b6e" archimateRelationship="id-9b38a34b372d42bc806dde4f867eb05f">
+              <bendpoint startX="258" startY="3" endX="11" endY="-171"/>
+            </sourceConnection>
+            <sourceConnection xsi:type="archimate:Connection" id="id-17e1eaed8e464ff8a15d5662703ba834" source="id-143bf9840f24455a8de1992f78f50907" target="id-946b02099c0e41da802e078bd128bf75" archimateRelationship="id-71d01ab060014200848c2fc9f8e01748"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-a2334a93a67d4ec6b1dc064a9085a874" textPosition="1" archimateElement="id-47c7669317cf4b9aaec0c64751602214">
-            <bounds x="2088" y="468" width="120" height="55"/>
+            <bounds x="1932" y="348" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-acdb51d9fdbb4d6d90bfcd79fc559735" source="id-a2334a93a67d4ec6b1dc064a9085a874" target="id-e6b497afb80f4f7895c4052716ec74f2" archimateRelationship="id-242ceeeae34a4b5a9c58ce05cda70aa1"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-c92a955259c64d65897f7e8162cebff2" source="id-a2334a93a67d4ec6b1dc064a9085a874" target="id-839b89958dc64376883e358fd9db403c" archimateRelationship="id-d3e81c1dcc624b7ab204c64934bd57e3">
-              <bendpoint startX="12" startY="105" endX="204" endY="-4"/>
-            </sourceConnection>
+            <sourceConnection xsi:type="archimate:Connection" id="id-c92a955259c64d65897f7e8162cebff2" source="id-a2334a93a67d4ec6b1dc064a9085a874" target="id-839b89958dc64376883e358fd9db403c" archimateRelationship="id-d3e81c1dcc624b7ab204c64934bd57e3"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-e6b497afb80f4f7895c4052716ec74f2" targetConnections="id-acdb51d9fdbb4d6d90bfcd79fc559735" textPosition="1" archimateElement="id-9c36c275b1bc4801a5e76a6db8a16571">
-            <bounds x="1860" y="468" width="120" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-bc05c6fd44fa4477aabf435a7a4aa4ba" source="id-e6b497afb80f4f7895c4052716ec74f2" target="id-7dcb02dbf508415faa22eadfade04b6e" archimateRelationship="id-5245ef5310b847a099cd0f8be3dfd18d">
-              <bendpoint startY="-135" endX="383" endY="-3"/>
-            </sourceConnection>
+            <bounds x="1692" y="348" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-bc05c6fd44fa4477aabf435a7a4aa4ba" source="id-e6b497afb80f4f7895c4052716ec74f2" target="id-7dcb02dbf508415faa22eadfade04b6e" archimateRelationship="id-5245ef5310b847a099cd0f8be3dfd18d"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-bafce8d49b1c4374b7c95459218d0325" targetConnections="id-5be8dfc5abf5420088b074d729e87485 id-59591265053b4654b6771b2de10153cf id-21c572b57d17418e9915bbd24ae69d96 id-65cc41a87a9b4d8dbfd746dd38b4328f id-b6f10c4f832f4d33acee2c67a2306ef4" textPosition="1" archimateElement="id-a4319ee116ab41dda18d476242ca88da">
-            <bounds x="252" y="1188" width="1429" height="85"/>
+            <bounds x="252" y="1188" width="1429" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-f267f3032aeb452ab71109d27255e18c" source="id-bafce8d49b1c4374b7c95459218d0325" target="id-605d256225cc49978f50c9f56b3230fc" archimateRelationship="id-67bb08825671474586240ab415b74536"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-ed77e52d05224c49a0855ce8b5a25fa0" source="id-bafce8d49b1c4374b7c95459218d0325" target="id-1e9789ee524c443285b1660f6ece8410" archimateRelationship="id-d19d1dd3331848b2a94022ee38ea840b">
-              <bendpoint startX="600" startY="102" endX="-288" endY="3"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-6c11ee42465f452e81f6d97bf739bc88" source="id-bafce8d49b1c4374b7c95459218d0325" target="id-abdbceff25d7413fbe6295b6fbe95e65" archimateRelationship="id-4678b57ce9f740ce9101202a0b600698">
+              <bendpoint startX="486" startY="-123" endX="-83" endY="123"/>
             </sourceConnection>
-            <sourceConnection xsi:type="archimate:Connection" id="id-dfb37d6f86c144fdb61cb260134c5357" source="id-bafce8d49b1c4374b7c95459218d0325" target="id-abdbceff25d7413fbe6295b6fbe95e65" archimateRelationship="id-4678b57ce9f740ce9101202a0b600698"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-f08eabe7467241b4b3cddb092a900d8f" source="id-bafce8d49b1c4374b7c95459218d0325" target="id-1e9789ee524c443285b1660f6ece8410" archimateRelationship="id-d19d1dd3331848b2a94022ee38ea840b"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-1e9789ee524c443285b1660f6ece8410" targetConnections="id-ed77e52d05224c49a0855ce8b5a25fa0" textPosition="1" archimateElement="id-4e0f720907c34ad186ec8a6958817d41">
-            <bounds x="1812" y="1332" width="241" height="67"/>
+          <child xsi:type="archimate:DiagramObject" id="id-1e9789ee524c443285b1660f6ece8410" targetConnections="id-f08eabe7467241b4b3cddb092a900d8f" textPosition="1" archimateElement="id-4e0f720907c34ad186ec8a6958817d41">
+            <bounds x="1872" y="1188" width="241" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-bcb98290450947fe9334de3528b263be" source="id-1e9789ee524c443285b1660f6ece8410" target="id-abdbceff25d7413fbe6295b6fbe95e65" archimateRelationship="id-94cb072ef97e43b0866fb9f05a31c7d6">
-              <bendpoint startX="12" startY="-45" endX="12" endY="58"/>
+              <bendpoint startX="12" startY="-243" endX="469" endY="3"/>
             </sourceConnection>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-abdbceff25d7413fbe6295b6fbe95e65" targetConnections="id-dfb37d6f86c144fdb61cb260134c5357 id-403c78b4530e43daa5b2d60a4257c3cd id-e63d44a82b144ae285b1448af47060d7 id-bcb98290450947fe9334de3528b263be id-a8075672773040cabef0bcf5b36e0e35" textPosition="1" archimateElement="id-2e8c595bfedb4d8ba8cedbdf2eb284f2">
-            <bounds x="1812" y="1188" width="241" height="76"/>
+          <child xsi:type="archimate:DiagramObject" id="id-abdbceff25d7413fbe6295b6fbe95e65" targetConnections="id-bcb98290450947fe9334de3528b263be id-6c11ee42465f452e81f6d97bf739bc88 id-0393ee21afba49af83ebaec5ae6770c3" textPosition="1" archimateElement="id-2e8c595bfedb4d8ba8cedbdf2eb284f2">
+            <bounds x="1415" y="936" width="241" height="67"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-dfe7a1ec6c9e4be3aaf8f824d15dc558" source="id-abdbceff25d7413fbe6295b6fbe95e65" target="id-49efc272a8864169812ca77b136381a0" archimateRelationship="id-02698825725c4cbc8456ace57933a08f"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-7dcb02dbf508415faa22eadfade04b6e" targetConnections="id-bc05c6fd44fa4477aabf435a7a4aa4ba id-7626e3a19ecf47979b7709a0ca65c670" textPosition="1" archimateElement="id-abdf3fc1a9504d1eb988ab196a0ecf67">
-            <bounds x="1513" y="336" width="120" height="55"/>
+            <bounds x="1429" y="348" width="120" height="55"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-839b89958dc64376883e358fd9db403c" targetConnections="id-806aeb8be9c04681a731d215d0240c5e id-c92a955259c64d65897f7e8162cebff2" textPosition="1" archimateElement="id-3208e79172454362b69c0661b8e55589">
-            <bounds x="1860" y="554" width="120" height="100"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-e63d44a82b144ae285b1448af47060d7" source="id-839b89958dc64376883e358fd9db403c" target="id-abdbceff25d7413fbe6295b6fbe95e65" archimateRelationship="id-478037499a934c57a353226c3694f575">
-              <bendpoint startY="248" endX="24" endY="-378"/>
-            </sourceConnection>
+            <bounds x="1932" y="633" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-090c981d316a4aaba7724f9772ca5598" source="id-839b89958dc64376883e358fd9db403c" target="id-519a2e279a6e40aca02f3378af4d4ee4" archimateRelationship="id-1c71d1b3599b4163a5f573d06a429888"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-a06963fd97994354aa6bcfb919a30c99" textPosition="1" archimateElement="id-2e25dc5832d04ffb907846209ef549b7">
-            <bounds x="1513" y="576" width="120" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-29d1d302c00a4694a478cac5d59a04f6" source="id-a06963fd97994354aa6bcfb919a30c99" target="id-74f914fb741647c0966999fa95ebcb58" archimateRelationship="id-87c1c3c5826a4ba9be48f454b49086dd">
-              <bendpoint startX="-13" startY="105" endX="420" endY="6"/>
-            </sourceConnection>
+            <bounds x="1488" y="633" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-29d1d302c00a4694a478cac5d59a04f6" source="id-a06963fd97994354aa6bcfb919a30c99" target="id-74f914fb741647c0966999fa95ebcb58" archimateRelationship="id-87c1c3c5826a4ba9be48f454b49086dd"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-806aeb8be9c04681a731d215d0240c5e" source="id-a06963fd97994354aa6bcfb919a30c99" target="id-839b89958dc64376883e358fd9db403c" archimateRelationship="id-50fce052e7c6478abe8917cdae9c3760"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-6a87d3e23ce140e08f13d7b56b7aa13f" targetConnections="id-067f5d52f0244175a743cf57c39761c8 id-017ed7a5d0cd47ac8a69bdc8a8f47ae0 id-15c40e2945134ccb8474f486e7ae0b59" textPosition="1" archimateElement="id-0a67e6f41ebb45b9b7a3fc306bc08cd1">
-            <bounds x="1476" y="924" width="193" height="67"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-403c78b4530e43daa5b2d60a4257c3cd" source="id-6a87d3e23ce140e08f13d7b56b7aa13f" target="id-abdbceff25d7413fbe6295b6fbe95e65" archimateRelationship="id-8b7a986c5a9a40828765a0062107646e">
-              <bendpoint startX="324" startY="15" endX="-36" endY="-254"/>
-            </sourceConnection>
+          <child xsi:type="archimate:DiagramObject" id="id-6a87d3e23ce140e08f13d7b56b7aa13f" targetConnections="id-15c40e2945134ccb8474f486e7ae0b59" textPosition="1" archimateElement="id-0a67e6f41ebb45b9b7a3fc306bc08cd1">
+            <bounds x="2172" y="738" width="241" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-4bcb8e48ef67489b80a6538ee07d0ebf" source="id-6a87d3e23ce140e08f13d7b56b7aa13f" target="id-519a2e279a6e40aca02f3378af4d4ee4" archimateRelationship="id-2eb3594f56934a6bbc5c450280a7fce6"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-49efc272a8864169812ca77b136381a0" textPosition="1" archimateElement="id-4215cbb5ea2e4b41bf3966ed673a5740">
-            <bounds x="1561" y="1068" width="120" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-a8075672773040cabef0bcf5b36e0e35" source="id-49efc272a8864169812ca77b136381a0" target="id-abdbceff25d7413fbe6295b6fbe95e65" archimateRelationship="id-d6ecd9b4e5384121810029675c6fd3c5">
-              <bendpoint startX="204" startY="-3" endX="-84" endY="-134"/>
-            </sourceConnection>
+          <child xsi:type="archimate:DiagramObject" id="id-49efc272a8864169812ca77b136381a0" targetConnections="id-dfe7a1ec6c9e4be3aaf8f824d15dc558" textPosition="1" archimateElement="id-4215cbb5ea2e4b41bf3966ed673a5740">
+            <bounds x="1548" y="1056" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-21c572b57d17418e9915bbd24ae69d96" source="id-49efc272a8864169812ca77b136381a0" target="id-bafce8d49b1c4374b7c95459218d0325" archimateRelationship="id-a8d902efdfdc4fe983beb2813d6c206b"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-fc996ec67cb0416eb1c8ff0a0c1339c1" textPosition="1" archimateElement="id-7970b9b7176341039f2e4af29e4d2d3a">
-            <bounds x="1380" y="1068" width="120" height="55"/>
+            <bounds x="1392" y="1296" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-65cc41a87a9b4d8dbfd746dd38b4328f" source="id-fc996ec67cb0416eb1c8ff0a0c1339c1" target="id-bafce8d49b1c4374b7c95459218d0325" archimateRelationship="id-17cc5eb103e545b0842a1f5f9f18f604"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-519a2e279a6e40aca02f3378af4d4ee4" targetConnections="id-df64f3acfadd4643a280f468e0632682 id-4bcb8e48ef67489b80a6538ee07d0ebf id-090c981d316a4aaba7724f9772ca5598" textPosition="1" archimateElement="id-95a0e0e6f3e1431da1195ba095f3435d">
+            <bounds x="1932" y="738" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-0393ee21afba49af83ebaec5ae6770c3" source="id-519a2e279a6e40aca02f3378af4d4ee4" target="id-abdbceff25d7413fbe6295b6fbe95e65" archimateRelationship="id-3250936c0c2d4b10a755764cfdee12cd">
+              <bendpoint startX="-1" startY="171" endX="493" endY="-21"/>
+            </sourceConnection>
           </child>
           <documentation>rules&#xD;
 &#xD;
@@ -2754,6 +3349,79 @@ An LLM Account selected by a Model Assignment MUST be made available by the Cust
         <child xsi:type="archimate:DiagramObject" id="id-da245325df7e40ea9d3a7184f4af894b" targetConnections="id-a6dd3c9320264e6889a3ab5cd2e44b4c" archimateElement="id-bb2b622aa3b64e61935debdadcb1e4bf">
           <bounds x="552" y="552" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-92075452a448473dbdc9ebbf4379b41d" source="id-da245325df7e40ea9d3a7184f4af894b" target="id-5eb82f6bab61466bb61e0f3fa88458d2" archimateRelationship="id-de050447d2a64218b79d529e6fee6b5b"/>
+        </child>
+      </element>
+      <element xsi:type="archimate:ArchimateDiagramModel" name="capabilities" id="id-60706a63f1ca4b3cb3ddb02d1161c408">
+        <child xsi:type="archimate:DiagramObject" id="id-ea22418fbc4742c6bf5de21f099d10d7" textPosition="1" archimateElement="id-7a97ee5143ed472ebd8b507c0cfb768e">
+          <bounds x="186" y="300" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-5689b7ecf6c9480097db931bcf209d8e" source="id-ea22418fbc4742c6bf5de21f099d10d7" target="id-459a962008024133b45ff2d5da504536" archimateRelationship="id-4884feffcf2f4cbdb7b8d0dd969312b2"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-bed4546a97a04497bbd5c91bccf4b302" textPosition="1" archimateElement="id-57f90fbd1ed4451fbcd3bdbf363f15ec">
+          <bounds x="371" y="300" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-f4321e060ec44a3681c50f8567b1bd15" source="id-bed4546a97a04497bbd5c91bccf4b302" target="id-a06723c38d6c4911b66aabbf890d58c1" archimateRelationship="id-271a2dfd33d84874a1efed4034c17fed"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-9164c17845d949cfabb659e6ebdb0c3e" textPosition="1" archimateElement="id-fd356012553b471f86496bfc289eb2e3">
+          <bounds x="372" y="468" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d4a7ef71883d47e7b2bd55f8ea7b8221" source="id-9164c17845d949cfabb659e6ebdb0c3e" target="id-a06723c38d6c4911b66aabbf890d58c1" archimateRelationship="id-d483fec2b95a4c01b7751c77fbfbdc86"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-089156fee64547a78a26e244234f26c3" textPosition="1" archimateElement="id-0b5101711bd94470a5c7c352a5d0b284">
+          <bounds x="594" y="300" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-a9b0b13841ff48a08a706414a69755d8" source="id-089156fee64547a78a26e244234f26c3" target="id-a4a31c7b27d645a9b4f00230c567fdb6" archimateRelationship="id-71b2d158f2db411280c16d6af6c768aa"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-b96535f4690c435a9f1076198c6d458e" textPosition="1" archimateElement="id-b2ede837bb224fa0ba4ee99da9a9984e">
+          <bounds x="516" y="468" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-6ae2e4d45dcf48b89bf535dadc97a554" source="id-b96535f4690c435a9f1076198c6d458e" target="id-a4a31c7b27d645a9b4f00230c567fdb6" archimateRelationship="id-61a0860d2c3a443f8290fc253a5a3bc6"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-20fee83a84c74b12ac6ba2b71e356c62" textPosition="1" archimateElement="id-d5f8b308e2674c518c473d3fe97e7dbf">
+          <bounds x="792" y="300" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-706aa82e019244a4aab9220e70afac5b" source="id-20fee83a84c74b12ac6ba2b71e356c62" target="id-a24657681b2f4bbab656c582b5d6b90a" archimateRelationship="id-5663c186e67c446ea712695c4dbba69e"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-6d67af6909224ef896f8476209893c26" textPosition="1" archimateElement="id-93d6718dd75e402c911b7dc7845b8f4e">
+          <bounds x="936" y="300" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-a9ba9efcd0444bd3b4569c2384048ef4" source="id-6d67af6909224ef896f8476209893c26" target="id-5e8c54a69e3a4b1a969eea76c53c22a5" archimateRelationship="id-93dc3d324b004b6387bfc5ebb97efa85"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-daa893fa557942b8955fffa3a5c9f998" textPosition="1" archimateElement="id-4c09c480acb64af68d114c1d0663c4ef">
+          <bounds x="1080" y="468" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ad459e36fd044a7c947e4b6365ce869e" source="id-daa893fa557942b8955fffa3a5c9f998" target="id-5138d907436243baa511384ce875a025" archimateRelationship="id-eaeb1933f68348db9e2922c661a3c9e7"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-ce5715533f534a18920eea2b9f2b1224" textPosition="1" archimateElement="id-9834ceacc1244471b3cb7dd2ed871e88">
+          <bounds x="792" y="468" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-0719eec55a2d4ccfbe814f119b33985f" source="id-ce5715533f534a18920eea2b9f2b1224" target="id-a24657681b2f4bbab656c582b5d6b90a" archimateRelationship="id-a269b743f1554a5694f9ca0ae6faa3c6"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-1d02fe2b8e8d4c18b22e2954008f8f22" textPosition="1" archimateElement="id-75a603d93bad4e71bdbee7c7fec4ec3e">
+          <bounds x="648" y="468" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-8e0ba68ce4a649058692eed27054debd" source="id-1d02fe2b8e8d4c18b22e2954008f8f22" target="id-a4a31c7b27d645a9b4f00230c567fdb6" archimateRelationship="id-b77ab15e036e406ba240c23bf20fce5f"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-459a962008024133b45ff2d5da504536" targetConnections="id-5689b7ecf6c9480097db931bcf209d8e" textPosition="1" archimateElement="id-a4e6ce0a5f174bcaac4f8c51f1321c5c">
+          <bounds x="156" y="384" width="180" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-0a4d9b18cc9f4455996751989e44b91e" source="id-459a962008024133b45ff2d5da504536" target="id-a06723c38d6c4911b66aabbf890d58c1" archimateRelationship="id-192667f5d7d945ef84a37c1c08595530"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-a06723c38d6c4911b66aabbf890d58c1" targetConnections="id-d4a7ef71883d47e7b2bd55f8ea7b8221 id-f4321e060ec44a3681c50f8567b1bd15 id-0a4d9b18cc9f4455996751989e44b91e" textPosition="1" archimateElement="id-6619640fcb9d41afae30213805ad9d86">
+          <bounds x="372" y="384" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-9d30b747ac0d4d0d85cbe2475a378770" source="id-a06723c38d6c4911b66aabbf890d58c1" target="id-a4a31c7b27d645a9b4f00230c567fdb6" archimateRelationship="id-db2c45dd5e3d4ff99faf8894be6d5d4f"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-a4a31c7b27d645a9b4f00230c567fdb6" targetConnections="id-8e0ba68ce4a649058692eed27054debd id-a9b0b13841ff48a08a706414a69755d8 id-6ae2e4d45dcf48b89bf535dadc97a554 id-9d30b747ac0d4d0d85cbe2475a378770" textPosition="1" archimateElement="id-18e1574f95594d87b6b841c28e6910dd">
+          <bounds x="516" y="384" width="252" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-7f880e712a714b1888511e61e72d6510" source="id-a4a31c7b27d645a9b4f00230c567fdb6" target="id-a24657681b2f4bbab656c582b5d6b90a" archimateRelationship="id-92db1634a8874d119ced1359e332079c"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-a24657681b2f4bbab656c582b5d6b90a" targetConnections="id-706aa82e019244a4aab9220e70afac5b id-0719eec55a2d4ccfbe814f119b33985f id-7f880e712a714b1888511e61e72d6510" textPosition="1" archimateElement="id-4123b36a2e324687be745599e8455ad3">
+          <bounds x="792" y="384" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-9a23808f49424ee68e3ba16d069c5c1a" source="id-a24657681b2f4bbab656c582b5d6b90a" target="id-5e8c54a69e3a4b1a969eea76c53c22a5" archimateRelationship="id-e0edbc84498b4fd2a2f95ec5e23c1280"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-5e8c54a69e3a4b1a969eea76c53c22a5" targetConnections="id-a9ba9efcd0444bd3b4569c2384048ef4 id-9a23808f49424ee68e3ba16d069c5c1a" textPosition="1" archimateElement="id-fd9e7ccc1a354a228ed8f115bb2ca9f0">
+          <bounds x="936" y="384" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-0e9f164485424f0d86edb6380f9a23b2" source="id-5e8c54a69e3a4b1a969eea76c53c22a5" target="id-5138d907436243baa511384ce875a025" archimateRelationship="id-456daf2596dc4d6eb719c1c81ebec239"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-5138d907436243baa511384ce875a025" targetConnections="id-ad459e36fd044a7c947e4b6365ce869e id-0e9f164485424f0d86edb6380f9a23b2" archimateElement="id-1ccffb4f33194bcca879915bbdfa4da4">
+          <bounds x="1080" y="384" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-a29f56c4919b48258c208592641ca955" source="id-5138d907436243baa511384ce875a025" target="id-f57b80ba409341c0876ee95d7b3ab7e9" archimateRelationship="id-63120a3216ec4460b05b61de7cdac65a"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-f57b80ba409341c0876ee95d7b3ab7e9" targetConnections="id-a29f56c4919b48258c208592641ca955" textPosition="1" archimateElement="id-e9cda5d58e7e432dae3c73938d1d135e">
+          <bounds x="1236" y="384" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-2a25013a85ca4a25ab605958f122f290" source="id-f57b80ba409341c0876ee95d7b3ab7e9" target="id-b0b0a74d70e7413694132caeaf58edf8" archimateRelationship="id-c1144bcf18b2403ea0967bda40cddf96"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-b0b0a74d70e7413694132caeaf58edf8" targetConnections="id-2a25013a85ca4a25ab605958f122f290" textPosition="1" archimateElement="id-8830e09764df4c0cb699ed7a673b1f85">
+          <bounds x="1236" y="468" width="120" height="55"/>
         </child>
       </element>
     </folder>
