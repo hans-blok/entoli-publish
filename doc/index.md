@@ -12,6 +12,10 @@ Een beknopte, visuele introductie op de architectuur — vijf views op een rij, 
 
 Hoe Entoli waarde creëert, levert en verzilvert: van klant en klantprobleem, via waardepropositie en aanbod, naar verdienmechanisme.
 
+### [Business Model Canvas](business-model/business-model-canvas.md)
+
+Datzelfde businessmodel in het Osterwalder-canvas: negen blokken, in één oogopslag.
+
 ### [Architectuurmodel](views/index.html){:target="_blank"}
 
 De ArchiMate-architectuur achter Entoli: business-, applicatie- en technologielagen, en de views die daaruit zijn opgebouwd.

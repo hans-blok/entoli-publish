@@ -14,6 +14,10 @@ Elk item is gelabeld:
 
 Waar de bron onvoldoende antwoord geeft, is dat hier expliciet zichtbaar gemaakt — niet stilzwijgend ingevuld.
 
+![Entoli Business Model Canvas — de negen Osterwalder-blokken ingevuld vanuit het Entoli-businessmodel](bmc.png)
+
+*Hetzelfde businessmodel als het [Entoli Business Model](business-model.md), gestructureerd in het negen-blokken Business Model Canvas-format.*
+
 ## Customer Problems and Needs
 
 Overgenomen uit `business-model.md` §2–§4, als basis voor het hele canvas:
