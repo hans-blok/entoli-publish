@@ -8,6 +8,10 @@ Met views en korte beschrijvingen leggen we vast wat we hebben besloten of maken
 
 [Open architectuurmodel](views/index.html){:target="_blank"}
 
+## Entoli in een notendop
+
+[Entoli in een notendop](https://claude.ai/code/artifact/aa438e42-f91f-44e6-a867-2bdf6e999881){:target="_blank"} — vijf ArchiMate-weergaven op een rij, elk met een korte inleiding.
+
 ## Entoli business model
 
 ![Entoli business model](artikelen/Entoli%20business%20model.png)
