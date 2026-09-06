@@ -48,11 +48,37 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap">POS-TMD-EXT	Extracting	
-POS-TMD-STR	Structuring	
-POS-TMD-TRF	Transforming
-POS-TMD-EVL	Evaluating	
-POS-TMD-ORI	Originating	</div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Task Regime is de classificatie-as die per Agent Intent vastlegt welke vorm van bewerking wordt uitgevoerd en welke outputstructuur daaruit moet volgen: wat voor type operatie op het aangeleverde materiaal wordt toegepast, en hoe het resultaat gestructureerd moet zijn.
+
+DOEL
+Voor iedere Agent Intent expliciet maken welk type bewerking wordt uitgevoerd en welke outputvorm daarbij hoort, zodat dit vooraf ondubbelzinnig vaststaat, onafhankelijk van welke kennis toegankelijk is (Source Regime) en welke betekenistransformatie is toegestaan (Synthesis Regime).
+
+LEIDENDE VRAAG
+Welk type bewerking voert deze Agent Intent uit op het aangeleverde materiaal, en welke outputstructuur moet daaruit volgen?
+
+WAARDEN
+Extracting &#8212; specifieke elementen uit het aangeleverde materiaal identificeren en overnemen; de output is een afgebakende deelverzameling van de bron (lijst, uittreksel, tabel), zonder auteurschap voorbij wat werd gelokaliseerd.
+Structuring &#8212; relaties, ordening of architectuur binnen het materiaal expliciet maken; de output maakt bestaande samenhang zichtbaar, zonder narratieve of analytische toevoeging.
+Transforming &#8212; output afleiden of omzetten vanuit het bronmateriaal in een andere vorm, strikt herleidbaar tot die bron.
+Evaluating &#8212; het materiaal beoordelen tegen expliciete criteria; elk oordeel is herleidbaar tot het specifieke criterium waarop het is gebaseerd.
+Originating &#8212; content produceren die niet in het bronmateriaal aanwezig is en er niet strikt uit afleidbaar is; elke instantie van zulke content moet expliciet als zodanig gemarkeerd worden.
+
+RELATIES
+Task Regime is onafhankelijk van (orthogonaal aan) Source Regime en Synthesis Regime: elke as wordt afzonderlijk gedeclareerd per Agent Intent. Task Regime is &#233;&#233;n van de drie specialisaties van Execution Regime, naast Source Regime en Synthesis Regime. Alleen wanneer de Reasoning Mode van de Agent Cognitive is, declareert een Agent Intent precies &#233;&#233;n positie op Task Regime (zie Reasoning Mode, Execution Regime).
+
+BEPERKINGEN
+Task Regime is geen brontoegangsbeperking (dat is Source Regime): Task Regime bepaalt niet welke kennis mag worden aangesproken. Task Regime is geen betekenistransformatiebeperking (dat is Synthesis Regime): Task Regime bepaalt niet wat met toegelaten betekenis mag worden gedaan, alleen welke vorm en structuur de bewerking zelf heeft. Task Regime is geen classificatie van voortgangslogica: geen enkele waarde definieert iteratie, vertakking of meerstaps-gedrag &#8212; elke waarde is uitvoerbaar als &#233;&#233;n deterministische stap.
+
+INVARIANTEN
+Iedere Agent Intent waarvoor Task Regime van toepassing is (zie Execution Regime, Reasoning Mode) heeft precies &#233;&#233;n waarde op deze as. De vijf waarden zijn onderling uitsluitend: geen twee waarden staan dezelfde combinatie van toegestaan en verboden gedrag toe.
+
+Voorbeelden:
+- Extracting &#8212; Bijvoorbeeld: haal alle expliciete definities van Business Objects uit een canonbestand.
+- Structuring &#8212; Bijvoorbeeld: orden gevonden domeinuitspraken in begrippen, feittypen en rollen.
+- Transforming &#8212; Bijvoorbeeld: zet een vastgesteld conceptueel model om naar een logisch model met behoud van betekenis.
+- Evaluating &#8212; Bijvoorbeeld: toets een logisch model tegen het conceptuele model en rapporteer afwijkingen.
+- Originating &#8212; Bijvoorbeeld: formuleer kandidaat-concepten voor een nieuw kennisgebied waarvoor nog geen brondefinitie bestaat.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -76,8 +102,14 @@ POS-TMD-ORI	Originating	</div>
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -94,12 +126,12 @@ POS-TMD-ORI	Originating	</div>
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-223a6f2e191149ffaf02293cf9ca11e1.html" target="element" title="specify">specify</a></td>
+											<td><a href="../elements/id-38adee02377c428394b74a3f91a59c25.html" target="element" title="specify">specify</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
 											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-38adee02377c428394b74a3f91a59c25.html" target="element" title="specify">specify</a></td>
+											<td><a href="../elements/id-223a6f2e191149ffaf02293cf9ca11e1.html" target="element" title="specify">specify</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
 											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
@@ -123,16 +155,6 @@ POS-TMD-ORI	Originating	</div>
 											<td><a href="../elements/id-0d429e75187648869d6255d0d1614a16.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-7d4fb89b37be4413ab38bfe3005524e3.html" target="element"> OPERATIONAL CONTEXT AGENT SERVICE</a></td>
-											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-56c1f7fe7d634593a65e3a9ecac965b2.html" target="element" title="1 is governed by *">1 is governed by *</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-97eb76d10f924f2e94ed85c64063ccdb.html" target="element"> core rule</a></td>
-											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-a786a2f2bdf047e9bef927802667d0bb.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
 											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
 										</tr>
 							</tbody>

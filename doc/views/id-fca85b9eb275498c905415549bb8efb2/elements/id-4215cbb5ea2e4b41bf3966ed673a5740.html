@@ -48,7 +48,28 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Handoff is de expliciete overdracht van relevante interpretatie en context vanuit een afgeronde Execution naar vervolgwerk. Het legt vast wat een volgende uitvoering nodig heeft om het werk betekenisvol voort te zetten, zonder afhankelijk te zijn van impliciete kennis over de voorafgaande uitvoering.
+
+DOEL
+Het gecontroleerd en herleidbaar overdragen van context tussen opeenvolgende Executions, zodat vervolgwerk kan voortbouwen op eerder uitgevoerd werk zonder de volledige voorgaande uitvoering opnieuw te hoeven interpreteren.
+
+LEIDENDE VRAAG
+Welke interpretatie en context uit deze Execution moeten beschikbaar zijn om vervolgwerk correct te kunnen uitvoeren?
+
+RELATIES
+Een Execution produceert nul of maximaal &#233;&#233;n Handoff. Iedere Handoff wordt door precies &#233;&#233;n Execution geproduceerd. Een Handoff wordt opgenomen in precies &#233;&#233;n Instruction Set; een Instruction Set kan nul of meerdere Handoffs bevatten. Via het Instruction Set wordt de Handoff beschikbaar voor een volgende Execution.
+
+BEPERKINGEN
+Een Handoff is geen Artifact en vertegenwoordigt niet het duurzame werkproduct van een Execution. Het is evenmin een directe koppeling tussen twee Executions. Een Handoff draagt context over via het Instruction Set van vervolgwerk. De technische representatie, bijvoorbeeld als bestand, behoort niet tot het conceptuele begrip Handoff.
+
+INVARIANTEN
+Iedere Handoff is afkomstig uit precies &#233;&#233;n Execution en wordt opgenomen in precies &#233;&#233;n Instruction Set. Een Handoff kan uitsluitend context overdragen die voortkomt uit de Execution die de Handoff heeft geproduceerd. De ontvangende Execution is afleidbaar via het Instruction Set waarin de Handoff is opgenomen.
+
+Voorbeelden:
+- Semantische bevindingen voor conceptuele modellering &#8212; Overdracht van relevante interpretaties, ambigu&#239;teiten en besluiten uit NIAM-analyse naar de volgende uitvoeringsstap.
+- Conceptuele modelbesluiten voor logisch modelleren &#8212; Overdracht van de interpretatie die de Logisch modelleur nodig heeft om het conceptuele model correct te realiseren.
+- Reviewbevindingen voor canonherziening &#8212; Context uit een afgeronde review die nodig is om gericht canonieke concepten te herzien.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,7 +93,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -90,15 +114,21 @@
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-d6ecd9b4e5384121810029675c6fd3c5.html" target="element" title="1 is produced by 1">1 is produced by 1</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-4215cbb5ea2e4b41bf3966ed673a5740.html" target="element"> handoff</a></td>
-											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-a8d902efdfdc4fe983beb2813d6c206b.html" target="element" title="0..* is included in 1">0..* is included in 1</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-4215cbb5ea2e4b41bf3966ed673a5740.html" target="element"> handoff</a></td>
 											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
+										</tr>
+									<tr>
+											<td><a href="../elements/id-02698825725c4cbc8456ace57933a08f.html" target="element" title="1 produces 1">1 produces 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
+											<td><a href="../elements/id-4215cbb5ea2e4b41bf3966ed673a5740.html" target="element"> handoff</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-6156496a0e014a68a2026cc2e13d3a3e.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-bcfa69ae40094ba780197b67f2a9adc5.html" target="element"> work-execution</a></td>
+											<td><a href="../elements/id-4215cbb5ea2e4b41bf3966ed673a5740.html" target="element"> handoff</a></td>
 										</tr>
 							</tbody>
 						</table>

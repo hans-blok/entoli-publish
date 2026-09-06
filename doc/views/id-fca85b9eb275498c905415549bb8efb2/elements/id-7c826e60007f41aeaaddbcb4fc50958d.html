@@ -48,8 +48,27 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap">Definition
-A rule that is defined at the level of an agent or intent, is human-readable, and may be configured or adapted within defined boundaries.</div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Agent Intent Rule is een normatieve regel die specifiek aan &#233;&#233;n Agent Intent is gebonden en uitsluitend binnen de eigen werking van die Agent Intent van toepassing is &#8212; niet gedeeld met enige andere Agent Intent van dezelfde Agent.
+
+DOEL
+Operationeel gedrag vastleggen dat specifiek is voor &#233;&#233;n afzonderlijke capability van een Agent, zodat verschillen tussen Agent Intents van dezelfde Agent expliciet en herleidbaar kunnen worden vastgelegd zonder de gedeelde, agentbrede normen van Agent Rule te hoeven wijzigen.
+
+LEIDENDE VRAAG
+Welke norm geldt uitsluitend voor deze ene Agent Intent, en niet voor de andere Agent Intents van dezelfde Agent?
+
+RELATIES
+Een Agent Intent Rule beperkt precies &#233;&#233;n Agent Intent; een Agent Intent kan door nul of meer Agent Intent Rules worden beperkt. Een Agent Intent Rule is &#233;&#233;n van de vier specialisaties van Rule, naast Agent Rule, Canon Rule en Core Rule.
+
+BEPERKINGEN
+Een Agent Intent Rule is geen Agent Rule: die geldt voor alle Agent Intents van een Agent gezamenlijk, niet voor &#233;&#233;n specifieke Agent Intent. Een Agent Intent Rule is geen Canon Rule: zij is niet canoniek afgeleid, niet ecosysteembreed, en configureerbaar binnen de grenzen die het agent-contract stelt.
+
+INVARIANTEN
+Een Agent Intent Rule is uitsluitend van toepassing binnen de eigen werking van de ene Agent Intent waaraan zij is gekoppeld, en wordt nooit gedeeld met een andere Agent Intent van dezelfde Agent.
+
+Voorbeelden:
+- Behoud de conceptuele betekenis &#8212; Regel voor het intent Ontwerp logisch datamodel: logische modellering mag de betekenis van het conceptuele model niet stilzwijgend wijzigen.
+- Maak ambigu&#239;teit expliciet &#8212; Regel voor het intent Analyseer domeinuitspraken: meerdere plausibele interpretaties worden als ambigu&#239;teit gerapporteerd in plaats van willekeurig opgelost.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -75,6 +94,9 @@ A rule that is defined at the level of an agent or intent, is human-readable, an
 							<tbody>
 								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -107,9 +129,9 @@ A rule that is defined at the level of an agent or intent, is human-readable, an
 											<td><a href="../elements/id-7d4fb89b37be4413ab38bfe3005524e3.html" target="element"> OPERATIONAL CONTEXT AGENT SERVICE</a></td>
 											<td><a href="../elements/id-7c826e60007f41aeaaddbcb4fc50958d.html" target="element"> agent intent rule</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-918b2c7e1fba4b43b4c8d676815e3ce1.html" target="element" title=""></a></td>
+											<td><a href="../elements/id-75548c83d44a4e06b80da1cc4cdaaf08.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-1102502d3ae0409784523400c4fbe5dc.html" target="element"> agent-definition</a></td>
 											<td><a href="../elements/id-7c826e60007f41aeaaddbcb4fc50958d.html" target="element"> agent intent rule</a></td>
 										</tr>
 							</tbody>

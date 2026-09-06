@@ -48,7 +48,28 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Agent Intent is een expliciet aanroepbare capability van een Agent: &#233;&#233;n samenhangende eenheid van werk die de Agent binnen zijn agent-boundary aanbiedt, vastgelegd in het agent-contract van die Agent.
+
+DOEL
+Het werk van een Agent opdelen in expliciet aanroepbare, afzonderlijk classificeerbare eenheden, zodat elke eenheid werk zijn eigen bronregime, synthese-toestemming en taakvorm kan dragen zonder de grenzen van de Agent zelf te wijzigen.
+
+LEIDENDE VRAAG
+Welke specifieke, aanroepbare capability van deze Agent wordt hier uitgevoerd?
+
+RELATIES
+Een Agent stelt zijn capabilities beschikbaar via &#233;&#233;n of meer Agent Intents; iedere Agent Intent behoort tot precies &#233;&#233;n Agent. Een Agent Intent wordt aangeroepen door nul of meer Execution Step Specifications; iedere Execution Step Specification roept precies &#233;&#233;n Agent Intent aan. Alleen wanneer de Reasoning Mode van de Agent Cognitive is, declareert een Agent Intent precies &#233;&#233;n positie op elk van de drie specialisaties van Execution Regime (Source Regime, Synthesis Regime, Task Regime); onder Deterministic declareert de Agent Intent geen van de drie (zie Reasoning Mode, Execution Regime). Een Agent Intent drijft de samenstelling van nul of meer Instruction Sets aan. Een Agent Intent Rule beperkt precies &#233;&#233;n Agent Intent.
+
+BEPERKINGEN
+Een Agent Intent is geen Agent: het is &#233;&#233;n capability binnen de grenzen van een Agent, niet de Agent zelf, en overschrijdt nooit de agent-boundary van zijn Agent. Een Agent Intent is geen Execution Step Specification: de Execution Step Specification specificeert wanneer en hoe een Agent Intent wordt aangeroepen, maar is niet de capability zelf. Een Agent Intent is geen Execution: de Execution is de concrete, tijdgebonden uitvoering; de Agent Intent is de aanroepbare capability die daarbij wordt aangesproken. Een Agent Intent declareert nooit zijn eigen Reasoning Mode: het erft die van zijn Agent (zie Reasoning Mode).
+
+INVARIANTEN
+Iedere Agent Intent behoort tot precies &#233;&#233;n Agent en opereert altijd binnen de agent-boundary van die Agent. Iedere Agent Intent van een Agent met Reasoning Mode Cognitive wordt gegoverneerd door precies &#233;&#233;n Execution Regime van elke specialisatie; iedere Agent Intent van een Agent met Reasoning Mode Deterministic wordt door geen enkele specialisatie gegoverneerd.
+
+Voorbeelden:
+- Analyseer domeinuitspraken &#8212; Aanroepbare capability van de NIAM-analist om uit natuurlijke taal kandidaat-begrippen, feittypen en rollen af te leiden.
+- Ontwerp logisch datamodel &#8212; Aanroepbare capability van de Logisch modelleur om een vastgesteld conceptueel model te vertalen naar een logisch model.
+- Review conceptueel model &#8212; Aanroepbare capability van de Canon Architect om semantische inconsistenties en ontbrekende architectuurbesluiten te identificeren.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -74,6 +95,9 @@
 							<tbody>
 								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -105,10 +129,10 @@
 											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
 											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-dba4ff33005844069bec66f442fc900b.html" target="element" title="1..* is orchestrated by 1">1..* is orchestrated by 1</a></td>
+											<td><a href="../elements/id-f636a1c2b36f4eacba8024402f6ff432.html" target="element" title="1 is invoked by 0..*">1 is invoked by 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
-											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
+											<td><a href="../elements/id-95a0e0e6f3e1431da1195ba095f3435d.html" target="element"> execution step specification</a></td>
 										</tr>
 									<tr>
 											<td><a href="../elements/id-r2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7.html" target="element" title=""></a></td>
@@ -121,19 +145,19 @@
 											<td><a href="../elements/id-f09c07fd8a954e60bcbd179db797c42b.html" target="element"> agent services</a></td>
 											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
 										</tr><tr>
+											<td><a href="../elements/id-002b70b66cce4964a129d5db78c7bd59.html" target="element" title="0..* constraints 1">0..* constraints 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-7c826e60007f41aeaaddbcb4fc50958d.html" target="element"> agent intent rule</a></td>
+											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
+										</tr><tr>
 											<td><a href="../elements/id-a37a9045eb9a4634be93f7d24fc513d9.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-7d4fb89b37be4413ab38bfe3005524e3.html" target="element"> OPERATIONAL CONTEXT AGENT SERVICE</a></td>
 											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-c27e73939c4848118e0007e3970c7260.html" target="element" title=""></a></td>
+											<td><a href="../elements/id-d84d2a9df5c843f18dc89d70bc1ea2bb.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
-											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-002b70b66cce4964a129d5db78c7bd59.html" target="element" title="0..* constraints 1">0..* constraints 1</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-7c826e60007f41aeaaddbcb4fc50958d.html" target="element"> agent intent rule</a></td>
+											<td><a href="../elements/id-1102502d3ae0409784523400c4fbe5dc.html" target="element"> agent-definition</a></td>
 											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
 										</tr>
 							</tbody>

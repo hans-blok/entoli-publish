@@ -48,7 +48,31 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Het Semantic Model is de volledige, autoritatieve semantische graaf die door &#233;&#233;n Canon wordt gedefinieerd. Het bestaat uit de canonieke Elements en de Relationships die hun onderlinge betekenis en structuur expliciet maken.
+
+DOEL
+E&#233;n volledige en gezaghebbende structuur van betekenis per Canon bieden, zodat betekenis eenduidig, herleidbaar en onafhankelijk van een specifieke Agent of Execution beschikbaar is en contextspecifieke selecties daarvan reproduceerbaar kunnen worden afgeleid.
+
+LEIDENDE VRAAG
+Welke Elements en Relationships vormen samen de volledige, gezaghebbende semantische structuur die deze Canon definieert?
+
+SAMENSTELLING
+Een Semantic Model bestaat uit &#233;&#233;n of meer Elements en nul of meer Relationships. Iedere Relationship heeft precies &#233;&#233;n from-Element en precies &#233;&#233;n to-Element; beide endpoints behoren tot hetzelfde Semantic Model als de Relationship.
+
+RELATIES
+Een Canon definieert precies &#233;&#233;n Semantic Model. Een Semantic Model bestaat uit &#233;&#233;n of meer Elements en nul of meer Relationships.
+
+BEPERKINGEN
+Het Semantic Model is geen Canon: de Canon is de autoritatieve semantische grondslag die het Semantic Model definieert. Het Semantic Model is geen Semantic Scope: het Semantic Model is volledig en canon-breed, terwijl een Semantic Scope een contextspecifieke selectie uit het Semantic Model is. Het Semantic Model is evenmin een execution-specifiek artifact en verandert niet per Execution. De technische wijze waarop het Semantic Model wordt samengesteld, gecompileerd of opgeslagen behoort niet tot het conceptuele begrip.
+
+INVARIANTEN
+Ieder Semantic Model wordt door precies &#233;&#233;n Canon gedefinieerd. Iedere Relationship in het Semantic Model verwijst met zowel from als to naar een Element binnen datzelfde Semantic Model. Het Semantic Model is read-only tijdens uitvoering en wordt niet door een Agent of Execution gewijzigd.
+
+Voorbeelden:
+- Semantic Core Semantic Model &#8212; Autoritatieve graaf van de canonieke Semantic Core-concepten en hun Relationships.
+- Agent Development Semantic Model &#8212; Autoritatieve graaf met onder andere Agent, Agent Intent, Instruction Set, Execution en hun onderlinge relaties.
+- Data Modelling Semantic Model &#8212; Semantische graaf voor concepten rond conceptuele en logische datamodellering.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,7 +96,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -95,20 +122,15 @@
 											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
 											<td><a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> rule</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-494982c13fee41949fe358f0122f6a41.html" target="element" title=""></a></td>
+											<td><a href="../elements/id-aba60ccef7794a86b6ec9521783551e2.html" target="element" title="1 consists of 0..*">1 consists of 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
-											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
+											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-e617219ea1d44ddda848bafc8aa91de8.html" target="element" title="1 consists of 1..*">1 consists of 1..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
 											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-aba60ccef7794a86b6ec9521783551e2.html" target="element" title="1 consists of 0..*">1 consists of 0..*</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
-											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
 										</tr>
 									<tr>
 											<td><a href="../elements/id-r5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0.html" target="element" title=""></a></td>
@@ -121,16 +143,6 @@
 											<td><a href="../elements/id-3023a65bee0f47debc1128a2f8c77e92.html" target="element"> model</a></td>
 											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-4681aef73b15433ea69d5852356fc3c0.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation</a></td>
-											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-712b54ee8ac64265a991fddf90d99e0c.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON</a></td>
-											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-3a220be3cfb94eb3bcddc1a0ccdd9f8d.html" target="element" title="1 defines 1">1 defines 1</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
@@ -139,6 +151,11 @@
 											<td><a href="../elements/id-85d191bae5a846b19b93b1a727dfa494.html" target="element" title="uses">uses</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-a21ac844b75946b0b94ab3450c81ed27.html" target="element"> agent</a></td>
+											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-a1a1a1a1b2b2b2b2c3c3c3c3d4d4d4d4.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-0f80755c4e134fe4aa43acca7aa28927.html" target="element"> semantic-foundation</a></td>
 											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
 										</tr>
 							</tbody>

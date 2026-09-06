@@ -48,7 +48,27 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een LLM Model is het specifieke taalmodel, aangeboden door precies &#233;&#233;n LLM Provider, dat door een Model Assignment kan worden geselecteerd voor gebruik tijdens een Execution.
+
+DOEL
+Expliciet vastleggen welk specifiek model wordt ingezet, onafhankelijk van de Agent, de Agent Intent of de Model Assignment die het selecteert, zodat hetzelfde model voor verschillende soorten werk met verschillende configuraties kan worden ingezet.
+
+LEIDENDE VRAAG
+Welk specifiek taalmodel, van welke LLM Provider, wordt hier geselecteerd?
+
+RELATIES
+Een LLM Provider verstrekt &#233;&#233;n of meer LLM Models; ieder LLM Model wordt verstrekt door precies &#233;&#233;n LLM Provider. Een LLM Model wordt geselecteerd door nul of meer Model Assignments.
+
+BEPERKINGEN
+LLM Model is geen LLM Provider en geen LLM Account. LLM Model is geen Model Assignment: de Model Assignment selecteert en configureert het gebruik van een LLM Model voor een Execution, maar is niet het model zelf.
+
+INVARIANTEN
+Ieder LLM Model wordt verstrekt door precies &#233;&#233;n LLM Provider. Een LLM Model kan door nul of meer Model Assignments worden geselecteerd, zonder dat het model daardoor zelf van aanbieder wijzigt.
+
+Voorbeelden:
+- GPT-5.4 &#8212; Voorbeeld van een LLM Model dat door een Provider wordt aangeboden en via een Model Assignment kan worden geselecteerd.
+- Claude Sonnet 4.6 &#8212; Voorbeeld van een ander LLM Model dat voor dezelfde professionele capability geselecteerd zou kunnen worden.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,7 +92,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -90,11 +113,6 @@
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-88addcedb0b045c2bb0a43f9837e7058.html" target="element" title="1 is configured by0..*">1 is configured by0..*</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-47c7669317cf4b9aaec0c64751602214.html" target="element"> llm-model</a></td>
-											<td><a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-configuration</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-242ceeeae34a4b5a9c58ce05cda70aa1.html" target="element" title=" 1 provides 1..*"> 1 provides 1..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-47c7669317cf4b9aaec0c64751602214.html" target="element"> llm-model</a></td>
@@ -109,6 +127,11 @@
 											<td><a href="../elements/id-b76275b6ae1f4fc2a5c6bac72a247b3b.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-dcdb53b36a684e4fbdcbf1e0c39cb195.html" target="element"> LLM-EXECUTION CONFIGURATION</a></td>
+											<td><a href="../elements/id-47c7669317cf4b9aaec0c64751602214.html" target="element"> llm-model</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-a5a5a5a5b6b6b6b6c7c7c7c7d8d8d8d8.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-64f19a334e974108b93f342c683cf1d5.html" target="element"> execution-configuration</a></td>
 											<td><a href="../elements/id-47c7669317cf4b9aaec0c64751602214.html" target="element"> llm-model</a></td>
 										</tr>
 							</tbody>

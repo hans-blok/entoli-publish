@@ -48,7 +48,28 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap">A relationship is an explicit, directed semantic link between two elements. Relationships carry the meaning of the graph; elements without relationships have meaning, but not structure.</div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Relationship is een expliciete, gerichte semantische verbinding tussen twee Elements. Relationships dragen de betekenis van de graaf; Elements zonder Relationships hebben wel betekenis, maar geen structuur.
+
+DOEL
+De onderlinge samenhang tussen Elements expliciet en herleidbaar maken, zodat betekenis niet alleen bestaat als losse, ge&#239;soleerde eenheden, maar als een navigeerbare, gerichte structuur.
+
+LEIDENDE VRAAG
+Welke gerichte verbinding bestaat hier tussen welke twee Elements, en tot welk Semantic Model behoort deze verbinding?
+
+RELATIES
+Een Relationship heeft precies &#233;&#233;n from-Element en precies &#233;&#233;n to-Element; een Element kan het from- of to-eindpunt zijn van nul of meer Relationships. Een Semantic Model bestaat uit nul of meer Relationships. Een Relationship kan worden opgenomen in nul of meer Instruction Sets.
+
+BEPERKINGEN
+Een Relationship is geen Element: zij verbindt twee Elements, maar is zelf geen betekeniseenheid. Een Relationship zonder gedeclareerd from- of to-Element bestaat niet: beide eindpunten zijn verplicht.
+
+INVARIANTEN
+Iedere Relationship heeft precies &#233;&#233;n from-Element en precies &#233;&#233;n to-Element. Beide eindpunten van een Relationship behoren tot hetzelfde Semantic Model als de Relationship zelf.
+
+Voorbeelden:
+- Agent &#8212; exposes capabilities via &#8594; Agent Intent &#8212; Gerichte semantische relatie tussen twee Elements in het Agent Development Semantic Model.
+- Execution Step Specification &#8212; is executed as &#8594; Execution &#8212; Relatie die specification en concrete runtime occurrence van elkaar onderscheidt.
+- Execution &#8212; produces &#8594; Artifact &#8212; Relatie die vastlegt dat het duurzame werkproduct door de concrete uitvoering wordt geproduceerd.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -75,6 +96,9 @@
 								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
 						</table>
@@ -100,25 +124,15 @@
 											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
 											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-f931cb08494f401992a76c86f60328c6.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
-											<td><a href="../elements/id-56891299dfaf43d998b552b08cc4e1d2.html" target="element"> Business Object</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-59e56e7d6a75461f99649f0a6c1e549c.html" target="element" title="1..* is included in 0 ..*">1..* is included in 0 ..*</a></td>
+											<td><a href="../elements/id-59e56e7d6a75461f99649f0a6c1e549c.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
 											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
 										</tr>
 									<tr>
-											<td><a href="../elements/id-a1545d7a47724e4fadaa99158a0b52b1.html" target="element" title=""></a></td>
+											<td><a href="../elements/id-ed4e270e644e43898883978020b0629f.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation</a></td>
-											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-a9b477b9cdba485b96f8a7c2235ad361.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON</a></td>
+											<td><a href="../elements/id-0f80755c4e134fe4aa43acca7aa28927.html" target="element"> semantic-foundation</a></td>
 											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-aba60ccef7794a86b6ec9521783551e2.html" target="element" title="1 consists of 0..*">1 consists of 0..*</a></td>

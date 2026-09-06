@@ -48,22 +48,27 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap">Definition
-A rule that originates from the canon and is not alterable by the user, and whose purpose is to guarantee structural and behavioural integrity of the system.
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Core Rule is een regel die afkomstig is uit de canon, niet door de gebruiker wijzigbaar is, en tot doel heeft de structurele en gedragsmatige integriteit van het systeem te waarborgen. Een Core Rule governt precies &#233;&#233;n Execution Regime.
 
-Characteristics
+DOEL
+Een canoniek gezaghebbende, voor de gebruiker onveranderlijke waarborg vastleggen die de integriteit van Execution Regime beschermt, onafhankelijk van en niet noodzakelijk zichtbaar binnen enig Instruction Set.
 
-Origin: canon (foundations)
-Visibility: obfuscated or hidden
-Mutability: immutable for users
-Scope: cross-agent, cross-intent
-Stability: high (versioned with canon)
+LEIDENDE VRAAG
+Welke canoniek gezaghebbende waarborg beschermt de integriteit van dit Execution Regime?
 
-Function
+RELATIES
+Een Core Rule governt precies &#233;&#233;n Execution Regime; een Execution Regime kan door nul of meer Core Rules worden gegovernd. Een Core Rule is &#233;&#233;n van de vier specialisaties van Rule, naast Agent Rule, Agent Intent Rule en Canon Rule.
 
-safeguards invariants
-prevents illegal behaviour
-enforces architectural doctrine</div>
+BEPERKINGEN
+Een Core Rule is geen Canon Rule: beide zijn canoniek afgeleid en onveranderlijk voor gebruikers, maar een Canon Rule normeert agent- en agent-intentgedrag en is zichtbaar als inhoud binnen een Instruction Set, terwijl een Core Rule specifiek de integriteit van Execution Regime bewaakt en niet noodzakelijk instruction-set-zichtbaar is &#8212; het gezag is gedeeld, de functie en zichtbaarheid niet. Een Core Rule is geen Agent Rule of Agent Intent Rule: geen van beide is canoniek afgeleid of onveranderlijk.
+
+INVARIANTEN
+Een Core Rule is voor de gebruiker te allen tijde onveranderlijk. Iedere Core Rule is herleidbaar tot precies &#233;&#233;n Execution Regime waarvan zij de integriteit waarborgt.
+
+Voorbeelden:
+- Preserving introduceert geen nieuwe betekenis &#8212; Core Rule die de integriteit van de positie Preserving binnen Synthesis Regime bewaakt.
+- Input-bound gebruikt alleen expliciet aangeboden bronnen &#8212; Core Rule die de toegestane bronruimte van een Source Regime bewaakt.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -87,7 +92,10 @@ enforces architectural doctrine</div>
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -121,14 +129,19 @@ enforces architectural doctrine</div>
 											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
 										</tr>
 									<tr>
+											<td><a href="../elements/id-38adee02377c428394b74a3f91a59c25.html" target="element" title="specify">specify</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
+											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
+										</tr><tr>
 											<td><a href="../elements/id-223a6f2e191149ffaf02293cf9ca11e1.html" target="element" title="specify">specify</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
 											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-38adee02377c428394b74a3f91a59c25.html" target="element" title="specify">specify</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
+											<td><a href="../elements/id-725a36246fbf44a89b70b997f59094d7.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-0f80755c4e134fe4aa43acca7aa28927.html" target="element"> semantic-foundation</a></td>
 											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
 										</tr>
 							</tbody>

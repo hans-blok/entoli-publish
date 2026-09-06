@@ -48,7 +48,31 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Reasoning Mode is de classificatie-as die op agentniveau bepaalt of de Agent Intents van een Agent onderworpen zijn aan het content-governance-model &#8212; de combinatie van Source-regime, Synthesis-regime en Task Mode &#8212; op basis van &#233;&#233;n vraag: vereist het werk van deze Agent redeneren door een LLM, of niet.
+
+DOEL
+Onderscheid maken tussen Agents die redeneren over betekenis via een LLM en Agents die volgens een vast, mechanisch proced&#233; werken zonder enige LLM-aanroep, zodat alleen voor de eerste categorie het content-governance-model daadwerkelijk van toepassing is.
+
+LEIDENDE VRAAG
+Vereist deze Agent dat een LLM redeneert over betekenis, of voert de Agent uit volgens een vaste procedure zonder redeneren?
+
+WAARDEN
+Cognitive &#8212; de Agent vereist dat een LLM redeneert over aangeleverd materiaal; elke Agent Intent van de Agent declareert Source-regime, Synthesis-regime en Task Mode.
+Deterministic &#8212; de Agent voert uit volgens een vaste procedure zonder redeneren, gerealiseerd als een script, nooit als een LLM-aanroep; geen van de Agent Intents declareert Source-regime, Synthesis-regime of Task Mode.
+
+RELATIES
+Een Reasoning Mode governt de reasoning van nul of meer Agents; iedere Agent heeft precies &#233;&#233;n Reasoning Mode, eenmalig gedeclareerd op agentniveau en overge&#235;rfd door elke Agent Intent van die Agent.
+
+BEPERKINGEN
+Reasoning Mode is geen schaal van hoeveel betekenistransformatie is toegestaan (dat is Synthesis Regime); het is een poort (gate) die bepaalt &#243;f Source Regime, Synthesis Regime en Task Regime &#252;berhaupt van toepassing zijn. Een Agent Intent declareert nooit zijn eigen Reasoning Mode; het erft de waarde van de Agent waartoe het behoort.
+
+INVARIANTEN
+Alle Agent Intents van dezelfde Agent delen dezelfde Reasoning Mode. Onder Deterministic zijn Source Regime, Synthesis Regime en Task Regime niet van toepassing op enige Agent Intent van die Agent.
+
+Voorbeelden:
+- Cognitive &#8212; Reasoning Mode voor bijvoorbeeld NIAM-analist, Logisch modelleur en Canon Architect wanneer interpretatie en semantische afweging nodig zijn.
+- Deterministic &#8212; Reasoning Mode voor functies die volgens een vastgelegde procedure uitvoeren zonder semantische LLM-redenering.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,7 +96,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -101,9 +128,9 @@
 											<td><a href="../elements/id-7d4fb89b37be4413ab38bfe3005524e3.html" target="element"> OPERATIONAL CONTEXT AGENT SERVICE</a></td>
 											<td><a href="../elements/id-6cd1f6f39e864f16855d0eda7857df01.html" target="element"> reasoning mode</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-b2cf4af9ee774bbfbb09547a5d3ef910.html" target="element" title=""></a></td>
+											<td><a href="../elements/id-8a60741f6a8a46c58c4f30004fcb34c0.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
+											<td><a href="../elements/id-0f80755c4e134fe4aa43acca7aa28927.html" target="element"> semantic-foundation</a></td>
 											<td><a href="../elements/id-6cd1f6f39e864f16855d0eda7857df01.html" target="element"> reasoning mode</a></td>
 										</tr>
 							</tbody>

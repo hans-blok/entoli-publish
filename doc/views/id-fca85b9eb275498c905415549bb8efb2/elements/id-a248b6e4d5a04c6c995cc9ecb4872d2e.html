@@ -48,7 +48,29 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap">An element is an explicitly defined, named unit of meaning within the Entoli semantic graph. Every entry in this register is an element. Elements are distinguished by their element classification and by the relationships they hold to other elements.</div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een Element is een expliciet gedefinieerde, benoemde betekeniseenheid binnen de Entoli semantische graaf. Elk Element wordt onderscheiden door zijn elementclassificatie en door de Relationships die het met andere Elements onderhoudt.
+
+DOEL
+E&#233;n ondeelbare, herleidbare betekeniseenheid bieden waaruit een Semantic Model is opgebouwd, zodat canonieke betekenis niet impliciet of ongestructureerd blijft, maar altijd terug te voeren is op met naam benoemde, classificeerbare eenheden.
+
+LEIDENDE VRAAG
+Welke expliciet benoemde betekeniseenheid wordt hier gebruikt, en tot welk Semantic Model behoort zij?
+
+RELATIES
+Een Semantic Model bestaat uit &#233;&#233;n of meer Elements. Een Element vormt het from- of het to-eindpunt van nul of meer Relationships. Een Element wordt in nul of meer Rules gebruikt; een Rule kan nul of meer Elements gebruiken. Een Element kan worden opgenomen in nul of meer Instruction Sets.
+
+BEPERKINGEN
+Een Element is geen Relationship: het Element is de betekeniseenheid zelf, de Relationship is de expliciete, gerichte verbinding tussen twee Elements. Een Element is geen Semantic Model: het Semantic Model is de volledige graaf waarvan het Element &#233;&#233;n samenstellend onderdeel is.
+
+INVARIANTEN
+Ieder Element behoort tot precies &#233;&#233;n Semantic Model. Elke Relationship waarvan een Element het from- of to-eindpunt is, behoort tot hetzelfde Semantic Model als dat Element.
+
+Voorbeelden:
+- Agent &#8212; Named unit of meaning binnen het Agent Development Semantic Model.
+- Agent Intent &#8212; Canoniek begrip voor een aanroepbare capability van een Agent.
+- Execution &#8212; Canoniek begrip voor een concrete occurrence van &#233;&#233;n Execution Step Specification.
+- Relationship &#8212; Named unit of meaning binnen de Semantic Core.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -75,6 +97,9 @@
 								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
 						</table>
@@ -90,11 +115,6 @@
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-7027db4c16314acaa1f28351faae551c.html" target="element" title="0..* is defined using 1..* ">0..* is defined using 1..* </a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
-											<td><a href="../elements/id-97eb76d10f924f2e94ed85c64063ccdb.html" target="element"> core rule</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-8ef81509a3e145e38a07c7c0ffbaabf8.html" target="element" title="1..* is included in 0 ..*">1..* is included in 0 ..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
@@ -106,34 +126,24 @@
 											<td><a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> rule</a></td>
 										</tr>
 									<tr>
-											<td><a href="../elements/id-396480c61b1e451191ffee56fd350e20.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-f89e190227f947edb9002d34258209f4.html" target="element"> Semantic Foundation</a></td>
-											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-aed44c80476b4f04900f75e7973d8831.html" target="element" title="0..* to 1">0..* to 1</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
 											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-a424eb47962c48fc9d58bbe8d5679ab3.html" target="element" title=""></a></td>
+											<td><a href="../elements/id-a910f844d5e747cf921c8657b7088c32.html" target="element" title="0..* from 1">0..* from 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
+											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-1a64cb4452254677979d1c4b380cd230.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON</a></td>
+											<td><a href="../elements/id-0f80755c4e134fe4aa43acca7aa28927.html" target="element"> semantic-foundation</a></td>
 											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-e617219ea1d44ddda848bafc8aa91de8.html" target="element" title="1 consists of 1..*">1 consists of 1..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
-											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-ea86101cb7ca4047935f28ae678c61fc.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
-											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-a910f844d5e747cf921c8657b7088c32.html" target="element" title="0..* from 1">0..* from 1</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship</a></td>
 											<td><a href="../elements/id-a248b6e4d5a04c6c995cc9ecb4872d2e.html" target="element"> element</a></td>
 										</tr>
 							</tbody>

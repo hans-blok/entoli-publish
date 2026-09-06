@@ -51,62 +51,30 @@
 						<div class="convertlinks documentation" style="white-space:pre-wrap">MODEL ASSIGNMENT (MODELTOEWIJZING)
 
 DEFINITIE
-Een Model Assignment legt vast welk LLM Model, via welk LLM Account en met welke modelparameters wordt gebruikt voor een Execution wanneer de betreffende toewijzing van toepassing is.
+Een Model Assignment legt vast welk LLM Model, met welke modelparameters, voor een Execution wordt gebruikt wanneer de toewijzing van toepassing is. Een Model Assignment kan vooraf aan een Execution Step Specification worden gekoppeld en wordt bij de concrete Execution als daadwerkelijk gebruikte toewijzing vastgelegd.
 
 DOEL
-Maakt de keuze en configuratie van een LLM voor uitvoering expliciet, zonder deze vast te leggen in de Agent, Agent Intent of het LLM Model zelf.
-Hierdoor kan hetzelfde LLM Model voor verschillende soorten werk met verschillende instellingen worden ingezet.
+Modelkeuze en modelconfiguratie expliciet scheiden van Agent, Agent Intent en LLM Model, zodat dezelfde professionele capability en dezelfde uitvoeringsspecificatie met verschillende modellen of instellingen kunnen worden uitgevoerd zonder hun betekenis te wijzigen.
 
 LEIDENDE VRAAG
-Welk LLM Model moet via welk LLM Account en met welke instellingen voor deze Execution worden gebruikt?
-
-VOORBEELDEN
-
-Default
-Model: GPT-5.4
-Temperature: 0.2
-Toepassing: standaard wanneer geen specifiekere Model Assignment van toepassing is.
-
-Architecture Exploration
-Model: GPT-5.4
-Temperature: 0.7
-Development Phase: Exploration
-Toepassing: verkennend werk waarbij variatie en het onderzoeken van alternatieven gewenst zijn.
-
-Architecture Specification
-Model: GPT-5.4
-Temperature: 0.2
-Development Phase: Specification
-Toepassing: specificerend werk waarbij consistentie en nauwkeurigheid belangrijk zijn.
-
-Architecture Review
-Model: GPT-5.4
-Temperature: 0.1
-Development Phase: Testing
-Toepassing: toetsend werk waarbij reproduceerbaarheid en strikte beoordeling gewenst zijn.
-
-Fast Operational Task
-Model: GPT-5.4-mini
-Temperature: 0.1
-Toepassing: relatief eenvoudige uitvoeringen waarbij snelheid en kosten zwaarder wegen.
-
-De modelnamen en temperaturewaarden hierboven zijn voorbeelden, geen canonieke voorgeschreven waarden.
+Welk beschikbaar LLM Model moet met welke instellingen voor deze uitvoering worden gebruikt?
 
 RELATIES
-Een Model Assignment selecteert precies &#233;&#233;n LLM Model.
-Een Model Assignment gebruikt precies &#233;&#233;n LLM Account.
-Een Model Assignment kan van toepassing zijn op een Development Phase. Een Model Assignment zonder specifieke Development Phase kan als standaardtoewijzing fungeren.
-Een Model Assignment kan door nul of meer Executions worden gebruikt. Iedere Execution gebruikt precies &#233;&#233;n Model Assignment.
+Een Model Assignment selecteert precies &#233;&#233;n LLM Model. Een Model Assignment kan op nul of &#233;&#233;n Development Phase van toepassing zijn; een Development Phase kan nul of meer Model Assignments hebben. Een Execution Step Specification kan vooraf door maximaal &#233;&#233;n Model Assignment worden geconfigureerd; &#233;&#233;n Model Assignment kan nul of meer Execution Step Specifications configureren. Iedere Execution gebruikt precies &#233;&#233;n daadwerkelijk toegepaste Model Assignment; &#233;&#233;n Model Assignment kan door nul of meer Executions worden gebruikt.
 
 CONFIGURATIE
-Een Model Assignment bevat de modelparameters die voor de uitvoering gelden. Temperature is zo'n parameter en bepaalt de mate van variatie in de gegenereerde output.
-Andere modelparameters kunnen worden toegevoegd wanneer deze conceptueel relevant worden voor modelselectie en uitvoering.
+Een Model Assignment bevat de modelparameters die voor het geselecteerde LLM Model bij uitvoering gelden. Temperature is een voorbeeld van zo'n parameter. Andere modelparameters kunnen worden opgenomen wanneer zij conceptueel relevant zijn voor de modelconfiguratie.
+
+BEPERKINGEN
+Een Model Assignment is geen LLM Model en geen LLM Account. Het selecteert een LLM Model, maar selecteert niet rechtstreeks het LLM Account waarmee toegang tot de Provider wordt verkregen. De beschikbaarheid van provider-toegang behoort tot de Ecosystem Context en de daar beschikbare LLM Accounts. Een vooraf geconfigureerde Model Assignment op een Execution Step Specification en de daadwerkelijk gebruikte Model Assignment op een Execution zijn twee onderscheiden feiten.
 
 INVARIANTEN
-Het geselecteerde LLM Model en het gebruikte LLM Account moeten compatibel zijn met dezelfde LLM Provider.
-Het gebruikte LLM Account moet beschikbaar zijn binnen de Customer Context waarin de Execution plaatsvindt.
-Voor iedere Execution moet eenduidig &#233;&#233;n toepasselijke Model Assignment kunnen worden bepaald.
-Een specifieke Model Assignment heeft voorrang op de standaardtoewijzing wanneer aan de toepassingsvoorwaarde wordt voldaan.</div>
+Iedere Execution gebruikt precies &#233;&#233;n Model Assignment en iedere Model Assignment selecteert precies &#233;&#233;n LLM Model. Wanneer een Model Assignment vooraf op een Execution Step Specification is vastgelegd, is dat er maximaal &#233;&#233;n. Voor daadwerkelijke aanroep van het geselecteerde model moet binnen de relevante Ecosystem Context toegang beschikbaar zijn tot de LLM Provider die het model aanbiedt.
+
+Voorbeelden:
+- NIAM-analyse &#8212; GPT-5.4 &#8212; temperature 0.2 &#8212; Modelkeuze en parameters voor een cognitieve NIAM-analysestap.
+- Logisch modelleren &#8212; GPT-5.4 &#8212; temperature 0.1 &#8212; Model Assignment met lage variatie voor werk waarbij conceptuele betekenis zo stabiel mogelijk moet worden behouden.
+- Architectuurverkenning &#8212; GPT-5.4 &#8212; temperature 0.7 &#8212; Illustratieve toewijzing voor exploratief werk waarbij meer oplossingsruimte gewenst is.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -133,6 +101,9 @@ Een specifieke Model Assignment heeft voorrang op de standaardtoewijzing wanneer
 								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
 						</table>
@@ -152,13 +123,13 @@ Een specifieke Model Assignment heeft voorrang op de standaardtoewijzing wanneer
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
 											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-1c71d1b3599b4163a5f573d06a429888.html" target="element" title="0..1 configures 0..8">0..1 configures 0..8</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
+											<td><a href="../elements/id-95a0e0e6f3e1431da1195ba095f3435d.html" target="element"> execution step specification</a></td>
 										</tr>
 									<tr>
-											<td><a href="../elements/id-47dae23558094f908395d35e076e681d.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-configuration</a></td>
-											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-50fce052e7c6478abe8917cdae9c3760.html" target="element" title="0 applies to 0..* ">0 applies to 0..* </a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-2e25dc5832d04ffb907846209ef549b7.html" target="element"> development phase</a></td>
@@ -172,6 +143,11 @@ Een specifieke Model Assignment heeft voorrang op de standaardtoewijzing wanneer
 											<td><a href="../elements/id-604ad10b0d05477d92723a64e79ad511.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-abdf3fc1a9504d1eb988ab196a0ecf67.html" target="element"> llm-account</a></td>
+											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-a3a3a3a3b4b4b4b4c5c5c5c5d6d6d6d6.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-64f19a334e974108b93f342c683cf1d5.html" target="element"> execution-configuration</a></td>
 											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
 										</tr>
 							</tbody>

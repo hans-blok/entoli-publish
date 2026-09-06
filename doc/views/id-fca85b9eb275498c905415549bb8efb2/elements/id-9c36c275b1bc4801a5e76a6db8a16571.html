@@ -48,7 +48,28 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Een LLM Provider is de aanbieder die &#233;&#233;n of meer LLM Models beschikbaar stelt en via wie een LLM Account wordt verstrekt.
+
+DOEL
+Expliciet vastleggen via welke aanbieder een LLM Model wordt afgenomen, zodat compatibiliteit tussen een gekozen LLM Model en het gebruikte LLM Account controleerbaar is.
+
+LEIDENDE VRAAG
+Via welke aanbieder wordt dit LLM Model aangeboden en dit LLM Account verstrekt?
+
+RELATIES
+Een LLM Provider verstrekt &#233;&#233;n of meer LLM Models. Een LLM Account wordt verstrekt door precies &#233;&#233;n LLM Provider.
+
+BEPERKINGEN
+LLM Provider is geen LLM Model: de Provider is de aanbieder, het Model is wat wordt aangeboden. LLM Provider is geen LLM Account: het Account is de toegang die via de Provider wordt verkregen, niet de Provider zelf.
+
+INVARIANTEN
+Een LLM Model en een LLM Account zijn alleen onderling compatibel wanneer zij door dezelfde LLM Provider worden aangeboden, respectievelijk verstrekt.
+
+Voorbeelden:
+- OpenAI &#8212; Voorbeeld van een leverancier die &#233;&#233;n of meer LLM Models aanbiedt.
+- Anthropic &#8212; Voorbeeld van een andere leverancier van LLM Models.
+- Microsoft Azure OpenAI &#8212; Voorbeeld van een providercontext waarlangs modellen beschikbaar kunnen worden gesteld.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,7 +93,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -109,6 +133,11 @@
 											<td><a href="../elements/id-1c3ea4cabce4418db1d7edc85a960290.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-abdf3fc1a9504d1eb988ab196a0ecf67.html" target="element"> llm-account</a></td>
+											<td><a href="../elements/id-9c36c275b1bc4801a5e76a6db8a16571.html" target="element"> llm-provider</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-a4a4a4a4b5b5b5b5c6c6c6c6d7d7d7d7.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-64f19a334e974108b93f342c683cf1d5.html" target="element"> execution-configuration</a></td>
 											<td><a href="../elements/id-9c36c275b1bc4801a5e76a6db8a16571.html" target="element"> llm-provider</a></td>
 										</tr>
 							</tbody>

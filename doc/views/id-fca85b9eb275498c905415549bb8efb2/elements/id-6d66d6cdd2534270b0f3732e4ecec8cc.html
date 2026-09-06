@@ -48,7 +48,28 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Canon is de autoritatieve semantische grondslag voor een domein. De Canon definieert de canonieke betekenis, het Semantic Model en de normatieve Rules die nodig zijn voor eenduidige interpretatie, herleidbaarheid en reproduceerbaar gebruik van die betekenis.
+
+DOEL
+E&#233;n gezaghebbende bron van betekenis en normering vastleggen voor een domein, zodat interpretatie niet afhankelijk is van impliciete kennis, conventie of de werking van een individuele Agent.
+
+LEIDENDE VRAAG
+Wat is voor dit domein de gezaghebbende, versiebeheerde grondslag van betekenis en normering?
+
+RELATIES
+Een Canon definieert precies &#233;&#233;n Semantic Model. Een Canon definieert nul of meer Rules, waaronder Canon Rules. Een Knowledge Specification wordt door nul of maximaal &#233;&#233;n Canon gerealiseerd.
+
+BEPERKINGEN
+Canon is geen Semantic Model: de Canon is de autoritatieve grondslag; het Semantic Model is de volledige semantische graaf die door die Canon wordt gedefinieerd. Canon is geen Canon Rule: een Canon Rule is &#233;&#233;n normatieve regel die haar gezag aan de Canon ontleent. Canon is geen execution-specifiek Artifact en verandert niet per Execution.
+
+INVARIANTEN
+Iedere Canon definieert precies &#233;&#233;n Semantic Model. Canonieke betekenis en normering zijn tijdens uitvoering niet muteerbaar door een Agent of Execution. De technische representatie of compilatie van de Canon behoort niet tot het conceptuele begrip Canon.
+
+Voorbeelden:
+- Semantic Core Canon &#8212; Autoritatieve semantische grondslag voor de kernbegrippen waarmee canonieke betekenis wordt gemodelleerd.
+- Agent Development Canon &#8212; Autoritatieve semantische grondslag voor begrippen rond professionele functies, intents, orchestratie en uitvoering.
+- Data Modelling Canon &#8212; Autoritatieve semantische grondslag voor de binnen Entoli gebruikte datamodelleringsbegrippen.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -72,7 +93,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -100,30 +124,25 @@
 											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
 											<td><a href="../elements/id-1d62c68e5893433f81d1472f83cfad2d.html" target="element"> knowledge specification</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-3a220be3cfb94eb3bcddc1a0ccdd9f8d.html" target="element" title="1 defines 1">1 defines 1</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
-											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-290269a462ea47a4a187c2eb39c96089.html" target="element" title="1 defines 0..*">1 defines 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
 											<td><a href="../elements/id-03e98ce0196345b599d814c30d4a986a.html" target="element"> canon rule</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-3a220be3cfb94eb3bcddc1a0ccdd9f8d.html" target="element" title="1 defines 1">1 defines 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
+											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
 										</tr>
 									<tr>
-											<td><a href="../elements/id-81fa40ddc5ea4b8c81f40cfd997f84bf.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-a4c61c8bb81645b48a6b8205bdf831b5.html" target="element"> ENTOLI CANON</a></td>
-											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-494982c13fee41949fe358f0122f6a41.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model</a></td>
-											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-0206eb08e648418db3a0c7023b76bfd6.html" target="element" title="1 defines 0..*">1 defines 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> rule</a></td>
+											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-7277e844a0954849b37fc5a296e2bb2b.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-AggregationRelationship" /></td>
+											<td><a href="../elements/id-0f80755c4e134fe4aa43acca7aa28927.html" target="element"> semantic-foundation</a></td>
 											<td><a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon</a></td>
 										</tr>
 							</tbody>

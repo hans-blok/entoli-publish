@@ -49,22 +49,27 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
-Een Operational Context is een klantgebonden, persistente operationele omgeving waarbinnen Executions plaatsvinden en waarin de voor die omgeving relevante operationele toestand wordt behouden. De context is onafhankelijk van de technische applicaties, systemen of workspaces waarmee deze omgeving wordt gerealiseerd.
+Een Operational Context is een operationele scheiding binnen een Ecosystem Context waarbinnen een samenhangende operationele inrichting wordt gedefinieerd en relevante operationele toestand kan worden behouden. De context is onafhankelijk van de technische applicaties, systemen of workspaces waarmee zij wordt gerealiseerd, en is niet gelijk aan een klant, aan Entoli, aan het volledige ecosysteem, of aan het ontwikkelproces waarmee de Agent Architecture zelf tot stand komt.
 
 DOEL
-Het afbakenen van de operationele omgeving waarbinnen Entoli voor een specifieke Customer Context wordt gebruikt. Hierdoor kunnen binnen &#233;&#233;n Customer Context meerdere van elkaar gescheiden operationele omgevingen bestaan, ieder met hun eigen uitvoering en toestand.
+Een duurzame operationele scope afbakenen binnen &#233;&#233;n Ecosystem Context, zodat meerdere operationele inrichtingen binnen datzelfde begrensde gebruik &#8212; met eigen doel, governance, bronnen, toegankelijkheid, levenscyclus, configuratie of operationele verantwoordelijkheden &#8212; betekenisvol van elkaar kunnen worden onderscheiden en orchestraties aan de juiste operationele context kunnen worden verbonden.
 
 LEIDENDE VRAAG
-Binnen welke klantgebonden operationele omgeving vindt deze Execution plaats?
+Binnen welke operationele context van deze Ecosystem Context is deze orchestratie gedefinieerd?
 
 RELATIES
-Een Customer Context heeft &#233;&#233;n of meer Operational Contexts. Iedere Operational Context behoort tot precies &#233;&#233;n Customer Context. Een Operational Context is de context voor nul of meer Executions. Iedere Execution vindt plaats binnen precies &#233;&#233;n Operational Context.
+Iedere Operational Context behoort tot precies &#233;&#233;n Ecosystem Context; een Ecosystem Context scopet nul of meer Operational Contexts. Een Operational Context definieert nul of meer Orchestration Specifications; iedere Orchestration Specification wordt door precies &#233;&#233;n Operational Context gedefinieerd. De Operational Context van een concrete Execution is afleidbaar via de keten Operational Context &#8594; Orchestration Specification &#8594; Execution Step Specification &#8594; Execution.
 
 BEPERKINGEN
-Een Operational Context is geen Customer Context, Agent Package, Execution, applicatie, IT-systeem of technische workspace. Een tenant workspace kan een technische realisatie van een Operational Context zijn, maar definieert het concept niet. De Operational Context bepaalt evenmin welke Agent Packages beschikbaar zijn; het gebruik daarvan is afleidbaar via de Executions die binnen de Operational Context plaatsvinden. Dit sluit aan op de bronde&#64257;nitie waarin Operational Context expliciet als operationele container en niet als software- of systeemgrens wordt onderscheiden.
+Een Operational Context is geen Ecosystem Context, Customer Context, Agent Package, Orchestration Specification, Execution, applicatie, IT-systeem of technische workspace. Een technische tenant of workspace kan een Operational Context realiseren, maar definieert het concept niet. Operational Context heeft geen directe relatie met Execution, Agent Package, Instruction Set, Artifact of LLM Account zolang die context via bestaande relaties eenduidig afleidbaar is. Operational Context is niet het ontwikkelproces waarmee agents, canons, canon rules, packages of deze architectuur zelf worden ontworpen, beheerd of doorontwikkeld: dat ontwikkelsysteem valt buiten deze CDM (zie Scope).
 
 INVARIANTEN
-Iedere Operational Context behoort tot precies &#233;&#233;n Customer Context. Iedere Execution vindt plaats binnen precies &#233;&#233;n Operational Context. De operationele context van een Instruction Set wordt afgeleid van de Execution die door die Instruction Set wordt ge&#239;nstrueerd; de Instruction Set heeft daarom geen zelfstandige Operational Context nodig.</div>
+Iedere Operational Context behoort tot precies &#233;&#233;n Ecosystem Context. Iedere Orchestration Specification wordt door precies &#233;&#233;n Operational Context gedefinieerd. Iedere Execution is via haar Execution Step Specification en Orchestration Specification tot precies &#233;&#233;n Operational Context herleidbaar.
+
+Voorbeelden:
+- Gemeente Utrecht &#8212; Zaakgericht werken &#8212; Persistente klantgebonden operationele context waarbinnen orchestraties voor een specifiek werkgebied worden gedefinieerd.
+- Rabobank &#8212; Hypotheekacceptatie Nederland &#8212; Operationele context voor hypotheekgerelateerd agentic work binnen &#233;&#233;n Customer Context.
+- Entoli klantomgeving &#8212; Architectuurontwikkeling &#8212; Illustratief afgebakende operationele context voor architectuur- en modelleerwerk.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -88,7 +93,10 @@ Iedere Operational Context behoort tot precies &#233;&#233;n Customer Context. I
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -106,11 +114,6 @@ Iedere Operational Context behoort tot precies &#233;&#233;n Customer Context. I
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-a401c42120b34456a44a589011de5758.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
-											<td><a href="../elements/id-5ce9924ee4a2498b98b13bdf9cfe5d4a.html" target="element"> llm-configuration</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-b9f7a77a44a6474a89b4cb8daf8addb8.html" target="element" title="1 defines 0..*">1 defines 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
@@ -124,7 +127,12 @@ Iedere Operational Context behoort tot precies &#233;&#233;n Customer Context. I
 										</tr><tr>
 											<td><a href="../elements/id-71d01ab060014200848c2fc9f8e01748.html" target="element" title="1 provides scope for 1..*">1 provides scope for 1..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-fe7e9177ff87428e83ada3d9c79a468c.html" target="element"> customer context</a></td>
+											<td><a href="../elements/id-a99dcf9067d84b2b9ddf4b7a8f40c647.html" target="element"> ecosystem context</a></td>
+											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-13c438946b84429ea35564d3a602194d.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-64f19a334e974108b93f342c683cf1d5.html" target="element"> execution-configuration</a></td>
 											<td><a href="../elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context</a></td>
 										</tr>
 							</tbody>

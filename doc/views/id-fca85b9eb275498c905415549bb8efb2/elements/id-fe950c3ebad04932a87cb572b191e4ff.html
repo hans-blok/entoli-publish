@@ -48,7 +48,35 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+Source-regime is de classificatie-as die per Agent Intent vastlegt welke categorie&#235;n kennis epistemisch toelaatbaar zijn om als grondslag te dienen tijdens een uitvoering, en onder welke voorwaarden elke categorie de inhoud van de output mag be&#239;nvloeden.
+
+DOEL
+De epistemische grens van een Agent Intent expliciet maken: welke Work-Sources geladen mogen worden, en of en hoe de eigen algemene kennis van het LLM de output mag informeren &#8212; zodat vertrouwen, governance en kwaliteitsborging niet afhankelijk zijn van impliciete aannames.
+
+LEIDENDE VRAAG
+Welke categorie&#235;n kennis &#8212; aangeleverde Work-Sources, canonieke artifacts, met naam genoemde externe bronnen, of de eigen algemene kennis van het model &#8212; mag deze Agent Intent aanspreken, en onder welke voorwaarde mag elke categorie de output informeren?
+
+WAARDEN
+Input-bound &#8212; het toelaatbare Work-Source-domein is beperkt tot uitsluitend de expliciet aangeleverde input voor de uitvoering; situationeel en niet-normatief van gezag.
+Canon-bound &#8212; het toelaatbare Work-Source-domein is beperkt tot expliciet vastgelegde canonieke artifacts; normatief en gezaghebbend van aard.
+External-source-bound &#8212; het toelaatbare Work-Source-domein is beperkt tot specifiek met naam genoemde externe bronnen, elk verplicht te citeren.
+Open &#8212; het toelaatbare Work-Source-domein is niet vooraf begrensd; algemene kennis mag het verst worden benut van alle posities, zonder dat dit op zichzelf het introduceren van nieuwe betekenis toestaat (dat is exclusief aan Synthesis-regime).
+
+RELATIES
+Source-regime is onafhankelijk van (orthogonaal aan) Task Mode en Synthesis regime: elke as wordt afzonderlijk gedeclareerd per Agent Intent. Source-regime is &#233;&#233;n van de drie specialisaties van Execution Regime, naast Synthesis Regime en Task Regime.
+
+BEPERKINGEN
+Source-regime is geen kwaliteitsmaat van de output en geen technische implementatiekeuze. Source-regime beperkt uitsluitend w&#233;lke kennis mag worden aangesproken, nooit w&#225;t daarmee mag worden gedaan zodra zij is toegelaten (dat is Synthesis regime).
+
+INVARIANTEN
+Iedere domeinspecifieke bewering in de output van een Agent Intent moet herleidbaar zijn tot een toegelaten bron binnen het gedeclareerde Source-regime.
+
+Voorbeelden:
+- Input-bound &#8212; De uitvoering mag alleen expliciet aangeboden working sources als grondslag gebruiken.
+- Canon-bound &#8212; De uitvoering wordt begrensd tot expliciet canonieke bronnen.
+- External-source-bound &#8212; De uitvoering mag benoemde externe bronnen gebruiken en moet de herkomst daarvan expliciet houden.
+- Open &#8212; De bronruimte is niet vooraf door dit regime begrensd.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -74,6 +102,9 @@
 							<tbody>
 								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -109,16 +140,6 @@
 											<td><a href="../elements/id-757600aa215c417f95a17868f05d34ab.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-7d4fb89b37be4413ab38bfe3005524e3.html" target="element"> OPERATIONAL CONTEXT AGENT SERVICE</a></td>
-											<td><a href="../elements/id-fe950c3ebad04932a87cb572b191e4ff.html" target="element"> source-regime</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-473a069ef6934637b97e7f12f632e4cd.html" target="element" title="1 is governed by *">1 is governed by *</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-97eb76d10f924f2e94ed85c64063ccdb.html" target="element"> core rule</a></td>
-											<td><a href="../elements/id-fe950c3ebad04932a87cb572b191e4ff.html" target="element"> source-regime</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-0d6a24eec1144b55b0d99fec1ebdc451.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-26e4d5c758814666a5a132a636e2638d.html" target="element"> ENTOLI AGENT SERVICES</a></td>
 											<td><a href="../elements/id-fe950c3ebad04932a87cb572b191e4ff.html" target="element"> source-regime</a></td>
 										</tr>
 							</tbody>
