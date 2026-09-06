@@ -19,7 +19,3 @@ Datzelfde businessmodel in het Osterwalder-canvas: negen blokken, in één oogop
 ### [Architectuurmodel](views/index.html){:target="_blank"}
 
 De ArchiMate-architectuur achter Entoli: business-, applicatie- en technologielagen, en de views die daaruit zijn opgebouwd.
-
-### [Datamodellen](data-models/index.md)
-
-De conceptuele datamodellen die de semantiek van Entoli's begrippen expliciet maken.

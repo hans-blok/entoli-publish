@@ -117,7 +117,6 @@ nav:
       - business-model/business-model.md
       - business-model/business-model-canvas.md
   - Architectuurmodel: views/index.html
-  - Datamodellen: data-models/index.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration

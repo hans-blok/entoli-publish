@@ -19,3 +19,6 @@ into another page.
   canon repository, not this file. This copy could eventually be deleted
   outright without losing authoritative knowledge, but it is kept here
   rather than deleted outright, out of caution.
+- `data-models/` — the former "Datamodellen" section (`index.md` plus
+  `ldm-datamodelling.svg`), removed from the site on 2026-09-06 at the
+  user's request. Not referenced from anywhere else in the repo.
