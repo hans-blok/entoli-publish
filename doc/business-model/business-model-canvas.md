@@ -1,5 +1,7 @@
 # Entoli Business Model Canvas
 
+*Met Agents. Voor blijvende waarde.*
+
 ## Purpose
 
 Dit document structureert het bestaande businessmodel (`artefacten/business-model/business-model.md`) in het standaard Business Model Canvas-format (Osterwalder), zodat het in één oogopslag beoordeelbaar is door investeerders, partners en interne stakeholders. Het is **geen nieuw ontwerp** en voegt geen klantwaarde, propositie of verdienmechanisme toe die niet al in de bron staat.
@@ -13,10 +15,6 @@ Elk item is gelabeld:
 - **Future Option** — bewust (nog) buiten het huidige model.
 
 Waar de bron onvoldoende antwoord geeft, is dat hier expliciet zichtbaar gemaakt — niet stilzwijgend ingevuld.
-
-![Entoli Business Model Canvas — de negen Osterwalder-blokken ingevuld vanuit het Entoli-businessmodel](bmc-visual.png)
-
-*Hetzelfde businessmodel als het [Entoli Business Model](business-model.md), gestructureerd in het negen-blokken Business Model Canvas-format.*
 
 ## Customer Problems and Needs
 
@@ -37,12 +35,17 @@ Deze vier rijen zijn de bron voor elk blok hieronder — elk canvasblok wordt va
 
 | Segment | Type | Gebruiker | Begunstigde | Beslisser | Koper | Belangrijkste behoefte |
 |---|---|---|---|---|---|---|
-| Organisaties met een eigen kennisdomein die AI-ondersteund professioneel werk willen professionaliseren | Organisatie (B2B) | Professional User | Professional User, Organisational Buyer | Organisational Buyer/Governor | Organisational Buyer/Governor | Werk sneller én herleidbaar |
-| Organisaties met verspreide/impliciete domeinkennis | Organisatie (B2B) | Knowledge Authority | Hele organisatie | Knowledge Authority / Organisational Buyer | Organisational Buyer/Governor | Kennis expliciteren en beheersen |
-| Organisaties die zelf geen semantisch fundament kunnen opzetten | Organisatie (B2B) | — | Knowledge Authority, Capability Developer | Organisational Buyer | Organisational Buyer/Governor | Begeleiding (`Bied consultancy`) |
-| Organisaties die onafhankelijk willen worden van Entoli's mensen | Organisatie (B2B) | Capability Developer, Professional User | Organisatie zelf | Organisational Buyer | Organisational Buyer/Governor | Vaardigheidsoverdracht (`Bied training`) |
+| Grote organisatie met een eigen kennisdomein | Organisatie (B2B) | Professional User, Capability Developer | Hele organisatie | Organisational Buyer/Governor | Organisational Buyer/Governor | Professioneel werk verder professionaliseren |
+| Overheid & publieke sector | Organisatie (B2B, gereguleerd) | Professional User | Organisatie, burgers/belanghebbenden | Organisational Buyer/Governor | Organisational Buyer/Governor | Betrouwbare, transparante en controleerbare AI-toepassing |
+| Zorg & financiële sector | Organisatie (B2B, gereguleerd) | Professional User | Organisatie, cliënten/klanten | Organisational Buyer/Governor | Organisational Buyer/Governor | Veilige, verantwoorde en compliant toepassing |
+| Kennisinstellingen | Organisatie (kennis/onderwijs) | Knowledge Authority, Capability Developer | Instelling zelf, en indirect het bredere kennisdomein | Knowledge Authority / Organisational Buyer | Organisational Buyer/Governor | Ontwikkelen, onderzoeken en opleiden |
+| Consultants | Professional (individueel of bureau) | Capability Developer, Professional User | Consultant én diens eindklant | Consultant zelf | Consultant zelf | Professionele dienstverlening met herbruikbare kennis en tools |
 
-**Wie is de eerste plausibele betalende klant?** **[Unknown]** — `business-model.md` beschrijft klantrollen en waardevolle uitkomsten in algemene termen, maar prioriteert geen specifiek eerste segment (bijvoorbeeld naar sector, omvang, of urgentie). Dit document verbreedt het klantsegment daarom niet verder dan de bron toelaat, maar markeert dit expliciet als open vraag (zie "Questions to Validate").
+**[Business Model Choice — herzien]** Deze vijf segmenten vervangen de eerdere, generieke rolbeschrijving als indeling voor Blok 1: ze snijden de klantrollen uit `business-model.md` §2 (Knowledge Authority, Capability Developer, Professional User, Organisational Buyer/Governor) langs sector/type organisatie, in plaats van er los van te staan. De rollen-tabel in "Customer Problems and Needs" hierboven blijft de onderliggende bron van probleem/waarde per rol; deze segmenten zeggen *welk soort organisatie* die rollen typisch samenbrengt.
+
+Let op de dubbele positie van **Kennisinstellingen**: zij komen zowel hier (als klant — ontwikkelen/onderzoeken/opleiden met Entoli) als in Blok 8, Key Partners (als bron van domeinkennis en talent voor de open referentiecanons) voor. Dat is geen fout maar een bewuste dubbelrol: dezelfde instelling kan tegelijk klant en kennisbron zijn.
+
+**Wie is de eerste plausibele betalende klant?** Nog steeds **[Hypothesis/Unknown]** — met vijf benoemde segmenten is de doelgroep concreter, maar geen van de bronnen prioriteert er één als eerste focus (bijvoorbeeld op urgentie, dealgrootte, of doorlooptijd). Zie H5 in het Hypothese-register en "Questions to Validate".
 
 ### 2. Value Propositions
 
@@ -57,29 +60,35 @@ Deze vier rijen zijn de bron voor elk blok hieronder — elk canvasblok wordt va
 
 > **Trusted AI-powered Professional Work** — professioneel kenniswerk sneller en schaalbaarder uitvoeren met AI, terwijl de gebruikte kennis, regels, context en uitvoering expliciet beheerst en herleidbaar blijven.
 
+In klantgerichte communicatie (zoals de infographic) wordt dit samengevat als: **"Vertrouwd, AI-ondersteund professioneel werk"**.
+
 Waardedimensies die hierin samenkomen, zoals vastgelegd in de bron: overdraagbaarheid, reproduceerbaarheid, governance/traceerbaarheid, herbruikbaarheid, verminderde afhankelijkheid van individuen, en model-/technologieonafhankelijkheid. Geen van deze is hier toegevoegd zonder basis in `business-model.md` §4–§5.
 
 ### 3. Customer Relationships
 
 | Relatievorm | Waar van toepassing | Status |
 |---|---|---|
-| Doorlopende SaaS-relatie (zelfbediening) | Entoli Studio, Entoli Workspace | **Decision** — Producten zijn SaaS |
-| Begeleide/consultancy-relatie | `Bied consultancy` — voor klanten die zelf geen canon/fundament kunnen opzetten | **Decision** (architectuur) |
-| Training/capaciteitsoverdracht | `Bied training` — expliciet gericht op het overbodig maken van doorlopende afhankelijkheid | **Decision** (architectuur) |
+| SaaS-relatie (zelfbediening) | Entoli Studio, Entoli Workspace — voor langdurige klanten | **Decision** — Producten zijn SaaS |
+| Persoonlijke begeleiding | `Bied consultancy` — consultancy en implementatie voor klanten die zelf geen canon/fundament kunnen opzetten | **Decision** (architectuur) |
+| Opleiding | `Bied training` — vaardigheidsoverdracht, expliciet gericht op het overbodig maken van doorlopende afhankelijkheid | **Decision** (architectuur) |
+| Community | Samen ontwikkelen, delen en leren rond open referentiecanons | **Business Model Choice**; effect op klantrelatie **[Hypothesis]** (H1) |
+| Langdurig partnerschap | Op basis van vertrouwen en aantoonbare waarde, over meerdere levercycli heen | **Business Model Choice** — niet eerder expliciet benoemd |
 | Beheerde dienst met eigen implementatie-/ondersteuningsrelatie | Entoli SaaS (`Configureer professionele uitvoering`) — door Entoli beheerd en expliciet als dienst aangeboden, geen klant-zelfbediening | **Business Model Choice — herzien**; nog geen apart Product in de architectuurbron |
 
-**Expliciete overgang**: het model beweegt in intentie van *"Entoli doet het werk voor de klant"* (consultancy, Entoli SaaS) naar *"Entoli stelt de klant in staat het zelf te doen"* (training, zelfstandig Studio/Workspace-gebruik). Dat deze overgang daadwerkelijk plaatsvindt — dat training en consultancy leiden tot blijvende zelfstandigheid in plaats van doorlopende afhankelijkheid van Entoli's mensen — is een **[Hypothesis]** (zie Hypothese-register, H3). Entoli SaaS blijft een structureel beheerde relatie, geen zelfbediening: dit is nu een expliciete commerciële keuze (§6.3 van de bron), niet louter een architecturale asymmetrie.
+**Expliciete overgang**: het model beweegt in intentie van *"Entoli doet het werk voor de klant"* (consultancy, Entoli SaaS) naar *"Entoli stelt de klant in staat het zelf te doen"* (opleiding, zelfstandig Studio/Workspace-gebruik, uiteindelijk langdurig partnerschap). Dat deze overgang daadwerkelijk plaatsvindt — dat opleiding en consultancy leiden tot blijvende zelfstandigheid in plaats van doorlopende afhankelijkheid van Entoli's mensen — is een **[Hypothesis]** (zie Hypothese-register, H3). Entoli SaaS blijft een structureel beheerde relatie, geen zelfbediening: dit is een expliciete commerciële keuze (§6.3 van de bron), niet louter een architecturale asymmetrie.
 
 ### 4. Channels
 
 | Kanaal | Rol | Status |
 |---|---|---|
-| Open referentiecanons en groeiende community | Instapkanaal: verlaagt de drempel om kennis te maken met de Entoli-aanpak; Entoli communiceert dit expliciet als onderdeel van zijn groeithese | **Business Model Choice** (open publicatie) — dat dit adoptie versnelt blijft **[Hypothesis]** (H1) |
-| Professional Services (consultancy/training) | Directe, persoonlijke ingang voor klanten die niet zelfstandig beginnen | **Decision** (architectuur) — vaak de eerste stap bij een nieuwe klant, zoals beschreven in de bron |
-| Directe SaaS-toegang (Entoli Studio/Workspace) | Voor klanten die al bekend zijn met de aanpak of via Professional Services zijn ingestroomd | **Evidence** — Producten bestaan als zelfbedienings-SaaS |
-| Communities rond referentiecanons (bijv. Edgy, BPMN, ArchiMate) | Ontdekkings- en geloofwaardigheidsbron, en volgens de gecommuniceerde groeithese de basis voor netwerkeffecten binnen het ecosysteem | **Business Model Choice** (strategie) — het adoptie-effect zelf blijft **[Hypothesis]** |
+| Website en social media | Vindbaarheid, propositie en conversie | **Business Model Choice — nieuw** |
+| Directe acquisitie & netwerk | Persoonlijke relaties van de oprichters (Maxia en Hans) | **Business Model Choice — nieuw**; effectiviteit als schaalbaar kanaal **[Hypothesis]** |
+| Klantorganisaties & referenties | Bestaande klanten als ingang naar nieuwe organisaties | **Business Model Choice — nieuw**; veronderstelt tevreden referentieklanten **[Hypothesis]** |
+| Professionele communities | Netwerken en platforms (bijv. Future Group) | **Business Model Choice — nieuw** |
+| Kennisdeling en events | Publicaties, cases, webinars, workshops | **Business Model Choice — nieuw** |
+| Open source kanalen | GitLab, documentatie, open canons — instapkanaal dat de drempel verlaagt om kennis te maken met de Entoli-aanpak | **Business Model Choice** (open publicatie) — dat dit adoptie versnelt blijft **[Hypothesis]** (H1) |
 
-**Wat de bron niet beschrijft**: een expliciete sales-, marketing-, of partnerkanaalstrategie (advertenties, directe verkoop, wederverkopers, marktplaatsen) komt in `business-model.md` niet voor. Dit is hier dus **[Unknown]**, niet ingevuld met een aanname.
+Dit vervangt de eerdere, open vraag over sales-/marketingkanalen: die is nu ingevuld met zes concrete kanalen. Geen ervan is in de praktijk gevalideerd op daadwerkelijk rendement (kosten per acquisitie, conversie, doorlooptijd) — dat blijft **[Unknown]**. In het bijzonder is "Directe acquisitie & netwerk" op dit moment afhankelijk van twee specifieke personen, wat een concentratierisico is zolang dit kanaal niet verbreedt.
 
 ### 5. Revenue Streams
 
@@ -88,8 +97,8 @@ Waardedimensies die hierin samenkomen, zoals vastgelegd in de bron: overdraagbaa
 | Entoli Studio | Organisatie (Knowledge Authority/Capability Developer) | Kennis en capaciteit ontwikkelen | SaaS-omzet | Ja | **Decision** (Product); prijseenheid **Unknown** |
 | Entoli Workspace | Organisatie (Professional User/budgethouder) | Professioneel werk uitvoeren | SaaS-omzet | Ja | **Decision** (Product); abonnement/gebruik/hybride **[Future Option, niet besloten]** |
 | Entoli SaaS (`Configureer professionele uitvoering`) | Organisatie (Organisational Buyer/Governor) | Hosting, configuratie, beheer en updates van de uitvoeringsomgeving | Implementatie-/ondersteuningsomzet | Deels (doorlopende ondersteuning) | **Business Model Choice — herzien**; loopt vooruit op de architectuurbron (nog geen apart Product); prijsvorm **Unknown** |
-| `Bied consultancy` | Organisatie die begeleiding inkoopt | Deskundige hulp bij canon-/kennisontwikkeling | Professional-services-omzet | Nee (doorgaans projectmatig) | **Decision** |
-| `Bied training` | Organisatie die capaciteit wil overdragen | Vaardigheden om zelfstandig te werken | Training-/services-omzet | Nee (doorgaans projectmatig) | **Decision** |
+| Consultancy (`Bied consultancy`) | Organisatie die begeleiding inkoopt | Advies en maatwerktrajecten bij canon-/kennisontwikkeling | Professional-services-omzet | Nee (doorgaans projectmatig) | **Decision** |
+| Opleiding (`Bied training`) | Organisatie die capaciteit wil overdragen | Training, workshops en leertrajecten om zelfstandig te werken | Training-/services-omzet | Nee (doorgaans projectmatig) | **Decision** |
 | Open referentiecanons | Niemand | Lagere instapdrempel, ecosysteem | Geen omzet; investering | N.v.t. | **Decision** (open publicatie); economisch effect **[Hypothesis]** |
 
 **Verdienmechanisme versus prijsmodel**: dit canvas legt vast *wie betaalt en waarvoor*, niet het tarief of de precieze eenheid — die zijn voor Entoli Studio en Entoli Workspace nog niet besloten.
@@ -100,11 +109,14 @@ Waardedimensies die hierin samenkomen, zoals vastgelegd in de bron: overdraagbaa
 
 | Activiteit | Waarom structureel belangrijk | Onderscheidend of operationeel |
 |---|---|---|
-| Ontwikkelen en onderhouden van Entoli Studio en Entoli Workspace (software) | Dit zíjn de terugkerende commerciële Producten | Onderscheidend |
-| Ontwikkelen van open referentiecanons (Edgy, BPMN, ArchiMate, Agent Development) | Voedt het ecosysteem en verlaagt de instapdrempel (§7, §10 van de bron) | Onderscheidend |
-| Leveren van Entoli SaaS: hosting, configureren en beheren van professionele uitvoering (`Configureer professionele uitvoering`) | Noodzakelijk om Entoli Workspace operationeel te laten werken, én nu een expliciet aangeboden dienst met eigen omzet | Operationeel én onderscheidend (herzien) |
-| Leveren van consultancy en training | Eerste omzetbron en toegang tot klanten die niet zelfstandig beginnen | Onderscheidend én operationeel |
-| Onderhouden van de semantische methodologie/architectuurprincipes | Onderbouwt de belofte van herleidbaarheid en beheersing die de propositie draagt | Onderscheidend |
+| Ontwikkelen en beheren van open source canons en agent-templates | Voedt het ecosysteem en verlaagt de instapdrempel (§7, §10 van de bron) | Onderscheidend |
+| Ontwikkelen en beheren van Entoli SaaS (Studio, Workspace) | Dit zíjn de terugkerende commerciële Producten | Onderscheidend |
+| Hosting, configuratie en beheer | Noodzakelijk om Entoli Workspace operationeel te laten werken, én een expliciet aangeboden dienst met eigen omzet (§6.3 van de bron) | Operationeel én onderscheidend (herzien) |
+| Consultancy en implementatiebegeleiding | Eerste omzetbron en toegang tot klanten die niet zelfstandig beginnen | Onderscheidend én operationeel |
+| Opleiding — geven van trainingen | Draagt bij aan klantonafhankelijkheid (doel G3) en aan de Opleiding-omzetlijn | Onderscheidend én operationeel |
+| Community faciliteren en bijdragen | Onderhoudt de open referentiecanons en de gecommuniceerde groeithese (§10 van de bron) | Onderscheidend; effect blijft **[Hypothesis]** |
+| Marketing, kennisdeling en acquisitie | Vult het eerder open kanaalvraagstuk in (Blok 4) | Nieuw benoemd — **[Business Model Choice]** |
+| Continue doorontwikkeling (van methodologie en Producten) | Onderbouwt de belofte van herleidbaarheid en beheersing die de propositie draagt | Onderscheidend |
 
 Dit is geen volledige Business Process-catalogus; voor de canonieke procesindeling is `business-processes-services-and-products.md` leidend, niet dit canvas.
 
@@ -112,11 +124,13 @@ Dit is geen volledige Business Process-catalogus; voor de canonieke procesindeli
 
 | Resource | Waarom economisch/strategisch belangrijk |
 |---|---|
-| Entoli Studio en Entoli Workspace (software/platform) | De dragers van de terugkerende SaaS-omzet |
-| Open referentiecanons | Het "content"-fundament dat het ecosysteem aantrekkelijk maakt; zonder canons is een lege omgeving weinig waard |
-| Semantische methodologie (hoe kennis wordt gecanoniseerd, capaciteit wordt opgebouwd) | De basis van de waardepropositie (herleidbaarheid, beheersing); niet triviaal te kopiëren |
-| Expertise van Entoli's mensen (consultancy/training) | Draagt de Professional Services-omzet en de eerste klantrelaties |
-| Klantrelaties en vertrouwen bij vroege klanten | Nodig om van consultancy naar zelfstandig SaaS-gebruik te bewegen (Hypothesis H3) |
+| Ons team | Domeinkennis, softwareontwikkeling, architectuur en AI-expertise — draagt zowel de Producten als Professional Services |
+| Technologie en platform | SaaS-infrastructuur, tooling en ontwikkelomgeving — de drager van de terugkerende SaaS-omzet (Studio, Workspace, Entoli SaaS) |
+| Kennis en intellectueel kapitaal | Canons, methoden, templates, merk — het "content"-fundament dat het ecosysteem aantrekkelijk maakt; zonder canons is een lege omgeving weinig waard |
+| Community | Groeiende groep contributors en gebruikers — draagt de gecommuniceerde groeithese (§10 van de bron); effect blijft **[Hypothesis]** |
+| Netwerk en reputatie | Relaties, referenties en zichtbaarheid — ondersteunt de kanalen in Blok 4 en de klantrelaties in Blok 3 |
+
+Klantrelaties en vertrouwen bij vroege klanten blijven relevant (nodig om van consultancy naar zelfstandig SaaS-gebruik te bewegen, Hypothesis H3), maar vallen nu grotendeels onder "Netwerk en reputatie" hierboven in plaats van als losse resource.
 
 Niet elk architecturaal Business Object is hier opgenomen als Key Resource — alleen wat economisch of strategisch zwaarwegend is, conform de bron.
 
@@ -124,37 +138,45 @@ Niet elk architecturaal Business Object is hier opgenomen als Key Resource — a
 
 | Partnercategorie | Wat Entoli nodig heeft | Aard van de afhankelijkheid | Bewust verminderen? |
 |---|---|---|---|
-| AI/modelleveranciers (OpenAI, Anthropic, Google, lokale modellen) | Toegang tot LLM's om professioneel werk daadwerkelijk uit te voeren | Structureel — zonder modeltoegang geen uitvoering | Ja — modelonafhankelijkheid is expliciet architectuurprincipe (§6.3 van de bron) |
-| Standaardorganisaties/kenniscommunities (bijv. rond Edgy, BPMN, ArchiMate) | Bron van gezaghebbende kennis voor referentiecanons; geloofwaardigheid | Matig — Entoli wil zelf geen inhoudelijke autoriteit zijn, dus is mede afhankelijk van erkenning door deze communities | Nee, dit is juist gewenste samenwerking |
-| Content-/IP-eigenaren met beperkingen (bijv. DAMA) | Toegang tot of gebruiksrecht op specifieke raamwerken | Beperkt en concreet (specifiek IP-vraagstuk, zie bron §14.2/§15) | Ja, waar IP-beperkingen open publicatie in de weg staan |
+| LLM-providers (OpenAI, Anthropic, Google, lokale modellen) | Toegang tot toonaangevende modellen (multi-provider) om professioneel werk daadwerkelijk uit te voeren | Structureel — zonder modeltoegang geen uitvoering | Ja — modelonafhankelijkheid is expliciet architectuurprincipe (§6.3 van de bron); bewust multi-provider |
+| Open source community | Samen ontwikkelen en delen van canons en agent-templates | Matig — draagt de gecommuniceerde groeithese (§10); effect blijft **[Hypothesis]** | Nee, dit is juist gewenste samenwerking |
+| Implementatiepartners | Ondersteuning bij consultancy, begeleiding en opleiding | Matig — vergroot leveringscapaciteit zonder eigen personeel evenredig te laten meegroeien | **[Unknown]** of dit bewust wordt uitgebreid als schaalstrategie |
+| Kennisinstellingen | Bron van domeinkennis en talent | Matig — Entoli wil zelf geen inhoudelijke autoriteit zijn, dus is mede afhankelijk van erkenning door deze instellingen | Nee, dit is juist gewenste samenwerking. Let op: dezelfde instellingen staan ook in Blok 1 als klantsegment — een bewuste dubbelrol, geen duplicatiefout |
+| Cloud- en infrastructuurpartners | Betrouwbare, schaalbare en veilige hosting | Structureel voor SaaS-levering (Studio, Workspace, Entoli SaaS) | **[Unknown]** — geen keuze voor of tegen vendor lock-in hier vastgelegd |
+| Strategische netwerkpartners (bijv. Future Group) | Toegang tot markten en domeinen | Matig — versterkt Blok 4 (Kanalen: Professionele communities) | Nee, dit is juist gewenste samenwerking |
 
-De bron noemt geen concrete cloud-/infrastructuurpartner, implementatiepartner, of naam van een specifieke samenwerking; dit is dus niet ingevuld met een aanname. Een technologieleverancier wordt hier alleen als Key Partner behandeld wanneer de bron een structurele afhankelijkheid benoemt (zoals modelleveranciers) — niet automatisch omdat SaaS-producten doorgaans op cloudinfrastructuur draaien.
+Content-/IP-eigenaren met beperkingen (bijv. DAMA) blijven relevant als specifiek IP-vraagstuk (zie `business-model.md` §14.2/§15), maar vallen hier onder Kennisinstellingen/Open source community in plaats van als losse categorie.
 
 ### 9. Cost Structure
 
 | Kostentype | Voorbeeld | Karakter |
 |---|---|---|
-| Softwareontwikkeling | Entoli Studio, Entoli Workspace | Relatief vast; investering vooraf, marginale kosten per klant laag |
-| Ontwikkeling/onderhoud open referentiecanons | Edgy, BPMN, ArchiMate, Agent Development | Vooraf-investering, niet gebruiksafhankelijk |
-| AI-modeluitvoering | Modelgebruik binnen Entoli Workspace | Gebruiksafhankelijk — groeit mee met uitvoeringsvolume |
-| Professional Services-capaciteit | Consultancy en training | Mensafhankelijk — schaalt met beschikbare tijd van Entoli's mensen, niet automatisch met klantaantal |
-| Entoli SaaS: hosting, configuratie en beheer (`Configureer professionele uitvoering`) | Operationele omgeving inrichten en onderhouden namens de klant | Deels vast (platformbeheer), deels meegroeiend met aantal klantomgevingen; staat nu tegenover een eigen omzetregel |
+| Productontwikkeling en platformbeheer | Entoli Studio, Entoli Workspace | Relatief vast; investering vooraf, marginale kosten per klant laag |
+| Infrastructuur en hosting (SaaS) | Hosting van Studio, Workspace en Entoli SaaS | Deels vast (platformbeheer), deels meegroeiend met aantal klantomgevingen |
+| Abonnementen AI-leveranciers | Toegang tot LLM-providers (multi-provider, §6.3 van de bron) | Gebruiksafhankelijk — groeit mee met uitvoeringsvolume in Entoli Workspace |
+| Community-faciliteren en open source tooling | Ontwikkeling/onderhoud open referentiecanons (Edgy, BPMN, ArchiMate, Agent Development) | Vooraf-investering, niet gebruiksafhankelijk |
+| Sales en marketing | Invulling van de kanalen uit Blok 4 (website, acquisitie, events) | Deels vast, deels campagne-/inspanningsafhankelijk |
+| Algemene en administratieve kosten | Bedrijfsvoering | Relatief vast |
+| Partnerschappen en ecosysteem | Onderhoud van de relaties uit Blok 8 (implementatie-, kennis-, netwerkpartners) | Deels vast, deels mensafhankelijk |
+| Eventueel: extern onderzoek en validatie | Toetsen van de hypothesen in dit canvas (zie Hypothese-register) | Projectmatig, niet doorlopend |
 
-**Wat de schaalbaarheid kan beperken**: de gebruiksafhankelijke AI-uitvoeringskosten (marge onder druk bij groeiend Workspace-gebruik zonder prijsaanpassing) en de mensafhankelijke Professional Services- en Entoli SaaS-capaciteit (omzet schaalt niet vanzelf met meer klanten zolang deze diensten door Entoli's mensen worden geleverd). De bron bevat geen cijfers; dit blijft kwalitatief.
+Consultancy- en opleidingscapaciteit (Blok 6) en Entoli SaaS-levering (§6.3 van de bron) blijven mensafhankelijk — schalen met beschikbare tijd van Entoli's mensen en implementatiepartners, niet automatisch met klantaantal. Dit was eerder een aparte regel "Personeel"; die generieke regel is hier vervallen ten gunste van de concretere indeling hierboven, waarin personeelskosten zijn opgenomen in de betreffende activiteit (productontwikkeling, sales/marketing, partnerschappen) in plaats van als aparte kostenpost.
+
+**Wat de schaalbaarheid kan beperken**: de gebruiksafhankelijke AI-uitvoeringskosten (marge onder druk bij groeiend Workspace-gebruik zonder prijsaanpassing) en de mensafhankelijke Professional Services- en Entoli SaaS-capaciteit. De bron bevat geen cijfers; dit blijft kwalitatief.
 
 ## Business Model Canvas — samenvattend overzicht
 
 | Blok | Kern |
 |---|---|
-| **1. Customer Segments** | Organisaties met een kennisdomein die AI-werk willen professionaliseren; eerste betalend segment **[Unknown]** |
-| **2. Value Propositions** | Trusted AI-powered Professional Work: overdraagbaarheid, reproduceerbaarheid, traceerbaarheid, verminderde afhankelijkheid, productiviteit-met-vertrouwen |
-| **3. Customer Relationships** | SaaS-zelfbediening (Studio/Workspace) + begeleiding (consultancy/training) + beheerde configuratie (intern) |
-| **4. Channels** | Open referentiecanons/community (Business Model Choice, adoptie-effect **[Hypothesis]**), Professional Services (Decision), directe SaaS-toegang; sales-/partnerkanaal **[Unknown]** |
-| **5. Revenue Streams** | SaaS-omzet Studio/Workspace (prijsvorm **Unknown/Future Option**), implementatie-/ondersteuningsomzet Entoli SaaS (herzien), Professional-services-omzet |
-| **6. Key Activities** | Studio/Workspace ontwikkelen, referentiecanons ontwikkelen, Entoli SaaS leveren (hosting/configuratie/beheer), consultancy/training, methodologie onderhouden |
-| **7. Key Resources** | Studio/Workspace, open referentiecanons, semantische methodologie, expertise, klantrelaties |
-| **8. Key Partners** | AI-modelleveranciers (afhankelijkheid bewust verminderd), kenniscommunities, specifieke content-/IP-eigenaren |
-| **9. Cost Structure** | Vast (softwareontwikkeling, canon-investering), gebruiksafhankelijk (modeluitvoering, hosting), mensafhankelijk (Professional Services, Entoli SaaS-levering) |
+| **1. Customer Segments** | Vijf benoemde segmenten: grote organisaties, overheid & publieke sector, zorg & financiële sector, kennisinstellingen, consultants; eerste-prioriteitssegment blijft **[Hypothesis/Unknown]** |
+| **2. Value Propositions** | Trusted AI-powered Professional Work / "Vertrouwd, AI-ondersteund professioneel werk": overdraagbaarheid, reproduceerbaarheid, traceerbaarheid, verminderde afhankelijkheid, productiviteit-met-vertrouwen |
+| **3. Customer Relationships** | SaaS-zelfbediening (Studio/Workspace), persoonlijke begeleiding, opleiding, community, langdurig partnerschap, beheerde Entoli SaaS-relatie |
+| **4. Channels** | Zes concrete kanalen (website/social, direct netwerk, referenties, communities, kennisdeling/events, open source); effectiviteit grotendeels **[Hypothesis/Unknown]** |
+| **5. Revenue Streams** | SaaS-omzet Studio/Workspace (prijsvorm **Unknown/Future Option**), implementatie-/ondersteuningsomzet Entoli SaaS, Consultancy- en Opleidingsomzet |
+| **6. Key Activities** | Referentiecanons ontwikkelen, Studio/Workspace ontwikkelen, Entoli SaaS leveren, consultancy/opleiding, community faciliteren, marketing/acquisitie, methodologie onderhouden |
+| **7. Key Resources** | Team, technologie/platform, kennis & IP, community, netwerk & reputatie |
+| **8. Key Partners** | LLM-providers (bewust multi-provider), open source community, implementatiepartners, kennisinstellingen (dubbelrol met Blok 1), cloud-/infrastructuurpartners, strategische netwerkpartners |
+| **9. Cost Structure** | Productontwikkeling/platform, hosting, AI-leveranciersabonnementen, community/open source, sales & marketing, algemeen, partnerschappen, onderzoek/validatie — geen aparte "personeel"-regel meer |
 
 ## Business Model Reinforcement
 
@@ -175,12 +197,13 @@ Geen van de onderliggende schakels is in de bron gevalideerd; ze zijn hier zicht
 | H2 | Gebruik van professionele capaciteit in Entoli Workspace levert signalen op die de ontwikkeling in Entoli Studio verbeteren, met meetbaar meer waarde dan de twee Producten los | Bepaalt of Studio–Workspace een structureel versterkingsmechanisme is of "slechts" twee SaaS-producten | Architecturale relatie (ontwikkelen → toepassen) staat vast; het terugkoppelmechanisme zelf niet | Vaststellen of en hoe Workspace-inzichten daadwerkelijk tot Studio-verbetering leiden, en dit meten bij echte klanten |
 | H3 | Professional Services (consultancy/training) leiden tot blijvend zelfstandig SaaS-gebruik in plaats van doorlopende afhankelijkheid van Entoli's mensen | Bepaalt of Professional Services een tijdelijke krukfunctie of een structurele adoptiemotor is | Training is architecturaal bedoeld om afhankelijkheid te verminderen; geen bewijs dat dit in de praktijk gebeurt | Volgen van klanten na een consultancy-/trainingstraject: gaan zij zelfstandig door met Studio/Workspace? |
 | H4 | Organisaties zijn bereid te betalen voor Entoli SaaS (hosting/configuratie/beheer, incl. aantoonbare modelonafhankelijkheid) als aparte implementatie-/ondersteuningsdienst | Bepaalt de commerciële relevantie van de herziening in §6.3 en of dit ooit doorgroeit naar een zelfstandig Product | Genoemd als onderscheidend verhaal richting gereguleerde sectoren; nu ook expliciet als omzetlijn gepositioneerd, maar betalingsbereidheid nog niet getoetst | Gesprekken met potentiële kopers (met name gereguleerde sectoren) over expliciete betalingsbereidheid voor Entoli SaaS |
-| H5 | Er is een specifiek eerste klantsegment met voldoende urgentie om als eerste betalend te worden | Bepaalt focus voor go-to-market; de bron laat dit open | Geen — de bron beschrijft rollen generiek, geen geprioriteerd segment | Expliciete keuze en toetsing van een eerste doelsegment |
+| H5 | Onder de vijf benoemde segmenten (grote organisaties, overheid & publiek, zorg & financieel, kennisinstellingen, consultants) is er één met voldoende urgentie om als eerste prioriteit te dienen | Bepaalt focus voor go-to-market; de segmenten zijn nu benoemd maar niet onderling geprioriteerd | Vijf segmenten zijn expliciet gemaakt (Blok 1); geen van de bronnen kiest of onderbouwt een eerste prioriteit | Expliciete keuze en toetsing van een prioriteitssegment, bijvoorbeeld op basis van regeldruk (overheid/zorg/financieel) versus snelheid van besluitvorming (grote organisaties/consultants) |
 | H6 | SaaS-omzet (Studio/Workspace) kan op termijn groeien zonder proportionele groei van Professional Services-capaciteit | Bepaalt of het model op termijn schaalbaar wordt of mensafhankelijk blijft | Architecturaal is SaaS schaalbaar, Professional Services mensafhankelijk (Blok 9); geen data over daadwerkelijke verhouding | Volgen van de omzetmix na verloop van tijd |
+| H7 | Acquisitie kan opschalen voorbij het persoonlijke netwerk van de twee oprichters (Blok 4: "Directe acquisitie & netwerk") | Een kanaal dat afhangt van twee specifieke personen is een concentratierisico en schaalt niet vanzelf | Vandaag expliciet benoemd als kanaal, zonder alternatief of opvolging beschreven | Meten of de overige vijf kanalen (website, referenties, communities, events, open source) daadwerkelijk leads/omzet opleveren onafhankelijk van de oprichters |
 
 ## Questions to Validate
 
-1. Wie is het eerste klantsegment dat daadwerkelijk zou betalen, en waarom is de behoefte daar urgent genoeg voor een koopbeslissing? *(H5)*
+1. Welk van de vijf benoemde segmenten (grote organisaties, overheid & publiek, zorg & financieel, kennisinstellingen, consultants) is het eerste dat daadwerkelijk zou betalen, en waarom is de behoefte daar urgent genoeg voor een koopbeslissing? *(H5)*
 2. Wie beheert het budget voor Entoli Studio/Workspace binnen een klantorganisatie — de Knowledge Authority, de Professional User, of de Organisational Buyer/Governor?
 3. Waarom zou een klant voor Entoli kiezen boven het huidige alternatief (bijvoorbeeld: impliciete kennis en losse AI-tools zonder canon)?
 4. Wat is de eerste realistische route naar de markt, gegeven dat de bron geen sales-/partnerkanaal beschrijft? *(Blok 4)*
@@ -192,3 +215,4 @@ Geen van de onderliggende schakels is in de bron gevalideerd; ze zijn hier zicht
 10. Is er daadwerkelijk betalingsbereidheid voor modelonafhankelijkheid en beheersing, los van de vraag of dit ooit een apart Product wordt? *(H4)*
 11. Welk onderdeel van het model is het moeilijkst voor concurrenten te reproduceren: de open referentiecanons, de semantische methodologie, of de opgebouwde klantrelaties?
 12. Welke van bovenstaande aannames moeten zijn gevalideerd vóór een investering in significante schaalvergroting?
+13. Hoe schaalt acquisitie voorbij het persoonlijke netwerk van de twee oprichters, en welk van de overige vijf kanalen (website, referenties, communities, events, open source) is het meest kansrijk om eerst te versterken? *(H7)*

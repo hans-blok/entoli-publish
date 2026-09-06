@@ -1,10 +1,8 @@
 # Entoli Business Model
 
+*Met Agents. Voor blijvende waarde.*
+
 > Dit document redeneert vanuit de klant, niet vanuit wat Entoli heeft gebouwd: **Klant → Probleem/behoefte → Klantwaarde → Waardepropositie → Business Service → Product/aanbod → Waardelevering → Verdienmechanisme → Versterking**. De onderliggende businessarchitectuur (Producten, Business Services, Business Processes in `vision-business-architecture`) blijft leidend voor wát bestaat; dit document legt uit wélke klantwaarde dat rechtvaardigt en hoe Entoli daar economische waarde aan overhoudt. Eén uitzondering is expliciet gemarkeerd: de commerciële behandeling van `Configureer professionele uitvoering` als "Entoli SaaS" (§6.3) is een businessmodelkeuze die vooruitloopt op de architectuurbron, die daar nog geen apart Product vastlegt. Waar de bronnen verder geen bewijs leveren, is dat gelabeld als **Hypothese** of **Openstaande vraag** — niet als vaststaand feit.
-
-![Entoli business model — van klant en probleem, via waardepropositie en aanbod, naar waardelevering en verdienmechanisme](business-model-visual.png)
-
-*Het businessmodel in één overzicht: klant en probleem leiden tot klantwaarde en waardepropositie, verpakt in een aanbod, geleverd via een vaste keten van diensten, en verzilverd via een verdienmechanisme. Zie de [Business Model Canvas](business-model-canvas.md) voor dezelfde inhoud in het Osterwalder-format.*
 
 ## 1. Context en drijfveren
 
@@ -73,6 +71,14 @@ Samengevat in één overkoepelende propositie:
 
 > **Trusted AI-powered Professional Work** — professioneel kenniswerk sneller en schaalbaarder uitvoeren met AI, terwijl de gebruikte kennis, regels, context en uitvoering expliciet beheerst en herleidbaar blijven.
 
+Kort samengevat wat dit uniek maakt: **expliciete kennis als fundament voor professionele AI-capaciteit**.
+
+- Domeinkennis expliciet en canoniek vastgelegd.
+- Professionele functies als herbruikbare Agents.
+- Onafhankelijk van specifieke AI-modellen en tooling.
+- Traceerbaar en beheersbaar.
+- Open kennisbasis, professionele toepassing.
+
 Deze belofte blijft geldig ook als de onderliggende AI-technologie of Entoli's huidige Producten veranderen: hij gaat over overdraagbare, beheersbare professionele capaciteit, niet over een specifiek stuk software. Positionering: Entoli is niet nóg een agentframework, maar de **semantische infrastructuur** waarop organisaties hun eigen betrouwbare professionele AI-capaciteit ontwikkelen, configureren en inzetten.
 
 ## 6. Aanbod — hoe Entoli die waarde verpakt
@@ -85,6 +91,8 @@ Klantwaarde eerst: een organisatie moet professionele kennis expliciet en gezagh
 
 **Entoli Studio** is het Product waarmee Entoli die waarde levert: het klantgerichte SaaS-product dat `Ontwikkel canon` (kennis expliciteren tot een Canon) en `Ontwikkel professionele capaciteit` (professionele rollen definiëren en bundelen tot inzetbare pakketten) aggregeert. Een **Canon** is hierbij het architecturale mechanisme waarmee die waarde wordt gerealiseerd — niet de klantwaarde zelf: een klant koopt geen Canon, hij koopt het vermogen om kennis te expliciteren, te beheersen en daarop voort te bouwen.
 
+Concreet biedt Entoli Studio: canons modelleren; Agents en intents definiëren; organisatiekennis configureren; herbruikbare professionele capaciteit ontwikkelen; gebaseerd op open standaarden.
+
 Elke klant ontwikkelt in zijn eigen Entoli Studio-omgeving zijn eigen, klant-specifieke canon, voortbouwend op een open referentiecanon (zie §7). Entoli gebruikt Entoli Studio ook zelf om die referentiecanons te bouwen.
 
 ### 6.2 Entoli Workspace — voor de Professional User
@@ -93,6 +101,8 @@ Klantwaarde eerst: een professional moet daadwerkelijk werk kunnen uitvoeren dat
 
 **Entoli Workspace** is het Product waarmee die waarde wordt geleverd: het klantgerichte SaaS-product dat `Voer professioneel werk uit` aggregeert — instructies samenstellen, het werk uitvoeren, overdragen naar vervolgwerk, en het resultaat opleveren, op een traceerbare en beheerste manier.
 
+Concreet biedt Entoli Workspace: Agents inzetten voor professioneel werk; werken binnen eigen context; community-canons gebruiken; traceerbare resultaten; van vraag naar werkresultaat.
+
 **Studio–Workspace relatie**: Entoli Studio ontwikkelt professionele capaciteit; Entoli Workspace past die capaciteit toe in daadwerkelijk werk. **[Evidence — architectuur]** Dit opent een mogelijk sterker mechanisme: *ontwikkel capaciteit (Studio) → pas haar toe in werk (Workspace) → leer waar zij tekortschiet → verbeter haar (terug naar Studio) → vergroot de herbruikbare waarde.* Dit is een **Hypothese**: het veronderstelt dat Workspace-gebruik daadwerkelijk aanleiding geeft tot herziening in Studio, en dat dit voor een klant meetbaar meer oplevert dan de twee producten los. Dat vraagt validatie in de praktijk (zie §10).
 
 ### 6.3 Entoli SaaS — hosting, configuratie en beheer als zichtbare laag
@@ -100,6 +110,8 @@ Klantwaarde eerst: een professional moet daadwerkelijk werk kunnen uitvoeren dat
 Klantwaarde eerst: voordat werk kan worden uitgevoerd, moet er een werkende, beheerste operationele omgeving zijn — inclusief de mogelijkheid om van AI-leverancier te wisselen zonder de professionele rollen te hoeven aanpassen (verminderde afhankelijkheid, §4) — en die omgeving moet gehost, geconfigureerd, beheerd en actueel gehouden worden.
 
 `Configureer professionele uitvoering` is de Business Service die dit levert: de operationele omgeving, providertoegang, orchestratie en modelkeuze inrichten. Dit is waar **modelonafhankelijkheid** zit. Deze Business Service wordt geleverd via **Entoli SaaS**: de hostings-, configuratie- en beheerlaag die zowel Entoli Studio als Entoli Workspace operationeel draagt, en die daarnaast als zichtbare, expliciet aangeboden implementatie- en ondersteuningsdienst aan klanten wordt gepresenteerd (inrichting, doorlopende ondersteuning, updates). **[Businessmodelkeuze — herzien]**
+
+Concreet biedt Entoli SaaS: veilige en betrouwbare hosting; configuratie en tenant-setup; beheer en monitoring; regelmatige updates; schaalbaar en zorgeloos in gebruik.
 
 Dit is een bewuste herziening ten opzichte van de eerdere positie in dit document: eerder werd deze Business Service uitsluitend als intern, niet-gecommercialiseerd mechanisme beschreven, zonder eigen omzetregel. Die aanname is nu losgelaten. Belangrijk om vast te houden: de canonieke businessarchitectuur (`business-processes-services-and-products.md`) legt voor `Configureer professionele uitvoering` nog geen eigen, klantgericht **Product** vast — deze herziening is dus vooralsnog een **businessmodelkeuze die vooruitloopt op** de architectuur, niet een architecturale vaststelling. Zolang de architectuurbron dit niet zelf bijwerkt, moet "Entoli SaaS" hier gelezen worden als de commerciële presentatie van een bestaande Business Service, niet als een nieuw canoniek Product-element (zie §14 en §15).
 
@@ -129,6 +141,8 @@ De architectuur beschrijft één doorlopende keten van kennis vastleggen tot res
 | Uitvoering configureren | `Configureer professionele uitvoering` | Entoli SaaS (§6.3) |
 | Werk voorbereiden, uitvoeren, overdragen en opleveren | `Voer professioneel werk uit` | Entoli Workspace |
 
+Als doorlopende cyclus vanuit klantperspectief bestaat waardelevering uit vijf stappen, die zich herhalen: **1. Behoefte (klantvraag) → 2. Kennis en capaciteit configureren → 3. Werk uitvoeren met Agents → 4. Traceerbaar werkresultaat → 5. Leren en verbeteren** — waarna inzichten uit stap 5 teruglopen naar stap 2, zodat de kennis en capaciteit in Entoli Studio verder verbeteren. Dit is de continue waardecreatie die de Studio–Workspace-relatie (§6.2) op procesniveau concretiseert.
+
 Twee mechanismen ondersteunen deze levering, elk met een eigen rol:
 
 - **Open referentiecanons** (Edgy, BPMN, ArchiMate, Agent Development e.a.) — door Entoli zelf ontwikkeld en waar mogelijk open gepubliceerd, geven een klant een startpunt voor zijn eigen canon in plaats van bij nul te beginnen. **[Decision]** Klant-specifieke canons — uitbreidingen op een referentiecanon met eigen elementen, relaties, regels en context — blijven privé-IP van de klant.
@@ -138,14 +152,16 @@ Onderscheid klantgerichte waarde versus interne mechanismen: de klant ervaart "m
 
 ## 8. Waardevangst — wie betaalt Entoli, waarvoor?
 
-| Aanbod | Wie betaalt | Waarvoor | Mechanisme |
-|---|---|---|---|
-| Entoli Studio | Organisatie (via Knowledge Authority/Capability Developer) | Kennis en capaciteit ontwikkelen | Terugkerende SaaS-omzet — precieze eenheid/abonnementsvorm **[Toekomstoptie, niet besloten]** |
-| Entoli Workspace | Organisatie (via Professional User/budgethouder) | Professioneel werk uitvoeren | Terugkerende SaaS-omzet; abonnement, gebruik, of hybride **[Toekomstoptie, niet besloten]** |
-| Entoli SaaS (`Configureer professionele uitvoering`) | Organisatie (via Organisational Buyer/Governor) | Hosting, configuratie, beheer en updates van de operationele omgeving | Implementatie- en ondersteuningsomzet, naast/onder Studio en Workspace **[Businessmodelkeuze — herzien, prijsvorm nog niet besloten]** |
-| `Bied consultancy` | Organisatie die begeleiding inkoopt | Deskundige hulp bij canon-/kennisontwikkeling | Professional-services-omzet |
-| `Bied training` | Organisatie die capaciteit wil overdragen | Vaardigheden om zelfstandig te werken | Training-/services-omzet |
-| Open referentiecanons | Niemand | Lagere instapdrempel, ecosysteem | Geen omzet; investering (zie §9) |
+Entoli onderscheidt hierin vier verdienmechanismen:
+
+| Verdienmechanisme | Aanbod | Wie betaalt | Waarvoor | Mechaniek |
+|---|---|---|---|---|
+| **SaaS-abonnementen** | Entoli Studio | Organisatie (via Knowledge Authority/Capability Developer) | Toegang tot Entoli Studio — kennis en capaciteit ontwikkelen | Terugkerende SaaS-omzet — precieze eenheid/abonnementsvorm **[Toekomstoptie, niet besloten]** |
+| **SaaS-abonnementen** | Entoli Workspace | Organisatie (via Professional User/budgethouder) | Toegang tot Entoli Workspace — professioneel werk uitvoeren | Terugkerende SaaS-omzet; abonnement, gebruik, of hybride **[Toekomstoptie, niet besloten]** |
+| **Configuratie en begeleiding** | Entoli SaaS (`Configureer professionele uitvoering`) | Organisatie (via Organisational Buyer/Governor) | Implementatie, inrichting en doorlopende ondersteuning: hosting, configuratie, beheer en updates van de operationele omgeving | Implementatie- en ondersteuningsomzet, naast/onder Studio en Workspace **[Businessmodelkeuze — herzien, prijsvorm nog niet besloten]** |
+| **Consultancy** | `Bied consultancy` | Organisatie die begeleiding inkoopt | Advies en maatwerktrajecten bij canon-/kennisontwikkeling | Professional-services-omzet |
+| **Opleiding** | `Bied training` | Organisatie die capaciteit wil overdragen | Geven van trainingen, vaardigheden om zelfstandig te werken | Training-/services-omzet |
+| *(geen verdienmechanisme)* | Open referentiecanons | Niemand | Lagere instapdrempel, ecosysteem | Geen omzet; investering (zie §9) |
 
 **Verdienmechanisme versus prijs**: dit document legt vast *waarom* en *waarvoor* betaald zou worden (mechanisme), niet de prijseenheid, het tarief of het abonnementsmodel (prijs) — dat laatste is voor Entoli Studio en Entoli Workspace nog niet besloten.
 
