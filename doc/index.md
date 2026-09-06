@@ -1,23 +1,21 @@
-# Entoli-model (architectuur)
+# Entoli Modellen
 
-## We documementeren minimaal 
+Deze site ontsluit het Entoli-model: hoe Entoli waarde creëert (het businessmodel), hoe dat is gearchitecteerd (het architectuurmodel), en welke begrippen daaraan ten grondslag liggen (de conceptuele datamodellen).
 
-Met views en korte beschrijvingen leggen we vast wat we hebben besloten of maken we views die kunnen worden gebruikt voor besluitvorming. 
+## Waar wil je beginnen?
 
-## Naar het model
+### [Entoli in een notendop](https://claude.ai/code/artifact/aa438e42-f91f-44e6-a867-2bdf6e999881){:target="_blank"}
 
-[Open architectuurmodel](views/index.html){:target="_blank"}
+Een beknopte, visuele introductie op de architectuur — vijf views op een rij, elk met een korte inleiding. Het snelste startpunt.
 
-## Entoli in een notendop
+### [Business Model](business-model/business-model.md)
 
-[Entoli in een notendop](https://claude.ai/code/artifact/aa438e42-f91f-44e6-a867-2bdf6e999881){:target="_blank"} — vijf ArchiMate-weergaven op een rij, elk met een korte inleiding.
+Hoe Entoli waarde creëert, levert en verzilvert: van klant en klantprobleem, via waardepropositie en aanbod, naar verdienmechanisme.
 
-## Entoli business model
+### [Architectuurmodel](views/index.html){:target="_blank"}
 
-![Entoli business model](artikelen/Entoli%20business%20model.png)
+De ArchiMate-architectuur achter Entoli: business-, applicatie- en technologielagen, en de views die daaruit zijn opgebouwd.
 
-Dit model laat zien hoe Entoli waarde creëert door betekenis, structuur en uitvoering met elkaar te verbinden in één coherent bedrijfsmodel.
+### [Datamodellen](data-models/index.md)
 
-## Artikelen
-
-- [Datamodelleren met Entoli](artikelen/artikel-datamodelleren-entoli.md)
+De conceptuele datamodellen die de semantiek van Entoli's begrippen expliciet maken.

@@ -12,3 +12,21 @@
 .md-tabs {
   background-color: var(--entoli-black);
 }
+
+/* Figures: center diagrams/visuals and treat the italic line right
+   after an image as a caption, so content authors get figure/caption
+   behaviour from plain Markdown without extra syntax. */
+.md-typeset p > img {
+  display: block;
+  margin: 1.5em auto;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+}
+
+.md-typeset p:has(> img) + p > em:only-child {
+  display: block;
+  text-align: center;
+  margin-top: -0.75em;
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+}

@@ -30,6 +30,7 @@ theme:
   language: "en"
   features:
     - navigation.instant
+    - navigation.indexes
     - navigation.sections
     - navigation.expand
     - navigation.top
@@ -112,13 +113,11 @@ markdown_extensions:
 # ------------------------------------------------------------
 nav:
   - Home: index.md
+  - Business Model:
+      - business-model/business-model.md
+      - business-model/business-model-canvas.md
   - Architectuurmodel: views/index.html
   - Datamodellen: data-models/index.md
-  - Artikelen:
-      - Datamodelleren met Entoli: artikelen/artikel-datamodelleren-entoli.md
-      - Source-regime, Synthesis-regime en Task Mode: artikelen/source-regime-synthesis-regime-task-mode.md
-  - Codes:
-      - Classification Register: codes/classification-register.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration
