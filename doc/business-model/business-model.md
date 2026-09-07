@@ -2,6 +2,10 @@
 
 *Met Agents. Voor blijvende waarde.*
 
+![Entoli business model — van klant en probleem, via waardepropositie en aanbod, naar waardelevering en verdienmechanisme](business-model-visual.png)
+
+*Het businessmodel in één overzicht: klant en probleem leiden tot klantwaarde en waardepropositie, verpakt in een aanbod, geleverd via een vaste keten van diensten, en verzilverd via een verdienmechanisme. Zie de [Business Model Canvas](business-model-canvas.md) voor dezelfde inhoud in het Osterwalder-format.*
+
 > Dit document redeneert vanuit de klant, niet vanuit wat Entoli heeft gebouwd: **Klant → Probleem/behoefte → Klantwaarde → Waardepropositie → Business Service → Product/aanbod → Waardelevering → Verdienmechanisme → Versterking**. De onderliggende businessarchitectuur (Producten, Business Services, Business Processes in `vision-business-architecture`) blijft leidend voor wát bestaat; dit document legt uit wélke klantwaarde dat rechtvaardigt en hoe Entoli daar economische waarde aan overhoudt. Eén uitzondering is expliciet gemarkeerd: de commerciële behandeling van `Configureer professionele uitvoering` als "Entoli SaaS" (§6.3) is een businessmodelkeuze die vooruitloopt op de architectuurbron, die daar nog geen apart Product vastlegt. Waar de bronnen verder geen bewijs leveren, is dat gelabeld als **Hypothese** of **Openstaande vraag** — niet als vaststaand feit.
 
 ## 1. Context en drijfveren

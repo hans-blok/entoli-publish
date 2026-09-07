@@ -2,6 +2,10 @@
 
 *Met Agents. Voor blijvende waarde.*
 
+![Entoli Business Model Canvas — de negen Osterwalder-blokken ingevuld vanuit het Entoli-businessmodel](bmc-visual.png)
+
+*Hetzelfde businessmodel als het [Entoli Business Model](business-model.md), gestructureerd in het negen-blokken Business Model Canvas-format.*
+
 ## Purpose
 
 Dit document structureert het bestaande businessmodel (`artefacten/business-model/business-model.md`) in het standaard Business Model Canvas-format (Osterwalder), zodat het in één oogopslag beoordeelbaar is door investeerders, partners en interne stakeholders. Het is **geen nieuw ontwerp** en voegt geen klantwaarde, propositie of verdienmechanisme toe die niet al in de bron staat.
