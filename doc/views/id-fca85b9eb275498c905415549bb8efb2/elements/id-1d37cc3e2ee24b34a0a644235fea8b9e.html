@@ -2,7 +2,7 @@
 <html class="frame" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<title>llm account</title>
+	<title>intent instruction</title>
 
 	<!-- JQUERY -->
 	<script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
@@ -21,11 +21,11 @@
 
 		<div class="panel-heading root-panel-heading">
             <!-- Name -->
-               <b>llm account</b>
+               <b>intent instruction</b>
 
             <!-- If a View with Viewpoint -->
-			   (<span class="i18n-elementtype-BusinessObject"></span>)
-			   <a class="glyphicon glyphicon-info-sign" id="hint-BusinessObject" target="hint"></a>
+			   (<span class="i18n-elementtype-Contract"></span>)
+			   <a class="glyphicon glyphicon-info-sign" id="hint-Contract" target="hint"></a>
 		</div>
 
 		<div class="panel-body root-panel-body">
@@ -49,27 +49,36 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
-Een LLM Account is de door een LLM Provider verstrekte toegang tot die Provider die binnen &#233;&#233;n Ecosystem Context beschikbaar wordt gemaakt voor het kunnen gebruiken van LLM Models van die Provider.
+Een Intent Instruction (Intent-instructie) is een geordende, normatieve aanwijzing die beschrijft hoe een Agent Intent inhoudelijk door een LLM moet worden uitgevoerd. Een Intent Instruction behoort tot precies &#233;&#233;n Agent Intent en is onafhankelijk van een concrete Execution.
 
 DOEL
-Provider-toegang expliciet en onafhankelijk van modelkeuze modelleren, zodat beschikbaarheid van toegang binnen een Ecosystem Context niet wordt vastgelegd in een Agent, Agent Intent of Model Assignment.
+De Intent Instruction bestaat om de interne professionele werkwijze van een Agent Intent expliciet, overdraagbaar en reproduceerbaar te maken, zonder deze werkwijze te vermengen met orchestration of execution-specifieke context.
 
 LEIDENDE VRAAG
-Welke toegang tot deze LLM Provider is binnen de Ecosystem Context beschikbaar?
+Welke inhoudelijke handeling moet het LLM op dit punt in de uitvoering van deze Agent Intent verrichten?
 
 RELATIES
-Ieder LLM Account wordt door precies &#233;&#233;n LLM Provider verstrekt. Een LLM Provider kan nul of meer LLM Accounts verstrekken. Ieder LLM Account wordt door precies &#233;&#233;n Ecosystem Context beschikbaar gemaakt; een Ecosystem Context kan nul of meer LLM Accounts beschikbaar maken.
+
+Een Agent Intent heeft &#233;&#233;n of meer Intent Instructions.
+Een Intent Instruction behoort tot precies &#233;&#233;n Agent Intent.
+Intent Instructions van een Agent Intent hebben onderling een expliciete uitvoeringsvolgorde.
+Een Agent Intent stuurt de samenstelling van een Instruction Set voor een concrete Execution; de Intent Instructions vormen daarbij de stabiele, intent-specifieke werkwijze.
 
 BEPERKINGEN
-LLM Account is geen LLM Provider, LLM Model of Model Assignment. Een Model Assignment selecteert een LLM Model en niet rechtstreeks een LLM Account. Wanneer meerdere LLM Accounts voor dezelfde Provider binnen &#233;&#233;n Ecosystem Context beschikbaar zijn, bepaalt dit conceptuele model niet welk account technisch wordt gerouteerd; daarvoor is een afzonderlijke routeringsbeslissing nodig indien die semantiek relevant wordt.
+
+Een Intent Instruction is geen Execution Step Specification: die specificeert dat een Agent Intent binnen een Orchestration wordt aangeroepen, niet hoe die Intent inhoudelijk wordt uitgevoerd.
+Een Intent Instruction is geen Instruction Set: het Instruction Set is de execution-specifieke samenstelling van toepasselijke instructies, regels, semantische kennis en context.
+Een Intent Instruction is geen Rule: een Rule begrenst of normeert gedrag; een Intent Instruction schrijft een handeling binnen de werkwijze voor.
+Een Intent Instruction bevat geen execution-specifieke waarden of runtimeconfiguratie.
+Een Intent Instruction vertegenwoordigt &#233;&#233;n betekenisvolle handeling en is niet slechts een technisch tekstfragment van een prompt.
 
 INVARIANTEN
-Een LLM Account behoort tot precies &#233;&#233;n LLM Provider en wordt binnen precies &#233;&#233;n Ecosystem Context beschikbaar gemaakt. Voor het daadwerkelijk gebruiken van een geselecteerd LLM Model moet passende toegang tot de Provider van dat model beschikbaar zijn.
 
-Voorbeelden:
-- Entoli &#8212; OpenAI productieaccount &#8212; Provider-toegang die binnen een relevante Customer Context beschikbaar kan worden gemaakt.
-- Gemeente Utrecht &#8212; Anthropic-account &#8212; Voorbeeld van klantgebonden toegang tot een LLM Provider.
-- Rabobank &#8212; Azure OpenAI-account &#8212; Voorbeeld van een provideraccount dat binnen &#233;&#233;n Customer Context beschikbaar is.</div>
+Iedere Intent Instruction behoort tot precies &#233;&#233;n Agent Intent.
+Iedere Intent Instruction heeft een expliciete positie in de uitvoeringsvolgorde van die Agent Intent.
+Iedere Agent Intent heeft ten minste &#233;&#233;n Intent Instruction.
+De verzameling Intent Instructions van een Agent Intent beschrijft de inhoudelijke werkwijze zonder afhankelijk te zijn van een concrete Execution, Orchestration of LLM-configuratie.
+De betekenis van een Intent Instruction blijft gelijk ongeacht de wijze waarop zij technisch in een prompt of Instruction Set wordt gerepresenteerd.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -93,10 +102,7 @@ Voorbeelden:
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
-																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
-																	<td><span class="i18n-viewpoint-" /></td>
-																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptual"> entoli-conceptual </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
@@ -114,21 +120,16 @@ Voorbeelden:
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-5245ef5310b847a099cd0f8be3dfd18d.html" target="element" title="0..* is provided by 1">0..* is provided by 1</a></td>
+											<td><a href="../elements/id-30c002dd7df741fc8ae4e532ec12679c.html" target="element" title="1..* is included in 0..*">1..* is included in 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-abdf3fc1a9504d1eb988ab196a0ecf67.html" target="element"> llm account</a></td>
-											<td><a href="../elements/id-9c36c275b1bc4801a5e76a6db8a16571.html" target="element"> llm provider</a></td>
+											<td><a href="../elements/id-1d37cc3e2ee24b34a0a644235fea8b9e.html" target="element"> intent instruction</a></td>
+											<td><a href="../elements/id-a4319ee116ab41dda18d476242ca88da.html" target="element"> instruction set</a></td>
 										</tr>
 									<tr>
-											<td><a href="../elements/id-9b38a34b372d42bc806dde4f867eb05f.html" target="element" title="1 makes available 0..*">1 makes available 0..*</a></td>
+											<td><a href="../elements/id-98df82fac1c14727949ab6826e537086.html" target="element" title="1 performed through 1..*">1 performed through 1..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-a99dcf9067d84b2b9ddf4b7a8f40c647.html" target="element"> ecosystem context</a></td>
-											<td><a href="../elements/id-abdf3fc1a9504d1eb988ab196a0ecf67.html" target="element"> llm account</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-c7408d700a1f458c98999a750837ca54.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-64f19a334e974108b93f342c683cf1d5.html" target="element"> execution-configuration</a></td>
-											<td><a href="../elements/id-abdf3fc1a9504d1eb988ab196a0ecf67.html" target="element"> llm account</a></td>
+											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
+											<td><a href="../elements/id-1d37cc3e2ee24b34a0a644235fea8b9e.html" target="element"> intent instruction</a></td>
 										</tr>
 							</tbody>
 						</table>
