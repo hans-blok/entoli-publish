@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 620" role="presentation" aria-hidden="true">
+  <!--
+    Entoli hero-achtergrond: een abstracte, spaarzame weergave van een
+    semantische structuur. Geen diagram, geen illustratie: alleen ambiente
+    diepte achter de hero.
+
+    VISUELE GRAMMATICA — consequent aanhouden bij hergebruik:
+
+      achthoek        = Element      — het kenmerkende Entoli-symbool
+      kleine stip     = Element      — ondergeschikt, voor diepte
+      dunne lijn      = Relatie      — verbindt Elementen, zonder pijlpunt
+      [ ]             = Regel        — beperking op een relatie
+      cirkel-in-cirkel= Regel        — reikwijdte / toepasselijkheid
+      hangslot        = Regel        — beheersing / restrictie
+
+    Het onderscheid dat deze achtergrond moet dragen:
+    Elementen nemen deel aan relaties; Regels beheersen de structuur
+    zonder er onderdeel van te worden. Regelsymbolen raken daarom nooit
+    een relatielijn en hebben altijd witruimte om zich heen. Er lopen
+    geen lijnen vanuit een Regel: een Regel is geen knoop.
+
+    Alles staat in dezelfde lichtgrijze familie (dekking 0.18–0.30), in
+    oplopende sterkte: relatie < stip < achthoek < regel. De maskers
+    hieronder dempen die waarden nog verder, dus wat je op het scherm ziet
+    ligt lager. Geen kleurcodering: oranje blijft voorbehouden aan het logo.
+
+    De twee maskers zorgen dat de structuur:
+      m-center — wegvalt in het midden, waar logo en propositie staan;
+      m-bottom — oplost voor de volgende sectie begint.
+  -->
+  <defs>
+    <radialGradient id="fade-center" cx="50%" cy="44%" r="58%">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="40%" stop-color="#000000"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </radialGradient>
+    <mask id="m-center">
+      <rect width="1440" height="620" fill="url(#fade-center)"/>
+    </mask>
+
+    <linearGradient id="fade-bottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <mask id="m-bottom">
+      <rect width="1440" height="620" fill="url(#fade-bottom)"/>
+    </mask>
+  </defs>
+
+  <g mask="url(#m-center)">
+    <g mask="url(#m-bottom)">
+
+      <!-- RELATIES. Uiteinden stoppen op de rand van de achthoek, zodat
+           Elementen zichtbaar deelnemen aan de verbinding. -->
+      <g stroke="#121212" stroke-opacity="0.18" stroke-width="1" fill="none">
+        <path d="M96.0 118.0 L168.6 194.0"/>
+        <path d="M195.0 222.4 L287.9 325.1"/>
+        <path d="M170.5 223.6 L92.0 330.0"/>
+        <path d="M304.9 325.9 L392.0 246.0"/>
+        <path d="M1074.0 96.0 L1202.3 176.2"/>
+        <path d="M1228.0 201.5 L1310.0 328.7"/>
+        <path d="M1211.3 203.2 L1150.0 360.0"/>
+        <path d="M1322.5 329.0 L1380.0 250.0"/>
+      </g>
+
+      <!-- ELEMENTEN — achthoek, het dragende symbool. Twee maten voor
+           hiërarchie: een knooppunt met meerdere relaties is groter. -->
+      <g stroke="#121212" stroke-opacity="0.28" stroke-width="1.1" fill="none">
+        <polygon points="201.4,216.0 190.0,227.4 174.0,227.4 162.6,216.0 162.6,200.0 174.0,188.6 190.0,188.6 201.4,200.0"/>
+        <polygon points="308.0,339.0 301.0,346.0 291.0,346.0 284.0,339.0 284.0,329.0 291.0,322.0 301.0,322.0 308.0,329.0"/>
+        <polygon points="1236.5,193.7 1225.7,204.5 1210.3,204.5 1199.5,193.7 1199.5,178.3 1210.3,167.5 1225.7,167.5 1236.5,178.3"/>
+        <polygon points="1327.1,342.6 1320.6,349.1 1311.4,349.1 1304.9,342.6 1304.9,333.4 1311.4,326.9 1320.6,326.9 1327.1,333.4"/>
+      </g>
+
+      <!-- ELEMENTEN — kleine, terughoudende knopen -->
+      <g fill="#121212" fill-opacity="0.24">
+        <circle cx="96" cy="118" r="2.5"/>
+        <circle cx="92" cy="330" r="2.5"/>
+        <circle cx="392" cy="246" r="2.5"/>
+        <circle cx="1074" cy="96" r="2.5"/>
+        <circle cx="1380" cy="250" r="2.5"/>
+        <circle cx="1150" cy="360" r="2.5"/>
+      </g>
+
+      <!-- REGELS. Drie symbolen, elk één keer. Ze staan los van de
+           structuur: de dichtstbijzijnde relatielijn ligt telkens ruim
+           30 eenheden verderop. -->
+      <g stroke="#121212" stroke-opacity="0.30" stroke-width="1.1" fill="none">
+
+        <!-- Reikwijdte: cirkel in cirkel, naast het linker knooppunt -->
+        <g transform="translate(268,176)">
+          <circle r="9"/>
+          <circle r="3.5"/>
+        </g>
+
+        <!-- Beperking: [ ] naast de relatie tussen de twee rechter
+             Elementen, meegedraaid met die relatie maar los ervan -->
+        <g transform="translate(1294,245) rotate(57.2)">
+          <path d="M-3 -11 L-8 -11 L-8 11 L-3 11"/>
+          <path d="M3 -11 L8 -11 L8 11 L3 11"/>
+        </g>
+
+        <!-- Beheersing: hangslot, naast het rechter cluster -->
+        <g transform="translate(1336,404)">
+          <path d="M-5 -2 L-5 -7 A5 5 0 0 1 5 -7 L5 -2"/>
+          <rect x="-8.5" y="-2" width="17" height="13" rx="1"/>
+        </g>
+      </g>
+
+    </g>
+  </g>
+</svg>

@@ -13,6 +13,42 @@
   background-color: var(--entoli-black);
 }
 
+/* Textual brand only: Material shows a default fallback icon in the
+   header/drawer when no theme.logo image is configured. Entoli's
+   brand is the wordmark ENTOLI, not an icon. */
+.md-header__button.md-logo,
+.md-nav__button.md-logo {
+  display: none;
+}
+
+/* Het woordmerk staat in kapitalen. Alleen de eerste topic is de merknaam;
+   de tweede is de paginatitel die bij scrollen verschijnt en normaal blijft. */
+.md-header__topic:first-child {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Merk links uitlijnen met de eerste tab. Material zet de headertitel op
+   1rem vanaf de rand van het grid en de tabs op .2rem (lijst) + .6rem
+   (item) = .8rem. Vandaar .6rem hier — alleen vanaf het breekpunt waarop
+   de tabs zichtbaar worden (76.25em). De [dir=ltr]-prefix is nodig om
+   dezelfde specificiteit te halen als de themaregel die dit zet. */
+@media screen and (min-width: 76.25em) {
+  [dir=ltr] .md-header__title {
+    margin-left: 0.6rem;
+  }
+}
+
+/* Zeer subtiele markering dat een navigatie-item de site verlaat. Het
+   target-attribuut wordt gezet door de hook in scripts/external_links.py. */
+.md-tabs__link[target="_blank"]::after,
+.md-nav__link[target="_blank"]::after {
+  content: "↗";
+  font-size: 0.85em;
+  margin-left: 0.3em;
+  opacity: 0.55;
+}
+
 /* Figures: center diagrams/visuals and treat the italic line right
    after an image as a caption, so content authors get figure/caption
    behaviour from plain Markdown without extra syntax. */
@@ -29,4 +65,23 @@
   margin-top: -0.75em;
   font-size: 0.85em;
   color: var(--md-default-fg-color--light);
+}
+
+/* Plate: een pagina die uit één visual bestaat. De afbeelding zit in de
+   h1 (de visual draagt zijn eigen titel), is aanklikbaar om op ware
+   grootte te bekijken, en krijgt de volle contentbreedte. */
+.md-typeset .entoli-plate {
+  margin: 1.5rem 0 2rem;
+}
+
+.md-typeset .entoli-plate h1 {
+  margin: 0;
+}
+
+.md-typeset .entoli-plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
 }

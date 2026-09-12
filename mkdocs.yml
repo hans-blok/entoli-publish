@@ -5,15 +5,16 @@
 # ------------------------------------------------------------
 # 1. Site Identity
 # ------------------------------------------------------------
-site_name: "Entoli Modellen"
+site_name: "entoli"
 site_description: "Publicatie van de Entoli-modellen"
 site_author: "Entoli Team"
 site_url: "https://hans-blok.github.io/entoli-publish/"
 
-# Repository referentie
-repo_name: "entoli-publish"
-repo_url: "https://github.com/hans-blok/entoli-publish"
-edit_uri: "edit/main/doc/"
+# Repository referentie — bewust niet ingevuld.
+# Material toont het repository-blok (icoon, naam, sterren, forks) in de header
+# zodra `repo_url` is gezet. De publieke site houdt de header leeg op
+# merk | navigatie | zoeken. Zet `repo_name`, `repo_url` en `edit_uri` terug
+# om het blok (en eventuele "edit this page"-links) weer aan te zetten.
 
 # ------------------------------------------------------------
 # 2. Documentation Source
@@ -44,10 +45,10 @@ theme:
   palette:
     # Kleuren komen uit doc/stylesheets/entoli.css (gemeten uit het logo)
     scheme: "default"
-  font:
-    text: "Segoe UI"
-    code: "Consolas"
-  logo: "assets/entoloi-logo.png"
+  # false = geen Google Fonts. Manrope wordt zelf gehost vanuit
+  # doc/stylesheets/fonts.css; voor code valt Material terug op zijn
+  # eigen stack (SFMono, Consolas, Menlo, monospace).
+  font: false
   favicon: "assets/entoloi-logo.png"
 
 # ------------------------------------------------------------
@@ -55,7 +56,9 @@ theme:
 # Owner: Presentation Architect
 # ------------------------------------------------------------
 extra_css:
+  - stylesheets/fonts.css
   - stylesheets/entoli.css
+  - stylesheets/home.css
 
 extra_javascript: []
 
@@ -65,6 +68,12 @@ extra_javascript: []
 plugins:
   - search:
       lang: en
+
+# ------------------------------------------------------------
+# 5a. Hooks
+# ------------------------------------------------------------
+hooks:
+  - scripts/external_links.py
 
 # ------------------------------------------------------------
 # 6. Markdown Extensions
@@ -78,8 +87,10 @@ markdown_extensions:
   - footnotes
   - md_in_html
   - tables
+  # permalink: false houdt de heading-id's (en dus de anchors en de TOC) intact,
+  # maar genereert geen zichtbaar ¶-teken achter koppen.
   - toc:
-      permalink: true
+      permalink: false
       toc_depth: 3
 
   # Python Markdown Extensions
@@ -116,7 +127,10 @@ nav:
   - Business Model:
       - business-model/business-model.md
       - business-model/business-model-canvas.md
-  - Architectuurmodel: views/index.html
+  - Soevereiniteit: soevereiniteit.md
+  # Externe bestemming. De hook in scripts/external_links.py vult voor
+  # navigatielinks naar buiten de site target/rel aan.
+  - In een notendop: "https://claude.ai/code/artifact/aa438e42-f91f-44e6-a867-2bdf6e999881"
 
 # ------------------------------------------------------------
 # 8. Extra Configuration

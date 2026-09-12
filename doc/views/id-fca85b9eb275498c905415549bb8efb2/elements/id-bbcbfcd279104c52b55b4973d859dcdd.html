@@ -2,7 +2,7 @@
 <html class="frame" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<title>Synthesis-regime</title>
+	<title>Synthesis regime</title>
 
 	<!-- JQUERY -->
 	<script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
@@ -21,7 +21,7 @@
 
 		<div class="panel-heading root-panel-heading">
             <!-- Name -->
-               <b>Synthesis-regime</b>
+               <b>Synthesis regime</b>
 
             <!-- If a View with Viewpoint -->
 			   (<span class="i18n-elementtype-DataObject"></span>)
@@ -48,34 +48,7 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap">Synthesis Regime is the data object that records, per agent-intent, which meaning-transformations the LLM is permitted to perform once its sources are loaded and its task shape is fixed. It carries exactly one enumerated value per agent-intent, drawn from a fixed set of three.
-
-It answers a question distinct from the two objects it is associated with: Source Regime records which sources may be loaded; Task Mode records what shape of task this is; Synthesis Regime records what may be done to meaning once both of those are settled.
-
-Attributes
-
-- value (Enumeration): One of: Faithful, Structuring, Generative
-- scope (Reference): The agent-intent this value applies to
-- epistemicGuarantee (Derived boolean): true for Faithful/Structuring, false for Generative unless the generated content has since been validated and canonised
-
-Enumeration values
-
-- Preserving: no new meaning introduced; rephrasing, summarising, and strict derivation from source only.
-- Relating: meaning unaltered; only reorganisation, relation-making, or structural exposure of existing content permitted.
-- Generating: new meaning (hypotheses, assumptions, alternative framings) may be introduced; every such instance must be explicitly marked and carries no epistemic guarantee until validated and canonised.
-
-Relationships
-
-- Association -&gt; Agent Contract: every agent-intent within a contract carries exactly one Synthesis Regime value.
-- Association (orthogonal) -&gt; Source Regime: independent axes; an Open source regime does not by itself grant Generative permission.
-- Association (orthogonal) -&gt; Interpretation Mode: independent axes; the same task shape may be declared under any Synthesis Regime value.
-- Realization -&gt; Epistemic Guarantee: Faithful and Structuring preserve it on every claim; Generative suspends it for newly introduced content.
-
-Constraints
-
-- MUST be declared explicitly per agent-intent; never inferred from Source Regime or Interpretation Mode.
-- Extracted from language previously embedded in Source Regime's Open position and in Interpretation Mode's per-position constraints - a relocation of existing behaviour, not a new permission.
-</div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -119,14 +92,14 @@ Constraints
 									<tr>
 											<td><a href="../elements/id-af421ae7816e4b3482283107913e951f.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-bbcbfcd279104c52b55b4973d859dcdd.html" target="element"> Synthesis-regime</a></td>
-											<td><a href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html" target="element"> Agent-intent</a></td>
+											<td><a href="../elements/id-bbcbfcd279104c52b55b4973d859dcdd.html" target="element"> Synthesis regime</a></td>
+											<td><a href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html" target="element"> Agent intent</a></td>
 										</tr>
 									<tr>
 											<td><a href="../elements/id-5cbf7e4b906940028efc92f3a9030f8f.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html" target="element"> Agent-intent</a></td>
-											<td><a href="../elements/id-bbcbfcd279104c52b55b4973d859dcdd.html" target="element"> Synthesis-regime</a></td>
+											<td><a href="../elements/id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.html" target="element"> Agent intent</a></td>
+											<td><a href="../elements/id-bbcbfcd279104c52b55b4973d859dcdd.html" target="element"> Synthesis regime</a></td>
 										</tr>
 							</tbody>
 						</table>

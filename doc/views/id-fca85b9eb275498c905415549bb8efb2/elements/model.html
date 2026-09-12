@@ -397,7 +397,7 @@
 										dataFoldersContent.push({folderid:"id-1a54c7e5da3f46c1b129f6b8d854a643", contentid:"id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d", contenttype:"DataObject"});
 											dataElements.push({id:"id-2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Agent"), documentation:decodeURL("An+entoli-agent+is+an+explicitly+defined%2C+autonomous+software+entity+within+the+Entoli+ecosystem+that%2C+on+the+basis+of+a+formal+agent-charter+and+agent-contract%2C+executes+specific+tasks%2C+produces+Entoli+artifacts+or+delivers+information%2C+and+always+operates+within+a+demarcated+agent-boundary+and+according+to+applicable+governance.")});
 										dataFoldersContent.push({folderid:"id-1a54c7e5da3f46c1b129f6b8d854a643", contentid:"id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e", contenttype:"DataObject"});
-											dataElements.push({id:"id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Agent-intent"), documentation:decodeURL("An+agent-contract+formally+defines+the+intent+%28agent-capability%29+of+the+entoli-agent%2C+the+input+it+expects+and+the+output+%28artifact%29+it+creates+or+answers+it+gives%2C+as+well+as+the+policies+and+constraints+under+which+those+capabilities+are+accessible.")});
+											dataElements.push({id:"id-3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Agent+intent"), documentation:decodeURL("An+agent-contract+formally+defines+the+intent+%28agent-capability%29+of+the+entoli-agent%2C+the+input+it+expects+and+the+output+%28artifact%29+it+creates+or+answers+it+gives%2C+as+well+as+the+policies+and+constraints+under+which+those+capabilities+are+accessible.")});
 										dataFoldersContent.push({folderid:"id-1a54c7e5da3f46c1b129f6b8d854a643", contentid:"id-3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c", contenttype:"DataObject"});
 											dataElements.push({id:"id-3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Agent-capability"), documentation:decodeURL("An+agent-capability+is+an+explicitly+callable+function+of+an+entoli-agent%2C+recorded+in+an+agent-contract.+Agent-capability+is+a+concrete+sub-type+of+Entoli-capability%3A+it+is+an+Entoli-capability+as+realised+and+exposed+by+one+specific+agent+through+its+contract.")});
 										dataFoldersContent.push({folderid:"id-1a54c7e5da3f46c1b129f6b8d854a643", contentid:"id-8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d", contenttype:"DataObject"});
@@ -435,7 +435,7 @@
 										dataFoldersContent.push({folderid:"id-1a54c7e5da3f46c1b129f6b8d854a643", contentid:"id-fd42a7d492c64cbe8d99c4b403501755", contenttype:"DataObject"});
 											dataElements.push({id:"id-fd42a7d492c64cbe8d99c4b403501755", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Instruction+Set"), documentation:decodeURL("An+Instruction+Set+is+an+ordered+collection+of+Instructions+assembled+by+coordination+and+handed+off+to+the+execution+layer+as+a+single+unit+of+work.")});
 										dataFoldersContent.push({folderid:"id-1a54c7e5da3f46c1b129f6b8d854a643", contentid:"id-74040cc1deff420a8806a4db047c18b8", contenttype:"DataObject"});
-											dataElements.push({id:"id-74040cc1deff420a8806a4db047c18b8", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Task+Mode"), documentation:decodeURL("Task+Mode+is+the+data+object+that+records%2C+per+agent-intent%2C+which+type+of+operation+is+to+be+executed+and+what+output+structure+must+be+produced.+It+carries+exactly+one+enumerated+value+per+agent-intent%2C+drawn+from+a+fixed+set+of+five.%0D%0A%0D%0AIt+answers+a+question+distinct+from+the+other+objects+it+is+associated+with%3A+Source+Regime+records+which+sources+may+be+loaded%3B+Synthesis+Regime+records+what+may+be+done+to+meaning%3B+Execution+Strategy+records+how+execution+progresses%3B+Task+Mode+records+what+kind+of+operation+is+performed+and+how+the+result+must+be+structured.%0D%0A%0D%0AEnumeration+values%0D%0A%0D%0A-+Extracting%3A+isolate+explicitly+present+elements+from+source+material%3B+output+is+a+list+or+set+of+elements%3B+no+additional+relationships+introduced%3B+all+elements+MUST+be+directly+traceable+to+source.%0D%0A-+Structuring%3A+organise+and+relate+existing+elements+without+altering+meaning%3B+output+is+a+structured+artifact+%28e.g.+hierarchy%2C+relations%2C+sections%29%3B+no+new+meaning+or+relationships+beyond+source.%0D%0A-+Transforming%3A+reformulate+content+into+a+different+representation+while+preserving+meaning%3B+output+is+an+equivalent+artifact+in+a+new+form%3B+semantic+equivalence+MUST+be+maintained.%0D%0A-+Evaluating%3A+assess+content+against+explicitly+defined+criteria%3B+output+consists+of+criteria%2C+per-criterion+assessment%2C+and+explicit+conclusion%3B+criteria+MUST+be+stated+and+traceable.%0D%0A-+Originating%3A+produce+new+content+not+fully+present+in+the+source%3B+output+is+a+coherent+artifact+fulfilling+the+task+goal%3B+new+meaning+is+allowed+only+as+governed+by+Synthesis+Regime.%0D%0A%0D%0A%0D%0AConstraints%0D%0A%0D%0A-+MUST+be+declared+explicitly+per+agent-intent%3B+never+inferred+from+Source+Regime%2C+Synthesis+Regime%2C+or+Execution+Strategy.%0D%0A-+MUST+define%3A%0D%0A++-+the+type+of+operation+performed%0D%0A++-+the+structure+of+the+output+produced%0D%0A-+MUST+NOT+define%3A%0D%0A++-+iteration+or+looping%0D%0A++-+branching+or+step+selection%0D%0A++-+progression+logic%0D%0A-+Extracted+from+language+previously+embedded+in+Interpretation+Mode+and+task+descriptions+-+a+relocation+and+formalisation+of+existing+behaviour%2C+not+a+new+capability.")});
+											dataElements.push({id:"id-74040cc1deff420a8806a4db047c18b8", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Task+Regime"), documentation:decodeURL("")});
 										dataFoldersContent.push({folderid:"id-1a54c7e5da3f46c1b129f6b8d854a643", contentid:"id-01a25f721c954045b2c20d63486f16f1", contenttype:"DataObject"});
 											dataElements.push({id:"id-01a25f721c954045b2c20d63486f16f1", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Template"), documentation:decodeURL("A+template+is+a+pre-structured+pattern+that+defines+the+expected+form%2C+sections%2C+or+skeleton+of+a+business+artifact.+It+does+not+prescribe+content+but+provides+the+structural+starting+point+from+which+a+concrete+business+artifact+can+be+created.+Templates+are+derived+from+or+aligned+with+business+artifacts+and+ensure+consistency+in+artifact+production+across+agents+and+value+stream+phases.")});
 
@@ -479,7 +479,7 @@
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-18b7abd4c44941fa91015f313a842f0b", contenttype:"DataObject"});
 										dataElements.push({id:"id-18b7abd4c44941fa91015f313a842f0b", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Development+phase"), documentation:decodeURL("Development+phase+is+a+classification+axis+that+describes+in+which+phase+of+the+formation+of+work+a+role+or+intervention+takes+place.+It+positions+the+work+in+the+chain+from+intention+to+operationalisation.%0D%0A%0D%0APOSITIONS+DEVELOPMENT+PHASE%0D%0A-+Exploration+%E2%80%94+open-ended+investigation+before+commitment%0D%0A-+Ordering+%E2%80%94+structuring+and+prioritising+findings+or+requirements%0D%0A-+Recording+%E2%80%94+formally+capturing+decisions%2C+models%2C+or+specifications%0D%0A-+Testing+%E2%80%94+verifying+and+validating+against+criteria%0D%0A-+Accountability+%E2%80%94+reflecting+on+and+accounting+for+what+has+been+done%0D%0A-+Operationalisation+%E2%80%94+realising%2C+deploying%2C+or+integrating+the+outcome%0D%0A")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-4906771e6247482ca99b3edec7d325f6", contenttype:"DataObject"});
-										dataElements.push({id:"id-4906771e6247482ca99b3edec7d325f6", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Source-regime"), documentation:decodeURL("Source-regime+is+the+classification+axis+that+specifies%2C+per+agent-contract%2C+which+source+space+the+agent+may+use+during+an+execution%2C+and+thus+how+strictly+derivation+is+bounded.+The+source-regime+records+the+concrete+rules+for+that+position%3A+which+sources+are+valid%2C+which+are+excluded%2C%0D%0A%0D%0ASOURCE+REGIME%0D%0A-+Input-bound+%E2%80%94+the+agent+works+from+explicitly+provided+input%0D%0A-+Canon-bound+%E2%80%94+the+agent+draws+from+the+canonical+foundations%0D%0A-+Workspace-bound+%E2%80%94+the+agent+draws+from+workspace+artefacts%0D%0A-+External-source-bound+%E2%80%94+the+agent+draws+from+an+external+source+%28web%2C+API%29%0D%0A-+Open++%E2%80%94+Not+pre-limited+source+space%3B+assumptions+made+explicit+%28max+3%29+%7C+Probabilistic+%7C")});
+										dataElements.push({id:"id-4906771e6247482ca99b3edec7d325f6", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Source+regime"), documentation:decodeURL("")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-107ef8b5fd9b446a88363d2b824b1325", contenttype:"DataObject"});
 										dataElements.push({id:"id-107ef8b5fd9b446a88363d2b824b1325", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Business+Artifact"), documentation:decodeURL("A+business+artifact+is+a+concrete%2C+durable+work+product+that+records+content%2C+decisions%2C+analyses%2C+or+deliverables+produced+by+an+Entoli+agent+within+a+value+stream+phase.+It+represents+substantive+output+%E2%80%94+such+as+a+design%2C+plan%2C+report%2C+code+file%2C+or+specification+%E2%80%94+and+serves+as+transferable+value+within+the+workspace.+A+business+artifact+is+one+of+two+subtypes+of+artifact%2C+distinct+from+a+normative+artifact+in+that+it+conveys+substance+rather+than+prescribing+rules+or+norms.")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-3dc8f4bf9af34905bc794e8e24e37ec1", contenttype:"DataObject"});
@@ -494,8 +494,6 @@
 										dataElements.push({id:"id-4faec7eff3ed4cdf97ac4cd66105a6b5", type:"ApplicationComponent", specialization:decodeURL(""), name:decodeURL("Orchestrator"), documentation:decodeURL("")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-98c696aa927d4bdd9b01b144881806b9", contenttype:"ApplicationComponent"});
 										dataElements.push({id:"id-98c696aa927d4bdd9b01b144881806b9", type:"ApplicationComponent", specialization:decodeURL(""), name:decodeURL("Runner"), documentation:decodeURL("")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-0a515ab6c3304e2bbf792c6287a94750", contenttype:"ApplicationComponent"});
-										dataElements.push({id:"id-0a515ab6c3304e2bbf792c6287a94750", type:"ApplicationComponent", specialization:decodeURL(""), name:decodeURL("Source+Injector"), documentation:decodeURL("")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-cb555da8eb3d46ad8ca610f54142172b", contenttype:"ApplicationFunction"});
 										dataElements.push({id:"id-cb555da8eb3d46ad8ca610f54142172b", type:"ApplicationFunction", specialization:decodeURL(""), name:decodeURL("determine+semantic+scope"), documentation:decodeURL("")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-4fb28be236234482b601a41bac1353d0", contenttype:"ApplicationFunction"});
@@ -519,39 +517,15 @@
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-d6e9cf7205704d9ba617c4fda8a49057", contenttype:"DataObject"});
 										dataElements.push({id:"id-d6e9cf7205704d9ba617c4fda8a49057", type:"DataObject", specialization:decodeURL(""), name:decodeURL("llm-execution-configuration"), documentation:decodeURL("")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-bbcbfcd279104c52b55b4973d859dcdd", contenttype:"DataObject"});
-										dataElements.push({id:"id-bbcbfcd279104c52b55b4973d859dcdd", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Synthesis-regime"), documentation:decodeURL("Synthesis+Regime+is+the+data+object+that+records%2C+per+agent-intent%2C+which+meaning-transformations+the+LLM+is+permitted+to+perform+once+its+sources+are+loaded+and+its+task+shape+is+fixed.+It+carries+exactly+one+enumerated+value+per+agent-intent%2C+drawn+from+a+fixed+set+of+three.%0D%0A%0D%0AIt+answers+a+question+distinct+from+the+two+objects+it+is+associated+with%3A+Source+Regime+records+which+sources+may+be+loaded%3B+Task+Mode+records+what+shape+of+task+this+is%3B+Synthesis+Regime+records+what+may+be+done+to+meaning+once+both+of+those+are+settled.%0D%0A%0D%0AAttributes%0D%0A%0D%0A-+value+%28Enumeration%29%3A+One+of%3A+Faithful%2C+Structuring%2C+Generative%0D%0A-+scope+%28Reference%29%3A+The+agent-intent+this+value+applies+to%0D%0A-+epistemicGuarantee+%28Derived+boolean%29%3A+true+for+Faithful%2FStructuring%2C+false+for+Generative+unless+the+generated+content+has+since+been+validated+and+canonised%0D%0A%0D%0AEnumeration+values%0D%0A%0D%0A-+Preserving%3A+no+new+meaning+introduced%3B+rephrasing%2C+summarising%2C+and+strict+derivation+from+source+only.%0D%0A-+Relating%3A+meaning+unaltered%3B+only+reorganisation%2C+relation-making%2C+or+structural+exposure+of+existing+content+permitted.%0D%0A-+Generating%3A+new+meaning+%28hypotheses%2C+assumptions%2C+alternative+framings%29+may+be+introduced%3B+every+such+instance+must+be+explicitly+marked+and+carries+no+epistemic+guarantee+until+validated+and+canonised.%0D%0A%0D%0ARelationships%0D%0A%0D%0A-+Association+-%3E+Agent+Contract%3A+every+agent-intent+within+a+contract+carries+exactly+one+Synthesis+Regime+value.%0D%0A-+Association+%28orthogonal%29+-%3E+Source+Regime%3A+independent+axes%3B+an+Open+source+regime+does+not+by+itself+grant+Generative+permission.%0D%0A-+Association+%28orthogonal%29+-%3E+Interpretation+Mode%3A+independent+axes%3B+the+same+task+shape+may+be+declared+under+any+Synthesis+Regime+value.%0D%0A-+Realization+-%3E+Epistemic+Guarantee%3A+Faithful+and+Structuring+preserve+it+on+every+claim%3B+Generative+suspends+it+for+newly+introduced+content.%0D%0A%0D%0AConstraints%0D%0A%0D%0A-+MUST+be+declared+explicitly+per+agent-intent%3B+never+inferred+from+Source+Regime+or+Interpretation+Mode.%0D%0A-+Extracted+from+language+previously+embedded+in+Source+Regime%27s+Open+position+and+in+Interpretation+Mode%27s+per-position+constraints+-+a+relocation+of+existing+behaviour%2C+not+a+new+permission.%0D%0A")});
+										dataElements.push({id:"id-bbcbfcd279104c52b55b4973d859dcdd", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Synthesis+regime"), documentation:decodeURL("")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-9d7b079582fe4c5e9b58993c759ea4cc", contenttype:"DataObject"});
 										dataElements.push({id:"id-9d7b079582fe4c5e9b58993c759ea4cc", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Execution+strategy"), documentation:decodeURL("Execution+Strategy+is+the+data+object+that+records%2C+per+agent-contract%2C+how+Task+Modes+are+selected%2C+sequenced%2C+and+iterated+during+execution.+It+carries+exactly+one+enumerated+value+per+agent-contract%2C+drawn+from+a+fixed+set+of+three.%0D%0A%0D%0AIt+answers+a+question+distinct+from+the+other+objects+it+is+associated+with%3A+Source+Regime+records+which+sources+may+be+loaded%3B+Synthesis+Regime+records+what+may+be+done+to+meaning%3B+Task+Mode+records+what+type+of+operation+is+performed%3B+Execution+Strategy+records+how+execution+progresses+across+those+operations.%0D%0A%0D%0AAttributes%0D%0A%0D%0A-+value+%28Enumeration%29%3A+One+of%3A+Linear%2C+Exploratory%2C+Convergent%0D%0A-+scope+%28Reference%29%3A+The+agent-contract+this+value+applies+to%0D%0A-+progressionDeterminism+%28Derived+enumeration%29%3A+deterministic+for+Linear%2C+adaptive+for+Exploratory%2C+selective+for+Convergent%0D%0A%0D%0AEnumeration+values%0D%0A%0D%0A-+Linear%3A+execution+follows+a+predefined+sequence+of+Task+Modes%3B+no+iteration+or+branching%3B+progression+is+fully+deterministic+and+terminates+upon+completion+of+the+sequence.%0D%0A-+Exploratory%3A+execution+proceeds+iteratively%3B+Task+Modes+are+selected+based+on+intermediate+results%3B+progression+is+adaptive+and+continues+until+sufficient+understanding+or+stability+is+reached.%0D%0A-+Convergent%3A+execution+begins+with+multiple+candidates+%28options%2C+hypotheses%2C+alternatives%29+and+reduces+them+over+successive+iterations%3B+progression+is+driven+by+evaluation+and+elimination+toward+a+single+validated+outcome.%0D%0A%0D%0A%0D%0AConstraints%0D%0A%0D%0A-+MUST+be+declared+explicitly+per+agent-contract%3B+never+inferred+from+Task+Mode%2C+Source+Regime%2C+or+Synthesis+Regime.%0D%0A-+MUST+be+realised+explicitly+in+orchestration%3B+execution+flows+must+reflect+the+declared+strategy.%0D%0A-+MUST+NOT+define%3A%0D%0A++-+allowed+sources%0D%0A++-+allowed+meaning+transformations%0D%0A++-+structure+of+individual+tasks%0D%0A-+Extracted+from+previously+implicit+sequencing%2C+iteration%2C+and+decision+logic+embedded+in+orchestration+flows+-+a+relocation+and+formalisation+of+existing+behaviour%2C+not+a+new+capability.")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-53c6d3a2ddf84087bb2f6e66e5ab0334", contenttype:"DataObject"});
 										dataElements.push({id:"id-53c6d3a2ddf84087bb2f6e66e5ab0334", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Reasoning+mode"), documentation:decodeURL("Reasning+mode+is+a+classification+axis+that+gates+whether+an+agent%27s+work+is+subject+to+the+content-governance+model+%E2%80%94+the+combination+of+**Source-regime**%2C+**Synthesis-regime**%2C+and+**Task+Mode**+%E2%80%94+based+on+one+question%3A+does+this+step+require+an+LLM+to+reason+at+all.%0D%0A%0D%0ALeading+question+Does+this+agent-intent+require+an+LLM+to+reason+about+meaning%2C+or+does+it+execute+by+fixed+procedure+with+no+reasoning%3F%0D%0A%0D%0A**Provenance**%3A+replaces+the+retired+**Mode+of+operation**+concept+%28see+Appendix+%E2%80%94+Deprecated+terms%29.+Mode+of+operation%27s+three+positions+%28Content%2C+Representation-transforming%2C+Conditional%29+answered+three+loosely+related+questions+under+one+label%3B+Determinism+asks+exactly+one%2C+and+collapses+the+two+non-content+positions+%E2%80%94+both+of+which+were%2C+on+inspection%2C+already+mechanical%2Frule-based+rather+than+meaning-blind-with-exceptions+%E2%80%94+into+a+single+**Deterministic**+position.+See+%60temp%2Fclaude-code-plans%2Fplan-execution-nature.md%60+for+the+full+migration+record.%0D%0A%0D%0A%23%23%23+Characteristics+%E2%AD%90%0D%0A-+One+of+two+**agent-intent**+classification+axes+%28alongside+**Development+phase**%2C+which+is+agent-level+%E2%80%94+see+Development+phase%2C+Explanation%29%0D%0A-+Is+a+**gate**%2C+not+a+scale%3A+each+position+determines+*whether*+Source-regime%2FSynthesis-regime%2FTask+Mode+apply%2C+not+*how+much*+meaning-transformation+is+permitted%0D%0A-+Independent+of+other+axes%2C+including+**Execution+Strategy**%3A+Execution+Strategy+governs+how+a+*sequence*+of+steps+progresses+and+has+no+vocabulary+for+whether+one+step+is+mechanical%3B+Determinism+governs+whether+one+step+requires+reasoning+at+all+and+has+no+vocabulary+for+sequencing.+A+single+Orchestration+Specification+may+freely+compose+Deterministic+and+Cognitive+steps+under+any+Execution+Strategy+%E2%80%94+neither+axis+may+be+inferred+from%2C+or+used+to+infer%2C+the+other+%28see+Execution+Strategy%2C+Relationships%29%0D%0A-+A+**Deterministic**+agent-intent+is+realised+as+a+script%2C+never+as+an+LLM+call%3B+a+**Cognitive**+agent-intent+is+realised+as+an+LLM+call+with+full+content-governance+applying%0D%0A%0D%0A%23%23%23+What+it+is+not+%E2%9D%8C%0D%0A-+Not+a+meaning-transformation+scale+%28that+is+**Synthesis-regime**%29%0D%0A-+Not+a+task-shape+classification+%28that+is+**Task+Mode**%29%0D%0A-+Not+a+progression-logic+constraint+%28that+is+**Execution+Strategy**%29+%E2%80%94+see+Characteristics%0D%0A-+Not+redundant+with+Synthesis-regime+or+Task+Mode%3A+its+positions+gate+whether+those+two+axes+%28and+Source-regime%29+apply%2C+they+do+not+duplicate+a+value+on+either+axis%27s+scale%0D%0A%0D%0A%23%23%23+Synonyms+%F0%9F%8F%B7%EF%B8%8F%0D%0A-+Cognitive+gate%0D%0A%0D%0A%23%23%23+Explanation+%F0%9F%92%AC%0D%0ADeterminism+distinguishes+agent-intents+that+require+an+LLM+to+reason+from+work+that+is+realised+as+a+script+and+never+invokes+an+LLM+at+all+%E2%80%94+mechanical+representation-conversion+and+rule-based+condition%2Fhygiene+checks+alike.+Because+a+Deterministic+step+never+invokes+an+LLM%2C+it+never+has+content+to+govern+and+never+has+a+temperature+to+calibrate+%28see+%60foundations%2F.canonical%2Fdata-model%2Flogical-seed%2Fseed.model.md%60+%C2%A77%2C+collapsed+to+the+Cognitive+dimension+only+as+part+of+this+migration%29.%0D%0A%0D%0A**Binding+level**%3A+bound+to+**agent-intent**%2C+matching+Mode+of+operation%27s+corrected+binding+level+%28not+Agent%29+%E2%80%94+declared+per+intent%2C+alongside+Source-regime%2C+Synthesis-regime%2C+and+Task+Mode+where+those+apply.%0D%0A%0D%0A%23%23%23+Positions+%28Position+Elements%29+%F0%9F%93%8B%0D%0A%0D%0A%7C+Position+%7C+Element+classification+%7C+Description+%7C+Content-governance+model+applies%3F+%7C%0D%0A%7C---%7C---%7C---%7C---%7C%0D%0A%7C+**Cognitive**+%7C+Position+Element+%7C+Requires+an+LLM+to+reason+about+supplied+material+%7C+Yes+%E2%80%94+Source-regime%2C+Synthesis-regime%2C+and+Task+Mode+all+apply+and+MUST+be+declared+%7C%0D%0A%7C+**Deterministic**+%7C+Position+Element+%7C+Executes+by+fixed+procedure+with+zero+reasoning%3B+realised+as+a+script%2C+never+an+LLM+call+%7C+No+%E2%80%94+not+applicable%3B+a+script+has+no+Source-regime%2C+Synthesis-regime%2C+or+Task+Mode+to+declare%2C+for+the+same+reason+it+is+not+an+agent-intent+in+the+reasoning+sense+%7C%0D%0A")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-e08d942d089147ac92ec1886a6096052", contenttype:"DataObject"});
-										dataElements.push({id:"id-e08d942d089147ac92ec1886a6096052", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Artifact+%28copy%29"), documentation:decodeURL("An+Entoli+artifact+is+a+durable%2C+explicit+and+transferable+recording+of+result+or+decision-making%2C+that+represents+value+within+a+value+stream+phase+and+can+serve+as+input+for+subsequent+work.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-19eff6c74445491e8aaa54b0fc0b69ca", contenttype:"DataObject"});
-										dataElements.push({id:"id-19eff6c74445491e8aaa54b0fc0b69ca", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Instruction+Set+%28copy%29"), documentation:decodeURL("An+Instruction+Set+is+an+ordered+collection+of+Instructions+assembled+by+coordination+and+handed+off+to+the+execution+layer+as+a+single+unit+of+work.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-7732d0a8308a4442953bb92dac35b5ae", contenttype:"DataObject"});
-										dataElements.push({id:"id-7732d0a8308a4442953bb92dac35b5ae", type:"DataObject", specialization:decodeURL(""), name:decodeURL("llm-execution-configuration+%28copy%29"), documentation:decodeURL("")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-05b9a985bd80473091b5fdaa6e3268a9", contenttype:"DataObject"});
-										dataElements.push({id:"id-05b9a985bd80473091b5fdaa6e3268a9", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Artifact+%28copy%29"), documentation:decodeURL("An+Entoli+artifact+is+a+durable%2C+explicit+and+transferable+recording+of+result+or+decision-making%2C+that+represents+value+within+a+value+stream+phase+and+can+serve+as+input+for+subsequent+work.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-fee3b9a58cf4406bae78dd692deab0af", contenttype:"DataObject"});
-										dataElements.push({id:"id-fee3b9a58cf4406bae78dd692deab0af", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Instruction+Set+%28copy%29"), documentation:decodeURL("An+Instruction+Set+is+an+ordered+collection+of+Instructions+assembled+by+coordination+and+handed+off+to+the+execution+layer+as+a+single+unit+of+work.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-150f8bc9dabe4a7a92e69ba996b7dd37", contenttype:"DataObject"});
-										dataElements.push({id:"id-150f8bc9dabe4a7a92e69ba996b7dd37", type:"DataObject", specialization:decodeURL(""), name:decodeURL("llm-execution-configuration+%28copy%29"), documentation:decodeURL("")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-3b8f2f8c40c5411c8b5cfaa516909bc1", contenttype:"DataObject"});
 										dataElements.push({id:"id-3b8f2f8c40c5411c8b5cfaa516909bc1", type:"DataObject", specialization:decodeURL(""), name:decodeURL("ENTOLI+AGENTS+%28PACKAGE%29"), documentation:decodeURL("An+entoli-agent+is+an+explicitly+defined%2C+autonomous+software+entity+within+the+Entoli+ecosystem+that%2C+on+the+basis+of+a+formal+agent-charter+and+agent-contract%2C+executes+specific+tasks%2C+produces+Entoli+artifacts+or+delivers+information%2C+and+always+operates+within+a+demarcated+agent-boundary+and+according+to+applicable+governance.")});
 									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-d6aad2f176fe4321bc1c0e2199e75ac6", contenttype:"DataObject"});
 										dataElements.push({id:"id-d6aad2f176fe4321bc1c0e2199e75ac6", type:"DataObject", specialization:decodeURL(""), name:decodeURL("CLIENT+AGENTS"), documentation:decodeURL("An+entoli-agent+is+an+explicitly+defined%2C+autonomous+software+entity+within+the+Entoli+ecosystem+that%2C+on+the+basis+of+a+formal+agent-charter+and+agent-contract%2C+executes+specific+tasks%2C+produces+Entoli+artifacts+or+delivers+information%2C+and+always+operates+within+a+demarcated+agent-boundary+and+according+to+applicable+governance.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-11cb4c633bb2454c83163110df5837c0", contenttype:"DataObject"});
-										dataElements.push({id:"id-11cb4c633bb2454c83163110df5837c0", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Artifact+%28copy%29"), documentation:decodeURL("An+Entoli+artifact+is+a+durable%2C+explicit+and+transferable+recording+of+result+or+decision-making%2C+that+represents+value+within+a+value+stream+phase+and+can+serve+as+input+for+subsequent+work.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-21c2594fbcd4463fa2b9a4c0977f6eda", contenttype:"DataObject"});
-										dataElements.push({id:"id-21c2594fbcd4463fa2b9a4c0977f6eda", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Instruction+Set+%28copy%29"), documentation:decodeURL("An+Instruction+Set+is+an+ordered+collection+of+Instructions+assembled+by+coordination+and+handed+off+to+the+execution+layer+as+a+single+unit+of+work.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-9fdf0b06d265475185174e2ea2b9a81c", contenttype:"DataObject"});
-										dataElements.push({id:"id-9fdf0b06d265475185174e2ea2b9a81c", type:"DataObject", specialization:decodeURL(""), name:decodeURL("llm-execution-configuration+%28copy%29"), documentation:decodeURL("")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-8fc19afe0190494e9b2cca8ac3bd07ba", contenttype:"DataObject"});
-										dataElements.push({id:"id-8fc19afe0190494e9b2cca8ac3bd07ba", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Artifact+%28copy%29"), documentation:decodeURL("An+Entoli+artifact+is+a+durable%2C+explicit+and+transferable+recording+of+result+or+decision-making%2C+that+represents+value+within+a+value+stream+phase+and+can+serve+as+input+for+subsequent+work.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-81815ce98f714abbad5c95d06ced4156", contenttype:"DataObject"});
-										dataElements.push({id:"id-81815ce98f714abbad5c95d06ced4156", type:"DataObject", specialization:decodeURL(""), name:decodeURL("Instruction+Set+%28copy%29"), documentation:decodeURL("An+Instruction+Set+is+an+ordered+collection+of+Instructions+assembled+by+coordination+and+handed+off+to+the+execution+layer+as+a+single+unit+of+work.")});
-									dataFoldersContent.push({folderid:"id-1b7f4bd17a8a4ccca4de4ed0056a7792", contentid:"id-ab1edb5368de432ebc690521f4733dc5", contenttype:"DataObject"});
-										dataElements.push({id:"id-ab1edb5368de432ebc690521f4733dc5", type:"DataObject", specialization:decodeURL(""), name:decodeURL("llm-execution-configuration+%28copy%29"), documentation:decodeURL("")});
 
 								dataFoldersContent.push({folderid:"id-fca85b9eb275498c905415549bb8efb2", contentid:"id-20c3f05dbb724c1ea4cdad75c4e34cba", contenttype:"Folder"});
 								dataFolders.push({id:"id-20c3f05dbb724c1ea4cdad75c4e34cba", type:"Folder", name:decodeURL("Technology+%26+Physical"), documentation:decodeURL("")});
@@ -1147,12 +1121,6 @@
 										dataRelationships.push({id:"id-cd12bf5f42584741b9ec872906135c5e", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-d3fcff5baeba4dd3b317abea7e44f3c3", targetid:"id-d6e9cf7205704d9ba617c4fda8a49057"});
 									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-77f52ee0037840eb8379774ccdd0aafa", contenttype:"CompositionRelationship"});
 										dataRelationships.push({id:"id-77f52ee0037840eb8379774ccdd0aafa", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-4f9b24ed736348a1a8235b9ca2fd5011", targetid:"id-d3fcff5baeba4dd3b317abea7e44f3c3"});
-									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-5d87b36fd7254a098eb7434210bb9e23", contenttype:"CompositionRelationship"});
-										dataRelationships.push({id:"id-5d87b36fd7254a098eb7434210bb9e23", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-7d4fb89b37be4413ab38bfe3005524e3", targetid:"id-05b9a985bd80473091b5fdaa6e3268a9"});
-									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-3c6019add1594321bc78a6535a411f44", contenttype:"CompositionRelationship"});
-										dataRelationships.push({id:"id-3c6019add1594321bc78a6535a411f44", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-7d4fb89b37be4413ab38bfe3005524e3", targetid:"id-150f8bc9dabe4a7a92e69ba996b7dd37"});
-									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-4c99bc5ceff446e9be22e4a545ca55d8", contenttype:"CompositionRelationship"});
-										dataRelationships.push({id:"id-4c99bc5ceff446e9be22e4a545ca55d8", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-7d4fb89b37be4413ab38bfe3005524e3", targetid:"id-fee3b9a58cf4406bae78dd692deab0af"});
 									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-8a0f1903c39f470f96ea495192254ac3", contenttype:"CompositionRelationship"});
 										dataRelationships.push({id:"id-8a0f1903c39f470f96ea495192254ac3", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-4f9b24ed736348a1a8235b9ca2fd5011", targetid:"id-7d4fb89b37be4413ab38bfe3005524e3"});
 									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-e1a8752005bc40f69c35603b2dce0c66", contenttype:"CompositionRelationship"});
@@ -1163,12 +1131,6 @@
 										dataRelationships.push({id:"id-a054d444be4641bd8f6046c03c18cc4f", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-3023a65bee0f47debc1128a2f8c77e92", targetid:"id-60084b2c64c44088b95e1219c2edc894"});
 									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-d19d1dd3331848b2a94022ee38ea840b", contenttype:"AssociationRelationship"});
 										dataRelationships.push({id:"id-d19d1dd3331848b2a94022ee38ea840b", type:"AssociationRelationship", specialization:decodeURL(""), name:decodeURL("0..*+use+as+working+source+1..*"), documentation:decodeURL(""), sourceid:"id-a4319ee116ab41dda18d476242ca88da", targetid:"id-4e0f720907c34ad186ec8a6958817d41"});
-									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-08628e232dcc4040943e5e86b6f85166", contenttype:"CompositionRelationship"});
-										dataRelationships.push({id:"id-08628e232dcc4040943e5e86b6f85166", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-dcdb53b36a684e4fbdcbf1e0c39cb195", targetid:"id-11cb4c633bb2454c83163110df5837c0"});
-									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-dfef63e04247440b8558de7156b7e582", contenttype:"CompositionRelationship"});
-										dataRelationships.push({id:"id-dfef63e04247440b8558de7156b7e582", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-dcdb53b36a684e4fbdcbf1e0c39cb195", targetid:"id-9fdf0b06d265475185174e2ea2b9a81c"});
-									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-f5838bb317444f97ac8e7ed03f1b2060", contenttype:"CompositionRelationship"});
-										dataRelationships.push({id:"id-f5838bb317444f97ac8e7ed03f1b2060", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-dcdb53b36a684e4fbdcbf1e0c39cb195", targetid:"id-21c2594fbcd4463fa2b9a4c0977f6eda"});
 									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-7c3c81b9788641c98bee8581f99b6d61", contenttype:"CompositionRelationship"});
 										dataRelationships.push({id:"id-7c3c81b9788641c98bee8581f99b6d61", type:"CompositionRelationship", specialization:decodeURL(""), name:decodeURL(""), documentation:decodeURL(""), sourceid:"id-4f9b24ed736348a1a8235b9ca2fd5011", targetid:"id-dcdb53b36a684e4fbdcbf1e0c39cb195"});
 									dataFoldersContent.push({folderid:"id-5dd05707f28f4e91a2ed407b9bf565d6", contentid:"id-e8cba593bde049a8a255ebdf44f810ac", contenttype:"CompositionRelationship"});
@@ -1720,166 +1682,8 @@
 
 									dataFoldersContent.push({folderid:"id-ca7ad8080a214939a0e88c60169a9612", contentid:"id-8d30105a9173467b9223284456bb6627", contenttype:"Folder"});
 									dataFolders.push({id:"id-8d30105a9173467b9223284456bb6627", type:"Folder", name:decodeURL("b.business-architecture"), documentation:decodeURL("")});
-										dataFoldersContent.push({folderid:"id-8d30105a9173467b9223284456bb6627", contentid:"id-b21f0a292a224fffb7a7ec1d95477481", contenttype:"Folder"});
-										dataFolders.push({id:"id-b21f0a292a224fffb7a7ec1d95477481", type:"Folder", name:decodeURL("entoli-conceptual"), documentation:decodeURL("")});
-											dataFoldersContent.push({folderid:"id-b21f0a292a224fffb7a7ec1d95477481", contentid:"id-e370b29df1904e7aa3dff365806a402d", contenttype:"ArchimateDiagramModel"});
-												dataViews.push({id:"id-e370b29df1904e7aa3dff365806a402d", type:"ArchimateDiagramModel", name:decodeURL("entoli-conceptual"), documentation:decodeURL("DEFINITIE+%0D%0AAgent+Development+is+het+ontwikkelen+van+kennis%2C+modellen%2C+specificaties%2C+software+en+andere+professionele+werkproducten+met+inzet+van+Agents+als+uitvoerende+professionele+functies.+Het+begrip+beschrijft+daarmee+een+manier+van+ontwikkelen+m%C3%A9t+Agents%2C+niet+uitsluitend+het+ontwikkelen+v%C3%A1n+Agents.+Het+ontwikkelen+en+onderhouden+van+Agents+kan+zelf+onderdeel+zijn+van+Agent+Development%2C+maar+is+slechts+%C3%A9%C3%A9n+mogelijke+toepassing.%0D%0A%0D%0ADOEL+%0D%0ADeze+view+toont+het+conceptuele+objectmodel+dat+nodig+is+om+ontwikkelwerk+met+Agents+expliciet+te+specificeren%2C+te+organiseren%2C+uit+te+voeren+en+te+beheersen.+De+view+maakt+zichtbaar+hoe+kennis+en+canon%2C+professionele+functies+en+intents%2C+regels+en+execution+regimes%2C+orchestratie%2C+modelkeuze%2C+instructies%2C+menselijke+context+en+werkproducten+samenkomen+in+concrete+Executions.%0D%0A%0D%0ALEIDENDE+VRAAG+%0D%0AWelke+concepten+en+samenhangen+zijn+nodig+om+ontwikkelwerk+met+Agents+op+een+expliciete%2C+herhaalbare+en+beheerste+manier+te+organiseren+en+uit+te+voeren%3F%0D%0A%0D%0ASCOPE+%0D%0AAgent+Development+omvat+ontwikkelwerk+waarbij+Agents+professionele+werkzaamheden+uitvoeren+of+ondersteunen.+Dat+kan+bijvoorbeeld+gaan+om+domeinanalyse+door+een+NIAM-analist%2C+conceptuele+modellering%2C+logisch+modelleren%2C+architectuurreview%2C+specificatie%2C+realisatie+en+testing.+Het+ontwikkelen+of+wijzigen+van+Agents%2C+Agent+Intents%2C+Agent+Packages+en+hun+canon+is+eveneens+een+mogelijke+vorm+van+Agent+Development%2C+maar+vormt+niet+de+definitie+van+het+begrip.%0D%0A%0D%0ALEESWIJZE+%0D%0ADe+view+kan+globaal+van+links+naar+rechts+en+van+boven+naar+beneden+worden+gelezen.+Links+ligt+de+semantische+grondslag%3A+Knowledge+Domain%2C+Knowledge+Specification%2C+Canon%2C+Semantic+Model%2C+Element+en+Relationship.+Centraal+staan+de+professionele+functie+en+haar+contract%3A+Agent%2C+Agent+Intent%2C+Rules%2C+Reasoning+Mode+en+Execution+Regime.+Rechts+ligt+de+operationele+configuratie%3A+Operational+Context%2C+Orchestration+Specification%2C+Execution+Step+Specification%2C+LLM+Model+en+Model+Assignment.+Onderaan+wordt+zichtbaar+hoe+deze+onderdelen+voor+concrete+uitvoering+samenkomen+in+Instruction+Set%2C+Execution%2C+Human+Context%2C+Handoff+en+Artifact.%0D%0A%0D%0AKERNSTRUCTUUR+%0D%0AEen+Knowledge+Specification+specificeert+kennis+voor+een+Knowledge+Domain%2C+kan+door+een+Canon+worden+gerealiseerd+en+scopet+Agent+Packages.+Een+Canon+definieert+een+Semantic+Model+en+canonieke+Rules.+Een+Agent+Package+bevat+Agents%3B+een+Agent+exposeert+Agent+Intents.+Reasoning+Mode+en+Rules+begrenzen+het+gedrag+van+Agent+en+Agent+Intent.+Voor+cognitieve+uitvoering+worden+Source+Regime%2C+Synthesis+Regime+en+Task+Regime+gebruikt+als+onderscheiden+dimensies+van+Execution+Regime.+Een+Operational+Context+definieert+Orchestration+Specifications%2C+die+uit+Execution+Step+Specifications+bestaan.+Een+Execution+Step+Specification+roept+een+Agent+Intent+aan+en+kan+met+een+Model+Assignment+worden+geconfigureerd.+Voor+een+concrete+Execution+wordt+een+Instruction+Set+samengesteld+uit+de+relevante+semantiek%2C+regels+en+context.+De+Execution+kan+Artifacts+en+een+Handoff+produceren.%0D%0A%0D%0AARCHITECTUURBETEKENIS+%0D%0ADe+view+maakt+een+fundamentele+scheiding+zichtbaar+tussen+betekenis%2C+professionele+capability%2C+configuratie+en+runtime.+Een+Agent+is+niet+de+Execution%3B+een+Agent+Intent+is+niet+de+Execution+Step+Specification%3B+een+Semantic+Model+is+niet+het+Instruction+Set%3B+een+Orchestration+Specification+is+niet+een+runtimeproces%3B+en+een+Artifact+is+niet+hetzelfde+als+een+Handoff.+Juist+deze+scheidingen+maken+het+mogelijk+om+dezelfde+canon%2C+professionele+functies+en+configuraties+gecontroleerd+in+meerdere+uitvoeringen+en+klantcontexten+toe+te+passen.%0D%0A%0D%0AGRENZEN+%0D%0ADeze+view+beschrijft+het+conceptuele+objectmodel+en+niet+de+technische+implementatie+ervan.+Zij+specificeert+geen+databaseschema%2C+API-contract%2C+bestandsformaat%2C+deploymentmodel%2C+runtime-infrastructuur+of+gebruikersinterface.+De+getoonde+Business+Objects+zijn+conceptuele+typen%3B+de+view+toont+geen+concrete+instances.+Ook+procesvolgorde%2C+lifecycle+en+technische+dataflows+worden+alleen+weergegeven+voor+zover+zij+noodzakelijk+zijn+om+de+conceptuele+relaties+te+begrijpen.%0D%0A%0D%0ADETAILNIVEAU+%0D%0ADe+view+is+bedoeld+als+integrale+overzichtsview.+Voor+precieze+definities%2C+invarianten%2C+toegestane+waarden+en+lokale+relaties+is+de+documentatie+van+de+afzonderlijke+Business+Objects+leidend.+Gespecialiseerde+views+mogen+subsets+van+dit+model+tonen+om+specifieke+architectuurvragen+te+beantwoorden%2C+maar+mogen+de+betekenis+van+de+Business+Objects+en+relaties+niet+zelfstandig+veranderen.%0D%0A%0D%0AVOORBEELD+%0D%0AEen+NIAM-analist+kan+als+Agent+een+Agent+Intent+Analyseer+domeinuitspraken+exposen.+Een+Orchestration+Specification+kan+een+Execution+Step+Specification+bevatten+die+dit+intent+aanroept.+Voor+een+concrete+Execution+wordt+een+Instruction+Set+samengesteld+met+toepasselijke+canonieke+semantiek%2C+Rules%2C+Human+Context+en+eventuele+bestaande+Artifacts+of+Handoffs.+De+uitvoering+kan+vervolgens+een+conceptueel+model+als+Artifact+en+relevante+interpretatie+voor+een+Logisch+modelleur+als+Handoff+produceren.")});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4e02ad03bf6d4963b101fdad1d0f7b7b", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-b7cb33c7b50e48dabb3f0d830de8698f", contenttype:"BusinessObject"});
-																dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-697686712c9f40faa2f23c8994eaef05", contenttype:"BusinessObject"});
-																dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9dd7d63f3bda44a6919074aa6bd45c04", contenttype:"BusinessObject"});
-																dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-7c826e60007f41aeaaddbcb4fc50958d", contenttype:"BusinessObject"});
-																dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-03e98ce0196345b599d814c30d4a986a", contenttype:"BusinessObject"});
-														
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-6d66d6cdd2534270b0f3732e4ecec8cc", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1d62c68e5893433f81d1472f83cfad2d", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1fa6202fbcb84810a487e731d399058b", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a248b6e4d5a04c6c995cc9ecb4872d2e", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9c775a49c62f4d49a90673446cec6a64", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a21ac844b75946b0b94ab3450c81ed27", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a5736e6c7c874d5589622b6158eae9ee", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-6cd1f6f39e864f16855d0eda7857df01", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-fc519c97c3c04fb3b43a50b72f0aef38", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4cab30c96f5d468d98f0c6624bc3bd5d", contenttype:"BusinessObject"});
-																dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a2b9d71e443c49c58b44615551eb4f5b", contenttype:"BusinessObject"});
-																dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-fe950c3ebad04932a87cb572b191e4ff", contenttype:"BusinessObject"});
-																dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3969a1acce774516911bb973b0ff59ee", contenttype:"BusinessObject"});
-														
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-94e213279a1d46149da17c04c0572efe", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a99dcf9067d84b2b9ddf4b7a8f40c647", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-47c7669317cf4b9aaec0c64751602214", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9c36c275b1bc4801a5e76a6db8a16571", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a4319ee116ab41dda18d476242ca88da", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4e0f720907c34ad186ec8a6958817d41", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-2e8c595bfedb4d8ba8cedbdf2eb284f2", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-abdf3fc1a9504d1eb988ab196a0ecf67", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3208e79172454362b69c0661b8e55589", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-2e25dc5832d04ffb907846209ef549b7", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-0a67e6f41ebb45b9b7a3fc306bc08cd1", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4215cbb5ea2e4b41bf3966ed673a5740", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-7970b9b7176341039f2e4af29e4d2d3a", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-95a0e0e6f3e1431da1195ba095f3435d", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9f132361c9ad4633b471a78518586eca", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-84509990fb0f41dfa1285acbe94ec35d", contenttype:"BusinessObject"});
-														dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1d37cc3e2ee24b34a0a644235fea8b9e", contenttype:"Contract"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-67bb08825671474586240ab415b74536", contenttype:"AssociationRelationship"});
-
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-56c526e9f3884e3d92773ff1234a7404", contenttype:"SpecializationRelationship"});
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-91a5511abcf545e198f98a4d4559ec82", contenttype:"AssociationRelationship"});
-
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-c3ff3f9db22f48e883bd64060c6565b2", contenttype:"AssociationRelationship"});
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-88e400565d554f7891047d5ce27ffa91", contenttype:"SpecializationRelationship"});
-
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-002b70b66cce4964a129d5db78c7bd59", contenttype:"AssociationRelationship"});
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-ea7251b20c8144aebd564840a1f64469", contenttype:"SpecializationRelationship"});
-
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-fe774c675e914eb58c4bb632b8f0fb2d", contenttype:"SpecializationRelationship"});
-
-														
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3a220be3cfb94eb3bcddc1a0ccdd9f8d", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-290269a462ea47a4a187c2eb39c96089", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-c6feabfe08b7400c8aeede4d57ab03bc", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-896337c7a96a4fb39fad8791d8f6b662", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-dee315f400a040c1888aa29b9ed2f160", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-872887d3610346e19f253cd9039660c4", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-e617219ea1d44ddda848bafc8aa91de8", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-aba60ccef7794a86b6ec9521783551e2", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-8ef81509a3e145e38a07c7c0ffbaabf8", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-824876d2f29644da9f54d78b9ceb11a8", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-6e02390b935e4dc7944d3e148dc29ae5", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a910f844d5e747cf921c8657b7088c32", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a910f844d5e747cf921c8657b7088c32", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-59e56e7d6a75461f99649f0a6c1e549c", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-87c1c3c5826a4ba9be48f454b49086dd", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-55addc35268644c88cbbdd5b9fa21acf", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-618c3c02c19f479c9b0dd270d4491be8", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-e5d39f4f626d48ecbff17945f7cdd771", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-20c0c4d0699047d39210f1a1d24b467c", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a67b931f5f1d48bca0054f50b03d595b", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3c01609d16af41d7a4d1e54524f31557", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-f636a1c2b36f4eacba8024402f6ff432", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-98df82fac1c14727949ab6826e537086", contenttype:"AssociationRelationship"});
-
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-901361dfdb7c404682f119cba0fcc36a", contenttype:"SpecializationRelationship"});
-
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-ca361b9e8d91435ab7f56b16e3d1607a", contenttype:"SpecializationRelationship"});
-
-																						dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1ae5414b4a37463086a92804f896802a", contenttype:"SpecializationRelationship"});
-
-														
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-b9f7a77a44a6474a89b4cb8daf8addb8", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3b5859f3412f4b7fa911bae9864284c7", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9b38a34b372d42bc806dde4f867eb05f", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-71d01ab060014200848c2fc9f8e01748", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-d3e81c1dcc624b7ab204c64934bd57e3", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-242ceeeae34a4b5a9c58ce05cda70aa1", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-d19d1dd3331848b2a94022ee38ea840b", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-da34c8ccb12141b59f034e9cb952b9b0", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-94cb072ef97e43b0866fb9f05a31c7d6", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4678b57ce9f740ce9101202a0b600698", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-02698825725c4cbc8456ace57933a08f", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-5245ef5310b847a099cd0f8be3dfd18d", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-50fce052e7c6478abe8917cdae9c3760", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1c71d1b3599b4163a5f573d06a429888", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a8d902efdfdc4fe983beb2813d6c206b", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-17cc5eb103e545b0842a1f5f9f18f604", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-2eb3594f56934a6bbc5c450280a7fce6", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3250936c0c2d4b10a755764cfdee12cd", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a13d8c86e12945fb9d3018c93ac0d3eb", contenttype:"AssociationRelationship"});
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-8f0f3d516ece4e5e912f76486ad66a17", contenttype:"AssociationRelationship"});
-
-																				dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-30c002dd7df741fc8ae4e532ec12679c", contenttype:"AssociationRelationship"});
-
-
-
-
-										dataFoldersContent.push({folderid:"id-8d30105a9173467b9223284456bb6627", contentid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contenttype:"ArchimateDiagramModel"});
-											dataViews.push({id:"id-611ff2ee4da04ae2bf763c461f9a6d1c", type:"ArchimateDiagramModel", name:decodeURL("proces-datamodelling"), documentation:decodeURL("")});
-													dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-a7b23e914b734aad890e83af19c7983c", contenttype:"BusinessProcess"});
-													dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-152147c2a7644a2e9809ecdee8697436", contenttype:"BusinessProcess"});
-													dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-7c4392a32bf94d418fab669eb8c8a981", contenttype:"BusinessProcess"});
-													dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-25aa769ab0d5467aa92f5c16a572c680", contenttype:"BusinessProcess"});
-													dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-e61fe6d8c32a45f0be7342d811e4a51b", contenttype:"BusinessProcess"});
-													dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-a087f1740e1b45988762b281b172aeb1", contenttype:"BusinessProcess"});
-													dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-236ef1b141ad4cf9baa5c425fc35d1f3", contenttype:"BusinessProcess"});
-													dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-bb2b622aa3b64e61935debdadcb1e4bf", contenttype:"BusinessProcess"});
-
-																			dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-aa40ee46b91a4da885bfc618c9c081b8", contenttype:"TriggeringRelationship"});
-
-																			dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-d95c64404186436fac4867edd68dff62", contenttype:"TriggeringRelationship"});
-
-																			dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-8fa592d9e07349458d22922cba8ebb16", contenttype:"TriggeringRelationship"});
-
-																			dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-6ecd8a97472a4155931573556e7cc83f", contenttype:"TriggeringRelationship"});
-
-																			dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-967375cff59e4fbca3cc59f4e0531489", contenttype:"TriggeringRelationship"});
-
-																			dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-68ce77c014964737874ca16864009123", contenttype:"TriggeringRelationship"});
-
-																			dataViewsContent.push({viewid:"id-611ff2ee4da04ae2bf763c461f9a6d1c", contentid:"id-de050447d2a64218b79d529e6fee6b5b", contenttype:"TriggeringRelationship"});
-
-
 										dataFoldersContent.push({folderid:"id-8d30105a9173467b9223284456bb6627", contentid:"id-60706a63f1ca4b3cb3ddb02d1161c408", contenttype:"ArchimateDiagramModel"});
-											dataViews.push({id:"id-60706a63f1ca4b3cb3ddb02d1161c408", type:"ArchimateDiagramModel", name:decodeURL("capabilities"), documentation:decodeURL("")});
+											dataViews.push({id:"id-60706a63f1ca4b3cb3ddb02d1161c408", type:"ArchimateDiagramModel", name:decodeURL("waardestroom"), documentation:decodeURL("")});
 													dataViewsContent.push({viewid:"id-60706a63f1ca4b3cb3ddb02d1161c408", contentid:"id-7a97ee5143ed472ebd8b507c0cfb768e", contenttype:"Capability"});
 													dataViewsContent.push({viewid:"id-60706a63f1ca4b3cb3ddb02d1161c408", contentid:"id-57f90fbd1ed4451fbcd3bdbf363f15ec", contenttype:"Capability"});
 													dataViewsContent.push({viewid:"id-60706a63f1ca4b3cb3ddb02d1161c408", contentid:"id-fd356012553b471f86496bfc289eb2e3", contenttype:"Capability"});
@@ -2043,6 +1847,134 @@
 
 													
 
+										dataFoldersContent.push({folderid:"id-8d30105a9173467b9223284456bb6627", contentid:"id-e370b29df1904e7aa3dff365806a402d", contenttype:"ArchimateDiagramModel"});
+											dataViews.push({id:"id-e370b29df1904e7aa3dff365806a402d", type:"ArchimateDiagramModel", name:decodeURL("entoli-conceptueel-datamodel"), documentation:decodeURL("DEFINITIE+%0D%0AAgent+Development+is+het+ontwikkelen+van+kennis%2C+modellen%2C+specificaties%2C+software+en+andere+professionele+werkproducten+met+inzet+van+Agents+als+uitvoerende+professionele+functies.+Het+begrip+beschrijft+daarmee+een+manier+van+ontwikkelen+m%C3%A9t+Agents%2C+niet+uitsluitend+het+ontwikkelen+v%C3%A1n+Agents.+Het+ontwikkelen+en+onderhouden+van+Agents+kan+zelf+onderdeel+zijn+van+Agent+Development%2C+maar+is+slechts+%C3%A9%C3%A9n+mogelijke+toepassing.%0D%0A%0D%0ADOEL+%0D%0ADeze+view+toont+het+conceptuele+objectmodel+dat+nodig+is+om+ontwikkelwerk+met+Agents+expliciet+te+specificeren%2C+te+organiseren%2C+uit+te+voeren+en+te+beheersen.+De+view+maakt+zichtbaar+hoe+kennis+en+canon%2C+professionele+functies+en+intents%2C+regels+en+execution+regimes%2C+orchestratie%2C+modelkeuze%2C+instructies%2C+menselijke+context+en+werkproducten+samenkomen+in+concrete+Executions.%0D%0A%0D%0ALEIDENDE+VRAAG+%0D%0AWelke+concepten+en+samenhangen+zijn+nodig+om+ontwikkelwerk+met+Agents+op+een+expliciete%2C+herhaalbare+en+beheerste+manier+te+organiseren+en+uit+te+voeren%3F%0D%0A%0D%0ASCOPE+%0D%0AAgent+Development+omvat+ontwikkelwerk+waarbij+Agents+professionele+werkzaamheden+uitvoeren+of+ondersteunen.+Dat+kan+bijvoorbeeld+gaan+om+domeinanalyse+door+een+NIAM-analist%2C+conceptuele+modellering%2C+logisch+modelleren%2C+architectuurreview%2C+specificatie%2C+realisatie+en+testing.+Het+ontwikkelen+of+wijzigen+van+Agents%2C+Agent+Intents%2C+Agent+Packages+en+hun+canon+is+eveneens+een+mogelijke+vorm+van+Agent+Development%2C+maar+vormt+niet+de+definitie+van+het+begrip.%0D%0A%0D%0ALEESWIJZE+%0D%0ADe+view+kan+globaal+van+links+naar+rechts+en+van+boven+naar+beneden+worden+gelezen.+Links+ligt+de+semantische+grondslag%3A+Knowledge+Domain%2C+Knowledge+Specification%2C+Canon%2C+Semantic+Model%2C+Element+en+Relationship.+Centraal+staan+de+professionele+functie+en+haar+contract%3A+Agent%2C+Agent+Intent%2C+Rules%2C+Reasoning+Mode+en+Execution+Regime.+Rechts+ligt+de+operationele+configuratie%3A+Operational+Context%2C+Orchestration+Specification%2C+Execution+Step+Specification%2C+LLM+Model+en+Model+Assignment.+Onderaan+wordt+zichtbaar+hoe+deze+onderdelen+voor+concrete+uitvoering+samenkomen+in+Instruction+Set%2C+Execution%2C+Human+Context%2C+Handoff+en+Artifact.%0D%0A%0D%0AKERNSTRUCTUUR+%0D%0AEen+Knowledge+Specification+specificeert+kennis+voor+een+Knowledge+Domain%2C+kan+door+een+Canon+worden+gerealiseerd+en+scopet+Agent+Packages.+Een+Canon+definieert+een+Semantic+Model+en+canonieke+Rules.+Een+Agent+Package+bevat+Agents%3B+een+Agent+exposeert+Agent+Intents.+Reasoning+Mode+en+Rules+begrenzen+het+gedrag+van+Agent+en+Agent+Intent.+Voor+cognitieve+uitvoering+worden+Source+Regime%2C+Synthesis+Regime+en+Task+Regime+gebruikt+als+onderscheiden+dimensies+van+Execution+Regime.+Een+Operational+Context+definieert+Orchestration+Specifications%2C+die+uit+Execution+Step+Specifications+bestaan.+Een+Execution+Step+Specification+roept+een+Agent+Intent+aan+en+kan+met+een+Model+Assignment+worden+geconfigureerd.+Voor+een+concrete+Execution+wordt+een+Instruction+Set+samengesteld+uit+de+relevante+semantiek%2C+regels+en+context.+De+Execution+kan+Artifacts+en+een+Handoff+produceren.%0D%0A%0D%0AARCHITECTUURBETEKENIS+%0D%0ADe+view+maakt+een+fundamentele+scheiding+zichtbaar+tussen+betekenis%2C+professionele+capability%2C+configuratie+en+runtime.+Een+Agent+is+niet+de+Execution%3B+een+Agent+Intent+is+niet+de+Execution+Step+Specification%3B+een+Semantic+Model+is+niet+het+Instruction+Set%3B+een+Orchestration+Specification+is+niet+een+runtimeproces%3B+en+een+Artifact+is+niet+hetzelfde+als+een+Handoff.+Juist+deze+scheidingen+maken+het+mogelijk+om+dezelfde+canon%2C+professionele+functies+en+configuraties+gecontroleerd+in+meerdere+uitvoeringen+en+klantcontexten+toe+te+passen.%0D%0A%0D%0AGRENZEN+%0D%0ADeze+view+beschrijft+het+conceptuele+objectmodel+en+niet+de+technische+implementatie+ervan.+Zij+specificeert+geen+databaseschema%2C+API-contract%2C+bestandsformaat%2C+deploymentmodel%2C+runtime-infrastructuur+of+gebruikersinterface.+De+getoonde+Business+Objects+zijn+conceptuele+typen%3B+de+view+toont+geen+concrete+instances.+Ook+procesvolgorde%2C+lifecycle+en+technische+dataflows+worden+alleen+weergegeven+voor+zover+zij+noodzakelijk+zijn+om+de+conceptuele+relaties+te+begrijpen.%0D%0A%0D%0ADETAILNIVEAU+%0D%0ADe+view+is+bedoeld+als+integrale+overzichtsview.+Voor+precieze+definities%2C+invarianten%2C+toegestane+waarden+en+lokale+relaties+is+de+documentatie+van+de+afzonderlijke+Business+Objects+leidend.+Gespecialiseerde+views+mogen+subsets+van+dit+model+tonen+om+specifieke+architectuurvragen+te+beantwoorden%2C+maar+mogen+de+betekenis+van+de+Business+Objects+en+relaties+niet+zelfstandig+veranderen.%0D%0A%0D%0AVOORBEELD+%0D%0AEen+NIAM-analist+kan+als+Agent+een+Agent+Intent+Analyseer+domeinuitspraken+exposen.+Een+Orchestration+Specification+kan+een+Execution+Step+Specification+bevatten+die+dit+intent+aanroept.+Voor+een+concrete+Execution+wordt+een+Instruction+Set+samengesteld+met+toepasselijke+canonieke+semantiek%2C+Rules%2C+Human+Context+en+eventuele+bestaande+Artifacts+of+Handoffs.+De+uitvoering+kan+vervolgens+een+conceptueel+model+als+Artifact+en+relevante+interpretatie+voor+een+Logisch+modelleur+als+Handoff+produceren.")});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4e02ad03bf6d4963b101fdad1d0f7b7b", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-b7cb33c7b50e48dabb3f0d830de8698f", contenttype:"BusinessObject"});
+															dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-697686712c9f40faa2f23c8994eaef05", contenttype:"BusinessObject"});
+															dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9dd7d63f3bda44a6919074aa6bd45c04", contenttype:"BusinessObject"});
+															dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-7c826e60007f41aeaaddbcb4fc50958d", contenttype:"BusinessObject"});
+															dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-03e98ce0196345b599d814c30d4a986a", contenttype:"BusinessObject"});
+													
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-6d66d6cdd2534270b0f3732e4ecec8cc", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1d62c68e5893433f81d1472f83cfad2d", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1fa6202fbcb84810a487e731d399058b", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a248b6e4d5a04c6c995cc9ecb4872d2e", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9c775a49c62f4d49a90673446cec6a64", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a21ac844b75946b0b94ab3450c81ed27", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a5736e6c7c874d5589622b6158eae9ee", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-6cd1f6f39e864f16855d0eda7857df01", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-fc519c97c3c04fb3b43a50b72f0aef38", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4cab30c96f5d468d98f0c6624bc3bd5d", contenttype:"BusinessObject"});
+															dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a2b9d71e443c49c58b44615551eb4f5b", contenttype:"BusinessObject"});
+															dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-fe950c3ebad04932a87cb572b191e4ff", contenttype:"BusinessObject"});
+															dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3969a1acce774516911bb973b0ff59ee", contenttype:"BusinessObject"});
+													
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-94e213279a1d46149da17c04c0572efe", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a99dcf9067d84b2b9ddf4b7a8f40c647", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-47c7669317cf4b9aaec0c64751602214", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9c36c275b1bc4801a5e76a6db8a16571", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a4319ee116ab41dda18d476242ca88da", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4e0f720907c34ad186ec8a6958817d41", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-2e8c595bfedb4d8ba8cedbdf2eb284f2", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-abdf3fc1a9504d1eb988ab196a0ecf67", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3208e79172454362b69c0661b8e55589", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-2e25dc5832d04ffb907846209ef549b7", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-0a67e6f41ebb45b9b7a3fc306bc08cd1", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4215cbb5ea2e4b41bf3966ed673a5740", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-7970b9b7176341039f2e4af29e4d2d3a", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-95a0e0e6f3e1431da1195ba095f3435d", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9f132361c9ad4633b471a78518586eca", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-84509990fb0f41dfa1285acbe94ec35d", contenttype:"BusinessObject"});
+													dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1d37cc3e2ee24b34a0a644235fea8b9e", contenttype:"Contract"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-67bb08825671474586240ab415b74536", contenttype:"AssociationRelationship"});
+
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-56c526e9f3884e3d92773ff1234a7404", contenttype:"SpecializationRelationship"});
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-91a5511abcf545e198f98a4d4559ec82", contenttype:"AssociationRelationship"});
+
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-c3ff3f9db22f48e883bd64060c6565b2", contenttype:"AssociationRelationship"});
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-88e400565d554f7891047d5ce27ffa91", contenttype:"SpecializationRelationship"});
+
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-002b70b66cce4964a129d5db78c7bd59", contenttype:"AssociationRelationship"});
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-ea7251b20c8144aebd564840a1f64469", contenttype:"SpecializationRelationship"});
+
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-fe774c675e914eb58c4bb632b8f0fb2d", contenttype:"SpecializationRelationship"});
+
+													
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3a220be3cfb94eb3bcddc1a0ccdd9f8d", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-290269a462ea47a4a187c2eb39c96089", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-c6feabfe08b7400c8aeede4d57ab03bc", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-896337c7a96a4fb39fad8791d8f6b662", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-dee315f400a040c1888aa29b9ed2f160", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-872887d3610346e19f253cd9039660c4", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-e617219ea1d44ddda848bafc8aa91de8", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-aba60ccef7794a86b6ec9521783551e2", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-8ef81509a3e145e38a07c7c0ffbaabf8", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-824876d2f29644da9f54d78b9ceb11a8", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-6e02390b935e4dc7944d3e148dc29ae5", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a910f844d5e747cf921c8657b7088c32", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a910f844d5e747cf921c8657b7088c32", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-59e56e7d6a75461f99649f0a6c1e549c", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-87c1c3c5826a4ba9be48f454b49086dd", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-55addc35268644c88cbbdd5b9fa21acf", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-618c3c02c19f479c9b0dd270d4491be8", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-e5d39f4f626d48ecbff17945f7cdd771", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-20c0c4d0699047d39210f1a1d24b467c", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a67b931f5f1d48bca0054f50b03d595b", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3c01609d16af41d7a4d1e54524f31557", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-f636a1c2b36f4eacba8024402f6ff432", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-98df82fac1c14727949ab6826e537086", contenttype:"AssociationRelationship"});
+
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-901361dfdb7c404682f119cba0fcc36a", contenttype:"SpecializationRelationship"});
+
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-ca361b9e8d91435ab7f56b16e3d1607a", contenttype:"SpecializationRelationship"});
+
+																					dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1ae5414b4a37463086a92804f896802a", contenttype:"SpecializationRelationship"});
+
+													
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-b9f7a77a44a6474a89b4cb8daf8addb8", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3b5859f3412f4b7fa911bae9864284c7", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-9b38a34b372d42bc806dde4f867eb05f", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-71d01ab060014200848c2fc9f8e01748", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-d3e81c1dcc624b7ab204c64934bd57e3", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-242ceeeae34a4b5a9c58ce05cda70aa1", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-d19d1dd3331848b2a94022ee38ea840b", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-da34c8ccb12141b59f034e9cb952b9b0", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-94cb072ef97e43b0866fb9f05a31c7d6", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-4678b57ce9f740ce9101202a0b600698", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-02698825725c4cbc8456ace57933a08f", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-5245ef5310b847a099cd0f8be3dfd18d", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-50fce052e7c6478abe8917cdae9c3760", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-1c71d1b3599b4163a5f573d06a429888", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a8d902efdfdc4fe983beb2813d6c206b", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-17cc5eb103e545b0842a1f5f9f18f604", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-2eb3594f56934a6bbc5c450280a7fce6", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-3250936c0c2d4b10a755764cfdee12cd", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-a13d8c86e12945fb9d3018c93ac0d3eb", contenttype:"AssociationRelationship"});
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-8f0f3d516ece4e5e912f76486ad66a17", contenttype:"AssociationRelationship"});
+
+																			dataViewsContent.push({viewid:"id-e370b29df1904e7aa3dff365806a402d", contentid:"id-30c002dd7df741fc8ae4e532ec12679c", contenttype:"AssociationRelationship"});
+
+
 
 									dataFoldersContent.push({folderid:"id-ca7ad8080a214939a0e88c60169a9612", contentid:"id-3aa3b2c42b4c4f949fe4d376d9a488a6", contenttype:"Folder"});
 									dataFolders.push({id:"id-3aa3b2c42b4c4f949fe4d376d9a488a6", type:"Folder", name:decodeURL("c.information-systems-architecture"), documentation:decodeURL("")});
@@ -2054,7 +1986,6 @@
 													dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-18b7abd4c44941fa91015f313a842f0b", contenttype:"DataObject"});
 													dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-4906771e6247482ca99b3edec7d325f6", contenttype:"DataObject"});
 													dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-bbcbfcd279104c52b55b4973d859dcdd", contenttype:"DataObject"});
-													dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-9d7b079582fe4c5e9b58993c759ea4cc", contenttype:"DataObject"});
 													dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-53c6d3a2ddf84087bb2f6e66e5ab0334", contenttype:"DataObject"});
 
 																			dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-8b04b1c9cf51498d801cc1b2428d1143", contenttype:"AssociationRelationship"});
@@ -2065,8 +1996,6 @@
 																			dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-25b0ce3199b74828b3e5a398b13ea5bf", contenttype:"AssociationRelationship"});
 
 																			dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-af421ae7816e4b3482283107913e951f", contenttype:"AssociationRelationship"});
-
-																			dataViewsContent.push({viewid:"id-1804920721c441e99fa0b0cee4c77f6a", contentid:"id-3dfbe94b114147e2a07ed5daa1aab311", contenttype:"AssociationRelationship"});
 
 
 										dataFoldersContent.push({folderid:"id-3aa3b2c42b4c4f949fe4d376d9a488a6", contentid:"id-4eeb3931b57c4fffa5d5f3ec1b9b6280", contenttype:"ArchimateDiagramModel"});
@@ -2327,31 +2256,6 @@
 
 															
 													
-
-										dataFoldersContent.push({folderid:"id-3aa3b2c42b4c4f949fe4d376d9a488a6", contentid:"id-aa20901d906e4657a6b18ebb97e2ae97", contenttype:"ArchimateDiagramModel"});
-											dataViews.push({id:"id-aa20901d906e4657a6b18ebb97e2ae97", type:"ArchimateDiagramModel", name:decodeURL("artifacts-workspace"), documentation:decodeURL("")});
-													dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d", contenttype:"DataObject"});
-													dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-107ef8b5fd9b446a88363d2b824b1325", contenttype:"DataObject"});
-															dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-e94775ce53da4b1487ade465168978ea", contenttype:"DataObject"});
-													
-													dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-01a25f721c954045b2c20d63486f16f1", contenttype:"DataObject"});
-													dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-3dc8f4bf9af34905bc794e8e24e37ec1", contenttype:"DataObject"});
-													dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-b53367de17794d449cc38da23e42092d", contenttype:"DataObject"});
-													dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-5c78437e18e544fdb678473ecc70c859", contenttype:"DataObject"});
-
-																			dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-e9da3c94a3864e9cb476614e6179fcb9", contenttype:"SpecializationRelationship"});
-
-																					dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-33091c84e0834cda9054a040081ca1f9", contenttype:"SpecializationRelationship"});
-
-													
-																			dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-0efccc4559294e27a3bb0d0056e53b10", contenttype:"AssociationRelationship"});
-
-																			dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-2b314273970144f19a47ab368334d2de", contenttype:"AssociationRelationship"});
-
-																			dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-ec758a3edca64f2e941a18c6c93a9f4a", contenttype:"AssociationRelationship"});
-
-																			dataViewsContent.push({viewid:"id-aa20901d906e4657a6b18ebb97e2ae97", contentid:"id-54d594bf47ac4df499e8ab82e91eeea4", contenttype:"AssociationRelationship"});
-
 
 										dataFoldersContent.push({folderid:"id-3aa3b2c42b4c4f949fe4d376d9a488a6", contentid:"id-cbd780d82d40493fa36ca540fd74bf41", contenttype:"ArchimateDiagramModel"});
 											dataViews.push({id:"id-cbd780d82d40493fa36ca540fd74bf41", type:"ArchimateDiagramModel", name:decodeURL("logical-instances-bedrijfsobjecten"), documentation:decodeURL("")});
