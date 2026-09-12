@@ -128,9 +128,7 @@ nav:
       - business-model/business-model.md
       - business-model/business-model-canvas.md
   - Soevereiniteit: soevereiniteit.md
-  # Externe bestemming. De hook in scripts/external_links.py vult voor
-  # navigatielinks naar buiten de site target/rel aan.
-  - In een notendop: "https://claude.ai/code/artifact/aa438e42-f91f-44e6-a867-2bdf6e999881"
+  - In een notendop: in-een-notendop.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration

@@ -9,6 +9,10 @@ here is built or published. It exists so the underlying material is not lost,
 in case any of it is needed again later — either republished as-is or folded
 into another page.
 
+- `in-een-notendop/` — provenance for the "Entoli in een notendop" page,
+  migrated from a Claude Artifact on 2026-09-12. Records the original
+  editorial copy, the mapping from the five architecture views to the
+  ArchiMate model, and what was deliberately dropped.
 - `business-model/` — the full explanatory text of the Business Model and the
   Business Model Canvas, moved here on 2026-09-12. The site still publishes
   both artefacts, but as **visual only**: `doc/business-model/` now contains

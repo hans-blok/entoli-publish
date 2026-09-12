@@ -67,6 +67,60 @@
   color: var(--md-default-fg-color--light);
 }
 
+/* "In een notendop": een reeks architectuurweergaven die samen het
+   verhaal vertellen. Elke weergave krijgt een nummer, een titel, één
+   zin en de tekening zelf — verder geen omlijsting. De nummering zit
+   in CSS en niet in de tekst: het is volgorde, geen inhoud. */
+.md-typeset .entoli-views {
+  counter-reset: entoli-view;
+}
+
+.md-typeset .entoli-view {
+  margin: 3.5rem 0;
+}
+
+.md-typeset .entoli-view > h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.md-typeset .entoli-view > h2::before {
+  counter-increment: entoli-view;
+  content: counter(entoli-view);
+  margin-right: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--entoli-orange);
+}
+
+.md-typeset .entoli-view > p {
+  max-width: 42rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.7;
+  color: var(--md-default-fg-color--light);
+}
+
+/* De tekening zelf. Aanklikbaar om op ware grootte te bekijken: op een
+   klein scherm is een architectuurweergave anders onleesbaar. */
+.md-typeset a.entoli-view__plate {
+  display: block;
+}
+
+.md-typeset a.entoli-view__plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 2px;
+}
+
+.md-typeset a.entoli-view__open {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.75rem;
+}
+
 /* Plate: een pagina die uit één visual bestaat. De afbeelding zit in de
    h1 (de visual draagt zijn eigen titel), is aanklikbaar om op ware
    grootte te bekijken, en krijgt de volle contentbreedte. */
