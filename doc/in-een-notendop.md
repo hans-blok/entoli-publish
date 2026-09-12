@@ -12,7 +12,7 @@ Vijf architectuurweergaven, in de volgorde waarin ze samen het verhaal vertellen
 
 ## Het semantisch fundament
 
-Onder elk gedrag van een agent ligt een stapel die niemand ziet — canon, rule, reasoning mode, execution regime — en deze weergave legt die stapel voor het eerst naast elkaar.
+Het semantisch fundament bepaalt de betekenis en begrenzing waarbinnen een agent functioneert. Deze weergave brengt de canon, regels, regimes, inclusief hun onderlinge relaties, samen in één model.
 
 <a class="entoli-view__plate" href="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-cbd780d82d40493fa36ca540fd74bf41.png">
 <img src="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-cbd780d82d40493fa36ca540fd74bf41.png" alt="Architectuurweergave van de bedrijfsobjecten waaruit het semantisch fundament bestaat">
@@ -26,7 +26,7 @@ Onder elk gedrag van een agent ligt een stapel die niemand ziet — canon, rule,
 
 ## Van canon tot toewijzing
 
-Drie groepen, één ketting: wie hier begint bij het schrijven van kennis eindigt, stap voor stap zichtbaar, bij het daadwerkelijk toewijzen van een taalmodel aan het werk.
+De vier logische instanties krijgen vorm in twee producten. *Entoli Studio* ondersteunt het definiëren van canons en professionele agents; *Entoli Workspace* ondersteunt de gecontroleerde en traceerbare uitvoering van het werk. Zo blijft de verbinding tussen kennis, professionele capaciteit en uitvoering expliciet.
 
 <a class="entoli-view__plate" href="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-d44db71136d542fcb71799bc56ee686a.png">
 <img src="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-d44db71136d542fcb71799bc56ee686a.png" alt="Architectuurweergave van de processen en diensten, van canon tot modeltoewijzing">
@@ -40,7 +40,7 @@ Drie groepen, één ketting: wie hier begint bij het schrijven van kennis eindig
 
 ## Wat Entoli daadwerkelijk levert
 
-Achter Entoli Studio, Workspace en het nog niet gebouwde Control staat één vast stelsel van kerndiensten — hier compleet uitgetekend naast de producten die erop leunen.
+Entoli Studio, Entoli Workspace en het beoogde Entoli Control worden ondersteund door één samenhangend stelsel van kerndiensten. Deze weergave maakt zichtbaar welke professionele capabilities de producten bieden en welke onderliggende diensten deze capabilities realiseren.
 
 <a class="entoli-view__plate" href="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-809e5a10fbb54d2d84dea2d84d44146a.png">
 <img src="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-809e5a10fbb54d2d84dea2d84d44146a.png" alt="Architectuurweergave van de bedrijfsprocessen, diensten en producten van Entoli">
@@ -54,7 +54,7 @@ Achter Entoli Studio, Workspace en het nog niet gebouwde Control staat één vas
 
 ## De grammatica achter alles hierboven
 
-Vierendertig begrippen, van *agent* tot *execution regime*, in één samenhangend conceptueel model — wie deze weergave kent, kan de andere vier ineens ontleden in plaats van alleen bekijken.
+Het conceptuele model vormt het gemeenschappelijke begrippenkader van de Entoli-architectuur. Het definieert de kernbegrippen en hun onderlinge relaties, zodat de voorgaande weergaven vanuit dezelfde betekenis kunnen worden ontworpen, gelezen en beheerd.
 
 <a class="entoli-view__plate" href="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-e370b29df1904e7aa3dff365806a402d.png">
 <img src="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-e370b29df1904e7aa3dff365806a402d.png" alt="Het conceptuele datamodel van Entoli met vierendertig samenhangende begrippen">
