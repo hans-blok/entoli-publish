@@ -1,0 +1,741 @@
+{
+  "$schema": "./canonical-semantic-graph.schema.json",
+  "graph": {
+    "id": "concepts-datamodelling",
+    "name": "Data Modelling — concepts",
+    "version": "1.0.0"
+  },
+  "elements": [
+    {
+      "id": "attribute",
+      "name": "Attribute",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "An **Attribute** is a logical property of exactly one Entity, carrying a Data Type, an optionality, and exactly one position on the Attribute Classification axis.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "attribute-classification",
+      "name": "Attribute Classification",
+      "classification": "Classification Element",
+      "owner": "data-modelling-canon",
+      "definition": "**Attribute Classification** is the axis that records the origin of an Attribute: whether it carries domain meaning taken from the Information Model, or was added by the logical layer to express time, process or system structure.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "boolean",
+      "name": "Boolean",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "True or false.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "characteristic",
+      "name": "Characteristic",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Characteristic** is a property of an Information Model Element.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "column",
+      "name": "Column",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Column** is a single column of a Table — the implementation form of exactly one Attribute.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type",
+      "name": "Data Type",
+      "classification": "Classification Element",
+      "owner": "data-modelling-canon",
+      "definition": "**Data Type** is the axis that records the value space an Attribute admits, in terms independent of any database technology.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type-time",
+      "name": "Time",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "A time of day, without a date.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "date",
+      "name": "Date",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "A calendar date, without time of day.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "datetime",
+      "name": "Datetime",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "A point in time, date and time of day together.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "decimal",
+      "name": "Decimal",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "An exact number with a fractional part.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "duration",
+      "name": "Duration",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "A length of time, independent of when it starts.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "entity",
+      "name": "Entity",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "An **Entity** is a distinguishable logical thing in a Logical Data Model about which data is recorded, described by one or more ATTRIBUTEs and identified by one or more of those ATTRIBUTEs.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "information-model",
+      "name": "Information Model",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "An **Information Model** is Level 1 of the datamodelling meta-model: the customer-specific conceptual model of a domain, scoped by exactly one Modelling Context and grounded in one or more REQUIREMENTs.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "information-model-element",
+      "name": "Information Model Element",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "An **Information Model Element** is a single concept inside an Information Model — a unit of domain meaning, traceable to at least one Requirement.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "integer",
+      "name": "Integer",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "A whole number.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "issuing-authority",
+      "name": "Issuing Authority",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "An **Issuing Authority** is the publisher of a Source — a government body, a standards body, or the customer organisation itself.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "logical-data-model",
+      "name": "Logical Data Model",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Logical Data Model** is Level 2 of the datamodelling meta-model — the structured representation derived from exactly one Information Model, expressed as Entity and Attribute.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "modelling-context",
+      "name": "Modelling Context",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Modelling Context** is the customer-supplied frame — domain, purpose, scope boundary — within which exactly one Information Model is built.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-analysis",
+      "name": "NIAM Analysis",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **NIAM Analysis** is a single instance of fact-based (NIAM) derivation: a transient method application, fed by one or more Requirement, that produces exactly one Information Model.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-fact",
+      "name": "NIAM Fact",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **NIAM Fact** is an elementary fact, expressed as a verbalised natural-language sentence, derived from one or more Requirement, within one NIAM Analysis.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-object",
+      "name": "NIAM Object",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **NIAM Object** is a NIAM object type, identified through one or more NIAM Fact in which it plays a role.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "process",
+      "name": "Process",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "Where an instance stands in a process — status or workflow state.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "reference-entity",
+      "name": "Reference Entity",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Reference Entity** is an Entity whose sole purpose is to enumerate the valid positions of a closed, governed classification, so that those positions are carried as data rather than hard-coded into another Entity.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "requirement",
+      "name": "Requirement",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Requirement** is an atomic governable statement — obligation, prohibition, or permission — extracted from a Source. It is the bridge between a Source (a document) and the Information Model / Information Model Element it grounds.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "semantic",
+      "name": "Semantic",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "Domain meaning, as the structured form of exactly one Characteristic of the Information Model.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "source",
+      "name": "Source",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Source** is a single external or internal authority text — a law, policy, standard or contract — that grounds an Information Model via one or more REQUIREMENTs extracted from it.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "source-type-ref",
+      "name": "Source Type (REF)",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "**Source Type (REF)** is the Reference Entity for Source, enumerating the governed kinds of authority text: law, policy, standard, contract, or other.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "status",
+      "name": "Status",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "**Status**, in a Logical Data Model, is the position an instance of an Entity occupies in a process, expressed as an Attribute classified as Process and, where the set of positions is governed and closed, carried by a Reference Entity reached through a relationship.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "string",
+      "name": "String",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "Text of any length.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "system",
+      "name": "System",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "Identification or technical linkage, such as a surrogate key or a technical grouping.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Table** is a single table inside a Technical Data Model — the implementation form of exactly one Entity.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "technical-data-model",
+      "name": "Technical Data Model",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **Technical Data Model** is Level 3 of the datamodelling meta-model — the implementation-level structure derived from exactly one Logical Data Model, expressed as Table and Column.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "temporal",
+      "name": "Temporal",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "When a fact held, holds, or occurred — validity, history, or event time.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "time",
+      "name": "Time",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "**Time**, in a Logical Data Model, is the recording of when a fact held, holds, or occurred, expressed as one or more Attributes classified as Temporal.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "uri",
+      "name": "Uri",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "A reference identifying a resource.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "uuid",
+      "name": "Uuid",
+      "classification": "Position Element",
+      "owner": "data-modelling-canon",
+      "definition": "A globally unique identifier value.",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "verbalised-fact",
+      "name": "Verbalised Fact",
+      "classification": "Domain Element",
+      "owner": "data-modelling-canon",
+      "definition": "A **verbalised fact** is the natural-language sentence form of a NIAM Fact — the explicit, checkable expression of an elementary fact, following the fact-based modelling pattern of `doctrine-niam-analysis.md` §3.4 (e.g. \"[Information Element] has [Characteristic]\", \"[Information Element] relates to [Information Element]\").",
+      "recordedIn": "concepts-datamodelling"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "attribute--classified-as--attribute-classification",
+      "source": "attribute",
+      "type": "classified-as",
+      "target": "attribute-classification",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "attribute--classified-as--data-type",
+      "source": "attribute",
+      "type": "classified-as",
+      "target": "data-type",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "attribute--derived-from--characteristic",
+      "source": "attribute",
+      "type": "relates-to",
+      "target": "characteristic",
+      "owner": "data-modelling-canon",
+      "predicate": "derived-from",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "attribute--part-of--entity",
+      "source": "attribute",
+      "type": "part-of",
+      "target": "entity",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "attribute-classification--defines--process",
+      "source": "attribute-classification",
+      "type": "defines",
+      "target": "process",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "attribute-classification--defines--semantic",
+      "source": "attribute-classification",
+      "type": "defines",
+      "target": "semantic",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "attribute-classification--defines--system",
+      "source": "attribute-classification",
+      "type": "defines",
+      "target": "system",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "attribute-classification--defines--temporal",
+      "source": "attribute-classification",
+      "type": "defines",
+      "target": "temporal",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "characteristic--part-of--information-model-element",
+      "source": "characteristic",
+      "type": "part-of",
+      "target": "information-model-element",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "column--derived-from--attribute",
+      "source": "column",
+      "type": "relates-to",
+      "target": "attribute",
+      "owner": "data-modelling-canon",
+      "predicate": "derived-from",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "column--part-of--table",
+      "source": "column",
+      "type": "part-of",
+      "target": "table",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--boolean",
+      "source": "data-type",
+      "type": "defines",
+      "target": "boolean",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--data-type-time",
+      "source": "data-type",
+      "type": "defines",
+      "target": "data-type-time",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--date",
+      "source": "data-type",
+      "type": "defines",
+      "target": "date",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--datetime",
+      "source": "data-type",
+      "type": "defines",
+      "target": "datetime",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--decimal",
+      "source": "data-type",
+      "type": "defines",
+      "target": "decimal",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--duration",
+      "source": "data-type",
+      "type": "defines",
+      "target": "duration",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--integer",
+      "source": "data-type",
+      "type": "defines",
+      "target": "integer",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--string",
+      "source": "data-type",
+      "type": "defines",
+      "target": "string",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--uri",
+      "source": "data-type",
+      "type": "defines",
+      "target": "uri",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "data-type--defines--uuid",
+      "source": "data-type",
+      "type": "defines",
+      "target": "uuid",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "entity--classified-as--reference-entity",
+      "source": "entity",
+      "type": "classified-as",
+      "target": "reference-entity",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "entity--derived-from--information-model-element",
+      "source": "entity",
+      "type": "relates-to",
+      "target": "information-model-element",
+      "owner": "data-modelling-canon",
+      "predicate": "derived-from",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "entity--identified-by--attribute",
+      "source": "entity",
+      "type": "relates-to",
+      "target": "attribute",
+      "owner": "data-modelling-canon",
+      "predicate": "identified-by",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "entity--part-of--logical-data-model",
+      "source": "entity",
+      "type": "part-of",
+      "target": "logical-data-model",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "information-model--derived-from--requirement",
+      "source": "information-model",
+      "type": "relates-to",
+      "target": "requirement",
+      "owner": "data-modelling-canon",
+      "predicate": "derived-from",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "information-model--leads-to--logical-data-model",
+      "source": "information-model",
+      "type": "relates-to",
+      "target": "logical-data-model",
+      "owner": "data-modelling-canon",
+      "predicate": "leads-to",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "information-model-element--derived-from--requirement",
+      "source": "information-model-element",
+      "type": "relates-to",
+      "target": "requirement",
+      "owner": "data-modelling-canon",
+      "predicate": "derived-from",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "information-model-element--part-of--information-model",
+      "source": "information-model-element",
+      "type": "part-of",
+      "target": "information-model",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "logical-data-model--based-on--information-model",
+      "source": "logical-data-model",
+      "type": "relates-to",
+      "target": "information-model",
+      "owner": "data-modelling-canon",
+      "predicate": "based-on",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "logical-data-model--leads-to--technical-data-model",
+      "source": "logical-data-model",
+      "type": "relates-to",
+      "target": "technical-data-model",
+      "owner": "data-modelling-canon",
+      "predicate": "leads-to",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "modelling-context--scopes--information-model",
+      "source": "modelling-context",
+      "type": "relates-to",
+      "target": "information-model",
+      "owner": "data-modelling-canon",
+      "predicate": "scopes",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-analysis--produces--information-model",
+      "source": "niam-analysis",
+      "type": "relates-to",
+      "target": "information-model",
+      "owner": "data-modelling-canon",
+      "predicate": "produces",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-fact--derived-from--requirement",
+      "source": "niam-fact",
+      "type": "relates-to",
+      "target": "requirement",
+      "owner": "data-modelling-canon",
+      "predicate": "derived-from",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-fact--part-of--niam-analysis",
+      "source": "niam-fact",
+      "type": "part-of",
+      "target": "niam-analysis",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-fact--produces--characteristic",
+      "source": "niam-fact",
+      "type": "relates-to",
+      "target": "characteristic",
+      "owner": "data-modelling-canon",
+      "predicate": "produces",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-object--derived-from--niam-fact",
+      "source": "niam-object",
+      "type": "relates-to",
+      "target": "niam-fact",
+      "owner": "data-modelling-canon",
+      "predicate": "derived-from",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "niam-object--produces--information-model-element",
+      "source": "niam-object",
+      "type": "relates-to",
+      "target": "information-model-element",
+      "owner": "data-modelling-canon",
+      "predicate": "produces",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "reference-entity--specialisation-of--entity",
+      "source": "reference-entity",
+      "type": "is-a",
+      "target": "entity",
+      "owner": "data-modelling-canon",
+      "predicate": "specialisation-of",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "requirement--cites--source",
+      "source": "requirement",
+      "type": "uses",
+      "target": "source",
+      "owner": "data-modelling-canon",
+      "predicate": "cites",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "requirement--feeds--niam-analysis",
+      "source": "requirement",
+      "type": "relates-to",
+      "target": "niam-analysis",
+      "owner": "data-modelling-canon",
+      "predicate": "feeds",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "source--classified-as--source-type-ref",
+      "source": "source",
+      "type": "classified-as",
+      "target": "source-type-ref",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "source--issued-by--issuing-authority",
+      "source": "source",
+      "type": "relates-to",
+      "target": "issuing-authority",
+      "owner": "data-modelling-canon",
+      "predicate": "issued-by",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "status--governed-by--reference-entity",
+      "source": "status",
+      "type": "relates-to",
+      "target": "reference-entity",
+      "owner": "data-modelling-canon",
+      "predicate": "governed-by",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "status--grounded-in--requirement",
+      "source": "status",
+      "type": "relates-to",
+      "target": "requirement",
+      "owner": "data-modelling-canon",
+      "predicate": "grounded-in",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "status--represented-by--attribute",
+      "source": "status",
+      "type": "relates-to",
+      "target": "attribute",
+      "owner": "data-modelling-canon",
+      "predicate": "represented-by",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "table--derived-from--entity",
+      "source": "table",
+      "type": "relates-to",
+      "target": "entity",
+      "owner": "data-modelling-canon",
+      "predicate": "derived-from",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "table--part-of--technical-data-model",
+      "source": "table",
+      "type": "part-of",
+      "target": "technical-data-model",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "time--grounded-in--requirement",
+      "source": "time",
+      "type": "relates-to",
+      "target": "requirement",
+      "owner": "data-modelling-canon",
+      "predicate": "grounded-in",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "time--represented-by--attribute",
+      "source": "time",
+      "type": "relates-to",
+      "target": "attribute",
+      "owner": "data-modelling-canon",
+      "predicate": "represented-by",
+      "recordedIn": "concepts-datamodelling"
+    },
+    {
+      "id": "verbalised-fact--part-of--niam-fact",
+      "source": "verbalised-fact",
+      "type": "part-of",
+      "target": "niam-fact",
+      "owner": "data-modelling-canon",
+      "recordedIn": "concepts-datamodelling"
+    }
+  ]
+}

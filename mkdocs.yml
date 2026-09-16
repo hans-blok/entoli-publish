@@ -111,6 +111,12 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.smartsymbols
+  # base_path staat op docs_dir, zodat een snippet-pad in een pagina hetzelfde
+  # pad is als de link ernaast: relatief aan doc/.
+  - pymdownx.snippets:
+      base_path:
+        - doc
+      check_paths: true
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
@@ -129,6 +135,11 @@ nav:
       - business-model/business-model-canvas.md
   - Soevereiniteit: soevereiniteit.md
   - In een notendop: in-een-notendop.md
+  - Canon Datamodelleren:
+      - canon-datamodelleren/index.md
+      - Begrippen: canon-datamodelleren/concepts-datamodelling.md
+      - LLM-constraints: canon-datamodelleren/llm-constraints.md
+      - Canon-grafiek: canon-datamodelleren/canon-graph.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration

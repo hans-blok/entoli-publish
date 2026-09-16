@@ -1,0 +1,1108 @@
+schema: entoli-rules/v2
+domain: llm-constraints
+version: "1.5.0"
+date: "2026-09-12"
+split-from: canons/agent-development-canon/rules/llm-constraints.rules.yaml v2.12.0
+note: >
+  v1.1.0: DAMA-* rules (13) added — diagnostic, not operational, LLM constraints
+  capturing DAMA data-management knowledge the LLM is expected to already possess
+  and apply correctly in reasoning. See
+  canons/data-modelling-canon/reference/analysis/dama-knowledge-analysis.md for
+  the full selection rationale, DAMA-attribution tier per rule, and the concept
+  hand-off this pass produced. No doctrine exists yet for this domain — traceability
+  cites DAMA-DMBOK2 as an external source, per the `dama:` block documented below,
+  not a repo-internal doctrine file.
+
+  v1.2.0 (2026-09-12): LDM-* rules (12) added — governing the derivation of a
+  Logical Data Model from a supplied conceptual or information model. These are
+  OPERATIONAL rules, unlike every rule that preceded them in this file, and this
+  file therefore now holds two rule sets with different purposes; see the schema
+  extension note below for how the two are told apart. They are canonical and
+  durable, not bound to any one agent or execution: any agent-intent that derives
+  a Logical Data Model is subject to them, and none of them may be restated as an
+  Agent Intent Rule. Their concepts are defined in
+  canons/data-modelling-canon/elements/concepts-datamodelling.md; their
+  structural contract is schemas/logical-data-model.schema.json; their doctrinal
+  basis is doctrine.logical-data-modelling.md (status: current). Where a rule
+  below rests on doctrine.ldm-authoring-rules.md, which is status: concept and
+  explicitly not yet enforceable, that is stated in the rule's own traceability.
+
+  v1.3.0 (2026-09-12): LDM-012 narrowed on explicit user decision. Its v1.2.0
+  text also forbade a Logical Data Model to be "accompanied or replaced by a
+  diagram in any notation". That prohibition was wrong and is withdrawn: a
+  Logical Data Model is routinely accompanied by a diagram, and the practice is
+  established in this repository. It also over-reached its own stated source —
+  doctrine.logical-data-modelling.md §1 and §2.2 place physical implementation
+  detail out of scope of the LDM, and say nothing about diagrams. The rule now
+  states only the physical-construct prohibition, and says explicitly that a
+  derived diagram is not a physical construct. Whether a particular agent-intent
+  produces a diagram is a matter of that intent's scope, recorded in its agent
+  contract, not a property of Logical Data Models as such.
+
+  v1.4.0 (2026-09-12): LDM-014 added on explicit user decision — a business
+  object without attributes of its own does not become an entity. The rule
+  states its own transitional default, because no conceptual model in this
+  repository records attributes yet.
+
+  v1.5.0 (2026-09-12): LDM-015 added on explicit user decision — a Logical Data
+  Model is normalised. The decision named third normal form; the rule states
+  fourth, because doctrine.logical-data-modelling.md §3.1 (status: current)
+  requires 4NF and 3NF is entailed by it. Stating 3NF would have relaxed a
+  ratified doctrine by way of a rule, which is canon-curator work.
+
+# ── Schema extension for this domain, documented here rather than silently added ──
+# TWO RULE SETS LIVE IN THIS FILE, and they are not interchangeable:
+#
+#   DG-*, DA-*, MOD-*, MET-*, DQ-*, MRD-*, DL-*  — DIAGNOSTIC. Knowledge the LLM
+#     is expected to already possess and preserve in reasoning. Each carries the
+#     `dama:` and `diagnostic_intent:` fields described below, and cites
+#     DAMA-DMBOK2 as an external source.
+#
+#   LDM-*  — OPERATIONAL. Obligations and prohibitions on the act of deriving a
+#     Logical Data Model. These do NOT carry `dama:` or `diagnostic_intent:`:
+#     neither field can be filled in honestly for them, because they are not
+#     DAMA-attributable and they answer "what must be done", not "what does this
+#     reveal". They cite repo-internal doctrine in `traceability` instead. Adding
+#     the two fields with placeholder values would have been a false attribution;
+#     omitting them is recorded here rather than left to be discovered.
+#
+# The two fields carried by the diagnostic set only:
+#
+#   dama:
+#     basis: explicit | compatible | interpretation
+#       - explicit      — directly, specifically attributable to DAMA-DMBOK2
+#       - compatible     — generally accepted data-management knowledge, consistent
+#                          with DAMA, but not confidently attributable to DAMA specifically
+#       - interpretation — required synthesis to express DAMA-adjacent knowledge as
+#                          one atomic, testable Entoli constraint
+#     reference: free-text pointer to the relevant DAMA-DMBOK2 knowledge area/chapter,
+#                or "general practice" when basis is compatible/interpretation
+#
+#   diagnostic_intent: one sentence — what correct application of this rule would
+#                       demonstrate the LLM understands. Answers "what does this
+#                       reveal", not "what must be done" — the rules themselves are
+#                       phrased as knowledge to preserve in reasoning, never as a
+#                       workflow instruction.
+
+rules:
+
+  # ── DATA GOVERNANCE ──────────────────────────────────────────────────────────
+
+  - id: DG-001
+    name: "Governance vs. management — authority vs. execution"
+
+    scope_selector: {}  # universal — diagnostic knowledge, not phase- or task-bound
+
+    elements:
+      - Data Governance
+      - Data Management
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST treat data governance and data management as distinct:
+        data governance is the exercise of authority and decision-making over
+        data assets (policies, standards, decision rights); data management is
+        the set of practices that execute and operationalise that authority
+        (the day-to-day handling of data). The LLM MUST NOT use the two terms
+        interchangeably.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 3 — Data Governance"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM distinguishes the exercise of decision-making
+      authority over data from the operational practices that carry it out,
+      rather than treating "governance" as a synonym for "management."
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 3 — Data Governance"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: DG-002
+    name: "Ownership vs. stewardship — decision authority vs. operational accountability"
+
+    scope_selector: {}
+
+    elements:
+      - Data Ownership
+      - Data Stewardship
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST distinguish data ownership from data stewardship: a data
+        owner holds ultimate decision authority over a data asset (including
+        its classification, access policy, and lifecycle decisions); a data
+        steward is accountable for the asset's quality, definition, and
+        appropriate day-to-day use, without necessarily holding that ultimate
+        decision authority. The same person MAY hold both roles, but the roles
+        remain conceptually distinct.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 3 — Data Governance (roles and responsibilities)"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM does not conflate "who decides" with "who is
+      accountable for quality" when reasoning about data roles and
+      responsibilities.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 3 — Data Governance"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  # ── DATA ARCHITECTURE ────────────────────────────────────────────────────────
+
+  - id: DA-001
+    name: "Three model layers — conceptual, logical, physical"
+
+    scope_selector: {}
+
+    elements:
+      - Conceptual Data Model
+      - Logical Data Model
+      - Physical Data Model
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST treat a conceptual data model, a logical data model, and
+        a physical data model as three distinct levels of abstraction, never
+        as interchangeable synonyms for "a data model." A conceptual model
+        captures business concepts and their relationships independent of any
+        structural or implementation detail. A logical model adds structural
+        detail (entities, attributes, relationships, keys) independent of any
+        specific database technology. A physical model applies that structure
+        to a specific database technology's constructs (tables, columns,
+        indexes, storage parameters).
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 5 — Data Modeling and Design"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM can correctly place a given modelling
+      artifact into its proper abstraction layer, and does not treat
+      "conceptual," "logical," and "physical" as loosely interchangeable
+      labels for the same thing.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 5 — Data Modeling and Design"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  # ── DATA MODELLING AND DESIGN ────────────────────────────────────────────────
+
+  - id: MOD-001
+    name: "Natural key vs. surrogate key — two non-equivalent identification strategies"
+
+    scope_selector: {}
+
+    elements:
+      - Natural Key
+      - Surrogate Key
+      - Entity
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST distinguish a natural key from a surrogate key: a
+        natural key is a business attribute that already exists independent
+        of the model and carries business meaning (e.g. an ISO country code,
+        a national ID number); a surrogate key is a system-generated
+        identifier introduced solely to uniquely identify a record, carrying
+        no business meaning of its own. Neither is universally superior — the
+        LLM MUST NOT present one as always the correct choice without regard
+        to the actual identification requirements of the entity being
+        modelled.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 5 — Data Modeling and Design (key types)"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM does not conflate a business-meaningful
+      identifier with a system-generated one, and understands that the choice
+      between them is a modelling decision with trade-offs, not a fixed rule.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 5 — Data Modeling and Design"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: MOD-002
+    name: "Logical relationship independent of its foreign-key implementation"
+
+    scope_selector: {}
+
+    elements:
+      - Relationship (LDM sense)
+      - Foreign Key
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST understand a logical relationship between two entities
+        as existing independently of its eventual implementation as a foreign
+        key, a join/junction table, or any other relational mechanism. The
+        relationship is a fact about the domain; the foreign key is one
+        possible way of realising that fact in a relational database.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 5 — Data Modeling and Design (logical vs. physical relationships)"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM distinguishes a logical relationship from its
+      relational implementation as a foreign key.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 5 — Data Modeling and Design"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: MOD-003
+    name: "Entity type vs. entity instance"
+
+    scope_selector: {}
+
+    elements:
+      - Entity
+      - Entity Instance
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST distinguish an entity type (the general definition of a
+        kind of thing, e.g. "Customer") from an entity instance (one specific
+        occurrence of that type, e.g. one particular customer). A data model
+        defines entity types; it does not enumerate instances. The LLM MUST
+        NOT treat a specific example instance as if it were itself part of
+        the model's structure.
+
+    dama:
+      basis: compatible
+      reference: "general practice, consistent with DAMA-DMBOK2 Chapter 5's entity/instance usage"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM does not confuse a modelled category with a
+      specific occurrence of it — a common source of conceptual drift when
+      examples are introduced into a modelling discussion.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 5 — Data Modeling and Design"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
+
+  - id: MOD-004
+    name: "Normalisation reduces redundancy and update anomalies, not merely 'tidiness'"
+
+    scope_selector: {}
+
+    elements:
+      - Normalisation
+      - Entity
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST understand normalisation as a data-integrity technique
+        whose purpose is to reduce data redundancy and prevent update,
+        insertion, and deletion anomalies by ensuring each fact is recorded
+        in exactly one place, appropriate to the normal form applied. The LLM
+        MUST NOT present normalisation as a purely stylistic or aesthetic
+        preference disconnected from that integrity purpose.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 5 — Data Modeling and Design (normalization)"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM understands *why* normalisation matters
+      (integrity, anomaly prevention), not only the mechanical rules of a
+      given normal form.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 5 — Data Modeling and Design"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
+
+  # ── METADATA ──────────────────────────────────────────────────────────────────
+
+  - id: MET-001
+    name: "Metadata has business, technical, and operational sub-types"
+
+    scope_selector: {}
+
+    elements:
+      - Metadata
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST distinguish three sub-types of metadata when reasoning
+        about data-about-data: business metadata (meaning, business rules,
+        ownership, definitions), technical metadata (structure, format, data
+        type, lineage), and operational metadata (processing statistics,
+        execution history, timestamps of runs). The LLM MUST NOT treat
+        "metadata" as a single, undifferentiated category when the
+        distinction between these sub-types is material to the point being
+        made.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 12 — Metadata Management"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM can classify a given piece of "information
+      about information" into the correct metadata sub-type, rather than
+      treating all metadata as one undifferentiated category.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 12 — Metadata Management"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
+
+  # ── DATA QUALITY ──────────────────────────────────────────────────────────────
+
+  - id: DQ-001
+    name: "Data quality is multi-dimensional, not a single pass/fail property"
+
+    scope_selector: {}
+
+    elements:
+      - Data Quality
+      - Data Quality Dimension
+
+    classification:
+      rule_type: prohibition
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST NOT treat data quality as a single, undifferentiated
+        pass/fail property. Data quality is evaluated against multiple,
+        independent dimensions (e.g. accuracy, completeness, consistency,
+        timeliness, uniqueness, validity), and a dataset MAY score well on
+        one dimension while scoring poorly on another.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 13 — Data Quality (quality dimensions)"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM reasons about data quality as a
+      multi-dimensional assessment rather than a single monolithic verdict.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 13 — Data Quality"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: DQ-002
+    name: "Data quality is fitness for purpose, not an absolute standard"
+
+    scope_selector: {}
+
+    elements:
+      - Data Quality
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST treat data quality as fitness for the intended purpose
+        of use, not as an absolute or context-independent standard. Data
+        adequate for one use case MAY be inadequate for a different use case
+        of the same data, without either evaluation being incorrect.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 13 — Data Quality (fitness for purpose)"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM understands quality as relative to intended
+      use, avoiding both false confidence ("this data is good") and false
+      alarm ("this data is bad") stated without reference to a purpose.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 13 — Data Quality"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
+
+  # ── MASTER AND REFERENCE DATA ───────────────────────────────────────────────
+
+  - id: MRD-001
+    name: "Master data vs. reference data — role and volatility distinguish them"
+
+    scope_selector: {}
+
+    elements:
+      - Master Data
+      - Reference Data
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST distinguish master data from reference data: master data
+        represents the core business entities an organisation transacts
+        about (e.g. customer, product, supplier), typically with significant
+        volume and ongoing lifecycle activity; reference data represents
+        relatively static, controlled classification or vocabulary values
+        used to categorise other data (e.g. country codes, status codes),
+        typically with low volume and low change frequency. The LLM MUST NOT
+        describe both simply as "important data" without preserving this
+        distinction when it is material.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 14 — Reference and Master Data"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM distinguishes master data from reference data
+      by role and volatility rather than treating both as one undifferentiated
+      category of "important" or "shared" data.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 14 — Reference and Master Data"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: MRD-002
+    name: "Reference data values form a closed, deliberately governed set"
+
+    scope_selector: {}
+
+    elements:
+      - Reference Data
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST treat reference data values as forming a closed,
+        deliberately governed set. Introducing a new reference-data value
+        MUST be understood as a deliberate classification decision, not an
+        incidental side effect of processing an unrelated transaction.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 14 — Reference and Master Data (reference data governance)"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM understands reference data's closed,
+      governed nature, as distinct from master data's more dynamic,
+      transactionally-driven growth.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 14 — Reference and Master Data"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
+
+  # ── DATA LIFECYCLE ────────────────────────────────────────────────────────────
+
+  - id: DL-001
+    name: "Data has a lifecycle; expectations legitimately vary by stage"
+
+    scope_selector: {}
+
+    elements:
+      - Data Lifecycle
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The LLM MUST recognise that data has a lifecycle — creation/capture,
+        storage and maintenance, active use, and eventual archival or
+        disposal — and that governance, quality, and access expectations MAY
+        legitimately differ across lifecycle stages for the same data. The
+        LLM MUST NOT hold archived or retired data to the same completeness
+        or access standards as actively used data without a stated reason
+        for doing so.
+
+    dama:
+      basis: explicit
+      reference: "DAMA-DMBOK2, Chapter 2 — Data Handling Ethics / Chapter 9 — Data Storage and Operations (lifecycle)"
+
+    diagnostic_intent: >
+      Demonstrates that the LLM does not treat a dataset's management
+      requirements as static across its entire life, and can reason about
+      which lifecycle stage a given expectation applies to.
+
+    traceability:
+      doctrine_source: "external — DAMA-DMBOK2"
+      doctrine_reference: "Chapter 9 — Data Storage and Operations"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
+
+  # ── LOGICAL DATA MODEL DERIVATION ────────────────────────────────────────────
+  # Operational rules. See the schema-extension note at the head of this file for
+  # why these carry no `dama:` and no `diagnostic_intent:` field.
+
+  - id: LDM-001
+    name: "A source definition is carried over verbatim"
+
+    scope_selector: {}
+
+    elements:
+      - Entity
+      - Attribute
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        Every Entity and every Attribute of a Logical Data Model that is derived
+        from a concept in the source model MUST carry that concept's definition
+        verbatim. The definition MUST NOT be paraphrased, reinterpreted,
+        enriched, shortened or replaced, and MUST NOT be rewritten to read more
+        like a data definition.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§4.3 — Permitted and prohibited transformation; §8.1 — No semantic leakage across boundaries"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-002
+    name: "A missing definition is reported, never invented"
+
+    scope_selector: {}
+
+    elements:
+      - Entity
+      - Attribute
+
+    classification:
+      rule_type: prohibition
+      status: active
+
+    statement:
+      text: >
+        Where a required Entity or Attribute has no definition in the source
+        model, that absence MUST be reported. A definition MUST NOT be written
+        from general knowledge, inferred from the concept's name, or borrowed
+        from a neighbouring concept.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§4.3 — Transformation MUST NOT introduce new semantics disguised as structure"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-003
+    name: "Every entity traces to a source concept or to a named transformation rule"
+
+    scope_selector: {}
+
+    elements:
+      - Entity
+      - Logical Data Model
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        Every Entity in a derived Logical Data Model MUST be traceable either to
+        exactly one concept of the source model, or to a named rule of this rule
+        set that introduced it. An Entity that is traceable to neither MUST NOT
+        be delivered.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§4.1 — INFORMATION_ELEMENT → ENTITY; §8.3 — Traceability to the IM"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-004
+    name: "Time is represented as temporal attributes, never as database audit columns"
+
+    scope_selector: {}
+
+    elements:
+      - Time
+      - Attribute
+      - Attribute classification
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        Where the source model states that the validity, the history or the
+        moment of occurrence of a fact must be known, the Logical Data Model
+        MUST represent that as one or more Attributes classified as Temporal,
+        carrying a Date, Datetime, Time or Duration data type. Time MUST NOT be
+        introduced for an Entity whose source model states no such requirement,
+        and MUST NOT take the form of database audit fields such as
+        `created_at`, `updated_at` or `last_modified_by`, which are physical
+        implementation patterns and not logical structure.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§2.2 — the LDM adds time; §5.2 — Temporal attribute"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-005
+    name: "Status is a process attribute, and a reference entity where its positions are governed"
+
+    scope_selector: {}
+
+    elements:
+      - Status
+      - Attribute
+      - Reference entity
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        Where the source model states that an Entity instance occupies a
+        position in a process, the Logical Data Model MUST represent that as an
+        Attribute classified as Process. Where the set of positions is governed
+        and may be extended, those positions MUST be carried by a Reference
+        entity reached through a relationship; only a set that is genuinely
+        fixed and closed MAY be written as an allowed-value set on the
+        Attribute. A status vocabulary MUST NOT be invented where the source
+        model states none.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§2.2 — the LDM adds process; §3.2 — Reference tables; §5.3 — Process attribute"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-006
+    name: "A mapping entity requires domain identity of its own"
+
+    scope_selector: {}
+
+    elements:
+      - Entity
+
+    classification:
+      rule_type: prohibition
+      status: active
+
+    statement:
+      text: >
+        A mapping entity MUST NOT be introduced merely because a relationship is
+        many-to-many. It is justified only where the relationship itself carries
+        identity, meaning or attributes that belong to neither participant
+        alone. Where the relationship can be stated directly and carries no such
+        independent meaning, the direct relationship MUST be preserved.
+
+    traceability:
+      doctrine_source: doctrine.ldm-authoring-rules.md
+      doctrine_reference: "LDMR-ASC-001 — status: concept, not yet ratified; consistent with doctrine.logical-data-modelling.md §3.1"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
+
+  - id: LDM-007
+    name: "A reference entity is recognised from source semantics and carries key, code and description"
+
+    scope_selector: {}
+
+    elements:
+      - Reference entity
+      - Attribute
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        A concept that the source model presents as master or reference data
+        MUST be modelled as a Reference entity, named in upper case with words
+        separated by single spaces and followed by the marker `(REF)`, and MUST
+        carry exactly three kinds of Attribute: its identifier, a `code` holding
+        the stable referenced value, and a `description` holding the readable
+        explanation. The marker `(REF)` states the Entity's kind and is not part
+        of its name: the Entity is `DEVELOPMENT PHASE (REF)`, whose name is
+        `DEVELOPMENT PHASE`. The marker MUST NOT be appended to an Entity that
+        the source model does not present as reference data, and reference
+        status MUST NOT be concluded from the Entity's name alone.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§3.2 — Reference tables. Marker fixed by explicit user decision 2026-09-12 as the suffix `_REF`, resolving doctrine.ldm-authoring-rules.md Open Question 1 against §3.2's `ref_` prefix, which described a table name; restated by explicit user decision 2026-09-13 as the parenthesised marker `(REF)`, which separates the classification from the name itself"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-008
+    name: "A reference entity key is named after the entity name, without its marker"
+
+    scope_selector: {}
+
+    elements:
+      - Reference entity
+      - Attribute
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        The identifier Attribute of a Reference entity MUST be named after that
+        Entity's name, in lower case with words separated by single spaces and
+        followed by ` id` — so `STATUS (REF)` carries `status id`. The `(REF)`
+        marker states the Entity's kind and MUST NOT be carried into any
+        Attribute name. The `code` Attribute MUST NOT replace the identifier.
+
+    traceability:
+      doctrine_source: doctrine.ldm-authoring-rules.md
+      doctrine_reference: "LDMR-KEY-002, LDMR-KEY-003 — status: concept, not yet ratified; naming form fixed by explicit user decision 2026-09-12 as `status_ref_id`, reversed by explicit user decision 2026-09-13: the marker is no longer carried into the key and words are separated by spaces, giving `status id`"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
+
+  - id: LDM-009
+    name: "Relationships are derived from the source; no domain relationship is invented"
+
+    scope_selector: {}
+
+    elements:
+      - Logical Data Model
+      - Entity
+
+    classification:
+      rule_type: prohibition
+      status: active
+
+    statement:
+      text: >
+        Every relationship in a derived Logical Data Model MUST preserve the
+        meaning of a relationship stated by the source model, or MUST follow
+        from a Reference entity or mapping entity that this rule set itself
+        introduced. A relationship that the source model does not state and
+        that no rule of this set requires MUST NOT be added.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§4.3 — Transformation MUST NOT introduce new semantics disguised as structure"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-010
+    name: "Undetermined cardinality is reported, never guessed"
+
+    scope_selector: {}
+
+    elements:
+      - Logical Data Model
+
+    classification:
+      rule_type: prohibition
+      status: active
+
+    statement:
+      text: >
+        Where the source model does not determine the cardinality or the
+        optionality of a relationship, that ambiguity MUST be reported. A
+        cardinality MUST NOT be chosen from what is usual, from what a database
+        would find convenient, or from the names of the participating Entities.
+
+    traceability:
+      doctrine_source: doctrine.ldm-authoring-rules.md
+      doctrine_reference: "LDMR-REL-001, LDMR-REL-003 — status: concept, not yet ratified; consistent with doctrine.logical-data-modelling.md §4.3"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-011
+    name: "A transformation construct is identifiable as one"
+
+    scope_selector: {}
+
+    elements:
+      - Entity
+      - Attribute
+      - Logical Data Model
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        Every construct that a transformation introduces and that the source
+        model does not contain — a Reference entity, a mapping entity, a
+        temporal Attribute, a process Attribute, a system Attribute — MUST be
+        identifiable as a transformation construct. It MUST NOT be presented,
+        traced or verbalised as if it were a concept of the source model.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§5.5 — Exclusivity; §8.3 — Traceability to the IM"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-012
+    name: "A Logical Data Model carries no physical construct"
+
+    scope_selector: {}
+
+    elements:
+      - Logical Data Model
+      - Data type
+
+    classification:
+      rule_type: prohibition
+      status: active
+
+    statement:
+      text: >
+        A Logical Data Model MUST NOT contain a table, a column, an index, a
+        foreign-key attribute, a storage size, a vendor data type, a database
+        default, DDL, an ORM model, an API definition or a UI model. A construct
+        MUST NOT be introduced into a Logical Data Model because a relational
+        implementation will eventually require it. A diagram derived from the
+        model is not such a construct: a Logical Data Model MAY be accompanied
+        by a diagram, which is a derived representation of the model and never
+        a substitute for it.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§1 — Out of scope; §2.2 — the LDM MUST NOT carry physical implementation detail"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-013
+    name: "A Logical Data Model is validated against its schema before delivery"
+
+    scope_selector: {}
+
+    elements:
+      - Logical Data Model
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        A Logical Data Model recorded in JSON MUST validate against
+        schemas/logical-data-model.schema.json before it is delivered, and the
+        checks that schema records as semantic MUST be performed explicitly in
+        addition. Where the required model cannot be expressed within that
+        schema, the incompatibility MUST be reported; the schema MUST NOT be
+        extended, relaxed or bypassed in order to deliver.
+
+    traceability:
+      doctrine_source: schemas/logical-data-model.schema.json
+      doctrine_reference: "Root `semanticValidation` — the checks JSON Schema itself cannot enforce"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-014
+    name: "A business object without attributes does not become an entity"
+
+    scope_selector: {}
+
+    elements:
+      - Entity
+      - Attribute
+      - Logical Data Model
+
+    classification:
+      rule_type: prohibition
+      status: active
+
+    statement:
+      text: >
+        A business object of the source model that has no attributes of its own
+        MUST NOT be realised as an entity of the Logical Data Model; a generated
+        identifier does not count as an attribute of its own. Where the source
+        model does not record whether a business object has attributes, the
+        business object MUST be treated as having none, and attributes MUST NOT
+        be invented in order to keep it. Where the source model states a
+        relationship against such a business object, that relationship MUST be
+        realised against the business objects that do become entities; where
+        that cannot be done without changing the meaning of the relationship,
+        the business object MUST be retained and the conflict reported rather
+        than resolved by dropping or widening the relationship.
+
+    traceability:
+      doctrine_source: user-decision
+      doctrine_reference: "Explicit user decision 2026-09-12. Conceptual models in this repository do not yet record attributes; the rule is written so that it holds now, under the stated default, and continues to hold once they do"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-015
+    name: "A Logical Data Model is normalised"
+
+    scope_selector: {}
+
+    elements:
+      - Logical Data Model
+      - Entity
+      - Attribute
+
+    classification:
+      rule_type: obligation
+      status: active
+
+    statement:
+      text: >
+        A Logical Data Model MUST be normalised to fourth normal form, which
+        entails third: no attribute may depend on a non-key attribute, and no
+        entity may carry two independent multi-valued facts, which MUST be
+        represented as separate associative entities instead. Normalisation
+        MUST NOT be relaxed for convenience, for performance, or for an
+        anticipated implementation; such relaxation belongs to the Technical
+        Data Model alone.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "§3.1 — Normalisation. Stated at fourth normal form, not third: the doctrine is status: current and requires 4NF, and a rule at 3NF would have silently relaxed it"
+
+    applicability:
+      scope: instruction_set
+      priority: 10
+
+  - id: LDM-016
+    name: "An abstract supertype is not materialised as an entity"
+
+    scope_selector: {}
+
+    elements:
+      - Logical Data Model
+      - Entity
+
+    classification:
+      rule_type: prohibition
+      status: active
+
+    statement:
+      text: >
+        Where a conceptual model generalises several concrete types under an
+        abstract supertype, each distinguished subtype MUST be modelled as a
+        self-standing Entity, and the supertype MUST NOT be materialised as an
+        Entity of its own when the concrete types are stored independently and
+        may be distributed across different database schemas. Each concrete
+        Entity MUST then carry the generic attributes and hold the generic
+        relationships directly, rather than reaching them through the
+        supertype. No concrete Entity may depend on a supertype Entity by
+        foreign key, and no table-inheritance construct may stand in for one.
+        The supertype MAY retain meaning as a concept or classifying term; that
+        is a matter for the conceptual model, not for the Logical Data Model.
+
+    traceability:
+      doctrine_source: doctrine.logical-data-modelling.md
+      doctrine_reference: "Provisional rule, recorded on explicit user decision 2026-09-13 while removing the RULE supertype from the Entoli Agent Development LDM in favour of four self-standing rule entities. No doctrine section states it yet; ratifying or amending it is a matter for canon-curator"
+
+    applicability:
+      scope: instruction_set
+      priority: 20
