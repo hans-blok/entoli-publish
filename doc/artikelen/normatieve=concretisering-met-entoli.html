@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Van principe naar uitvoering: normatieve concretisering in Entoli</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1f1d1a;
+    --muted: #61605c;
+    --line: #e2ded7;
+    --accent: #8a5a2b;
+    --accent-soft: #f4ede3;
+    --quote-bg: #f6f2ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #171614;
+      --surface: #201e1b;
+      --text: #ece8e1;
+      --muted: #a39f97;
+      --line: #35322d;
+      --accent: #d2a06a;
+      --accent-soft: #2a2520;
+      --quote-bg: #262220;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #171614;
+    --surface: #201e1b;
+    --text: #ece8e1;
+    --muted: #a39f97;
+    --line: #35322d;
+    --accent: #d2a06a;
+    --accent-soft: #2a2520;
+    --quote-bg: #262220;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 3rem 16px 5rem; }
+
+  h1 {
+    font-size: 1.75rem; line-height: 1.25; font-weight: 600;
+    margin: 0 0 .6rem;
+  }
+  .meta {
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    font-size: .82rem; color: var(--muted); letter-spacing: .02em;
+    margin: 0 0 2rem; padding-bottom: 1.25rem;
+    border-bottom: 2px solid var(--line);
+  }
+  h2 {
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    font-size: 1.05rem; font-weight: 600; letter-spacing: .01em;
+    margin: 2.5rem 0 .9rem; padding-bottom: .4rem;
+    border-bottom: 1px solid var(--line);
+  }
+  h3 {
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    font-size: .95rem; font-weight: 600; margin: 1.8rem 0 .6rem;
+  }
+  h4, h5, h6 { font-size: .9rem; margin: 1.5rem 0 .5rem; }
+
+  p { margin: 0 0 1rem; }
+  ol, ul { margin: 0 0 1rem; padding-left: 1.4rem; }
+  li { margin-bottom: .5rem; }
+  a { color: var(--accent); }
+
+  hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
+
+  blockquote {
+    margin: 1.2rem 0;
+    padding: 1rem 1.25rem;
+    background: var(--quote-bg);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  code {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: .88em;
+    background: var(--accent-soft);
+    border-radius: 4px;
+    padding: .1em .35em;
+  }
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+  }
+  pre code { background: none; padding: 0; font-size: .85rem; }
+
+  table {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    font-size: .85rem;
+  }
+  th, td {
+    text-align: left;
+    padding: .55rem .7rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  thead th {
+    background: var(--accent-soft);
+    font-weight: 600;
+    border-bottom: 2px solid var(--line);
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  .tabel-scroll { overflow-x: auto; }
+
+  .keten {
+    margin: 1.4rem 0;
+    padding: .85rem 1.1rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    font-size: .88rem;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .keten strong { color: var(--accent); }
+
+  .label {
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    font-size: .78rem; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted); margin: 1.6rem 0 .4rem;
+  }
+  .label strong { font-weight: 600; }
+  blockquote .keten {
+    margin: 0 0 1rem; padding: 0; background: none; border: 0;
+    font-family: inherit; font-size: inherit; text-align: left;
+  }
+
+  .opties {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: .9rem 1.1rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .opties li { margin-bottom: .45rem; }
+  .opties li:last-child { margin-bottom: 0; }
+  .opties .letter {
+    font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    font-weight: 600; color: var(--accent); margin-right: .4rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Van principe naar uitvoering: normatieve concretisering in Entoli</h1>
+
+<p>Een architectuurprincipe kan richting geven zonder precies te vertellen wat iemand morgen moet doen. Een canonieke regel kan inhoudelijk juist zijn zonder een goede instructie voor een Large Language Model te zijn.</p>
+
+<p>Dat verschil wordt belangrijk zodra we AI niet alleen kennis willen meegeven, maar betrouwbaar werk willen laten uitvoeren.</p>
+
+<p>Binnen Entoli gebruiken we daarom twee samenhangende ideeën: <strong>normatieve concretisering</strong> en <strong>progressive concretization</strong>. Samen beschrijven ze hoe algemene kennis, principes en regels stapsgewijs worden vertaald naar concrete instructies voor AI-gedreven functies.</p>
+
+<h2>Het probleem met algemene regels</h2>
+
+<p>Veel professionele kennis begint op een hoog abstractieniveau.</p>
+
+<p>Frameworks en standaarden zoals TOGAF, ArchiMate en DAMA bevatten concepten, principes, definities en regels. Ze vertellen ons bijvoorbeeld hoe we naar architectuur, informatie of datamodellering moeten kijken.</p>
+
+<p>Dat is waardevol als ontwerpkennis.</p>
+
+<p>Maar een regel die goed werkt in een canon of architectuur is niet automatisch een goede instructie voor een LLM.</p>
+
+<p>Neem een abstract principe als:</p>
+
+<blockquote>
+<p>Data governance en data management zijn verschillende verantwoordelijkheden.</p>
+</blockquote>
+
+<p>Dat onderscheid is belangrijk. Maar het vertelt een LLM dat op dit moment een Logical Data Model moet maken nog niet precies wat het moet doen.</p>
+
+<p>Een concrete regel zoals:</p>
+
+<blockquote>
+<p>Als een definitie in het bronmodel ontbreekt, rapporteer dit en verzin geen definitie.</p>
+</blockquote>
+
+<p>doet dat wel.</p>
+
+<p>Het verschil zit niet noodzakelijk in de kwaliteit van beide regels. Ze hebben een ander doel en bevinden zich op een ander abstractieniveau.</p>
+
+<p>Daarom moeten we voorkomen dat we algemene principes rechtstreeks als uitvoeringsinstructies behandelen.</p>
+
+<h2>Normatieve concretisering</h2>
+
+<p>Met <strong>normatieve concretisering</strong> bedoelen we het vertalen van een algemene norm naar een concretere norm voor een specifieke verantwoordelijkheid of handeling.</p>
+
+<p>Het uitgangspunt blijft behouden, maar de interpretatieruimte wordt kleiner.</p>
+
+<p>Bijvoorbeeld:</p>
+
+<p class="label"><strong>Algemeen principe</strong></p>
+
+<blockquote>
+<p>Een model introduceert geen betekenis die niet uit de bron kan worden verantwoord.</p>
+</blockquote>
+
+<p>Dat kan voor een bepaalde professionele functie worden geconcretiseerd naar:</p>
+
+<p class="label"><strong>Agent Rule</strong></p>
+
+<blockquote>
+<p>Een Logical Data Modeller voegt geen businessconcepten toe die niet traceerbaar zijn naar het bronmodel.</p>
+</blockquote>
+
+<p>Voor een specifieke intent kan dat nog verder worden geconcretiseerd:</p>
+
+<p class="label"><strong>Agent Intent Rule</strong></p>
+
+<blockquote>
+<p>Bij het afleiden van een Logical Data Model moet iedere Entity traceerbaar zijn naar een concept uit het bronmodel of naar een expliciete transformatieregel.</p>
+</blockquote>
+
+<p>De betekenis verandert niet willekeurig. De regel wordt <strong>specifieker ten opzichte van de verantwoordelijkheid die moet worden uitgevoerd</strong>.</p>
+
+<p>Dat is normatieve concretisering.</p>
+
+<h2>Progressive concretization</h2>
+
+<p>Normatieve concretisering is onderdeel van een breder ontwerpprincipe: <strong>progressive concretization</strong>.</p>
+
+<p>Progressive concretization betekent dat we niet proberen om in één stap van abstracte kennis naar een perfecte prompt te springen.</p>
+
+<p>Iedere ontwerpstap heeft zijn eigen verantwoordelijkheid en reduceert een deel van de interpretatieruimte.</p>
+
+<p>Conceptueel ontstaat:</p>
+
+<p class="keten"><strong>kennis → principes → functie → intent → instructie → uitvoering</strong></p>
+
+<p>Of concreter:</p>
+
+<p class="keten"><strong>Framework → Canon → Agent Rule → Agent Intent Rule → Instruction Set → Execution</strong></p>
+
+<p>Aan het begin van de keten willen we duurzame betekenis vastleggen.</p>
+
+<p>Aan het einde willen we ondubbelzinnig uitvoerbaar gedrag.</p>
+
+<p>Hoe dichter we bij Execution komen, hoe minder ontwerpbeslissingen we nog aan het uitvoerende LLM willen overlaten.</p>
+
+<p>Dat is een belangrijk verschil met een aanpak waarbij tijdens iedere execution een grote hoeveelheid algemene documentatie, principes en regels aan het model wordt aangeboden met de impliciete opdracht:</p>
+
+<blockquote>
+<p>Bepaal zelf wat hiervan voor deze taak relevant is en hoe je dit moet toepassen.</p>
+</blockquote>
+
+<p>Dat lijkt flexibel, maar verplaatst architectuurwerk naar runtime.</p>
+
+<p>Progressive concretization probeert juist zoveel mogelijk van die interpretatie tijdens <strong>design time</strong> expliciet te maken.</p>
+
+<h2>De ontwerpgrondslag</h2>
+
+<p>Daarmee ontstaat een belangrijk begrip binnen Entoli: de <strong>ontwerpgrondslag</strong>.</p>
+
+<p>Een ontwerpgrondslag is de autoritatieve semantische en normatieve basis waartegen een professionele functie wordt ontworpen.</p>
+
+<p>Die grondslag hoeft niet in iedere Ecosystem Context hetzelfde te zijn.</p>
+
+<p>Binnen Entoli zelf is de <strong>Canon</strong> de ontwerpgrondslag.</p>
+
+<p>Binnen een Tenant Workspace is de <strong>Architecture</strong> de ontwerpgrondslag.</p>
+
+<div class="tabel-scroll">
+<table>
+<thead>
+  <tr>
+    <th>Ecosystem Context</th>
+    <th>Ontwerpgrondslag</th>
+    <th>Concretisering</th>
+    <th>Uitvoerbaar resultaat</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Entoli</td>
+    <td>Canon</td>
+    <td>Agent Development</td>
+    <td>Agent Rules + Agent Intent Rules</td>
+  </tr>
+  <tr>
+    <td>Tenant</td>
+    <td>Architecture</td>
+    <td>Agent Development</td>
+    <td>Agent Rules + Agent Intent Rules</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<p>Dat onderscheid is essentieel.</p>
+
+<p>Entoli en een tenant hoeven niet dezelfde inhoudelijke ontwerpgrondslag te hebben om hetzelfde ontwikkelprincipe toe te passen.</p>
+
+<h2>De Canon als ontwerpgrondslag voor Entoli</h2>
+
+<p>Entoli ontwikkelt zijn eigen professionele functies vanuit zijn Canon.</p>
+
+<p>Die Canon ontstaat op zijn beurt niet uit het niets. Frameworks, standaarden, vakkennis en expliciete ontwerpbeslissingen worden geïnterpreteerd en gecanoniseerd.</p>
+
+<p>Bijvoorbeeld:</p>
+
+<p class="keten"><strong>TOGAF / ArchiMate / DAMA → Entoli Canon → Agent Development → Agent Rules → Agent Intent Rules</strong></p>
+
+<p>De Canon legt vast wat binnen Entoli als betekenisvol, normatief en duurzaam wordt beschouwd.</p>
+
+<p>Dat betekent niet dat iedere Canon Rule letterlijk in iedere Instruction Set terecht moet komen.</p>
+
+<p>Integendeel.</p>
+
+<p>Een Canon Rule mag relatief fundamenteel zijn. Tijdens Agent Development wordt vervolgens bepaald wat die regel betekent voor een specifieke professionele functie.</p>
+
+<p>De Canon hoeft dus niet zelf de uitvoeringsinstructie te zijn.</p>
+
+<p>De Canon is de <strong>ontwerpgrondslag waaruit uitvoeringsinstructies verantwoord kunnen worden afgeleid</strong>.</p>
+
+<h2>Architectuur als ontwerpgrondslag voor een tenant</h2>
+
+<p>Hetzelfde patroon kunnen we toepassen binnen een Tenant Workspace.</p>
+
+<p>Daar is niet de Entoli Canon de primaire inhoudelijke beschrijving van de organisatie. De tenant heeft een eigen werkelijkheid, eigen principes en een eigen architectuur.</p>
+
+<p>De <strong>Business Architecture</strong> beschrijft bijvoorbeeld relevante businessconcepten, capabilities, processen en samenhangen. Waar relevant kan ook de <strong>Application Architecture</strong> onderdeel van die ontwerpgrondslag zijn.</p>
+
+<p>Een Conceptual Data Model kan belangrijke concepten en relaties uit die architectuur expliciet en machineleesbaar maken. Architectuurprincipes leggen daarnaast normatieve uitspraken over die werkelijkheid vast.</p>
+
+<p>Samen vormen die de ontwerpgrondslag voor het ontwikkelen van functies binnen de tenant.</p>
+
+<p>De keten wordt dan bijvoorbeeld:</p>
+
+<p class="keten"><strong>Tenant Architecture → Agent Development → Agent Rules → Agent Intent Rules</strong></p>
+
+<p>Een relatief algemeen architectuurprincipe kan daardoor worden vertaald naar concreet gedrag voor een specifieke functie.</p>
+
+<p>De architectuur hoeft niet tijdens iedere execution opnieuw volledig geïnterpreteerd te worden.</p>
+
+<p>Die interpretatie vindt al plaats tijdens Agent Development.</p>
+
+<h2>Twee verschillende grondslagen, hetzelfde patroon</h2>
+
+<p>Daarmee ontstaat een interessante symmetrie.</p>
+
+<p>Voor Entoli:</p>
+
+<p class="keten"><strong>Canon → concretisering → uitvoerbare functie</strong></p>
+
+<p>Voor een tenant:</p>
+
+<p class="keten"><strong>Architecture → concretisering → uitvoerbare functie</strong></p>
+
+<p>De Canon en de Architecture zijn niet hetzelfde soort inhoud. We moeten die begrippen daarom niet samenvoegen.</p>
+
+<p>Ze vervullen echter wel een vergelijkbare <strong>architectonische rol</strong>.</p>
+
+<p>Beide zijn een ontwerpgrondslag.</p>
+
+<p>Dat levert een generieker patroon op:</p>
+
+<p class="keten"><strong>Ecosystem Context → Ontwerpgrondslag → Agent Development → Agent Rules → Agent Intent Rules → Execution</strong></p>
+
+<p>De Ecosystem Context bepaalt daarmee mede vanuit welke autoritatieve grondslag functies worden ontwikkeld.</p>
+
+<h2>Van vaag naar specifiek is geen verlies van architectuur</h2>
+
+<p>Een mogelijke zorg bij concretisering is dat de oorspronkelijke principes verdwijnen.</p>
+
+<p>Dat zou inderdaad problematisch zijn.</p>
+
+<p>Normatieve concretisering betekent daarom niet dat een Agent Rule simpelweg een nieuwe, losstaande regel is.</p>
+
+<p>De afleiding moet traceerbaar blijven.</p>
+
+<p>Bijvoorbeeld:</p>
+
+<p class="keten"><strong>Architecture Principle</strong><br>
+↓ concretiseert naar<br>
+<strong>Agent Rule</strong><br>
+↓ concretiseert naar<br>
+<strong>Agent Intent Rule</strong></p>
+
+<p>Of binnen Entoli:</p>
+
+<p class="keten"><strong>Framework / Specification</strong><br>
+↓ geïnterpreteerd in<br>
+<strong>Canon Rule</strong><br>
+↓ concretiseert naar<br>
+<strong>Agent Rule</strong><br>
+↓ concretiseert naar<br>
+<strong>Agent Intent Rule</strong></p>
+
+<p>Daardoor kunnen we bij een concrete uitvoeringsregel uiteindelijk terugredeneren:</p>
+
+<blockquote>
+<p>Waarom moet deze functie zich eigenlijk zo gedragen?</p>
+</blockquote>
+
+<p>Dat antwoord moet niet zijn:</p>
+
+<blockquote>
+<p>Omdat het zo in de prompt staat.</p>
+</blockquote>
+
+<p>Het antwoord moet terug te voeren zijn op de ontwerpgrondslag.</p>
+
+<h2>Concretisering is geen kopiëren</h2>
+
+<p>Dat betekent ook dat we algemene regels niet simpelweg naar beneden kopiëren.</p>
+
+<p>Als dezelfde Canon Rule letterlijk terugkomt als Agent Rule en vervolgens opnieuw als Agent Intent Rule, hebben we weinig geconcretiseerd.</p>
+
+<p>Iedere stap moet iets toevoegen: <strong>context en specificiteit</strong>.</p>
+
+<p>Een Canon Rule zegt wat normatief geldt.</p>
+
+<p>Een Agent Rule zegt wat dat betekent voor de verantwoordelijkheid van een professionele functie.</p>
+
+<p>Een Agent Intent Rule zegt wat dat betekent bij een specifieke handeling van die functie.</p>
+
+<p>Het doel is dus niet meer regels produceren.</p>
+
+<p>Het doel is de interpretatieruimte gecontroleerd verkleinen.</p>
+
+<h2>Design time versus runtime</h2>
+
+<p>Hieruit volgt een belangrijke architecturale keuze voor Entoli.</p>
+
+<p>We willen zoveel mogelijk semantische en normatieve interpretatie uitvoeren tijdens <strong>design time</strong>.</p>
+
+<p>Tijdens <strong>runtime</strong> willen we vooral selecteren, assembleren en uitvoeren.</p>
+
+<p>Dat geeft grofweg twee werelden.</p>
+
+<p><strong>Agent Development</strong> interpreteert en concretiseert:</p>
+
+<p class="keten"><strong>Ontwerpgrondslag → verantwoordelijkheid → intent → concrete regels</strong></p>
+
+<p><strong>Agent Execution</strong> selecteert en assembleert:</p>
+
+<p class="keten"><strong>Agent + Intent + Rules + relevante context + input → Instruction Set → Execution</strong></p>
+
+<p>Hierdoor hoeft Instruction Assembly niet telkens opnieuw te bedenken wat een abstract architectuurprincipe betekent.</p>
+
+<p>Dat werk is eerder gedaan.</p>
+
+<p>Instruction Assembly kan daardoor eenvoudiger worden.</p>
+
+<p>En eenvoud op dat punt is waardevol: het verkleint de hoeveelheid interpretatie die we tijdens iedere afzonderlijke LLM-execution opnieuw moeten vertrouwen.</p>
+
+<h2>De interessante recursie van Entoli</h2>
+
+<p>Daarmee ontstaat uiteindelijk een interessante structuur.</p>
+
+<p>Entoli gebruikt externe frameworks en professionele kennis om zijn Canon op te bouwen.</p>
+
+<p>Vervolgens gebruikt Entoli die Canon als ontwerpgrondslag om functies te ontwikkelen.</p>
+
+<p>Een aantal van die functies helpt een organisatie om haar eigen architectuur expliciet te maken.</p>
+
+<p>Die tenantarchitectuur wordt vervolgens de ontwerpgrondslag voor het ontwikkelen van functies binnen die Tenant Workspace.</p>
+
+<p>Dus:</p>
+
+<p class="keten"><strong>Frameworks → Entoli Canon → Entoli-functies → Tenant Architecture → Tenant-functies</strong></p>
+
+<p>Hetzelfde ontwerpprincipe herhaalt zich op een ander niveau.</p>
+
+<p>Niet omdat Canon en Architecture hetzelfde zijn, maar omdat beide de rol van <strong>ontwerpgrondslag</strong> vervullen binnen hun eigen Ecosystem Context.</p>
+
+<h2>Van betekenis naar betrouwbaar gedrag</h2>
+
+<p>De kern van progressive concretization is uiteindelijk eenvoudig:</p>
+
+<blockquote>
+<p class="label"><strong>Hoe dichter we bij uitvoering komen, hoe minder fundamentele interpretatie we aan het uitvoerende model overlaten.</strong></p>
+</blockquote>
+
+<p>Aan het begin van de keten willen we rijke concepten, principes en samenhang.</p>
+
+<p>Aan het einde willen we concrete verantwoordelijkheid, expliciete grenzen en toepasbare regels.</p>
+
+<p>Normatieve concretisering vormt de brug tussen die twee.</p>
+
+<p>Daarmee wordt een Canon of Architecture meer dan documentatie. Het wordt een grondslag waaruit gedrag systematisch kan worden ontworpen.</p>
+
+<p>En Agent Development wordt meer dan het schrijven van prompts.</p>
+
+<p>Het wordt het proces waarin we algemene betekenis en normen stap voor stap transformeren tot <strong>traceerbaar, contextgebonden en uitvoerbaar AI-gedrag</strong>.</p>
+</div>
+</body>
+</html>

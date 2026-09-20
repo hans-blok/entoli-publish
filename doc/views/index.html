@@ -140,7 +140,6 @@
 															<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-abdf3fc1a9504d1eb988ab196a0ecf67.html" target="element"> llm account </a></li>
 															<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-94e213279a1d46149da17c04c0572efe.html" target="element"> operational context </a></li>
 															<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification </a></li>
-															<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-6cd1f6f39e864f16855d0eda7857df01.html" target="element"> reasoning mode </a></li>
 															<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-9c775a49c62f4d49a90673446cec6a64.html" target="element"> relationship </a></li>
 															<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-1fa6202fbcb84810a487e731d399058b.html" target="element"> semantic model </a></li>
 															<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-fe950c3ebad04932a87cb572b191e4ff.html" target="element"> source regime </a></li>
@@ -203,6 +202,15 @@
 
 											</ul>
 											</li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-b5f98772aead4deea735f885c4ba46d3.html" target="element"> entoli context (entoli studio) </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-d9f34a0d340843fdb0bd11abfca6ed80.html" target="element"> entoli rule </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-d0d7a7409f794e30bb32bca7c7c4d406.html" target="element"> entoli agent rule </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-16d1243de6aa4c1c8d73099f30a48f1b.html" target="element"> entoli agent intent rule </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-a6a2b09cbd834836a37c426d00435ddc.html" target="element"> core rule </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-160fad28dcac4d0fb6f313dbc389f49b.html" target="element"> normative rule </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-8c1dee167ccc432f98eba888e90ba805.html" target="element"> operational rule </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-b62c3b7ad79644d6b830ae2278db477d.html" target="element"> reasoning regime </a></li>
+
 									</ul>
 								</li>
 								<li class="tree-folder "><span class="i18n-application_layer"><i class="glyphicon glyphicon-triangle-right"></i> </span>
@@ -1241,10 +1249,6 @@
 															0..* constrains 1
 														(agent intent rule - agent intent) 
 													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-20c0c4d0699047d39210f1a1d24b467c.html" target="element">
-															1 governs reasoning of 0..*
-														(reasoning mode - agent) 
-													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-af421ae7816e4b3482283107913e951f.html" target="element">
 															<span class="i18n-elementtype-AssociationRelationship"></span>
 														(Synthesis regime - Agent intent) 
@@ -1373,10 +1377,6 @@
 															<span class="i18n-elementtype-CompositionRelationship"></span>
 														(OPERATIONAL CONTEXT AGENT SERVICE - source regime) 
 													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-7c47451b6ba7424697d8c006af8472e5.html" target="element">
-															<span class="i18n-elementtype-CompositionRelationship"></span>
-														(OPERATIONAL CONTEXT AGENT SERVICE - reasoning mode) 
-													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-b1840a8330a8483586fcd39a78a97565.html" target="element">
 															<span class="i18n-elementtype-CompositionRelationship"></span>
 														(OPERATIONAL CONTEXT AGENT SERVICE - agent intent rule) 
@@ -1412,10 +1412,6 @@
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-ea7251b20c8144aebd564840a1f64469.html" target="element">
 															<span class="i18n-elementtype-SpecializationRelationship"></span>
 														(agent intent rule - rule) 
-													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-fe774c675e914eb58c4bb632b8f0fb2d.html" target="element">
-															<span class="i18n-elementtype-SpecializationRelationship"></span>
-														(canon rule - rule) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-290269a462ea47a4a187c2eb39c96089.html" target="element">
 															1 defines 0..*
@@ -1476,14 +1472,6 @@
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-5245ef5310b847a099cd0f8be3dfd18d.html" target="element">
 															0..* is provided by 1
 														(llm account - llm provider) 
-													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-87c1c3c5826a4ba9be48f454b49086dd.html" target="element">
-															0..* intervenes in 1
-														(agent - development phase) 
-													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-50fce052e7c6478abe8917cdae9c3760.html" target="element">
-															0..* applies to 0..1
-														(model assignment - development phase) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-478037499a934c57a353226c3694f575.html" target="element">
 															1 is used by 0..*
@@ -1873,10 +1861,6 @@
 															<span class="i18n-elementtype-CompositionRelationship"></span>
 														(execution-configuration - operational context) 
 													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-8a60741f6a8a46c58c4f30004fcb34c0.html" target="element">
-															<span class="i18n-elementtype-CompositionRelationship"></span>
-														(semantic-foundation - reasoning mode) 
-													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-ed4e270e644e43898883978020b0629f.html" target="element">
 															<span class="i18n-elementtype-CompositionRelationship"></span>
 														(semantic-foundation - relationship) 
@@ -2045,6 +2029,102 @@
 															0..* uses 1
 														(execution - model assignment) 
 													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-d31c5baf56a043abb77f520a285e7301.html" target="element">
+															<span class="i18n-elementtype-CompositionRelationship"></span>
+														(agent-definition - intent instruction) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-3ab875f40d804798be95d095e6bc9e2d.html" target="element">
+															1 makes available 0..*
+														(entoli context (entoli studio) - llm account) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-b2bab58e4c0f4302b783080bcf80f20d.html" target="element">
+															1 owns 0..*
+														(entoli context (entoli studio) - agent) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-8e8eef25df2642229f4002b8800232f5.html" target="element">
+															<span class="i18n-elementtype-AssociationRelationship"></span>
+														(entoli context (entoli studio) - orchestration specification) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-429bb744ce4949629c047396d9abab10.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(entoli agent rule - entoli rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-2fec9ffa84c44624bb8267d15b659fb5.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(entoli agent intent rule - entoli rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-b22cf1ed7e4a402a9b197d067824056b.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(core rule - entoli rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-6b29455302464259886e4c5a186773db.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(canon rule - entoli rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-542fdba9611a418899f22f9671f77257.html" target="element">
+															1..* is included in 0..*
+														(operational rule - instruction set) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-5c5f2f4ce537466db16d9c7d6c442f2d.html" target="element">
+															0..*  is concretized by  1..* 
+														(canon rule - entoli agent rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-71dfa08f82914205b413e292d876209d.html" target="element">
+															0..*  is operationalized by  1..* 
+														(normative rule - entoli agent intent rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-bdbf7066931b42988153e938b6965728.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(canon rule - normative rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-1e1ccfb982534910afdcd9b9d7b839b4.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(entoli agent rule - normative rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-02d3c16b25e84c8e9a102c8c5acd1bb1.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(normative rule - entoli rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-ce0c4debb8c04e0d961e691b9e99b48c.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(entoli agent intent rule - operational rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-f51f89872b164b42a53a98079f057f1d.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(core rule - operational rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-73d9c59cf57f4224b14bfe9ddc3e1793.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(operational rule - entoli rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-cf90056d0bc04b0db4a8483b62939942.html" target="element">
+															0..* constraints 1
+														(entoli agent intent rule - agent intent) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-e5ee05fd4ef949bdb42e98c2ef35ad29.html" target="element">
+															1 guides 0..*
+														(development phase - execution regime) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-b7276411916a4000b00be3c8fabb5377.html" target="element">
+															0..* governs 1
+														(core rule - execution regime) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-d361fdf90c0e4085aa846316dc7955b9.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(reasoning regime - execution regime) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-8bd4131a311b4458b467506e75fd95ae.html" target="element">
+															1 informs 0..*
+														(synthesis regime - model assignment) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-0ff5e4d844ce490c99e4e27b9b11c4c3.html" target="element">
+															1 informs 0..*
+														(reasoning regime - model assignment) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-db7a30dad63746218fffec64bacd7bfc.html" target="element">
+															0..** governs 1
+														(entoli agent rule - agent) 
+													</a></li>
 
 									</ul>
 								</li>
@@ -2067,6 +2147,8 @@
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/views/id-60706a63f1ca4b3cb3ddb02d1161c408.html" target="view"> waardestroom </a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/views/id-809e5a10fbb54d2d84dea2d84d44146a.html" target="view"> bedrijfsprocessen-dienten-en-producten </a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/views/id-e370b29df1904e7aa3dff365806a402d.html" target="view"> entoli-conceptueel-datamodel </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/views/id-80862bce335d49df81cf62aaaf626834.html" target="view"> entoli-conceptueel-datamodel_v2 </a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/views/id-9af041ed1c474511bfe81f2be872945d.html" target="view"> tenant-conceptueel-datamodel </a></li>
 
 									</ul>
 									</li><li class="tree-folder "><span><i class="glyphicon glyphicon-triangle-right"></i> c.information-systems-architecture </span>
