@@ -56,11 +56,11 @@ Entoli Studio, Entoli Workspace en het beoogde Entoli Control worden ondersteund
 
 Het conceptuele model vormt het gemeenschappelijke begrippenkader van de Entoli-architectuur. Het definieert de kernbegrippen en hun onderlinge relaties, zodat de voorgaande weergaven vanuit dezelfde betekenis kunnen worden ontworpen, gelezen en beheerd.
 
-<a class="entoli-view__plate" href="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-e370b29df1904e7aa3dff365806a402d.png">
-<img src="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-e370b29df1904e7aa3dff365806a402d.png" alt="Het conceptuele datamodel van Entoli met vierendertig samenhangende begrippen">
+<a class="entoli-view__plate" href="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-80862bce335d49df81cf62aaaf626834.png">
+<img src="../views/id-fca85b9eb275498c905415549bb8efb2/images/id-80862bce335d49df81cf62aaaf626834.png" alt="Het conceptuele datamodel van Entoli met zijn samenhangende kernbegrippen">
 </a>
 
-<a class="entoli-view__open" href="../views/?view=id-e370b29df1904e7aa3dff365806a402d">Open in het architectuurmodel →</a>
+<a class="entoli-view__open" href="../views/?view=id-80862bce335d49df81cf62aaaf626834">Open in het architectuurmodel →</a>
 
 </div>
 
