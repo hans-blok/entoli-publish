@@ -49,22 +49,39 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
-Een Entoli Agent Intent Rule is een normatieve regel voor precies &#233;&#233;n Agent Intent van een Entoli Agent, die vastlegt hoe normering specifiek doorwerkt op de uitvoering van die Intent. Zij specificeert daarmee gedrag dat uitsluitend voor die aanroepbare capability geldt en niet automatisch voor andere Agent Intents van dezelfde Entoli Agent.
+
+Een Entoli Agent Intent Rule (Entoli Agent Intent-regel) is een Operational Rule die voor precies &#233;&#233;n Entoli Agent Intent vastlegt welk gedrag tijdens de uitvoering van die Intent moet worden uitgevoerd, nagelaten of onder bepaalde voorwaarden is toegestaan.
 
 DOEL
-Normering kunnen verfijnen tot het niveau waarop daadwerkelijk een specifieke capability wordt aangeroepen, zonder daarvoor de Entoli Agent of zijn andere Agent Intents te hoeven specialiseren. Daarmee kan iedere Intent zijn eigen expliciete operationele normering hebben terwijl de gedeelde normatieve structuur op agentniveau behouden blijft.
+
+Normatieve regels operationaliseren tot regels die voldoende concreet zijn om het gedrag van een LLM tijdens de uitvoering van &#233;&#233;n specifieke Agent Intent rechtstreeks te sturen, zonder dat het LLM de onderliggende norm eerst zelfstandig hoeft te interpreteren.
 
 LEIDENDE VRAAG
-Welke specifieke norm geldt voor de uitvoering van deze Agent Intent?
+
+Wat moet tijdens de uitvoering van deze specifieke Entoli Agent Intent concreet worden gedaan of nagelaten om overeenkomstig de geldende norm te handelen?
 
 RELATIES
-Een Entoli Agent Intent Rule behoort tot precies &#233;&#233;n Agent Intent. Een Agent Intent kan nul of meer Entoli Agent Intent Rules hebben. De Agent Intent behoort op zijn beurt tot precies &#233;&#233;n Entoli Agent. Daarmee bevindt de Entoli Agent Intent Rule zich normatief onder de regels die voor de Entoli Agent als geheel gelden. Het bestaande canonieke begrip Agent Intent Rule bevestigt deze intent-specifieke reikwijdte en staat toe dat regels tussen Intents van dezelfde Agent verschillen.
-
+Entoli Agent Intent Rule is een specialisatie van Operational Rule.
+Een Normative Rule wordt geoperationaliseerd door &#233;&#233;n of meer Entoli Agent Intent Rules.
+Een Entoli Agent Intent Rule constrains precies &#233;&#233;n Agent Intent.
+Een Operational Rule kan als toepasselijke regel in een Instruction Set worden opgenomen.
 BEPERKINGEN
-Een Entoli Agent Intent Rule is geen Entoli Agent Rule: zij geldt niet voor alle Intents van de Entoli Agent, maar uitsluitend voor &#233;&#233;n Agent Intent. Zij mag de voor haar Agent geldende normering niet overschrijven. Evenmin verkrijgt zij zelfstandig canoniek gezag; canonieke autoriteit blijft bij de Canon Rule. De bestaande canon positioneert Agent Intent Rules nadrukkelijk als intent-specifiek en zonder eigen canonieke invariantstatus.
+
+Een Entoli Agent Intent Rule is geen Normative Rule. Zij introduceert niet zelfstandig de norm waaraan moet worden voldaan, maar operationaliseert bestaande normering voor &#233;&#233;n concrete capability.
+
+Een Entoli Agent Intent Rule is geen Entoli Agent Rule. Een Entoli Agent Rule concretiseert normering voor de verantwoordelijkheid en boundary van een Agent; een Entoli Agent Intent Rule specificeert het daadwerkelijk verwachte gedrag binnen &#233;&#233;n Agent Intent.
+
+Een Entoli Agent Intent Rule mag niet vereisen dat het uitvoerende LLM eerst zelf de bovenliggende norm interpreteert om te bepalen welk gedrag wordt verwacht.
 
 INVARIANTEN
-Iedere Entoli Agent Intent Rule behoort tot precies &#233;&#233;n Agent Intent. Haar geldigheidsbereik overschrijdt die Intent niet. Zij mag specifieke normering toevoegen of concretiseren, maar mag geen voor de bovenliggende Entoli Agent geldende regel of toepasselijke Canon Rule tegenspreken.</div>
+
+Iedere Entoli Agent Intent Rule geldt voor precies &#233;&#233;n Agent Intent.
+
+Iedere Entoli Agent Intent Rule is voldoende concreet om als uitvoeringsinstructie aan een LLM te kunnen worden aangeboden.
+
+Wanneer een Entoli Agent Intent Rule een Normative Rule operationaliseert, blijft die normatieve herkomst traceerbaar.
+
+Een Entoli Agent Intent Rule mag de Normative Rule die zij operationaliseert niet tegenspreken.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">

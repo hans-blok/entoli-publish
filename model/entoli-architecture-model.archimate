@@ -1817,8 +1817,65 @@ Voorbeelden:&#xD;
       <element xsi:type="archimate:Product" name="entoli studio" id="id-1f50b1c420fa4b84beadf9b2dae607c0"/>
       <element xsi:type="archimate:Product" name="entoli workspace" id="id-839c2d432ab1442789e281e4d83ba98a"/>
     </folder>
-    <element xsi:type="archimate:BusinessObject" name="entoli context (entoli studio)" id="id-b5f98772aead4deea735f885c4ba46d3"/>
-    <element xsi:type="archimate:BusinessObject" name="entoli rule" id="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
+    <element xsi:type="archimate:BusinessObject" name="entoli context (entoli studio)" id="id-b5f98772aead4deea735f885c4ba46d3">
+      <documentation>DEFINITIE&#xD;
+&#xD;
+Een Entoli Context (Entoli-context) is de context waarin Entoli zijn eigen Agents, LLM-toegang en orchestraties beschikbaar stelt en beheert, onafhankelijk van een specifieke klantcontext.&#xD;
+&#xD;
+DOEL&#xD;
+&#xD;
+De Entoli-eigen operationele omgeving expliciet onderscheiden van contexten waarin Entoli-capabilities worden toegepast, zodat eigenaarschap van Agents, beschikbaarheid van LLM-toegang en Entoli-eigen orchestratie niet impliciet aan een klantcontext worden toegeschreven.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+&#xD;
+Welke Agents, voorzieningen en orchestraties behoren tot en worden beheerd vanuit de Entoli-eigen context?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Entoli Context owns nul of meer Agents; iedere aldus gekoppelde Agent wordt door precies één Entoli Context beheerd.&#xD;
+Een Entoli Context makes available nul of meer LLM Accounts; ieder aldus gekoppeld LLM Account wordt door precies één Entoli Context beschikbaar gemaakt.&#xD;
+Tussen Entoli Context en Orchestration Specification bestaat in het huidige model een associatie, maar de bron geeft hiervoor geen richting, predicate of cardinaliteit. Deze relatie kan daarom nog niet normatief worden omschreven.&#xD;
+BEPERKINGEN&#xD;
+&#xD;
+Een Entoli Context is geen Agent, Agent Package of Orchestration Specification. Zij beschrijft de Entoli-zijde waarbinnen dergelijke objecten worden beheerd of beschikbaar gesteld, niet hun professionele of inhoudelijke betekenis.&#xD;
+&#xD;
+Een Entoli Context is evenmin een Knowledge Domain of Knowledge Specification: kennisinhoud en context van beheer zijn afzonderlijke dimensies.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+&#xD;
+Een Entoli Context verandert de betekenis van een Agent, Agent Intent, LLM Account of Orchestration Specification niet. Context bepaalt waar iets wordt beheerd of beschikbaar gesteld; de canonieke betekenis van het betreffende object blijft daarvan onafhankelijk.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="entoli rule" id="id-d9f34a0d340843fdb0bd11abfca6ed80">
+      <documentation>DEFINITIE&#xD;
+&#xD;
+Een Entoli Rule (Entoli-regel) is een binnen Entoli expliciet vastgelegde regel die gedrag normeert of operationaliseert en die als gemeenschappelijke supertype de grondslag vormt voor Normative Rules en Operational Rules.&#xD;
+&#xD;
+DOEL&#xD;
+&#xD;
+Eén gemeenschappelijk concept bieden voor regels waarmee Entoli gedrag bestuurt, terwijl onderscheid behouden blijft tussen regels die vastleggen wat moet gelden en regels die voorschrijven wat tijdens een specifieke handeling moet worden gedaan.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+&#xD;
+Welke expliciete regel begrenst of stuurt gedrag binnen Entoli, en is die regel normatief of operationeel van aard?&#xD;
+&#xD;
+RELATIES&#xD;
+Normative Rule is een specialisatie van Entoli Rule.&#xD;
+Operational Rule is een specialisatie van Entoli Rule.&#xD;
+Een Normative Rule legt vast wat binnen een bepaalde grondslag, verantwoordelijkheid of scope moet gelden.&#xD;
+Een Operational Rule schrijft voor wat tijdens een specifieke handeling moet worden gedaan, niet gedaan of onder voorwaarden mag worden gedaan.&#xD;
+BEPERKINGEN&#xD;
+&#xD;
+Een Entoli Rule is niet zelf noodzakelijk een rechtstreeks uitvoerbare instructie. Die eigenschap behoort specifiek tot Operational Rule.&#xD;
+&#xD;
+Een Entoli Rule is ook niet per definitie een canonieke norm. Canonieke normatieve autoriteit behoort specifiek tot Canon Rule.&#xD;
+&#xD;
+De Entoli Rule mag daarom niet worden gebruikt om het onderscheid tussen normering en operationalisering te laten vervallen.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+&#xD;
+Iedere Entoli Rule is óf normatief óf operationeel volgens de specialisaties die het huidige model onderscheidt.&#xD;
+&#xD;
+Een Entoli Rule die normatief is, beschrijft wat moet gelden. Een Entoli Rule die operationeel is, beschrijft wat tijdens een handeling moet worden gedaan, nagelaten of toegestaan.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="entoli agent rule" id="id-d0d7a7409f794e30bb32bca7c7c4d406">
       <documentation>DEFINITIE&#xD;
 Een Entoli Agent Rule is een normatieve regel voor precies één Entoli Agent die een voor die Agent toepasselijke Canon Rule concretiseert binnen de verantwoordelijkheid en boundary van die Agent. De Entoli Agent Rule vertaalt daarmee canonieke normering naar agent-specifieke normering zonder het normatieve gezag of de betekenis van de Canon Rule te wijzigen.&#xD;
@@ -1838,7 +1895,42 @@ Een Entoli Agent Rule is niet de Canon Rule zelf: de Canon Rule ontleent haar ge
 INVARIANTEN&#xD;
 Iedere Entoli Agent Rule behoort tot precies één Entoli Agent en heeft precies één Canon Rule als normatieve grondslag. Zij blijft binnen de boundary van haar Entoli Agent en binnen het geldigheidsbereik van de gekoppelde Canon Rule. Zij mag die Canon Rule concretiseren, maar nooit verzwakken, overschrijven of tegenspreken.</documentation>
     </element>
-    <element xsi:type="archimate:BusinessObject" name="entoli agent intent rule" id="id-16d1243de6aa4c1c8d73099f30a48f1b"/>
+    <element xsi:type="archimate:BusinessObject" name="entoli agent intent rule" id="id-16d1243de6aa4c1c8d73099f30a48f1b">
+      <documentation>DEFINITIE&#xD;
+&#xD;
+Een Entoli Agent Intent Rule (Entoli Agent Intent-regel) is een Operational Rule die voor precies één Entoli Agent Intent vastlegt welk gedrag tijdens de uitvoering van die Intent moet worden uitgevoerd, nagelaten of onder bepaalde voorwaarden is toegestaan.&#xD;
+&#xD;
+DOEL&#xD;
+&#xD;
+Normatieve regels operationaliseren tot regels die voldoende concreet zijn om het gedrag van een LLM tijdens de uitvoering van één specifieke Agent Intent rechtstreeks te sturen, zonder dat het LLM de onderliggende norm eerst zelfstandig hoeft te interpreteren.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+&#xD;
+Wat moet tijdens de uitvoering van deze specifieke Entoli Agent Intent concreet worden gedaan of nagelaten om overeenkomstig de geldende norm te handelen?&#xD;
+&#xD;
+RELATIES&#xD;
+Entoli Agent Intent Rule is een specialisatie van Operational Rule.&#xD;
+Een Normative Rule wordt geoperationaliseerd door één of meer Entoli Agent Intent Rules.&#xD;
+Een Entoli Agent Intent Rule constrains precies één Agent Intent.&#xD;
+Een Operational Rule kan als toepasselijke regel in een Instruction Set worden opgenomen.&#xD;
+BEPERKINGEN&#xD;
+&#xD;
+Een Entoli Agent Intent Rule is geen Normative Rule. Zij introduceert niet zelfstandig de norm waaraan moet worden voldaan, maar operationaliseert bestaande normering voor één concrete capability.&#xD;
+&#xD;
+Een Entoli Agent Intent Rule is geen Entoli Agent Rule. Een Entoli Agent Rule concretiseert normering voor de verantwoordelijkheid en boundary van een Agent; een Entoli Agent Intent Rule specificeert het daadwerkelijk verwachte gedrag binnen één Agent Intent.&#xD;
+&#xD;
+Een Entoli Agent Intent Rule mag niet vereisen dat het uitvoerende LLM eerst zelf de bovenliggende norm interpreteert om te bepalen welk gedrag wordt verwacht.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+&#xD;
+Iedere Entoli Agent Intent Rule geldt voor precies één Agent Intent.&#xD;
+&#xD;
+Iedere Entoli Agent Intent Rule is voldoende concreet om als uitvoeringsinstructie aan een LLM te kunnen worden aangeboden.&#xD;
+&#xD;
+Wanneer een Entoli Agent Intent Rule een Normative Rule operationaliseert, blijft die normatieve herkomst traceerbaar.&#xD;
+&#xD;
+Een Entoli Agent Intent Rule mag de Normative Rule die zij operationaliseert niet tegenspreken.</documentation>
+    </element>
     <element xsi:type="archimate:BusinessObject" name="core rule" id="id-a6a2b09cbd834836a37c426d00435ddc"/>
     <element xsi:type="archimate:BusinessObject" name="normative rule" id="id-160fad28dcac4d0fb6f313dbc389f49b">
       <documentation>DEFINITIE&#xD;

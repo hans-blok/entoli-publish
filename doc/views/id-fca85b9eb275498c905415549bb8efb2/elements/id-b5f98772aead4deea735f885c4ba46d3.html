@@ -48,7 +48,31 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
-						<div class="convertlinks documentation" style="white-space:pre-wrap"></div>
+						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
+
+Een Entoli Context (Entoli-context) is de context waarin Entoli zijn eigen Agents, LLM-toegang en orchestraties beschikbaar stelt en beheert, onafhankelijk van een specifieke klantcontext.
+
+DOEL
+
+De Entoli-eigen operationele omgeving expliciet onderscheiden van contexten waarin Entoli-capabilities worden toegepast, zodat eigenaarschap van Agents, beschikbaarheid van LLM-toegang en Entoli-eigen orchestratie niet impliciet aan een klantcontext worden toegeschreven.
+
+LEIDENDE VRAAG
+
+Welke Agents, voorzieningen en orchestraties behoren tot en worden beheerd vanuit de Entoli-eigen context?
+
+RELATIES
+Een Entoli Context owns nul of meer Agents; iedere aldus gekoppelde Agent wordt door precies &#233;&#233;n Entoli Context beheerd.
+Een Entoli Context makes available nul of meer LLM Accounts; ieder aldus gekoppeld LLM Account wordt door precies &#233;&#233;n Entoli Context beschikbaar gemaakt.
+Tussen Entoli Context en Orchestration Specification bestaat in het huidige model een associatie, maar de bron geeft hiervoor geen richting, predicate of cardinaliteit. Deze relatie kan daarom nog niet normatief worden omschreven.
+BEPERKINGEN
+
+Een Entoli Context is geen Agent, Agent Package of Orchestration Specification. Zij beschrijft de Entoli-zijde waarbinnen dergelijke objecten worden beheerd of beschikbaar gesteld, niet hun professionele of inhoudelijke betekenis.
+
+Een Entoli Context is evenmin een Knowledge Domain of Knowledge Specification: kennisinhoud en context van beheer zijn afzonderlijke dimensies.
+
+INVARIANTEN
+
+Een Entoli Context verandert de betekenis van een Agent, Agent Intent, LLM Account of Orchestration Specification niet. Context bepaalt waar iets wordt beheerd of beschikbaar gesteld; de canonieke betekenis van het betreffende object blijft daarvan onafhankelijk.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
