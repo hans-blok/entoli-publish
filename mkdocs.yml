@@ -135,6 +135,8 @@ nav:
       - business-model/business-model-canvas.md
   - Soevereiniteit: soevereiniteit.md
   - In een notendop: in-een-notendop.md
+  - Artikelen:
+      - Normatieve concretisering: artikelen/normatieve=concretisering-met-entoli.md
   - Canon Datamodelleren:
       - canon-datamodelleren/index.md
       - Begrippen: canon-datamodelleren/concepts-datamodelling.md
