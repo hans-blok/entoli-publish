@@ -1772,131 +1772,8 @@ Voorbeelden:&#xD;
 - Maak ambiguïteit expliciet — Voorbeeld van een regel die bij een specifieke Agent of Agent Intent kan worden toegepast.&#xD;
 - Preserving introduceert geen nieuwe betekenis — Voorbeeld van een Rule waarvan de concrete specialisatie Core Rule is.</documentation>
       </element>
-    </folder>
-    <folder name="processes" id="id-c486479a6d7646ebac80a85c0438998c">
-      <element xsi:type="archimate:BusinessProcess" name="advies over semantische ontwikkeling" id="id-eb4b465c43174e4893fd6149d7b4ee55"/>
-      <element xsi:type="archimate:BusinessProcess" name="beschikbaar stellen  modellen " id="id-b71a714b736e464ba5fc5c1cfaf7109b"/>
-      <element xsi:type="archimate:BusinessProcess" name="beschikbaar stellen orchestratie" id="id-2815405d74054f01a1b8b6eb769b631f"/>
-      <element xsi:type="archimate:BusinessProcess" name="configureer operationele context " id="id-3730ed821d28404686b8855f10351d67"/>
-      <element xsi:type="archimate:BusinessProcess" name="ontwikkel training" id="id-718e2ddbc3cf4e5da0a8b9e7f3ffb80f"/>
-      <element xsi:type="archimate:BusinessProcess" name="opleveren werkresultaat" id="id-7f8b9d5bd30c4e54a44c8ed1597dce5f"/>
-      <element xsi:type="archimate:BusinessProcess" name="overdragen werk" id="id-b1686492e2cb42c6a83c885be158349a"/>
-      <element xsi:type="archimate:BusinessProcess" name="publiceren pakket" id="id-e65d77f189034451b99551f78d9b72d9"/>
-      <element xsi:type="archimate:BusinessProcess" name="samenstellen professioneel pakket" id="id-4e11efa30d7f46c9ba360395dc694302"/>
-      <element xsi:type="archimate:BusinessProcess" name="toewijzen model " id="id-5060c24e58624848bceb791c958a2e54"/>
-      <element xsi:type="archimate:BusinessProcess" name="uitvoeren werk" id="id-a91700233ed845648214355ece55a6c4"/>
-      <element xsi:type="archimate:BusinessProcess" name="verzorg training" id="id-45b4d503c97c4a6e8cfd85f9a924bde1"/>
-    </folder>
-    <folder name="services" id="id-47537e6361214cf6b3ac81c2fb0d8d2f">
-      <element xsi:type="archimate:BusinessService" name="configureer professionele uitvoering" id="id-2e15271eaef6424aba07c85ad43fb998"/>
-      <element xsi:type="archimate:BusinessService" name="consultancy" id="id-6e63fd2e7ade459aaca57600da8086dd"/>
-      <element xsi:type="archimate:BusinessService" name="ontwikkel canon" id="id-40cc25e02bd84e15ae87dc95c5ddab44"/>
-      <element xsi:type="archimate:BusinessService" name="ontwikkel professionele capaciteit" id="id-5dc468ef053242d585fb36d064a85083"/>
-      <element xsi:type="archimate:BusinessService" name="training" id="id-b25f7e1f83414f7f82f73c022045e55c"/>
-      <element xsi:type="archimate:BusinessService" name="voer professioneel werk uit" id="id-bc49373235584bc7b4c2256dfdcdfadd"/>
-    </folder>
-    <folder name="deprecated" id="id-fb87146d572a427b90251b8790b31606">
-      <element xsi:type="archimate:BusinessProcess" name="Deffine context (explore)" id="id-a7b23e914b734aad890e83af19c7983c"/>
-      <element xsi:type="archimate:BusinessProcess" name="Define bounded (order)" id="id-bb2b622aa3b64e61935debdadcb1e4bf"/>
-      <element xsi:type="archimate:BusinessProcess" name="Define information model (order)" id="id-7c4392a32bf94d418fab669eb8c8a981"/>
-      <element xsi:type="archimate:BusinessProcess" name="Define LLM (specify)" id="id-25aa769ab0d5467aa92f5c16a572c680"/>
-      <element xsi:type="archimate:BusinessProcess" name="Define requirements (specification)" id="id-236ef1b141ad4cf9baa5c425fc35d1f3"/>
-      <element xsi:type="archimate:BusinessProcess" name="Define sources (explore)" id="id-a087f1740e1b45988762b281b172aeb1"/>
-      <element xsi:type="archimate:BusinessProcess" name="Define TDM (construct)" id="id-e61fe6d8c32a45f0be7342d811e4a51b"/>
-      <element xsi:type="archimate:BusinessProcess" name="definieren kennis" id="id-be03a7bbcf83478986eca69802a2878c"/>
-      <element xsi:type="archimate:BusinessProcess" name="definieren orchestratie" id="id-a1881606b8dc443aa3106c8085d99632"/>
-      <element xsi:type="archimate:BusinessProcess" name="definieren professionele functie" id="id-4bea795b743a4f588cef41e9461359c9"/>
-      <element xsi:type="archimate:BusinessProcess" name="Perform NIAM-analysis (order)" id="id-152147c2a7644a2e9809ecdee8697436"/>
-      <element xsi:type="archimate:BusinessProcess" name="samenstellen  instructies " id="id-b26588e326a7474eac068c99faa291d1"/>
-      <element xsi:type="archimate:Product" name="llm-constraints.rules.yaml" id="id-963f2aa34316454fa2b28022048c0696">
-        <documentation>foundations\.injection-sources\rules\llm-constraints.rules.yaml</documentation>
-      </element>
-    </folder>
-    <folder name="products" id="id-61fd390fb6784eb9b2f937778e3f4eca">
-      <element xsi:type="archimate:Product" name="entoli control (toekomst)" id="id-6b67a7d23a414dc49974b0675f93394c"/>
-      <element xsi:type="archimate:Product" name="entoli studio" id="id-1f50b1c420fa4b84beadf9b2dae607c0"/>
-      <element xsi:type="archimate:Product" name="entoli workspace" id="id-839c2d432ab1442789e281e4d83ba98a"/>
-    </folder>
-    <element xsi:type="archimate:BusinessObject" name="entoli context (entoli studio)" id="id-b5f98772aead4deea735f885c4ba46d3">
-      <documentation>DEFINITIE&#xD;
-&#xD;
-Een Entoli Context (Entoli-context) is de context waarin Entoli zijn eigen Agents, LLM-toegang en orchestraties beschikbaar stelt en beheert, onafhankelijk van een specifieke klantcontext.&#xD;
-&#xD;
-DOEL&#xD;
-&#xD;
-De Entoli-eigen operationele omgeving expliciet onderscheiden van contexten waarin Entoli-capabilities worden toegepast, zodat eigenaarschap van Agents, beschikbaarheid van LLM-toegang en Entoli-eigen orchestratie niet impliciet aan een klantcontext worden toegeschreven.&#xD;
-&#xD;
-LEIDENDE VRAAG&#xD;
-&#xD;
-Welke Agents, voorzieningen en orchestraties behoren tot en worden beheerd vanuit de Entoli-eigen context?&#xD;
-&#xD;
-RELATIES&#xD;
-Een Entoli Context owns nul of meer Agents; iedere aldus gekoppelde Agent wordt door precies één Entoli Context beheerd.&#xD;
-Een Entoli Context makes available nul of meer LLM Accounts; ieder aldus gekoppeld LLM Account wordt door precies één Entoli Context beschikbaar gemaakt.&#xD;
-Tussen Entoli Context en Orchestration Specification bestaat in het huidige model een associatie, maar de bron geeft hiervoor geen richting, predicate of cardinaliteit. Deze relatie kan daarom nog niet normatief worden omschreven.&#xD;
-BEPERKINGEN&#xD;
-&#xD;
-Een Entoli Context is geen Agent, Agent Package of Orchestration Specification. Zij beschrijft de Entoli-zijde waarbinnen dergelijke objecten worden beheerd of beschikbaar gesteld, niet hun professionele of inhoudelijke betekenis.&#xD;
-&#xD;
-Een Entoli Context is evenmin een Knowledge Domain of Knowledge Specification: kennisinhoud en context van beheer zijn afzonderlijke dimensies.&#xD;
-&#xD;
-INVARIANTEN&#xD;
-&#xD;
-Een Entoli Context verandert de betekenis van een Agent, Agent Intent, LLM Account of Orchestration Specification niet. Context bepaalt waar iets wordt beheerd of beschikbaar gesteld; de canonieke betekenis van het betreffende object blijft daarvan onafhankelijk.</documentation>
-    </element>
-    <element xsi:type="archimate:BusinessObject" name="entoli rule" id="id-d9f34a0d340843fdb0bd11abfca6ed80">
-      <documentation>DEFINITIE&#xD;
-&#xD;
-Een Entoli Rule (Entoli-regel) is een binnen Entoli expliciet vastgelegde regel die gedrag normeert of operationaliseert en die als gemeenschappelijke supertype de grondslag vormt voor Normative Rules en Operational Rules.&#xD;
-&#xD;
-DOEL&#xD;
-&#xD;
-Eén gemeenschappelijk concept bieden voor regels waarmee Entoli gedrag bestuurt, terwijl onderscheid behouden blijft tussen regels die vastleggen wat moet gelden en regels die voorschrijven wat tijdens een specifieke handeling moet worden gedaan.&#xD;
-&#xD;
-LEIDENDE VRAAG&#xD;
-&#xD;
-Welke expliciete regel begrenst of stuurt gedrag binnen Entoli, en is die regel normatief of operationeel van aard?&#xD;
-&#xD;
-RELATIES&#xD;
-Normative Rule is een specialisatie van Entoli Rule.&#xD;
-Operational Rule is een specialisatie van Entoli Rule.&#xD;
-Een Normative Rule legt vast wat binnen een bepaalde grondslag, verantwoordelijkheid of scope moet gelden.&#xD;
-Een Operational Rule schrijft voor wat tijdens een specifieke handeling moet worden gedaan, niet gedaan of onder voorwaarden mag worden gedaan.&#xD;
-BEPERKINGEN&#xD;
-&#xD;
-Een Entoli Rule is niet zelf noodzakelijk een rechtstreeks uitvoerbare instructie. Die eigenschap behoort specifiek tot Operational Rule.&#xD;
-&#xD;
-Een Entoli Rule is ook niet per definitie een canonieke norm. Canonieke normatieve autoriteit behoort specifiek tot Canon Rule.&#xD;
-&#xD;
-De Entoli Rule mag daarom niet worden gebruikt om het onderscheid tussen normering en operationalisering te laten vervallen.&#xD;
-&#xD;
-INVARIANTEN&#xD;
-&#xD;
-Iedere Entoli Rule is óf normatief óf operationeel volgens de specialisaties die het huidige model onderscheidt.&#xD;
-&#xD;
-Een Entoli Rule die normatief is, beschrijft wat moet gelden. Een Entoli Rule die operationeel is, beschrijft wat tijdens een handeling moet worden gedaan, nagelaten of toegestaan.</documentation>
-    </element>
-    <element xsi:type="archimate:BusinessObject" name="entoli agent rule" id="id-d0d7a7409f794e30bb32bca7c7c4d406">
-      <documentation>DEFINITIE&#xD;
-Een Entoli Agent Rule is een normatieve regel voor precies één Entoli Agent die een voor die Agent toepasselijke Canon Rule concretiseert binnen de verantwoordelijkheid en boundary van die Agent. De Entoli Agent Rule vertaalt daarmee canonieke normering naar agent-specifieke normering zonder het normatieve gezag of de betekenis van de Canon Rule te wijzigen.&#xD;
-&#xD;
-DOEL&#xD;
-Expliciet en herleidbaar vastleggen hoe een Canon Rule doorwerkt op één specifieke Entoli Agent, zodat canonieke normering niet impliciet hoeft te worden geïnterpreteerd bij iedere uitvoering en aantoonbaar blijft welke agent-specifieke regel op welke canonieke regel berust.&#xD;
-&#xD;
-LEIDENDE VRAAG&#xD;
-Hoe wordt deze Canon Rule normatief van toepassing gemaakt op deze specifieke Entoli Agent?&#xD;
-&#xD;
-RELATIES&#xD;
-Een Entoli Agent Rule behoort tot precies één Entoli Agent. Een Entoli Agent kan nul of meer Entoli Agent Rules hebben. Een Entoli Agent Rule is gekoppeld aan precies één Canon Rule die de canonieke normatieve grondslag vormt. Een Canon Rule kan door nul of meer Entoli Agent Rules voor verschillende Entoli Agents worden geconcretiseerd.&#xD;
-&#xD;
-BEPERKINGEN&#xD;
-Een Entoli Agent Rule is niet de Canon Rule zelf: de Canon Rule ontleent haar gezag aan de Canon, terwijl de Entoli Agent Rule de toepassing daarvan voor één Entoli Agent vastlegt. Zij is ook geen Entoli Agent Intent Rule: die normeert één specifieke Agent Intent. De Entoli Agent Rule mag de betekenis of het geldigheidsbereik van haar Canon Rule niet zelfstandig wijzigen en mag daarmee niet in tegenspraak zijn. Dit sluit aan bij de bestaande canonieke invariant dat Agent Rules een toepasselijke Canon Rule niet mogen tegenspreken.&#xD;
-&#xD;
-INVARIANTEN&#xD;
-Iedere Entoli Agent Rule behoort tot precies één Entoli Agent en heeft precies één Canon Rule als normatieve grondslag. Zij blijft binnen de boundary van haar Entoli Agent en binnen het geldigheidsbereik van de gekoppelde Canon Rule. Zij mag die Canon Rule concretiseren, maar nooit verzwakken, overschrijven of tegenspreken.</documentation>
-    </element>
-    <element xsi:type="archimate:BusinessObject" name="entoli agent intent rule" id="id-16d1243de6aa4c1c8d73099f30a48f1b">
-      <documentation>DEFINITIE&#xD;
+      <element xsi:type="archimate:BusinessObject" name="entoli agent intent rule" id="id-16d1243de6aa4c1c8d73099f30a48f1b">
+        <documentation>DEFINITIE&#xD;
 &#xD;
 Een Entoli Agent Intent Rule (Entoli Agent Intent-regel) is een Operational Rule die voor precies één Entoli Agent Intent vastlegt welk gedrag tijdens de uitvoering van die Intent moet worden uitgevoerd, nagelaten of onder bepaalde voorwaarden is toegestaan.&#xD;
 &#xD;
@@ -1930,10 +1807,87 @@ Iedere Entoli Agent Intent Rule is voldoende concreet om als uitvoeringsinstruct
 Wanneer een Entoli Agent Intent Rule een Normative Rule operationaliseert, blijft die normatieve herkomst traceerbaar.&#xD;
 &#xD;
 Een Entoli Agent Intent Rule mag de Normative Rule die zij operationaliseert niet tegenspreken.</documentation>
-    </element>
-    <element xsi:type="archimate:BusinessObject" name="core rule" id="id-a6a2b09cbd834836a37c426d00435ddc"/>
-    <element xsi:type="archimate:BusinessObject" name="normative rule" id="id-160fad28dcac4d0fb6f313dbc389f49b">
-      <documentation>DEFINITIE&#xD;
+      </element>
+      <element xsi:type="archimate:BusinessObject" name="entoli agent rule" id="id-d0d7a7409f794e30bb32bca7c7c4d406">
+        <documentation>DEFINITIE&#xD;
+Een Entoli Agent Rule is een normatieve regel voor precies één Entoli Agent die een voor die Agent toepasselijke Canon Rule concretiseert binnen de verantwoordelijkheid en boundary van die Agent. De Entoli Agent Rule vertaalt daarmee canonieke normering naar agent-specifieke normering zonder het normatieve gezag of de betekenis van de Canon Rule te wijzigen.&#xD;
+&#xD;
+DOEL&#xD;
+Expliciet en herleidbaar vastleggen hoe een Canon Rule doorwerkt op één specifieke Entoli Agent, zodat canonieke normering niet impliciet hoeft te worden geïnterpreteerd bij iedere uitvoering en aantoonbaar blijft welke agent-specifieke regel op welke canonieke regel berust.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Hoe wordt deze Canon Rule normatief van toepassing gemaakt op deze specifieke Entoli Agent?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Entoli Agent Rule behoort tot precies één Entoli Agent. Een Entoli Agent kan nul of meer Entoli Agent Rules hebben. Een Entoli Agent Rule is gekoppeld aan precies één Canon Rule die de canonieke normatieve grondslag vormt. Een Canon Rule kan door nul of meer Entoli Agent Rules voor verschillende Entoli Agents worden geconcretiseerd.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Entoli Agent Rule is niet de Canon Rule zelf: de Canon Rule ontleent haar gezag aan de Canon, terwijl de Entoli Agent Rule de toepassing daarvan voor één Entoli Agent vastlegt. Zij is ook geen Entoli Agent Intent Rule: die normeert één specifieke Agent Intent. De Entoli Agent Rule mag de betekenis of het geldigheidsbereik van haar Canon Rule niet zelfstandig wijzigen en mag daarmee niet in tegenspraak zijn. Dit sluit aan bij de bestaande canonieke invariant dat Agent Rules een toepasselijke Canon Rule niet mogen tegenspreken.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere Entoli Agent Rule behoort tot precies één Entoli Agent en heeft precies één Canon Rule als normatieve grondslag. Zij blijft binnen de boundary van haar Entoli Agent en binnen het geldigheidsbereik van de gekoppelde Canon Rule. Zij mag die Canon Rule concretiseren, maar nooit verzwakken, overschrijven of tegenspreken.</documentation>
+      </element>
+      <element xsi:type="archimate:BusinessObject" name="entoli context (entoli studio)" id="id-b5f98772aead4deea735f885c4ba46d3">
+        <documentation>DEFINITIE&#xD;
+&#xD;
+Een Entoli Context (Entoli-context) is de context waarin Entoli zijn eigen Agents, LLM-toegang en orchestraties beschikbaar stelt en beheert, onafhankelijk van een specifieke klantcontext.&#xD;
+&#xD;
+DOEL&#xD;
+&#xD;
+De Entoli-eigen operationele omgeving expliciet onderscheiden van contexten waarin Entoli-capabilities worden toegepast, zodat eigenaarschap van Agents, beschikbaarheid van LLM-toegang en Entoli-eigen orchestratie niet impliciet aan een klantcontext worden toegeschreven.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+&#xD;
+Welke Agents, voorzieningen en orchestraties behoren tot en worden beheerd vanuit de Entoli-eigen context?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Entoli Context owns nul of meer Agents; iedere aldus gekoppelde Agent wordt door precies één Entoli Context beheerd.&#xD;
+Een Entoli Context makes available nul of meer LLM Accounts; ieder aldus gekoppeld LLM Account wordt door precies één Entoli Context beschikbaar gemaakt.&#xD;
+Tussen Entoli Context en Orchestration Specification bestaat in het huidige model een associatie, maar de bron geeft hiervoor geen richting, predicate of cardinaliteit. Deze relatie kan daarom nog niet normatief worden omschreven.&#xD;
+BEPERKINGEN&#xD;
+&#xD;
+Een Entoli Context is geen Agent, Agent Package of Orchestration Specification. Zij beschrijft de Entoli-zijde waarbinnen dergelijke objecten worden beheerd of beschikbaar gesteld, niet hun professionele of inhoudelijke betekenis.&#xD;
+&#xD;
+Een Entoli Context is evenmin een Knowledge Domain of Knowledge Specification: kennisinhoud en context van beheer zijn afzonderlijke dimensies.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+&#xD;
+Een Entoli Context verandert de betekenis van een Agent, Agent Intent, LLM Account of Orchestration Specification niet. Context bepaalt waar iets wordt beheerd of beschikbaar gesteld; de canonieke betekenis van het betreffende object blijft daarvan onafhankelijk.</documentation>
+      </element>
+      <element xsi:type="archimate:BusinessObject" name="entoli rule" id="id-d9f34a0d340843fdb0bd11abfca6ed80">
+        <documentation>DEFINITIE&#xD;
+&#xD;
+Een Entoli Rule (Entoli-regel) is een binnen Entoli expliciet vastgelegde regel die gedrag normeert of operationaliseert en die als gemeenschappelijke supertype de grondslag vormt voor Normative Rules en Operational Rules.&#xD;
+&#xD;
+DOEL&#xD;
+&#xD;
+Eén gemeenschappelijk concept bieden voor regels waarmee Entoli gedrag bestuurt, terwijl onderscheid behouden blijft tussen regels die vastleggen wat moet gelden en regels die voorschrijven wat tijdens een specifieke handeling moet worden gedaan.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+&#xD;
+Welke expliciete regel begrenst of stuurt gedrag binnen Entoli, en is die regel normatief of operationeel van aard?&#xD;
+&#xD;
+RELATIES&#xD;
+Normative Rule is een specialisatie van Entoli Rule.&#xD;
+Operational Rule is een specialisatie van Entoli Rule.&#xD;
+Een Normative Rule legt vast wat binnen een bepaalde grondslag, verantwoordelijkheid of scope moet gelden.&#xD;
+Een Operational Rule schrijft voor wat tijdens een specifieke handeling moet worden gedaan, niet gedaan of onder voorwaarden mag worden gedaan.&#xD;
+BEPERKINGEN&#xD;
+&#xD;
+Een Entoli Rule is niet zelf noodzakelijk een rechtstreeks uitvoerbare instructie. Die eigenschap behoort specifiek tot Operational Rule.&#xD;
+&#xD;
+Een Entoli Rule is ook niet per definitie een canonieke norm. Canonieke normatieve autoriteit behoort specifiek tot Canon Rule.&#xD;
+&#xD;
+De Entoli Rule mag daarom niet worden gebruikt om het onderscheid tussen normering en operationalisering te laten vervallen.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+&#xD;
+Iedere Entoli Rule is óf normatief óf operationeel volgens de specialisaties die het huidige model onderscheidt.&#xD;
+&#xD;
+Een Entoli Rule die normatief is, beschrijft wat moet gelden. Een Entoli Rule die operationeel is, beschrijft wat tijdens een handeling moet worden gedaan, nagelaten of toegestaan.</documentation>
+      </element>
+      <element xsi:type="archimate:BusinessObject" name="normative rule" id="id-160fad28dcac4d0fb6f313dbc389f49b">
+        <documentation>DEFINITIE&#xD;
 &#xD;
 Een Normative Rule (Normatieve regel) is een Rule die vastlegt wat binnen een bepaalde ontwerpgrondslag, verantwoordelijkheid of scope moet gelden, zonder zelf voor te schrijven welke concrete handeling tijdens een Execution moet worden uitgevoerd.&#xD;
 &#xD;
@@ -1963,9 +1917,9 @@ INVARIANTEN&#xD;
 * Een Normative Rule behoudt zijn normatieve betekenis wanneer hij verder wordt geconcretiseerd.* Een Operational Rule die uit een Normative Rule voortkomt, mag niet strijdig zijn met die Normative Rule.&#xD;
 &#xD;
 </documentation>
-    </element>
-    <element xsi:type="archimate:BusinessObject" name="operational rule" id="id-8c1dee167ccc432f98eba888e90ba805">
-      <documentation>DEFINITIE&#xD;
+      </element>
+      <element xsi:type="archimate:BusinessObject" name="operational rule" id="id-8c1dee167ccc432f98eba888e90ba805">
+        <documentation>DEFINITIE&#xD;
 Een Operational Rule (Operationele regel) is een Rule die voor een specifieke handeling voorschrijft wat tijdens de uitvoering moet worden gedaan, niet mag worden gedaan of onder bepaalde omstandigheden mag worden gedaan.&#xD;
 &#xD;
 DOEL&#xD;
@@ -1994,9 +1948,9 @@ INVARIANTEN&#xD;
 * Wanneer een Operational Rule een Normative Rule operationaliseert, blijft die normatieve herkomst traceerbaar.&#xD;
 * Het Instruction Set bevat de toepasselijke Operational Rules die nodig zijn voor de betreffende Execution.&#xD;
 </documentation>
-    </element>
-    <element xsi:type="archimate:BusinessObject" name="reasoning regime" id="id-b62c3b7ad79644d6b830ae2278db477d">
-      <documentation>DEFINITIE&#xD;
+      </element>
+      <element xsi:type="archimate:BusinessObject" name="reasoning regime" id="id-b62c3b7ad79644d6b830ae2278db477d">
+        <documentation>DEFINITIE&#xD;
 Een Reasoning Regime (Redeneerregime) bepaalt de mate van cognitieve vrijheid die een LLM heeft bij het uitvoeren van een Agent Intent. Het bepaalt hoeveel ruimte het LLM krijgt om te exploreren, interpreteren en synthetiseren binnen de grenzen van de uitvoering.&#xD;
 &#xD;
 DOEL&#xD;
@@ -2045,7 +1999,53 @@ Het Reasoning Regime blijft onafhankelijk van de technische mogelijkheden en con
 &#xD;
 Een Model Assignment moet het vereiste Reasoning Regime realiseren zonder de semantische betekenis ervan te wijzigen.&#xD;
 </documentation>
-    </element>
+      </element>
+    </folder>
+    <folder name="processes" id="id-c486479a6d7646ebac80a85c0438998c">
+      <element xsi:type="archimate:BusinessProcess" name="advies over semantische ontwikkeling" id="id-eb4b465c43174e4893fd6149d7b4ee55"/>
+      <element xsi:type="archimate:BusinessProcess" name="beschikbaar stellen  modellen " id="id-b71a714b736e464ba5fc5c1cfaf7109b"/>
+      <element xsi:type="archimate:BusinessProcess" name="beschikbaar stellen orchestratie" id="id-2815405d74054f01a1b8b6eb769b631f"/>
+      <element xsi:type="archimate:BusinessProcess" name="configureer operationele context " id="id-3730ed821d28404686b8855f10351d67"/>
+      <element xsi:type="archimate:BusinessProcess" name="ontwikkel training" id="id-718e2ddbc3cf4e5da0a8b9e7f3ffb80f"/>
+      <element xsi:type="archimate:BusinessProcess" name="opleveren werkresultaat" id="id-7f8b9d5bd30c4e54a44c8ed1597dce5f"/>
+      <element xsi:type="archimate:BusinessProcess" name="overdragen werk" id="id-b1686492e2cb42c6a83c885be158349a"/>
+      <element xsi:type="archimate:BusinessProcess" name="publiceren pakket" id="id-e65d77f189034451b99551f78d9b72d9"/>
+      <element xsi:type="archimate:BusinessProcess" name="samenstellen professioneel pakket" id="id-4e11efa30d7f46c9ba360395dc694302"/>
+      <element xsi:type="archimate:BusinessProcess" name="toewijzen model " id="id-5060c24e58624848bceb791c958a2e54"/>
+      <element xsi:type="archimate:BusinessProcess" name="uitvoeren werk" id="id-a91700233ed845648214355ece55a6c4"/>
+      <element xsi:type="archimate:BusinessProcess" name="verzorg training" id="id-45b4d503c97c4a6e8cfd85f9a924bde1"/>
+    </folder>
+    <folder name="services" id="id-47537e6361214cf6b3ac81c2fb0d8d2f">
+      <element xsi:type="archimate:BusinessService" name="configureer professionele uitvoering" id="id-2e15271eaef6424aba07c85ad43fb998"/>
+      <element xsi:type="archimate:BusinessService" name="consultancy" id="id-6e63fd2e7ade459aaca57600da8086dd"/>
+      <element xsi:type="archimate:BusinessService" name="ontwikkel canon" id="id-40cc25e02bd84e15ae87dc95c5ddab44"/>
+      <element xsi:type="archimate:BusinessService" name="ontwikkel professionele capaciteit" id="id-5dc468ef053242d585fb36d064a85083"/>
+      <element xsi:type="archimate:BusinessService" name="training" id="id-b25f7e1f83414f7f82f73c022045e55c"/>
+      <element xsi:type="archimate:BusinessService" name="voer professioneel werk uit" id="id-bc49373235584bc7b4c2256dfdcdfadd"/>
+    </folder>
+    <folder name="deprecated" id="id-fb87146d572a427b90251b8790b31606">
+      <element xsi:type="archimate:BusinessProcess" name="Deffine context (explore)" id="id-a7b23e914b734aad890e83af19c7983c"/>
+      <element xsi:type="archimate:BusinessProcess" name="Define bounded (order)" id="id-bb2b622aa3b64e61935debdadcb1e4bf"/>
+      <element xsi:type="archimate:BusinessProcess" name="Define information model (order)" id="id-7c4392a32bf94d418fab669eb8c8a981"/>
+      <element xsi:type="archimate:BusinessProcess" name="Define LLM (specify)" id="id-25aa769ab0d5467aa92f5c16a572c680"/>
+      <element xsi:type="archimate:BusinessProcess" name="Define requirements (specification)" id="id-236ef1b141ad4cf9baa5c425fc35d1f3"/>
+      <element xsi:type="archimate:BusinessProcess" name="Define sources (explore)" id="id-a087f1740e1b45988762b281b172aeb1"/>
+      <element xsi:type="archimate:BusinessProcess" name="Define TDM (construct)" id="id-e61fe6d8c32a45f0be7342d811e4a51b"/>
+      <element xsi:type="archimate:BusinessProcess" name="definieren kennis" id="id-be03a7bbcf83478986eca69802a2878c"/>
+      <element xsi:type="archimate:BusinessProcess" name="definieren orchestratie" id="id-a1881606b8dc443aa3106c8085d99632"/>
+      <element xsi:type="archimate:BusinessProcess" name="definieren professionele functie" id="id-4bea795b743a4f588cef41e9461359c9"/>
+      <element xsi:type="archimate:BusinessProcess" name="Perform NIAM-analysis (order)" id="id-152147c2a7644a2e9809ecdee8697436"/>
+      <element xsi:type="archimate:BusinessProcess" name="samenstellen  instructies " id="id-b26588e326a7474eac068c99faa291d1"/>
+      <element xsi:type="archimate:Product" name="llm-constraints.rules.yaml" id="id-963f2aa34316454fa2b28022048c0696">
+        <documentation>foundations\.injection-sources\rules\llm-constraints.rules.yaml</documentation>
+      </element>
+    </folder>
+    <folder name="products" id="id-61fd390fb6784eb9b2f937778e3f4eca">
+      <element xsi:type="archimate:Product" name="entoli control (toekomst)" id="id-6b67a7d23a414dc49974b0675f93394c"/>
+      <element xsi:type="archimate:Product" name="entoli studio" id="id-1f50b1c420fa4b84beadf9b2dae607c0"/>
+      <element xsi:type="archimate:Product" name="entoli workspace" id="id-839c2d432ab1442789e281e4d83ba98a"/>
+    </folder>
+    <element xsi:type="archimate:BusinessObject" name="Business Object" id="id-794d4502baa3497898cf66d3c6b2d7ee"/>
   </folder>
   <folder name="Application" id="id-1b7f4bd17a8a4ccca4de4ed0056a7792" type="application">
     <folder name="data objects" id="id-1a54c7e5da3f46c1b129f6b8d854a643">
@@ -2830,7 +2830,6 @@ Dat brengt drie commerciële beloften samen: productiviteit, schaalbaarheid en v
     </element>
     <element xsi:type="archimate:AssociationRelationship" name="1 scopes 0..*" id="id-896337c7a96a4fb39fad8791d8f6b662" source="id-1d62c68e5893433f81d1472f83cfad2d" target="id-a5736e6c7c874d5589622b6158eae9ee"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 defines 1" id="id-3a220be3cfb94eb3bcddc1a0ccdd9f8d" source="id-6d66d6cdd2534270b0f3732e4ecec8cc" target="id-1fa6202fbcb84810a487e731d399058b"/>
-    <element xsi:type="archimate:AssociationRelationship" name="1 consists of 1..*" id="id-e617219ea1d44ddda848bafc8aa91de8" source="id-1fa6202fbcb84810a487e731d399058b" target="id-a248b6e4d5a04c6c995cc9ecb4872d2e"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 consists of 0..*" id="id-aba60ccef7794a86b6ec9521783551e2" source="id-1fa6202fbcb84810a487e731d399058b" target="id-9c775a49c62f4d49a90673446cec6a64"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-88e400565d554f7891047d5ce27ffa91" source="id-9dd7d63f3bda44a6919074aa6bd45c04" target="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-ea7251b20c8144aebd564840a1f64469" source="id-7c826e60007f41aeaaddbcb4fc50958d" target="id-b7cb33c7b50e48dabb3f0d830de8698f"/>
@@ -2838,7 +2837,7 @@ Dat brengt drie commerciële beloften samen: productiviteit, schaalbaarheid en v
     <element xsi:type="archimate:SpecializationRelationship" id="id-901361dfdb7c404682f119cba0fcc36a" source="id-a2b9d71e443c49c58b44615551eb4f5b" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-ca361b9e8d91435ab7f56b16e3d1607a" source="id-fe950c3ebad04932a87cb572b191e4ff" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-1ae5414b4a37463086a92804f896802a" source="id-3969a1acce774516911bb973b0ff59ee" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
-    <element xsi:type="archimate:AssociationRelationship" name="0..* is governed by 3" id="id-a67b931f5f1d48bca0054f50b03d595b" source="id-fc519c97c3c04fb3b43a50b72f0aef38" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
+    <element xsi:type="archimate:AssociationRelationship" name="0..* is governed by 4" id="id-a67b931f5f1d48bca0054f50b03d595b" source="id-fc519c97c3c04fb3b43a50b72f0aef38" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..* governs 1" id="id-91a5511abcf545e198f98a4d4559ec82" source="id-697686712c9f40faa2f23c8994eaef05" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 provides scope for 0..*" id="id-71d01ab060014200848c2fc9f8e01748" source="id-a99dcf9067d84b2b9ddf4b7a8f40c647" target="id-94e213279a1d46149da17c04c0572efe"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 owns 0..*" id="id-435ad9a37bc742a0a234df55c31fd377" source="id-a99dcf9067d84b2b9ddf4b7a8f40c647" target="id-a5736e6c7c874d5589622b6158eae9ee"/>
@@ -2994,24 +2993,30 @@ Dat brengt drie commerciële beloften samen: productiviteit, schaalbaarheid en v
     <element xsi:type="archimate:AssociationRelationship" id="id-8e8eef25df2642229f4002b8800232f5" source="id-b5f98772aead4deea735f885c4ba46d3" target="id-0a67e6f41ebb45b9b7a3fc306bc08cd1"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-429bb744ce4949629c047396d9abab10" source="id-d0d7a7409f794e30bb32bca7c7c4d406" target="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-2fec9ffa84c44624bb8267d15b659fb5" source="id-16d1243de6aa4c1c8d73099f30a48f1b" target="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
-    <element xsi:type="archimate:SpecializationRelationship" id="id-b22cf1ed7e4a402a9b197d067824056b" source="id-a6a2b09cbd834836a37c426d00435ddc" target="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-6b29455302464259886e4c5a186773db" source="id-03e98ce0196345b599d814c30d4a986a" target="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
     <element xsi:type="archimate:AssociationRelationship" name="1..* is included in 0..*" id="id-542fdba9611a418899f22f9671f77257" source="id-8c1dee167ccc432f98eba888e90ba805" target="id-a4319ee116ab41dda18d476242ca88da"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..*  is concretized by  1..* " id="id-5c5f2f4ce537466db16d9c7d6c442f2d" source="id-03e98ce0196345b599d814c30d4a986a" target="id-d0d7a7409f794e30bb32bca7c7c4d406"/>
-    <element xsi:type="archimate:AssociationRelationship" name="0..*  is operationalized by  1..* " id="id-71dfa08f82914205b413e292d876209d" source="id-160fad28dcac4d0fb6f313dbc389f49b" target="id-16d1243de6aa4c1c8d73099f30a48f1b"/>
+    <element xsi:type="archimate:AssociationRelationship" name="0..*  is operationalized by  1..* " id="id-71dfa08f82914205b413e292d876209d" source="id-d0d7a7409f794e30bb32bca7c7c4d406" target="id-16d1243de6aa4c1c8d73099f30a48f1b"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-bdbf7066931b42988153e938b6965728" source="id-03e98ce0196345b599d814c30d4a986a" target="id-160fad28dcac4d0fb6f313dbc389f49b"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-1e1ccfb982534910afdcd9b9d7b839b4" source="id-d0d7a7409f794e30bb32bca7c7c4d406" target="id-160fad28dcac4d0fb6f313dbc389f49b"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-02d3c16b25e84c8e9a102c8c5acd1bb1" source="id-160fad28dcac4d0fb6f313dbc389f49b" target="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-ce0c4debb8c04e0d961e691b9e99b48c" source="id-16d1243de6aa4c1c8d73099f30a48f1b" target="id-8c1dee167ccc432f98eba888e90ba805"/>
-    <element xsi:type="archimate:SpecializationRelationship" id="id-f51f89872b164b42a53a98079f057f1d" source="id-a6a2b09cbd834836a37c426d00435ddc" target="id-8c1dee167ccc432f98eba888e90ba805"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-73d9c59cf57f4224b14bfe9ddc3e1793" source="id-8c1dee167ccc432f98eba888e90ba805" target="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..* constraints 1" id="id-cf90056d0bc04b0db4a8483b62939942" source="id-16d1243de6aa4c1c8d73099f30a48f1b" target="id-fc519c97c3c04fb3b43a50b72f0aef38"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 guides 0..*" id="id-e5ee05fd4ef949bdb42e98c2ef35ad29" source="id-2e25dc5832d04ffb907846209ef549b7" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
-    <element xsi:type="archimate:AssociationRelationship" name="0..* governs 1" id="id-b7276411916a4000b00be3c8fabb5377" source="id-a6a2b09cbd834836a37c426d00435ddc" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
     <element xsi:type="archimate:SpecializationRelationship" id="id-d361fdf90c0e4085aa846316dc7955b9" source="id-b62c3b7ad79644d6b830ae2278db477d" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 informs 0..*" id="id-8bd4131a311b4458b467506e75fd95ae" source="id-a2b9d71e443c49c58b44615551eb4f5b" target="id-3208e79172454362b69c0661b8e55589"/>
     <element xsi:type="archimate:AssociationRelationship" name="1 informs 0..*" id="id-0ff5e4d844ce490c99e4e27b9b11c4c3" source="id-b62c3b7ad79644d6b830ae2278db477d" target="id-3208e79172454362b69c0661b8e55589"/>
     <element xsi:type="archimate:AssociationRelationship" name="0..** governs 1" id="id-db7a30dad63746218fffec64bacd7bfc" source="id-d0d7a7409f794e30bb32bca7c7c4d406" target="id-a21ac844b75946b0b94ab3450c81ed27"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-57caa9ec29cb4abb993d8e73a3bae905" source="id-1102502d3ae0409784523400c4fbe5dc" target="id-16d1243de6aa4c1c8d73099f30a48f1b"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-f5a4cec8b72548c88fd328ca94be880a" source="id-1102502d3ae0409784523400c4fbe5dc" target="id-d0d7a7409f794e30bb32bca7c7c4d406"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-83044847a8a24418bb62c4007588bc83" source="id-0f80755c4e134fe4aa43acca7aa28927" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-114a9c264bb642e9b2b6b2a1abcce09f" source="id-0f80755c4e134fe4aa43acca7aa28927" target="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-ee0c22dcc6794061bbf1790dc89a3791" source="id-03e98ce0196345b599d814c30d4a986a" target="id-4cab30c96f5d468d98f0c6624bc3bd5d"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-fd4fa9e693734d25a33fab9931fd5a48" source="id-4cab30c96f5d468d98f0c6624bc3bd5d" target="id-03e98ce0196345b599d814c30d4a986a"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-05915ba4e95b420aa6ff7efff19bdc51" source="id-03e98ce0196345b599d814c30d4a986a" target="id-a248b6e4d5a04c6c995cc9ecb4872d2e"/>
+    <element xsi:type="archimate:AssociationRelationship" name="0..* is used in 0..*" id="id-bcb53d4d82d04e49aa41d9c62996e6ce" source="id-a248b6e4d5a04c6c995cc9ecb4872d2e" target="id-d9f34a0d340843fdb0bd11abfca6ed80"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-303d7d90d90449aea7f1a0d1e36cc042" source="id-8c1dee167ccc432f98eba888e90ba805" target="id-697686712c9f40faa2f23c8994eaef05"/>
   </folder>
   <folder name="Views" id="id-ca7ad8080a214939a0e88c60169a9612" type="diagrams">
     <folder name=".prelimanary" id="id-b6a723fd32f9454b94c62fd4198f1e82">
@@ -3553,12 +3558,9 @@ Dat brengt drie commerciële beloften samen: productiviteit, schaalbaarheid en v
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-df6ca2a7dd4047e0b1e3be3837cdb741" targetConnections="id-b9a1102a8ae040afbd26d8d9715a9343" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
           <bounds x="481" y="594" width="313" height="55"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-eecec6daa0214ccc95396c7544f575c3" source="id-df6ca2a7dd4047e0b1e3be3837cdb741" target="id-174111967a214c97918fbedabcf30e1f" archimateRelationship="id-e617219ea1d44ddda848bafc8aa91de8">
-            <bendpoint startX="102" startY="136" endX="-12" endY="-147"/>
-          </sourceConnection>
           <sourceConnection xsi:type="archimate:Connection" id="id-9cb0741203914e7596418d047a2db8ed" source="id-df6ca2a7dd4047e0b1e3be3837cdb741" target="id-98e24cb58b8149249b5ef5fc90cf507f" archimateRelationship="id-aba60ccef7794a86b6ec9521783551e2"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-174111967a214c97918fbedabcf30e1f" targetConnections="id-eecec6daa0214ccc95396c7544f575c3 id-79ef12c126ec446697d23186cc68e908 id-93f39997583e4047b8a43c828a81f1ac id-31613152857d4965b8e5c022891f89ac" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+        <child xsi:type="archimate:DiagramObject" id="id-174111967a214c97918fbedabcf30e1f" targetConnections="id-79ef12c126ec446697d23186cc68e908 id-93f39997583e4047b8a43c828a81f1ac id-31613152857d4965b8e5c022891f89ac" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
           <bounds x="673" y="792" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-5be8dfc5abf5420088b074d729e87485" source="id-174111967a214c97918fbedabcf30e1f" target="id-bafce8d49b1c4374b7c95459218d0325" archimateRelationship="id-8ef81509a3e145e38a07c7c0ffbaabf8"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-7981a4d4306149379d0126a82656b337" source="id-174111967a214c97918fbedabcf30e1f" target="id-605d256225cc49978f50c9f56b3230fc" archimateRelationship="id-824876d2f29644da9f54d78b9ceb11a8"/>
@@ -3730,6 +3732,51 @@ VOORBEELD &#xD;
 Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken exposen. Een Orchestration Specification kan een Execution Step Specification bevatten die dit intent aanroept. Voor een concrete Execution wordt een Instruction Set samengesteld met toepasselijke canonieke semantiek, Rules, Human Context en eventuele bestaande Artifacts of Handoffs. De uitvoering kan vervolgens een conceptueel model als Artifact en relevante interpretatie voor een Logisch modelleur als Handoff produceren.</documentation>
       </element>
       <element xsi:type="archimate:ArchimateDiagramModel" name="entoli-conceptueel-datamodel_v2" id="id-80862bce335d49df81cf62aaaf626834">
+        <child xsi:type="archimate:DiagramObject" id="id-98d7d17dbfc2415f9399d1f471cb4d53" targetConnections="id-e55ef87fc2104234b08993992d3328b4 id-ca664c3b257047f1bb8dc2ba9cd48df8 id-f3478683f3dd49d0a26b267aad807806" textPosition="2" archimateElement="id-d9f34a0d340843fdb0bd11abfca6ed80">
+          <bounds x="876" y="594" width="205" height="448"/>
+          <child xsi:type="archimate:DiagramObject" id="id-04a00a4b3573489c830f45d37fcf5ac8" targetConnections="id-ac4b9343f4514b19b1d67cdfc3ae8651 id-d9e48723e15e4b9b8e7e53b88259b475" textPosition="2" archimateElement="id-160fad28dcac4d0fb6f313dbc389f49b">
+            <bounds x="17" y="15" width="164" height="196"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-e55ef87fc2104234b08993992d3328b4" source="id-04a00a4b3573489c830f45d37fcf5ac8" target="id-98d7d17dbfc2415f9399d1f471cb4d53" archimateRelationship="id-02d3c16b25e84c8e9a102c8c5acd1bb1"/>
+            <child xsi:type="archimate:DiagramObject" id="id-4bbf6b5b7cbe4921999567312fc121e1" targetConnections="id-9e466cbebe294c69b7f7e4545a85823d" textPosition="1" archimateElement="id-03e98ce0196345b599d814c30d4a986a">
+              <bounds x="24" y="12" width="120" height="55"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-2ff2e85174804d60947f6c829b570b45" source="id-4bbf6b5b7cbe4921999567312fc121e1" target="id-0d25585af9e54b8fa8bb93834eeed776" archimateRelationship="id-5c5f2f4ce537466db16d9c7d6c442f2d">
+                <bendpoint startX="139" endX="139" endY="-72"/>
+                <bendpoint startX="139" startY="36" endX="139" endY="-36"/>
+                <bendpoint startX="139" startY="60" endX="139" endY="-12"/>
+              </sourceConnection>
+              <sourceConnection xsi:type="archimate:Connection" id="id-ac4b9343f4514b19b1d67cdfc3ae8651" source="id-4bbf6b5b7cbe4921999567312fc121e1" target="id-04a00a4b3573489c830f45d37fcf5ac8" archimateRelationship="id-bdbf7066931b42988153e938b6965728"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-0d25585af9e54b8fa8bb93834eeed776" targetConnections="id-2ff2e85174804d60947f6c829b570b45" textPosition="1" archimateElement="id-d0d7a7409f794e30bb32bca7c7c4d406">
+              <bounds x="24" y="84" width="120" height="55"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-d9e48723e15e4b9b8e7e53b88259b475" source="id-0d25585af9e54b8fa8bb93834eeed776" target="id-04a00a4b3573489c830f45d37fcf5ac8" archimateRelationship="id-1e1ccfb982534910afdcd9b9d7b839b4"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-64e2b0035c1c4bd792ee30d494cee9f9" source="id-0d25585af9e54b8fa8bb93834eeed776" target="id-abd4b8eb84764e499791327759079c9f" archimateRelationship="id-db7a30dad63746218fffec64bacd7bfc"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-6ee4dc28554546ab93691f13a35ed80a" source="id-0d25585af9e54b8fa8bb93834eeed776" target="id-e55ed91878d442edb509e718adc9683e" archimateRelationship="id-71dfa08f82914205b413e292d876209d">
+                <bendpoint startX="-63" startY="13" endX="-65" endY="-159"/>
+                <bendpoint startX="-149" startY="12" endX="-149" endY="-147"/>
+                <bendpoint startX="-149" startY="36" endX="-149" endY="-123"/>
+                <bendpoint startX="-149" startY="168" endX="-149" endY="9"/>
+              </sourceConnection>
+            </child>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-752821469de9454b8b06549080cd7ea0" targetConnections="id-469ab775e77a47299be1c66370bc7c24" archimateElement="id-8c1dee167ccc432f98eba888e90ba805">
+            <bounds x="17" y="222" width="169" height="193"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-ca664c3b257047f1bb8dc2ba9cd48df8" source="id-752821469de9454b8b06549080cd7ea0" target="id-98d7d17dbfc2415f9399d1f471cb4d53" archimateRelationship="id-73d9c59cf57f4224b14bfe9ddc3e1793"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-bc115822f933430daccd879e2f4334b4" source="id-752821469de9454b8b06549080cd7ea0" target="id-f0948afcb25c4e2888a123623d496630" archimateRelationship="id-542fdba9611a418899f22f9671f77257"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-288805ce8e194f46abdbf9c304afd534" source="id-752821469de9454b8b06549080cd7ea0" target="id-d8de01a98a144e9289fc226f7635eeeb" archimateRelationship="id-303d7d90d90449aea7f1a0d1e36cc042"/>
+            <child xsi:type="archimate:DiagramObject" id="id-e55ed91878d442edb509e718adc9683e" targetConnections="id-6ee4dc28554546ab93691f13a35ed80a" textPosition="1" archimateElement="id-16d1243de6aa4c1c8d73099f30a48f1b">
+              <bounds x="24" y="36" width="120" height="55"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-469ab775e77a47299be1c66370bc7c24" source="id-e55ed91878d442edb509e718adc9683e" target="id-752821469de9454b8b06549080cd7ea0" archimateRelationship="id-ce0c4debb8c04e0d961e691b9e99b48c"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-67a65e8dc8b045ad9861ed1692beab3e" source="id-e55ed91878d442edb509e718adc9683e" target="id-0d6a89e38b574dcca0203692183fbe6a" archimateRelationship="id-cf90056d0bc04b0db4a8483b62939942">
+                <bendpoint startX="223" startY="-3" endX="-336" endY="57"/>
+                <bendpoint startX="223" startY="-51" endX="-336" endY="9"/>
+              </sourceConnection>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-d8de01a98a144e9289fc226f7635eeeb" targetConnections="id-288805ce8e194f46abdbf9c304afd534" textPosition="1" archimateElement="id-697686712c9f40faa2f23c8994eaef05">
+              <bounds x="24" y="120" width="120" height="55"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-4a289f5aa83c4cb19025bf464d2b8d97" source="id-d8de01a98a144e9289fc226f7635eeeb" target="id-35c9b4a7ccce44979190acf2f9918d9f" archimateRelationship="id-91a5511abcf545e198f98a4d4559ec82"/>
+            </child>
+          </child>
+        </child>
         <child xsi:type="archimate:DiagramObject" id="id-81206daf04e44f07aa6e2b8ee6c35c9f" targetConnections="id-3ffc0bc7d3054052bdf8e32be6f3c235" textPosition="1" archimateElement="id-4e02ad03bf6d4963b101fdad1d0f7b7b">
           <bounds x="912" y="204" width="145" height="55"/>
         </child>
@@ -3751,14 +3798,16 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-b40d5f6661324d0fa6d5db3323b00b99" targetConnections="id-929dcee2a9c047818f43b3de58ea39fb" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
           <bounds x="481" y="594" width="313" height="55"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-02cda352ca7b451dafbbb607f3bf25e2" source="id-b40d5f6661324d0fa6d5db3323b00b99" target="id-2e2645f3d8664b2d91daeb0109f5136c" archimateRelationship="id-e617219ea1d44ddda848bafc8aa91de8">
-            <bendpoint startX="102" startY="136" endX="-12" endY="-147"/>
-          </sourceConnection>
           <sourceConnection xsi:type="archimate:Connection" id="id-70403b30d8244f42a66dfaaec346cf8c" source="id-b40d5f6661324d0fa6d5db3323b00b99" target="id-75f4c675f8cd4c82ba3c8b6f1b25cd79" archimateRelationship="id-aba60ccef7794a86b6ec9521783551e2"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-2e2645f3d8664b2d91daeb0109f5136c" targetConnections="id-02cda352ca7b451dafbbb607f3bf25e2 id-96d8599ca06c44899f9a7c36a5707a1c id-9497773202a04d1b928ca20c3f11594c id-c03824e9e3b842e0b6a0b7caea252570" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+        <child xsi:type="archimate:DiagramObject" id="id-2e2645f3d8664b2d91daeb0109f5136c" targetConnections="id-96d8599ca06c44899f9a7c36a5707a1c id-9497773202a04d1b928ca20c3f11594c id-c03824e9e3b842e0b6a0b7caea252570" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
           <bounds x="673" y="792" width="120" height="55"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-c914654f55ff4a179a9f27fc59fcff81" source="id-2e2645f3d8664b2d91daeb0109f5136c" target="id-f0948afcb25c4e2888a123623d496630" archimateRelationship="id-8ef81509a3e145e38a07c7c0ffbaabf8"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-c914654f55ff4a179a9f27fc59fcff81" source="id-2e2645f3d8664b2d91daeb0109f5136c" target="id-f0948afcb25c4e2888a123623d496630" archimateRelationship="id-8ef81509a3e145e38a07c7c0ffbaabf8">
+            <bendpoint startX="-13" startY="273" endX="-617" endY="-267"/>
+          </sourceConnection>
+          <sourceConnection xsi:type="archimate:Connection" id="id-f3478683f3dd49d0a26b267aad807806" source="id-2e2645f3d8664b2d91daeb0109f5136c" target="id-98d7d17dbfc2415f9399d1f471cb4d53" archimateRelationship="id-bcb53d4d82d04e49aa41d9c62996e6ce">
+            <bendpoint startX="47" startY="177" endX="-198" endY="178"/>
+          </sourceConnection>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-75f4c675f8cd4c82ba3c8b6f1b25cd79" targetConnections="id-70403b30d8244f42a66dfaaec346cf8c" textPosition="1" archimateElement="id-9c775a49c62f4d49a90673446cec6a64">
           <bounds x="481" y="792" width="120" height="55"/>
@@ -3797,7 +3846,7 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
             <bendpoint startX="-180" startY="93" endX="36" endY="-171"/>
           </sourceConnection>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-35c9b4a7ccce44979190acf2f9918d9f" targetConnections="id-c2787ed2aada4b559028f7508c4b9826 id-962350eedc054d6f936378a358302f72 id-9d571318b8bd45a4bac0a4f6c57a989c id-681dd160559948bba3fae53edf0962ad id-70b2b93c858d4716ac66986c2163b52f id-d46a4f6bc06b4dd882fadcf5d6c6731a id-eabcdedf3c1a46f4ae856f9fe285aa84" archimateElement="id-4cab30c96f5d468d98f0c6624bc3bd5d">
+        <child xsi:type="archimate:DiagramObject" id="id-35c9b4a7ccce44979190acf2f9918d9f" targetConnections="id-c2787ed2aada4b559028f7508c4b9826 id-962350eedc054d6f936378a358302f72 id-9d571318b8bd45a4bac0a4f6c57a989c id-681dd160559948bba3fae53edf0962ad id-70b2b93c858d4716ac66986c2163b52f id-eabcdedf3c1a46f4ae856f9fe285aa84 id-4a289f5aa83c4cb19025bf464d2b8d97" archimateElement="id-4cab30c96f5d468d98f0c6624bc3bd5d">
           <bounds x="1573" y="900" width="168" height="367"/>
           <child xsi:type="archimate:DiagramObject" id="id-8917514bff0d44fd9b4abcd07ded546c" textPosition="1" archimateElement="id-a2b9d71e443c49c58b44615551eb4f5b">
             <bounds x="24" y="36" width="120" height="55"/>
@@ -3912,49 +3961,6 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
             <bendpoint startX="1044" startY="-3" endY="-609"/>
           </sourceConnection>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-98d7d17dbfc2415f9399d1f471cb4d53" targetConnections="id-e55ef87fc2104234b08993992d3328b4 id-ca664c3b257047f1bb8dc2ba9cd48df8" textPosition="2" archimateElement="id-d9f34a0d340843fdb0bd11abfca6ed80">
-          <bounds x="876" y="594" width="205" height="448"/>
-          <child xsi:type="archimate:DiagramObject" id="id-04a00a4b3573489c830f45d37fcf5ac8" targetConnections="id-ac4b9343f4514b19b1d67cdfc3ae8651 id-d9e48723e15e4b9b8e7e53b88259b475" textPosition="2" archimateElement="id-160fad28dcac4d0fb6f313dbc389f49b">
-            <bounds x="17" y="15" width="164" height="196"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-e55ef87fc2104234b08993992d3328b4" source="id-04a00a4b3573489c830f45d37fcf5ac8" target="id-98d7d17dbfc2415f9399d1f471cb4d53" archimateRelationship="id-02d3c16b25e84c8e9a102c8c5acd1bb1"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-6ee4dc28554546ab93691f13a35ed80a" source="id-04a00a4b3573489c830f45d37fcf5ac8" target="id-e55ed91878d442edb509e718adc9683e" archimateRelationship="id-71dfa08f82914205b413e292d876209d">
-              <bendpoint startX="-135" startY="-23" endX="-137" endY="-195"/>
-              <bendpoint startX="-135" startY="169" endX="-137" endY="-3"/>
-            </sourceConnection>
-            <child xsi:type="archimate:DiagramObject" id="id-4bbf6b5b7cbe4921999567312fc121e1" targetConnections="id-9e466cbebe294c69b7f7e4545a85823d" textPosition="1" archimateElement="id-03e98ce0196345b599d814c30d4a986a">
-              <bounds x="24" y="12" width="120" height="55"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-2ff2e85174804d60947f6c829b570b45" source="id-4bbf6b5b7cbe4921999567312fc121e1" target="id-0d25585af9e54b8fa8bb93834eeed776" archimateRelationship="id-5c5f2f4ce537466db16d9c7d6c442f2d">
-                <bendpoint startX="139" endX="139" endY="-72"/>
-                <bendpoint startX="139" startY="36" endX="139" endY="-36"/>
-                <bendpoint startX="139" startY="60" endX="139" endY="-12"/>
-              </sourceConnection>
-              <sourceConnection xsi:type="archimate:Connection" id="id-ac4b9343f4514b19b1d67cdfc3ae8651" source="id-4bbf6b5b7cbe4921999567312fc121e1" target="id-04a00a4b3573489c830f45d37fcf5ac8" archimateRelationship="id-bdbf7066931b42988153e938b6965728"/>
-            </child>
-            <child xsi:type="archimate:DiagramObject" id="id-0d25585af9e54b8fa8bb93834eeed776" targetConnections="id-2ff2e85174804d60947f6c829b570b45" textPosition="1" archimateElement="id-d0d7a7409f794e30bb32bca7c7c4d406">
-              <bounds x="24" y="84" width="120" height="55"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-d9e48723e15e4b9b8e7e53b88259b475" source="id-0d25585af9e54b8fa8bb93834eeed776" target="id-04a00a4b3573489c830f45d37fcf5ac8" archimateRelationship="id-1e1ccfb982534910afdcd9b9d7b839b4"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-64e2b0035c1c4bd792ee30d494cee9f9" source="id-0d25585af9e54b8fa8bb93834eeed776" target="id-abd4b8eb84764e499791327759079c9f" archimateRelationship="id-db7a30dad63746218fffec64bacd7bfc"/>
-            </child>
-          </child>
-          <child xsi:type="archimate:DiagramObject" id="id-752821469de9454b8b06549080cd7ea0" targetConnections="id-469ab775e77a47299be1c66370bc7c24 id-d91571bfc9f24007b27b6604cc236e63" archimateElement="id-8c1dee167ccc432f98eba888e90ba805">
-            <bounds x="17" y="222" width="169" height="193"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-ca664c3b257047f1bb8dc2ba9cd48df8" source="id-752821469de9454b8b06549080cd7ea0" target="id-98d7d17dbfc2415f9399d1f471cb4d53" archimateRelationship="id-73d9c59cf57f4224b14bfe9ddc3e1793"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-bc115822f933430daccd879e2f4334b4" source="id-752821469de9454b8b06549080cd7ea0" target="id-f0948afcb25c4e2888a123623d496630" archimateRelationship="id-542fdba9611a418899f22f9671f77257"/>
-            <child xsi:type="archimate:DiagramObject" id="id-e55ed91878d442edb509e718adc9683e" targetConnections="id-6ee4dc28554546ab93691f13a35ed80a" textPosition="1" archimateElement="id-16d1243de6aa4c1c8d73099f30a48f1b">
-              <bounds x="24" y="36" width="120" height="55"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-469ab775e77a47299be1c66370bc7c24" source="id-e55ed91878d442edb509e718adc9683e" target="id-752821469de9454b8b06549080cd7ea0" archimateRelationship="id-ce0c4debb8c04e0d961e691b9e99b48c"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-67a65e8dc8b045ad9861ed1692beab3e" source="id-e55ed91878d442edb509e718adc9683e" target="id-0d6a89e38b574dcca0203692183fbe6a" archimateRelationship="id-cf90056d0bc04b0db4a8483b62939942">
-                <bendpoint startX="223" startY="-3" endX="-336" endY="57"/>
-                <bendpoint startX="223" startY="-51" endX="-336" endY="9"/>
-              </sourceConnection>
-            </child>
-            <child xsi:type="archimate:DiagramObject" id="id-a8aa000cd07c49cfae6ec3337e9d9b21" textPosition="1" archimateElement="id-a6a2b09cbd834836a37c426d00435ddc">
-              <bounds x="24" y="120" width="120" height="55"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-d91571bfc9f24007b27b6604cc236e63" source="id-a8aa000cd07c49cfae6ec3337e9d9b21" target="id-752821469de9454b8b06549080cd7ea0" archimateRelationship="id-f51f89872b164b42a53a98079f057f1d"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-d46a4f6bc06b4dd882fadcf5d6c6731a" source="id-a8aa000cd07c49cfae6ec3337e9d9b21" target="id-35c9b4a7ccce44979190acf2f9918d9f" archimateRelationship="id-b7276411916a4000b00be3c8fabb5377"/>
-            </child>
-          </child>
-        </child>
         <documentation>DEFINITIE &#xD;
 Agent Development is het ontwikkelen van kennis, modellen, specificaties, software en andere professionele werkproducten met inzet van Agents als uitvoerende professionele functies. Het begrip beschrijft daarmee een manier van ontwikkelen mét Agents, niet uitsluitend het ontwikkelen ván Agents. Het ontwikkelen en onderhouden van Agents kan zelf onderdeel zijn van Agent Development, maar is slechts één mogelijke toepassing.&#xD;
 &#xD;
@@ -4027,12 +4033,9 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-2b1e894c5dff409b913e2a533afda65d" targetConnections="id-b75b53ae26994e938ea23684566c1ec4" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
           <bounds x="481" y="594" width="313" height="55"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-19218da6e84c41d69e41aa3e22e51d6c" source="id-2b1e894c5dff409b913e2a533afda65d" target="id-3aca72935b9649f984050343671a94ec" archimateRelationship="id-e617219ea1d44ddda848bafc8aa91de8">
-            <bendpoint startX="102" startY="136" endX="-12" endY="-147"/>
-          </sourceConnection>
           <sourceConnection xsi:type="archimate:Connection" id="id-2c01aa856d424cf9b1ea7e833b9f431d" source="id-2b1e894c5dff409b913e2a533afda65d" target="id-fde153133d2945b1913e4a1abdba6931" archimateRelationship="id-aba60ccef7794a86b6ec9521783551e2"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-3aca72935b9649f984050343671a94ec" targetConnections="id-19218da6e84c41d69e41aa3e22e51d6c id-cf17d964716440429810e85201e5966f id-509045e907be441d96f147b5a8b5bbc8 id-352606109c124305a23eafe2322301e2" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+        <child xsi:type="archimate:DiagramObject" id="id-3aca72935b9649f984050343671a94ec" targetConnections="id-cf17d964716440429810e85201e5966f id-509045e907be441d96f147b5a8b5bbc8 id-352606109c124305a23eafe2322301e2" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
           <bounds x="673" y="792" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-f67027e709e644558a2d86597e93a873" source="id-3aca72935b9649f984050343671a94ec" target="id-22534c4a92ab490bb671e4fc27e9facf" archimateRelationship="id-8ef81509a3e145e38a07c7c0ffbaabf8"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-97cb036cf97145a8a2f6d41befae1407" source="id-3aca72935b9649f984050343671a94ec" target="id-8153150d45e240fd99bd5c9090ecb07e" archimateRelationship="id-824876d2f29644da9f54d78b9ceb11a8"/>
@@ -4679,64 +4682,35 @@ no execution</documentation>
       </element>
       <element xsi:type="archimate:ArchimateDiagramModel" name="logical-instances-bedrijfsobjecten" id="id-cbd780d82d40493fa36ca540fd74bf41">
         <child xsi:type="archimate:DiagramObject" id="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" textAlignment="1" archimateElement="id-0f80755c4e134fe4aa43acca7aa28927">
-          <bounds x="36" y="84" width="1081" height="445"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-21aa8a8694de4a23bcb0b1abed07a96b" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-cf5f89ecf0b44e4ca4e9e4b68d5d1acb" archimateRelationship="id-1a64cb4452254677979d1c4b380cd230"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-d0d167d2f63b4e6a98d3612816b7ba46" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-81c87917f96748119cba9b96f0556c15" archimateRelationship="id-ed4e270e644e43898883978020b0629f"/>
+          <bounds x="48" y="96" width="1081" height="445"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-51af94622a014daab2e5f3ecb490d831" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-cf318bc5b4e54c66b17e39934718458f" archimateRelationship="id-148fccbad8c44fb1b48900fceabc0435"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-8459b929e0b74f218b64be3ac5f2ecc7" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-8aa08ce5429b4982aec13b06e7b478b7" archimateRelationship="id-ddb3446463024bbe8a6faa2aac4598fb"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-fb965f9ef0a6402e819225386defd211" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-d8d8d8621ef54a45b6dad7ba9528a05c" archimateRelationship="id-8f83555dfb6b4584be86e19f59f5eb0f"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-b01da4dd06a84c578bc2810287c8fc19" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-9f3c05e3f0ce48448150d94cb9a3a123" archimateRelationship="id-7277e844a0954849b37fc5a296e2bb2b"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-c2c2c2c2d3d3d3d3e4e4e4e4f5f5f5f5" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-b2b2b2b2c3c3c3c3d4d4d4d4e5e5e5e5" archimateRelationship="id-a2a2a2a2b3b3b3b3c4c4c4c4d5d5d5d5"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-597e4fc527c44e6ba1bf9c94cb8b9015" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-f08d4d07fe2c45b38f90e45f3c1e8430" archimateRelationship="id-a1a1a1a1b2b2b2b2c3c3c3c3d4d4d4d4"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-f3fd92020ae54622b669f7ff844d4375" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-671b707e646d49f4a5702c19bc0798f2" archimateRelationship="id-cdf52eb5050d46b0a13f08593a970ef9"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-9d70454faef442398407ae7022b34554" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-1b43ceb9ef194cf1b987b3758794a452" archimateRelationship="id-114a9c264bb642e9b2b6b2a1abcce09f"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d0d167d2f63b4e6a98d3612816b7ba46" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-81c87917f96748119cba9b96f0556c15" archimateRelationship="id-ed4e270e644e43898883978020b0629f"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-8459b929e0b74f218b64be3ac5f2ecc7" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-8aa08ce5429b4982aec13b06e7b478b7" archimateRelationship="id-ddb3446463024bbe8a6faa2aac4598fb"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-b01da4dd06a84c578bc2810287c8fc19" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-9f3c05e3f0ce48448150d94cb9a3a123" archimateRelationship="id-7277e844a0954849b37fc5a296e2bb2b"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-597e4fc527c44e6ba1bf9c94cb8b9015" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-f08d4d07fe2c45b38f90e45f3c1e8430" archimateRelationship="id-a1a1a1a1b2b2b2b2c3c3c3c3d4d4d4d4"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-8c2b3d991be440caa84e6e74508e7b22" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-6262631ca34747db96764c26c4dedb43" archimateRelationship="id-01454aa665fe407db95d0f1144b5cf40"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-21aa8a8694de4a23bcb0b1abed07a96b" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-cf5f89ecf0b44e4ca4e9e4b68d5d1acb" archimateRelationship="id-1a64cb4452254677979d1c4b380cd230"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-e427f7ea9308400494956f9d1e267123" source="id-fa24d723c7af4db38a9ccb2f5d5ec6bf" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-83044847a8a24418bb62c4007588bc83"/>
           <child xsi:type="archimate:DiagramObject" id="id-9f3c05e3f0ce48448150d94cb9a3a123" targetConnections="id-b01da4dd06a84c578bc2810287c8fc19 id-e4782925bff34e578963e38a3fc0dcc0" textPosition="1" archimateElement="id-6d66d6cdd2534270b0f3732e4ecec8cc">
-            <bounds x="408" y="138" width="120" height="55"/>
+            <bounds x="408" y="120" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-1db6aa32e2074a189a822943b186fe83" source="id-9f3c05e3f0ce48448150d94cb9a3a123" target="id-d8d8d8621ef54a45b6dad7ba9528a05c" archimateRelationship="id-290269a462ea47a4a187c2eb39c96089"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-1891725cffea45e3a2c76c097d442d54" source="id-9f3c05e3f0ce48448150d94cb9a3a123" target="id-671b707e646d49f4a5702c19bc0798f2" archimateRelationship="id-c6feabfe08b7400c8aeede4d57ab03bc">
+              <bendpoint startX="-132" startY="-15" endX="228" endY="69"/>
+              <bendpoint startX="-132" startY="-87" endX="228" endY="-3"/>
+            </sourceConnection>
             <sourceConnection xsi:type="archimate:Connection" id="id-28140345b7664abfa6993051f07c1f80" source="id-9f3c05e3f0ce48448150d94cb9a3a123" target="id-f08d4d07fe2c45b38f90e45f3c1e8430" archimateRelationship="id-3a220be3cfb94eb3bcddc1a0ccdd9f8d"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-1891725cffea45e3a2c76c097d442d54" source="id-9f3c05e3f0ce48448150d94cb9a3a123" target="id-671b707e646d49f4a5702c19bc0798f2" archimateRelationship="id-c6feabfe08b7400c8aeede4d57ab03bc"/>
-          </child>
-          <child xsi:type="archimate:DiagramObject" id="id-d8d8d8621ef54a45b6dad7ba9528a05c" targetConnections="id-fb965f9ef0a6402e819225386defd211 id-1db6aa32e2074a189a822943b186fe83" textPosition="1" archimateElement="id-03e98ce0196345b599d814c30d4a986a">
-            <bounds x="408" y="234" width="120" height="55"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-8aa08ce5429b4982aec13b06e7b478b7" targetConnections="id-8459b929e0b74f218b64be3ac5f2ecc7" textPosition="1" archimateElement="id-1d62c68e5893433f81d1472f83cfad2d">
-            <bounds x="672" y="120" width="120" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-e4782925bff34e578963e38a3fc0dcc0" source="id-8aa08ce5429b4982aec13b06e7b478b7" target="id-9f3c05e3f0ce48448150d94cb9a3a123" archimateRelationship="id-dee315f400a040c1888aa29b9ed2f160"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-f879d88bd0a6425eb1958a4a9c4167e6" source="id-8aa08ce5429b4982aec13b06e7b478b7" target="id-cf318bc5b4e54c66b17e39934718458f" archimateRelationship="id-872887d3610346e19f253cd9039660c4">
-              <bendpoint startX="-12" startY="-81" endX="288" endY="3"/>
+            <bounds x="576" y="24" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-f879d88bd0a6425eb1958a4a9c4167e6" source="id-8aa08ce5429b4982aec13b06e7b478b7" target="id-cf318bc5b4e54c66b17e39934718458f" archimateRelationship="id-872887d3610346e19f253cd9039660c4"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-e4782925bff34e578963e38a3fc0dcc0" source="id-8aa08ce5429b4982aec13b06e7b478b7" target="id-9f3c05e3f0ce48448150d94cb9a3a123" archimateRelationship="id-dee315f400a040c1888aa29b9ed2f160">
+              <bendpoint startY="93" endX="168" endY="-3"/>
             </sourceConnection>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-cf318bc5b4e54c66b17e39934718458f" targetConnections="id-51af94622a014daab2e5f3ecb490d831 id-f879d88bd0a6425eb1958a4a9c4167e6" textPosition="1" archimateElement="id-4e02ad03bf6d4963b101fdad1d0f7b7b">
-            <bounds x="408" y="42" width="120" height="55"/>
-          </child>
-          <child xsi:type="archimate:DiagramObject" id="id-b2b2b2b2c3c3c3c3d4d4d4d4e5e5e5e5" targetConnections="id-c2c2c2c2d3d3d3d3e4e4e4e4f5f5f5f5" textPosition="1" archimateElement="id-b7cb33c7b50e48dabb3f0d830de8698f">
-            <bounds x="864" y="330" width="120" height="55"/>
-          </child>
-          <child xsi:type="archimate:Group" id="id-8aa204dcb39646bc89f25004045e7cd7" name="middleware" textAlignment="1">
-            <bounds x="636" y="204" width="412" height="230"/>
-            <child xsi:type="archimate:DiagramObject" id="id-6e1d18c8a3d44e09b0381e9805d026b1" targetConnections="id-d47e12084043489dbf688989e6c8f0e2 id-c86e97b84b5e4b3592b216ddbf99a54e id-738b020a609f43b7881154b554ce29da id-b1bc2d1acf224f70ad15519e95e0e7a1 id-ab250b5e6ea84bdb899d046bbe18f546" archimateElement="id-4cab30c96f5d468d98f0c6624bc3bd5d">
-              <bounds x="12" y="36" width="385" height="85"/>
-              <child xsi:type="archimate:DiagramObject" id="id-906e5805342c45c19c45befb6d706955" archimateElement="id-fe950c3ebad04932a87cb572b191e4ff">
-                <bounds x="36" y="30" width="85" height="43"/>
-                <sourceConnection xsi:type="archimate:Connection" id="id-b1bc2d1acf224f70ad15519e95e0e7a1" source="id-906e5805342c45c19c45befb6d706955" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-ca361b9e8d91435ab7f56b16e3d1607a"/>
-              </child>
-              <child xsi:type="archimate:DiagramObject" id="id-0d40bc3cca3643278628cc4c3ca54365" archimateElement="id-a2b9d71e443c49c58b44615551eb4f5b">
-                <bounds x="144" y="30" width="97" height="43"/>
-                <sourceConnection xsi:type="archimate:Connection" id="id-738b020a609f43b7881154b554ce29da" source="id-0d40bc3cca3643278628cc4c3ca54365" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-901361dfdb7c404682f119cba0fcc36a"/>
-              </child>
-              <child xsi:type="archimate:DiagramObject" id="id-2cb9dc36f7aa49268568d52ca4bab9c8" archimateElement="id-3969a1acce774516911bb973b0ff59ee">
-                <bounds x="458" y="61" width="120" height="55"/>
-                <sourceConnection xsi:type="archimate:Connection" id="id-c86e97b84b5e4b3592b216ddbf99a54e" source="id-2cb9dc36f7aa49268568d52ca4bab9c8" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-1ae5414b4a37463086a92804f896802a"/>
-              </child>
-              <child xsi:type="archimate:DiagramObject" id="id-762e39ee25f04d3cb156b161375909ad" archimateElement="id-3969a1acce774516911bb973b0ff59ee">
-                <bounds x="264" y="30" width="98" height="43"/>
-                <sourceConnection xsi:type="archimate:Connection" id="id-d47e12084043489dbf688989e6c8f0e2" source="id-762e39ee25f04d3cb156b161375909ad" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-1ae5414b4a37463086a92804f896802a"/>
-              </child>
-            </child>
-            <child xsi:type="archimate:DiagramObject" id="id-550c16d0f7714626be79be61dfce1c3f" textPosition="1" archimateElement="id-697686712c9f40faa2f23c8994eaef05">
-              <bounds x="180" y="156" width="120" height="55"/>
-              <sourceConnection xsi:type="archimate:Connection" id="id-ab250b5e6ea84bdb899d046bbe18f546" source="id-550c16d0f7714626be79be61dfce1c3f" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-91a5511abcf545e198f98a4d4559ec82"/>
-            </child>
+            <bounds x="415" y="24" width="120" height="55"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-81c87917f96748119cba9b96f0556c15" targetConnections="id-d0d167d2f63b4e6a98d3612816b7ba46 id-5983adfa365b4032ac68101ccfaaaaba" textPosition="1" archimateElement="id-9c775a49c62f4d49a90673446cec6a64">
             <bounds x="480" y="330" width="120" height="55"/>
@@ -4749,57 +4723,97 @@ no execution</documentation>
               <bendpoint startX="-168" startY="-51" endX="12" endY="-51"/>
             </sourceConnection>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-cf5f89ecf0b44e4ca4e9e4b68d5d1acb" targetConnections="id-21aa8a8694de4a23bcb0b1abed07a96b id-37d2616d92274da993eb8dfc9ba56c89 id-2c925cc5865f42969dc29c7f3ac073a8 id-6c064646cf4b47b69bd8ee152ea67b75" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+          <child xsi:type="archimate:DiagramObject" id="id-cf5f89ecf0b44e4ca4e9e4b68d5d1acb" targetConnections="id-21aa8a8694de4a23bcb0b1abed07a96b id-37d2616d92274da993eb8dfc9ba56c89 id-2c925cc5865f42969dc29c7f3ac073a8" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
             <bounds x="300" y="330" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-534987c4891d4cbdb50207f4defdd7d4" source="id-cf5f89ecf0b44e4ca4e9e4b68d5d1acb" target="id-1b43ceb9ef194cf1b987b3758794a452" archimateRelationship="id-bcb53d4d82d04e49aa41d9c62996e6ce">
+              <bendpoint startX="-48" startY="-117" endX="-138" endY="-9"/>
+              <bendpoint startX="24" startY="-123" endX="-150" endY="-9"/>
+              <bendpoint startX="-48" startY="-129" endX="-138" endY="-21"/>
+            </sourceConnection>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-f08d4d07fe2c45b38f90e45f3c1e8430" targetConnections="id-28140345b7664abfa6993051f07c1f80 id-597e4fc527c44e6ba1bf9c94cb8b9015" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
+          <child xsi:type="archimate:DiagramObject" id="id-f08d4d07fe2c45b38f90e45f3c1e8430" targetConnections="id-597e4fc527c44e6ba1bf9c94cb8b9015 id-28140345b7664abfa6993051f07c1f80" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
             <bounds x="192" y="138" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-5983adfa365b4032ac68101ccfaaaaba" source="id-f08d4d07fe2c45b38f90e45f3c1e8430" target="id-81c87917f96748119cba9b96f0556c15" archimateRelationship="id-aba60ccef7794a86b6ec9521783551e2">
-              <bendpoint startX="-48" startY="261" endX="-336" endY="69"/>
-              <bendpoint startX="312" startY="261" endX="24" endY="69"/>
-            </sourceConnection>
-            <sourceConnection xsi:type="archimate:Connection" id="id-6c064646cf4b47b69bd8ee152ea67b75" source="id-f08d4d07fe2c45b38f90e45f3c1e8430" target="id-cf5f89ecf0b44e4ca4e9e4b68d5d1acb" archimateRelationship="id-e617219ea1d44ddda848bafc8aa91de8">
-              <bendpoint startY="189" endX="-108" endY="-3"/>
+              <bendpoint startX="-12" startY="267" endX="-300" endY="75"/>
+              <bendpoint startX="312" startY="267" endX="24" endY="75"/>
             </sourceConnection>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-671b707e646d49f4a5702c19bc0798f2" targetConnections="id-1891725cffea45e3a2c76c097d442d54 id-f3fd92020ae54622b669f7ff844d4375" textPosition="1" archimateElement="id-9f132361c9ad4633b471a78518586eca">
-            <bounds x="192" y="36" width="120" height="55"/>
+          <child xsi:type="archimate:DiagramObject" id="id-671b707e646d49f4a5702c19bc0798f2" targetConnections="id-f3fd92020ae54622b669f7ff844d4375 id-1891725cffea45e3a2c76c097d442d54" textPosition="1" archimateElement="id-9f132361c9ad4633b471a78518586eca">
+            <bounds x="48" y="36" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-8c26244a33f8497c9a18dc9fa3568385" source="id-671b707e646d49f4a5702c19bc0798f2" target="id-6262631ca34747db96764c26c4dedb43" archimateRelationship="id-a13d8c86e12945fb9d3018c93ac0d3eb"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-6262631ca34747db96764c26c4dedb43" targetConnections="id-8c2b3d991be440caa84e6e74508e7b22 id-8c26244a33f8497c9a18dc9fa3568385" textPosition="1" archimateElement="id-84509990fb0f41dfa1285acbe94ec35d">
             <bounds x="36" y="138" width="120" height="55"/>
           </child>
+          <child xsi:type="archimate:DiagramObject" id="id-6e1d18c8a3d44e09b0381e9805d026b1" targetConnections="id-e427f7ea9308400494956f9d1e267123 id-6e14cc1261f04b4fa3010281f9a3c6ae id-d47e12084043489dbf688989e6c8f0e2 id-c86e97b84b5e4b3592b216ddbf99a54e id-738b020a609f43b7881154b554ce29da id-b1bc2d1acf224f70ad15519e95e0e7a1" archimateElement="id-4cab30c96f5d468d98f0c6624bc3bd5d">
+            <bounds x="731" y="21" width="302" height="154"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-4d4742e5d77242f8828f6b7ac4867d0b" source="id-6e1d18c8a3d44e09b0381e9805d026b1" target="id-d8d8d8621ef54a45b6dad7ba9528a05c" archimateRelationship="id-fd4fa9e693734d25a33fab9931fd5a48">
+              <bendpoint startX="-54" startY="154" endX="360" endY="9"/>
+            </sourceConnection>
+            <child xsi:type="archimate:DiagramObject" id="id-906e5805342c45c19c45befb6d706955" archimateElement="id-fe950c3ebad04932a87cb572b191e4ff">
+              <bounds x="25" y="30" width="108" height="43"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-b1bc2d1acf224f70ad15519e95e0e7a1" source="id-906e5805342c45c19c45befb6d706955" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-ca361b9e8d91435ab7f56b16e3d1607a"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-0d40bc3cca3643278628cc4c3ca54365" archimateElement="id-a2b9d71e443c49c58b44615551eb4f5b">
+              <bounds x="156" y="30" width="108" height="43"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-738b020a609f43b7881154b554ce29da" source="id-0d40bc3cca3643278628cc4c3ca54365" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-901361dfdb7c404682f119cba0fcc36a"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-2cb9dc36f7aa49268568d52ca4bab9c8" archimateElement="id-3969a1acce774516911bb973b0ff59ee">
+              <bounds x="458" y="61" width="120" height="55"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-c86e97b84b5e4b3592b216ddbf99a54e" source="id-2cb9dc36f7aa49268568d52ca4bab9c8" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-1ae5414b4a37463086a92804f896802a"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-762e39ee25f04d3cb156b161375909ad" textPosition="1" archimateElement="id-3969a1acce774516911bb973b0ff59ee">
+              <bounds x="161" y="84" width="104" height="43"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-d47e12084043489dbf688989e6c8f0e2" source="id-762e39ee25f04d3cb156b161375909ad" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-1ae5414b4a37463086a92804f896802a"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-d862848773744017b4eb1aba1289f6dd" textPosition="1" archimateElement="id-b62c3b7ad79644d6b830ae2278db477d">
+              <bounds x="25" y="84" width="108" height="43"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-6e14cc1261f04b4fa3010281f9a3c6ae" source="id-d862848773744017b4eb1aba1289f6dd" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-d361fdf90c0e4085aa846316dc7955b9"/>
+            </child>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-1b43ceb9ef194cf1b987b3758794a452" targetConnections="id-9d70454faef442398407ae7022b34554 id-8e8bd2d5737041d896387a48e7daef5b id-534987c4891d4cbdb50207f4defdd7d4" textPosition="2" archimateElement="id-d9f34a0d340843fdb0bd11abfca6ed80">
+            <bounds x="372" y="204" width="205" height="91"/>
+            <child xsi:type="archimate:DiagramObject" id="id-d8d8d8621ef54a45b6dad7ba9528a05c" targetConnections="id-1db6aa32e2074a189a822943b186fe83 id-4d4742e5d77242f8828f6b7ac4867d0b" textPosition="1" archimateElement="id-03e98ce0196345b599d814c30d4a986a">
+              <bounds x="36" y="12" width="120" height="55"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-8e8bd2d5737041d896387a48e7daef5b" source="id-d8d8d8621ef54a45b6dad7ba9528a05c" target="id-1b43ceb9ef194cf1b987b3758794a452" archimateRelationship="id-6b29455302464259886e4c5a186773db"/>
+            </child>
+          </child>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-be67536902504471a05b855bea990033" textAlignment="1" archimateElement="id-1102502d3ae0409784523400c4fbe5dc">
-          <bounds x="1140" y="84" width="469" height="445"/>
+          <bounds x="1152" y="96" width="469" height="445"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-375c70d236ce46858199c4fbd020f997" source="id-be67536902504471a05b855bea990033" target="id-2857f9a3122d46229a2e0481435a9fa0" archimateRelationship="id-eef3018eaba747c486fd1fa3f87c1506"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-0a591211c76c4565b4bffe5c612dfc1c" source="id-be67536902504471a05b855bea990033" target="id-ebb51f900c65452c84451cc34cfdea4d" archimateRelationship="id-d84d2a9df5c843f18dc89d70bc1ea2bb"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-143c8eed20be49569b68ce6bac262dbf" source="id-be67536902504471a05b855bea990033" target="id-52700158dfff4b75ae99591dd3ef1af6" archimateRelationship="id-75548c83d44a4e06b80da1cc4cdaaf08"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-af8190201f3440958a5fd5d498855c00" source="id-be67536902504471a05b855bea990033" target="id-cfad149980694e3da685bc8608f4b0be" archimateRelationship="id-ffc28d9da5b94c5f82690cb55d3c673f"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-7c6588c2be334db3bd93d6466fd9d755" source="id-be67536902504471a05b855bea990033" target="id-aa041f0a9b84449bbb71bb9f959c1dce" archimateRelationship="id-591678c249b248b296333b6f68662e0f"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-c3cc938a1c0c4e8ab7430f8ea1c119fd" source="id-be67536902504471a05b855bea990033" target="id-fcdcac048c594ed8b4a4878025640b78" archimateRelationship="id-57caa9ec29cb4abb993d8e73a3bae905"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-6cb7b3dd008647ee8a352b346138fc61" source="id-be67536902504471a05b855bea990033" target="id-0c7f8bed655448f8a19a8bca99e3c6c3" archimateRelationship="id-f5a4cec8b72548c88fd328ca94be880a"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d87c49f11e3f4b6196228b3d85f9dd77" source="id-be67536902504471a05b855bea990033" target="id-777e57df9e054ca58e40988a7baefe3d" archimateRelationship="id-f5a4cec8b72548c88fd328ca94be880a"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-72707a392bf443cfb85cb3e77a81f29a" source="id-be67536902504471a05b855bea990033" target="id-bd769ebc5bf34d9db3d2da9542f2588d" archimateRelationship="id-d31c5baf56a043abb77f520a285e7301"/>
-          <child xsi:type="archimate:DiagramObject" id="id-2857f9a3122d46229a2e0481435a9fa0" targetConnections="id-0c7a298312994d428743de3c017ef84c id-375c70d236ce46858199c4fbd020f997" textPosition="1" archimateElement="id-a21ac844b75946b0b94ab3450c81ed27">
+          <child xsi:type="archimate:DiagramObject" id="id-2857f9a3122d46229a2e0481435a9fa0" targetConnections="id-375c70d236ce46858199c4fbd020f997 id-526336451c254f379d64cce05aacec63" textPosition="1" archimateElement="id-a21ac844b75946b0b94ab3450c81ed27">
             <bounds x="36" y="144" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-ca0ec09ab7d4489b8be560e20cd45384" source="id-2857f9a3122d46229a2e0481435a9fa0" target="id-cfad149980694e3da685bc8608f4b0be" archimateRelationship="id-618c3c02c19f479c9b0dd270d4491be8"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-cad84bd0118342ca9727000ea46396ff" source="id-2857f9a3122d46229a2e0481435a9fa0" target="id-ebb51f900c65452c84451cc34cfdea4d" archimateRelationship="id-55addc35268644c88cbbdd5b9fa21acf"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-ebb51f900c65452c84451cc34cfdea4d" targetConnections="id-bb455e6d45f44609904936f2bb2c5025 id-0a591211c76c4565b4bffe5c612dfc1c id-cad84bd0118342ca9727000ea46396ff" textPosition="1" archimateElement="id-fc519c97c3c04fb3b43a50b72f0aef38">
+          <child xsi:type="archimate:DiagramObject" id="id-ebb51f900c65452c84451cc34cfdea4d" targetConnections="id-0a591211c76c4565b4bffe5c612dfc1c id-cad84bd0118342ca9727000ea46396ff id-73ca453c9d7243b3be3a5346c5df17b2" textPosition="1" archimateElement="id-fc519c97c3c04fb3b43a50b72f0aef38">
             <bounds x="36" y="252" width="120" height="55"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-fde08ad02d7748d8b1dd0109a5a9d9bc" source="id-ebb51f900c65452c84451cc34cfdea4d" target="id-bd769ebc5bf34d9db3d2da9542f2588d" archimateRelationship="id-98df82fac1c14727949ab6826e537086"/>
-          </child>
-          <child xsi:type="archimate:DiagramObject" id="id-52700158dfff4b75ae99591dd3ef1af6" targetConnections="id-143c8eed20be49569b68ce6bac262dbf" textPosition="1" archimateElement="id-7c826e60007f41aeaaddbcb4fc50958d">
-            <bounds x="276" y="252" width="120" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-bb455e6d45f44609904936f2bb2c5025" source="id-52700158dfff4b75ae99591dd3ef1af6" target="id-ebb51f900c65452c84451cc34cfdea4d" archimateRelationship="id-002b70b66cce4964a129d5db78c7bd59"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-cfad149980694e3da685bc8608f4b0be" targetConnections="id-af8190201f3440958a5fd5d498855c00 id-ca0ec09ab7d4489b8be560e20cd45384" textPosition="1" archimateElement="id-a5736e6c7c874d5589622b6158eae9ee">
             <bounds x="36" y="36" width="120" height="55"/>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-aa041f0a9b84449bbb71bb9f959c1dce" targetConnections="id-7c6588c2be334db3bd93d6466fd9d755" textPosition="1" archimateElement="id-9dd7d63f3bda44a6919074aa6bd45c04">
-            <bounds x="276" y="144" width="120" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-0c7a298312994d428743de3c017ef84c" source="id-aa041f0a9b84449bbb71bb9f959c1dce" target="id-2857f9a3122d46229a2e0481435a9fa0" archimateRelationship="id-c3ff3f9db22f48e883bd64060c6565b2"/>
-          </child>
           <child xsi:type="archimate:DiagramObject" id="id-bd769ebc5bf34d9db3d2da9542f2588d" targetConnections="id-fde08ad02d7748d8b1dd0109a5a9d9bc id-72707a392bf443cfb85cb3e77a81f29a" archimateElement="id-1d37cc3e2ee24b34a0a644235fea8b9e">
             <bounds x="36" y="360" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-fcdcac048c594ed8b4a4878025640b78" targetConnections="id-c3cc938a1c0c4e8ab7430f8ea1c119fd id-7760e058a53f4d698074fccbb75f933c" archimateElement="id-16d1243de6aa4c1c8d73099f30a48f1b">
+            <bounds x="312" y="240" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-73ca453c9d7243b3be3a5346c5df17b2" source="id-fcdcac048c594ed8b4a4878025640b78" target="id-ebb51f900c65452c84451cc34cfdea4d" archimateRelationship="id-cf90056d0bc04b0db4a8483b62939942"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-0c7f8bed655448f8a19a8bca99e3c6c3" targetConnections="id-6cb7b3dd008647ee8a352b346138fc61" archimateElement="id-d0d7a7409f794e30bb32bca7c7c4d406">
+            <bounds x="476" y="66" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-777e57df9e054ca58e40988a7baefe3d" targetConnections="id-d87c49f11e3f4b6196228b3d85f9dd77" archimateElement="id-d0d7a7409f794e30bb32bca7c7c4d406">
+            <bounds x="312" y="144" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-526336451c254f379d64cce05aacec63" source="id-777e57df9e054ca58e40988a7baefe3d" target="id-2857f9a3122d46229a2e0481435a9fa0" archimateRelationship="id-db7a30dad63746218fffec64bacd7bfc"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-7760e058a53f4d698074fccbb75f933c" source="id-777e57df9e054ca58e40988a7baefe3d" target="id-fcdcac048c594ed8b4a4878025640b78" archimateRelationship="id-71dfa08f82914205b413e292d876209d"/>
           </child>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-11f53ce8f1ed49468903c824436ad489" textAlignment="1" archimateElement="id-64f19a334e974108b93f342c683cf1d5">
