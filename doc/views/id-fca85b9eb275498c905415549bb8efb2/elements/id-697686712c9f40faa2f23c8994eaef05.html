@@ -49,22 +49,36 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
-Een Core Rule is een regel die afkomstig is uit de canon, niet door de gebruiker wijzigbaar is, en tot doel heeft de structurele en gedragsmatige integriteit van het systeem te waarborgen. Een Core Rule governt precies &#233;&#233;n Execution Regime.
+
+Een Core Rule (Kernregel) is een Operational Rule die afkomstig is uit de canon, niet door de gebruiker wijzigbaar is, en die de structurele en gedragsmatige integriteit van precies &#233;&#233;n Execution Regime waarborgt.
 
 DOEL
-Een canoniek gezaghebbende, voor de gebruiker onveranderlijke waarborg vastleggen die de integriteit van Execution Regime beschermt, onafhankelijk van en niet noodzakelijk zichtbaar binnen enig Instruction Set.
+
+Een canoniek gezaghebbende, voor de gebruiker onveranderlijke waarborg vastleggen die de integriteit van een Execution Regime beschermt, onafhankelijk van en niet noodzakelijk zichtbaar binnen enig Instruction Set.
 
 LEIDENDE VRAAG
+
 Welke canoniek gezaghebbende waarborg beschermt de integriteit van dit Execution Regime?
 
 RELATIES
-Een Core Rule governt precies &#233;&#233;n Execution Regime; een Execution Regime kan door nul of meer Core Rules worden gegovernd. Een Core Rule is &#233;&#233;n van de vier specialisaties van Rule, naast Agent Rule, Agent Intent Rule en Canon Rule.
+
+Core Rule is een specialisatie van Operational Rule, en daarmee via Operational Rule een Entoli Rule. Een directe specialisatie naar Entoli Rule wordt niet gemodelleerd: die zou transitief redundant zijn.
+
+Een Core Rule governt precies &#233;&#233;n Execution Regime; een Execution Regime kan door nul of meer Core Rules worden gegovernd.
 
 BEPERKINGEN
-Een Core Rule is geen Canon Rule: beide zijn canoniek afgeleid en onveranderlijk voor gebruikers, maar een Canon Rule normeert agent- en agent-intentgedrag en is zichtbaar als inhoud binnen een Instruction Set, terwijl een Core Rule specifiek de integriteit van Execution Regime bewaakt en niet noodzakelijk instruction-set-zichtbaar is &#8212; het gezag is gedeeld, de functie en zichtbaarheid niet. Een Core Rule is geen Agent Rule of Agent Intent Rule: geen van beide is canoniek afgeleid of onveranderlijk.
+
+Een Core Rule is geen Canon Rule. Een Canon Rule is een Normative Rule die haar gezag aan de Canon ontleent en vastlegt wat moet gelden; een Core Rule is een Operational Rule die voorschrijft welk gedrag binnen de grenzen van een Execution Regime moet blijven.
+
+Een Core Rule is evenmin een Entoli Agent Rule of een Entoli Agent Intent Rule. De eerste is normatief en gebonden aan precies &#233;&#233;n Agent; de tweede operationaliseert normering voor precies &#233;&#233;n Agent Intent. Een Core Rule is aan geen van beide gebonden, maar aan &#233;&#233;n Execution Regime.
+
+Een Core Rule mag niet op grond van haar naam alleen als fundamenteler of hoger dan andere regels worden gelezen.
 
 INVARIANTEN
-Een Core Rule is voor de gebruiker te allen tijde onveranderlijk. Iedere Core Rule is herleidbaar tot precies &#233;&#233;n Execution Regime waarvan zij de integriteit waarborgt.
+
+Een Core Rule is voor de gebruiker te allen tijde onveranderlijk.
+
+Iedere Core Rule is herleidbaar tot precies &#233;&#233;n Execution Regime waarvan zij de integriteit waarborgt.
 
 Voorbeelden:
 - Preserving introduceert geen nieuwe betekenis &#8212; Core Rule die de integriteit van de positie Preserving binnen Synthesis Regime bewaakt.
@@ -92,14 +106,17 @@ Voorbeelden:
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
+								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptueel-datamodel"> entoli-conceptueel-datamodel </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
 																	<td><a href="../views/id-80862bce335d49df81cf62aaaf626834.html" target="view" title="entoli-conceptueel-datamodel_v2"> entoli-conceptueel-datamodel_v2 </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr><tr id="used-in-views-id-9af041ed1c474511bfe81f2be872945d">
 																	<td><a href="../views/id-9af041ed1c474511bfe81f2be872945d.html" target="view" title="tenant-conceptueel-datamodel"> tenant-conceptueel-datamodel </a></td>
-																	<td><span class="i18n-viewpoint-" /></td>
-																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
-																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptueel-datamodel"> entoli-conceptueel-datamodel </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -116,10 +133,10 @@ Voorbeelden:
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-56c526e9f3884e3d92773ff1234a7404.html" target="element" title=""></a></td>
+											<td><a href="../elements/id-303d7d90d90449aea7f1a0d1e36cc042.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-SpecializationRelationship" /></td>
 											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
-											<td><a href="../elements/id-b7cb33c7b50e48dabb3f0d830de8698f.html" target="element"> rule</a></td>
+											<td><a href="../elements/id-8c1dee167ccc432f98eba888e90ba805.html" target="element"> operational rule</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-91a5511abcf545e198f98a4d4559ec82.html" target="element" title="0..* governs 1">0..* governs 1</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
@@ -127,14 +144,14 @@ Voorbeelden:
 											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
 										</tr>
 									<tr>
-											<td><a href="../elements/id-303d7d90d90449aea7f1a0d1e36cc042.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-8c1dee167ccc432f98eba888e90ba805.html" target="element"> operational rule</a></td>
-											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-725a36246fbf44a89b70b997f59094d7.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-0f80755c4e134fe4aa43acca7aa28927.html" target="element"> semantic-foundation</a></td>
+											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-6612bef55bdd4e358326f6b6d76ee891.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
+											<td><a href="../elements/id-d9f34a0d340843fdb0bd11abfca6ed80.html" target="element"> entoli rule</a></td>
 											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
 										</tr>
 							</tbody>

@@ -1397,6 +1397,10 @@
 															1 defines 1
 														(canon - semantic model) 
 													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-e617219ea1d44ddda848bafc8aa91de8.html" target="element">
+															1 consists of 1..*
+														(semantic model - element) 
+													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-aba60ccef7794a86b6ec9521783551e2.html" target="element">
 															1 consists of 0..*
 														(semantic model - relationship) 
@@ -1426,7 +1430,7 @@
 														(task regime - execution regime) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-a67b931f5f1d48bca0054f50b03d595b.html" target="element">
-															0..* is governed by 4
+															0..* is governed by 1..*
 														(agent intent - execution regime) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-91a5511abcf545e198f98a4d4559ec82.html" target="element">
@@ -2013,10 +2017,6 @@
 															1..* is included in 0..*
 														(intent instruction - instruction set) 
 													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-56c526e9f3884e3d92773ff1234a7404.html" target="element">
-															<span class="i18n-elementtype-SpecializationRelationship"></span>
-														(core rule - rule) 
-													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-6e02390b935e4dc7944d3e148dc29ae5.html" target="element">
 															0..* to 1
 														(relationship - element) 
@@ -2038,7 +2038,7 @@
 														(entoli context (entoli studio) - agent) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-8e8eef25df2642229f4002b8800232f5.html" target="element">
-															<span class="i18n-elementtype-AssociationRelationship"></span>
+															1 defines 0..*
 														(entoli context (entoli studio) - orchestration specification) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-429bb744ce4949629c047396d9abab10.html" target="element">
@@ -2106,7 +2106,7 @@
 														(reasoning regime - model assignment) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-db7a30dad63746218fffec64bacd7bfc.html" target="element">
-															0..** governs 1
+															0..* governs 1
 														(entoli agent rule - agent) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-57caa9ec29cb4abb993d8e73a3bae905.html" target="element">
@@ -2125,25 +2125,21 @@
 															<span class="i18n-elementtype-CompositionRelationship"></span>
 														(semantic-foundation - entoli rule) 
 													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-ee0c22dcc6794061bbf1790dc89a3791.html" target="element">
-															<span class="i18n-elementtype-AssociationRelationship"></span>
-														(canon rule - execution regime) 
-													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-fd4fa9e693734d25a33fab9931fd5a48.html" target="element">
-															<span class="i18n-elementtype-AssociationRelationship"></span>
-														(execution regime - canon rule) 
-													</a></li>
-													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-05915ba4e95b420aa6ff7efff19bdc51.html" target="element">
-															<span class="i18n-elementtype-AssociationRelationship"></span>
-														(canon rule - element) 
-													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-bcb53d4d82d04e49aa41d9c62996e6ce.html" target="element">
 															0..* is used in 0..*
 														(element - entoli rule) 
 													</a></li>
 													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-303d7d90d90449aea7f1a0d1e36cc042.html" target="element">
+															<span class="i18n-elementtype-SpecializationRelationship"></span>
+														(core rule - operational rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-6612bef55bdd4e358326f6b6d76ee891.html" target="element">
 															<span class="i18n-elementtype-CompositionRelationship"></span>
-														(operational rule - core rule) 
+														(entoli rule - core rule) 
+													</a></li>
+													<li class="tree-element "><a href="id-fca85b9eb275498c905415549bb8efb2/elements/id-dca677a261024bfcbf525e90507982e2.html" target="element">
+															<span class="i18n-elementtype-CompositionRelationship"></span>
+														(execution-configuration - entoli context (entoli studio)) 
 													</a></li>
 
 									</ul>

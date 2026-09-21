@@ -58,13 +58,13 @@ LEIDENDE VRAAG
 Welke specifieke, aanroepbare capability van deze Agent wordt hier uitgevoerd?
 
 RELATIES
-Een Agent stelt zijn capabilities beschikbaar via &#233;&#233;n of meer Agent Intents; iedere Agent Intent behoort tot precies &#233;&#233;n Agent. Een Agent Intent wordt aangeroepen door nul of meer Execution Step Specifications; iedere Execution Step Specification roept precies &#233;&#233;n Agent Intent aan. Alleen wanneer de Reasoning Mode van de Agent Cognitive is, declareert een Agent Intent precies &#233;&#233;n positie op elk van de drie specialisaties van Execution Regime (Source Regime, Synthesis Regime, Task Regime); onder Deterministic declareert de Agent Intent geen van de drie (zie Reasoning Mode, Execution Regime). Een Agent Intent drijft de samenstelling van nul of meer Instruction Sets aan. Een Agent Intent Rule beperkt precies &#233;&#233;n Agent Intent.
+Een Agent stelt zijn capabilities beschikbaar via &#233;&#233;n of meer Agent Intents; iedere Agent Intent behoort tot precies &#233;&#233;n Agent. Een Agent Intent wordt aangeroepen door nul of meer Execution Step Specifications; iedere Execution Step Specification roept precies &#233;&#233;n Agent Intent aan. Een Agent Intent declareert precies &#233;&#233;n positie op elke specialisatie van Execution Regime die op die Agent Intent van toepassing is, en wordt daarmee door &#233;&#233;n of meer Execution Regimes gegoverneerd (zie Execution Regime). Een Agent Intent drijft de samenstelling van nul of meer Instruction Sets aan. Een Agent Intent Rule beperkt precies &#233;&#233;n Agent Intent.
 
 BEPERKINGEN
-Een Agent Intent is geen Agent: het is &#233;&#233;n capability binnen de grenzen van een Agent, niet de Agent zelf, en overschrijdt nooit de agent-boundary van zijn Agent. Een Agent Intent is geen Execution Step Specification: de Execution Step Specification specificeert wanneer en hoe een Agent Intent wordt aangeroepen, maar is niet de capability zelf. Een Agent Intent is geen Execution: de Execution is de concrete, tijdgebonden uitvoering; de Agent Intent is de aanroepbare capability die daarbij wordt aangesproken. Een Agent Intent declareert nooit zijn eigen Reasoning Mode: het erft die van zijn Agent (zie Reasoning Mode).
+Een Agent Intent is geen Agent: het is &#233;&#233;n capability binnen de grenzen van een Agent, niet de Agent zelf, en overschrijdt nooit de agent-boundary van zijn Agent. Een Agent Intent is geen Execution Step Specification: de Execution Step Specification specificeert wanneer en hoe een Agent Intent wordt aangeroepen, maar is niet de capability zelf. Een Agent Intent is geen Execution: de Execution is de concrete, tijdgebonden uitvoering; de Agent Intent is de aanroepbare capability die daarbij wordt aangesproken. Een Agent Intent is geen Execution Regime: de regimes classificeren wat de Agent Intent mag doen, zij zijn niet de capability zelf.
 
 INVARIANTEN
-Iedere Agent Intent behoort tot precies &#233;&#233;n Agent en opereert altijd binnen de agent-boundary van die Agent. Iedere Agent Intent van een Agent met Reasoning Mode Cognitive wordt gegoverneerd door precies &#233;&#233;n Execution Regime van elke specialisatie; iedere Agent Intent van een Agent met Reasoning Mode Deterministic wordt door geen enkele specialisatie gegoverneerd.
+Iedere Agent Intent behoort tot precies &#233;&#233;n Agent en opereert altijd binnen de agent-boundary van die Agent. Iedere Agent Intent wordt gegoverneerd door ten minste &#233;&#233;n Execution Regime, en door precies &#233;&#233;n positie per specialisatie die op haar van toepassing is.
 
 Voorbeelden:
 - Analyseer domeinuitspraken &#8212; Aanroepbare capability van de NIAM-analist om uit natuurlijke taal kandidaat-begrippen, feittypen en rollen af te leiden.
@@ -93,14 +93,14 @@ Voorbeelden:
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
-																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
-																	<td><span class="i18n-viewpoint-" /></td>
-																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptueel-datamodel"> entoli-conceptueel-datamodel </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr><tr id="used-in-views-id-9af041ed1c474511bfe81f2be872945d">
 																	<td><a href="../views/id-9af041ed1c474511bfe81f2be872945d.html" target="view" title="tenant-conceptueel-datamodel"> tenant-conceptueel-datamodel </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr><tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
 																	<td><a href="../views/id-80862bce335d49df81cf62aaaf626834.html" target="view" title="entoli-conceptueel-datamodel_v2"> entoli-conceptueel-datamodel_v2 </a></td>
@@ -120,7 +120,7 @@ Voorbeelden:
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-a67b931f5f1d48bca0054f50b03d595b.html" target="element" title="0..* is governed by 4">0..* is governed by 4</a></td>
+											<td><a href="../elements/id-a67b931f5f1d48bca0054f50b03d595b.html" target="element" title="0..* is governed by 1..*">0..* is governed by 1..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
 											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>

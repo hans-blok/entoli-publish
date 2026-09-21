@@ -49,25 +49,25 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
-Execution Regime is de verzamelnaam voor de drie classificatie-assen die gezamenlijk bepalen wat een Agent Intent mag doen: Source Regime (welke kennis toegankelijk is), Synthesis Regime (welke betekenistransformatie is toegestaan) en Task Regime (welke bewerkings- en uitvoervorm de stap heeft).
+Execution Regime is de verzamelnaam voor de classificatie-assen die gezamenlijk bepalen wat een Agent Intent mag doen: Source Regime (welke kennis toegankelijk is), Synthesis Regime (welke betekenistransformatie is toegestaan), Task Regime (welke bewerkings- en uitvoervorm de stap heeft) en Reasoning Regime (hoeveel cognitieve vrijheid het LLM heeft).
 
 DOEL
-Voor iedere Agent Intent waarvan de Reasoning Mode van de Agent Cognitive is, in &#233;&#233;n samenhangend geheel vastleggen welke combinatie van bron-, synthese- en taakregime van toepassing is, zodat deze drie onafhankelijk gedeclareerde assen gezamenlijk als &#233;&#233;n governance-mechanisme kunnen worden aangesproken en gecontroleerd.
+Voor iedere Agent Intent in &#233;&#233;n samenhangend geheel vastleggen welke combinatie van regimes van toepassing is, zodat deze onafhankelijk gedeclareerde assen gezamenlijk als &#233;&#233;n governance-mechanisme kunnen worden aangesproken en gecontroleerd.
 
 LEIDENDE VRAAG
-Welke combinatie van bron-, synthese- en taakregime governt deze Agent Intent, indien van toepassing?
+Welke combinatie van bron-, synthese-, taak- en redeneerregime governt deze Agent Intent?
 
 SAMENSTELLING
-Execution Regime bestaat uit precies drie specialisaties: Source Regime, Synthesis Regime en Task Regime.
+Execution Regime kent op dit moment vier specialisaties: Source Regime, Synthesis Regime, Task Regime en Reasoning Regime. Het aantal specialisaties is een eigenschap van de subtypestructuur en wordt niet als multipliciteit op een relatie vastgelegd; het kan veranderen zonder dat enige relatie hoeft te worden aangepast.
 
 RELATIES
-Execution Regime bestaat uit (specialisatie) Source Regime, Synthesis Regime en Task Regime. Een Core Rule governt precies &#233;&#233;n Execution Regime. Reasoning Mode bepaalt of alle drie de specialisaties op een Agent Intent van toepassing zijn: onder Cognitive declareert een Agent Intent precies &#233;&#233;n positie op elk van Source Regime, Synthesis Regime en Task Regime; onder Deterministic declareert de Agent Intent geen van de drie (zie Reasoning Mode).
+Source Regime, Synthesis Regime, Task Regime en Reasoning Regime zijn specialisaties van Execution Regime. Een Agent Intent wordt gegoverneerd door &#233;&#233;n of meer Execution Regimes; een Execution Regime governt nul of meer Agent Intents. Een Core Rule governt precies &#233;&#233;n Execution Regime; een Execution Regime kan door nul of meer Core Rules worden gegovernd.
 
 BEPERKINGEN
-De drie specialisaties van Execution Regime zijn onderling orthogonaal: geen enkele specialisatie is afleidbaar uit, of impliceert, een waarde van de andere twee. Execution Regime is geen enkelvoudige schaal waarop de drie specialisaties inwisselbare posities zijn; elke specialisatie beantwoordt een eigen, onafhankelijke vraag. Execution Regime is niet universeel van toepassing op elke Agent Intent: toepasselijkheid is voorwaardelijk aan de Reasoning Mode van de Agent (Cognitive), niet een vast gegeven van elke Agent Intent.
+De specialisaties van Execution Regime zijn onderling orthogonaal: geen enkele specialisatie is afleidbaar uit, of impliceert, een waarde van de andere. Execution Regime is geen enkelvoudige schaal waarop de specialisaties inwisselbare posities zijn; elke specialisatie beantwoordt een eigen, onafhankelijke vraag. Het aantal specialisaties is geen betekenis van de relatie tussen Agent Intent en Execution Regime: die relatie legt vast d&#225;t een Agent Intent door Execution Regimes wordt gegoverneerd, niet door hoeveel.
 
 INVARIANTEN
-Iedere Agent Intent van een Agent met Reasoning Mode Cognitive wordt gegoverneerd door precies &#233;&#233;n Source Regime, precies &#233;&#233;n Synthesis Regime en precies &#233;&#233;n Task Regime. Iedere Agent Intent van een Agent met Reasoning Mode Deterministic wordt door geen van de drie gegoverneerd.</div>
+Iedere Agent Intent declareert precies &#233;&#233;n positie op elke specialisatie van Execution Regime die op die Agent Intent van toepassing is, en wordt daarmee door ten minste &#233;&#233;n Execution Regime gegoverneerd. Deze invariant blijft gelden wanneer een specialisatie wordt toegevoegd of vervalt.</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="properties">
 						<table class="table table-striped table-hover table-condensed">
@@ -118,30 +118,9 @@ Iedere Agent Intent van een Agent met Reasoning Mode Cognitive wordt gegoverneer
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-fd4fa9e693734d25a33fab9931fd5a48.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
-											<td><a href="../elements/id-03e98ce0196345b599d814c30d4a986a.html" target="element"> canon rule</a></td>
-										</tr>
-									<tr>
-											<td><a href="../elements/id-a67b931f5f1d48bca0054f50b03d595b.html" target="element" title="0..* is governed by 4">0..* is governed by 4</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
-											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-e5ee05fd4ef949bdb42e98c2ef35ad29.html" target="element" title="1 guides 0..*">1 guides 0..*</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-2e25dc5832d04ffb907846209ef549b7.html" target="element"> development phase</a></td>
-											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-ee0c22dcc6794061bbf1790dc89a3791.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-03e98ce0196345b599d814c30d4a986a.html" target="element"> canon rule</a></td>
-											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
-										</tr><tr>
-											<td><a href="../elements/id-91a5511abcf545e198f98a4d4559ec82.html" target="element" title="0..* governs 1">0..* governs 1</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
+											<td><a href="../elements/id-901361dfdb7c404682f119cba0fcc36a.html" target="element" title=""></a></td>
+											<td><span class="i18n-elementtype-SpecializationRelationship" /></td>
+											<td><a href="../elements/id-a2b9d71e443c49c58b44615551eb4f5b.html" target="element"> synthesis regime</a></td>
 											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-ca361b9e8d91435ab7f56b16e3d1607a.html" target="element" title=""></a></td>
@@ -149,14 +128,19 @@ Iedere Agent Intent van een Agent met Reasoning Mode Cognitive wordt gegoverneer
 											<td><a href="../elements/id-fe950c3ebad04932a87cb572b191e4ff.html" target="element"> source regime</a></td>
 											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-901361dfdb7c404682f119cba0fcc36a.html" target="element" title=""></a></td>
-											<td><span class="i18n-elementtype-SpecializationRelationship" /></td>
-											<td><a href="../elements/id-a2b9d71e443c49c58b44615551eb4f5b.html" target="element"> synthesis regime</a></td>
-											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-1ae5414b4a37463086a92804f896802a.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-SpecializationRelationship" /></td>
 											<td><a href="../elements/id-3969a1acce774516911bb973b0ff59ee.html" target="element"> task regime</a></td>
+											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-a67b931f5f1d48bca0054f50b03d595b.html" target="element" title="0..* is governed by 1..*">0..* is governed by 1..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
+											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-e5ee05fd4ef949bdb42e98c2ef35ad29.html" target="element" title="1 guides 0..*">1 guides 0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-2e25dc5832d04ffb907846209ef549b7.html" target="element"> development phase</a></td>
 											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-d361fdf90c0e4085aa846316dc7955b9.html" target="element" title=""></a></td>
@@ -167,6 +151,11 @@ Iedere Agent Intent van een Agent met Reasoning Mode Cognitive wordt gegoverneer
 											<td><a href="../elements/id-83044847a8a24418bb62c4007588bc83.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-0f80755c4e134fe4aa43acca7aa28927.html" target="element"> semantic-foundation</a></td>
+											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-91a5511abcf545e198f98a4d4559ec82.html" target="element" title="0..* governs 1">0..* governs 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule</a></td>
 											<td><a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime</a></td>
 										</tr>
 							</tbody>

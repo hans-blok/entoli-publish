@@ -25,14 +25,21 @@ $brandingBlock = "$markerStart`r`n" + (Get-Content $sourceCss -Raw) + "`r`n$mark
 
 $content = Get-Content $targetCss -Raw
 
+# Schrijf zonder BOM: Set-Content -Encoding utf8 zet in Windows PowerShell 5.1
+# een BOM voor het bestand, wat bij iedere run een overbodige wijziging oplevert.
+function Write-Css {
+    param([string]$Path, [string]$Text)
+    [System.IO.File]::WriteAllText($Path, $Text, (New-Object System.Text.UTF8Encoding($false)))
+}
+
 $pattern = [regex]::Escape($markerStart) + "[\s\S]*?" + [regex]::Escape($markerEnd)
 $regex = [regex]::new($pattern)
 if ($regex.IsMatch($content)) {
     $evaluator = [System.Text.RegularExpressions.MatchEvaluator] { param($m) $brandingBlock }
     $newContent = $regex.Replace($content, $evaluator)
-    Set-Content -Path $targetCss -Value $newContent -Encoding utf8 -NoNewline
+    Write-Css -Path $targetCss -Text $newContent
     Write-Host "Entoli-branding bijgewerkt in $targetCss"
 } else {
-    Add-Content -Path $targetCss -Value "`r`n$brandingBlock" -Encoding utf8
+    Write-Css -Path $targetCss -Text ($content.TrimEnd() + "`r`n`r`n$brandingBlock")
     Write-Host "Entoli-branding toegevoegd aan $targetCss"
 }
