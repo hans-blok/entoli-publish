@@ -142,6 +142,9 @@ nav:
       - Begrippen: canon-datamodelleren/concepts-datamodelling.md
       - LLM-constraints: canon-datamodelleren/llm-constraints.md
       - Canon-grafiek: canon-datamodelleren/canon-graph.md
+  - Fysiek datamodel:
+      - TDM developer reference: fysiek-datamodel/tdm-developer-reference.md
+      - Kleurgids GraphML: fysiek-datamodel/graphml-colour-guide.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration
