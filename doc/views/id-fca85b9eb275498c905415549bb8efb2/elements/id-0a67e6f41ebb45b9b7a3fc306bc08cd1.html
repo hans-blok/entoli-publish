@@ -49,10 +49,10 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
-Een Orchestration Specification is de binnen een Operational Context vastgelegde specificatie van een samenhangende, geordende reeks Execution Step Specifications die gezamenlijk een doelgericht proces vormen.
+Een Orchestration Specification is de herbruikbare specificatie van een samenhangende, geordende reeks Execution Step Specifications die gezamenlijk een doelgericht proces vormen. Zij bestaat onafhankelijk van een Entoli Context en kan door meerdere Entoli Contexts worden gebruikt.
 
 DOEL
-Het expliciet en reproduceerbaar vastleggen van hoe meerdere uitvoeringsstappen binnen een Operational Context worden gecombineerd en geordend tot &#233;&#233;n samenhangende orchestratie.
+Het expliciet en reproduceerbaar vastleggen van hoe meerdere uitvoeringsstappen worden gecombineerd en geordend tot &#233;&#233;n samenhangende orchestratie, los van de context waarin die orchestratie wordt gebruikt.
 
 LEIDENDE VRAAG
 Welke uitvoeringsstappen vormen samen de orchestratie en in welke volgorde worden zij uitgevoerd?
@@ -61,13 +61,13 @@ SAMENSTELLING
 Een Orchestration Specification bestaat uit &#233;&#233;n of meerdere Execution Step Specifications. De volgorde van deze stappen maakt onderdeel uit van de orchestratiespecificatie. De wijze waarop deze volgorde technisch wordt vastgelegd behoort niet tot het conceptuele model.
 
 RELATIES
-Iedere Orchestration Specification wordt door precies &#233;&#233;n Operational Context gedefinieerd. Een Operational Context kan nul of meerdere Orchestration Specifications defini&#235;ren. Iedere Orchestration Specification bestaat uit &#233;&#233;n of meerdere Execution Step Specifications. Iedere Execution Step Specification behoort tot precies &#233;&#233;n Orchestration Specification.
+Een Orchestration Specification kan door nul of meer Entoli Contexts worden gebruikt; een Entoli Context gebruikt nul of meer Orchestration Specifications. Het gebruik wordt aan de zijde van de Entoli Context vastgelegd; de Orchestration Specification zelf verwijst niet naar een Entoli Context. Iedere Orchestration Specification bestaat uit &#233;&#233;n of meerdere Execution Step Specifications. Iedere Execution Step Specification behoort tot precies &#233;&#233;n Orchestration Specification.
 
 BEPERKINGEN
 Een Orchestration Specification is geen concrete uitvoering en specificeert niet zelf welke Agent Intent of welk LLM Model voor een individuele stap wordt gebruikt. Die verantwoordelijkheid ligt bij de Execution Step Specification en de daaraan gerelateerde configuratie.
 
 INVARIANTEN
-Iedere Orchestration Specification behoort tot precies &#233;&#233;n Operational Context, bevat minimaal &#233;&#233;n Execution Step Specification en legt een eenduidige ordening van haar Execution Step Specifications vast.
+Iedere Orchestration Specification bevat minimaal &#233;&#233;n Execution Step Specification en legt een eenduidige ordening van haar Execution Step Specifications vast. Haar bestaan en betekenis zijn onafhankelijk van de Entoli Contexts die haar gebruiken.
 
 Voorbeelden:
 - Van domeinuitspraken naar logisch model &#8212; Geordende orchestratie: NIAM-analyse &#8594; conceptuele modellering &#8594; logisch modelleren &#8594; modelreview.
@@ -99,14 +99,14 @@ Voorbeelden:
 								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptueel-datamodel"> entoli-conceptueel-datamodel </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-9af041ed1c474511bfe81f2be872945d">
+																	<td><a href="../views/id-9af041ed1c474511bfe81f2be872945d.html" target="view" title="tenant-conceptueel-datamodel"> tenant-conceptueel-datamodel </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
 																</tr><tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
 																	<td><a href="../views/id-80862bce335d49df81cf62aaaf626834.html" target="view" title="entoli-conceptueel-datamodel_v2"> entoli-conceptueel-datamodel_v2 </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
 																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
-																	<td><span class="i18n-viewpoint-" /></td>
-																</tr><tr id="used-in-views-id-9af041ed1c474511bfe81f2be872945d">
-																	<td><a href="../views/id-9af041ed1c474511bfe81f2be872945d.html" target="view" title="tenant-conceptueel-datamodel"> tenant-conceptueel-datamodel </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -145,10 +145,10 @@ Voorbeelden:
 										</tr><tr>
 											<td><a href="../elements/id-ccbb3dbc019a44fa914c40fc9542eab9.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-64f19a334e974108b93f342c683cf1d5.html" target="element"> execution-configuration</a></td>
+											<td><a href="../elements/id-7e3c1f0a9b2d4c58a6e41d2f0b9c3a71.html" target="element"> orchestration-definition</a></td>
 											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-8e8eef25df2642229f4002b8800232f5.html" target="element" title="1 defines 0..*">1 defines 0..*</a></td>
+											<td><a href="../elements/id-8e8eef25df2642229f4002b8800232f5.html" target="element" title="0..* uses 0..*">0..* uses 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-b5f98772aead4deea735f885c4ba46d3.html" target="element"> entoli context (entoli studio)</a></td>
 											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>

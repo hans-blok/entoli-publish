@@ -49,22 +49,22 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
-Een Execution is een tijdgebonden, concrete uitvoering van precies &#233;&#233;n Execution Step Specification. Tijdens de Execution wordt het gespecificeerde werk uitgevoerd op basis van precies &#233;&#233;n Instruction Set en met precies &#233;&#233;n daadwerkelijk gebruikte Model Assignment.
+Een Execution is een tijdgebonden, concrete uitvoering van precies &#233;&#233;n gepubliceerde versie van precies &#233;&#233;n Execution Step Specification, binnen precies &#233;&#233;n Entoli Context. Tijdens de Execution wordt het gespecificeerde werk uitgevoerd op basis van precies &#233;&#233;n Instruction Set en met precies &#233;&#233;n daadwerkelijk gebruikte Model Assignment.
 
 DOEL
 E&#233;n concrete occurrence van werk herleidbaar vastleggen, zodat de voorafgaande specificatie, de gebruikte instructiebasis, de toegepaste modelconfiguratie en de geproduceerde resultaten expliciet met elkaar verbonden zijn.
 
 LEIDENDE VRAAG
-Welke concrete uitvoering vond plaats, op basis van welke stap-specificatie, instructiebasis en modeltoewijzing?
+Welke concrete uitvoering vond plaats, op basis van welke versie van welke stap-specificatie, binnen welke Entoli Context, met welke instructiebasis en modeltoewijzing?
 
 RELATIES
-Een Execution Step Specification kan nul of meer keren als Execution worden uitgevoerd; iedere Execution is de uitvoering van precies &#233;&#233;n Execution Step Specification. Iedere Execution wordt door precies &#233;&#233;n Instruction Set ge&#239;nstrueerd en gebruikt precies &#233;&#233;n Model Assignment. Een Execution produceert nul of meer Artifacts en nul of maximaal &#233;&#233;n Handoff.
+Een gepubliceerde versie van een Execution Step Specification kan nul of meer keren als Execution worden uitgevoerd; iedere Execution is de uitvoering van precies &#233;&#233;n zulke versie. Iedere Execution vindt plaats binnen precies &#233;&#233;n Entoli Context; een Entoli Context kan nul of meer Executions kennen. Iedere Execution wordt door precies &#233;&#233;n Instruction Set ge&#239;nstrueerd en gebruikt precies &#233;&#233;n Model Assignment. Een Execution produceert nul of meer Artifacts en nul of maximaal &#233;&#233;n Handoff.
 
 BEPERKINGEN
-Een Execution is geen Execution Step Specification: de specification beschrijft vooraf &#233;&#233;n uitvoeringsstap, terwijl de Execution de concrete occurrence daarvan is. Een Execution is geen Instruction Set en geen Model Assignment; deze instrueren respectievelijk configureren de concrete uitvoering. Een Execution heeft geen directe Operational Context-relatie wanneer die context eenduidig afleidbaar is via Execution Step Specification en Orchestration Specification.
+Een Execution is geen Execution Step Specification: de specification beschrijft vooraf &#233;&#233;n uitvoeringsstap, terwijl de Execution de concrete occurrence daarvan is. Een Execution is geen Instruction Set en geen Model Assignment; deze instrueren respectievelijk configureren de concrete uitvoering. Een Orchestration Specification is herbruikbaar en kan door meerdere Entoli Contexts worden gebruikt; de context waarin een Execution plaatsvond volgt daarom niet uit de gebruikte orchestratiedefinitie en wordt rechtstreeks bij de Execution vastgelegd.
 
 INVARIANTEN
-Iedere Execution is herleidbaar tot precies &#233;&#233;n Execution Step Specification, precies &#233;&#233;n Instruction Set, precies &#233;&#233;n daadwerkelijk gebruikte Model Assignment en via haar Orchestration Specification tot precies &#233;&#233;n Operational Context.
+Iedere Execution is herleidbaar tot precies &#233;&#233;n gepubliceerde versie van precies &#233;&#233;n Execution Step Specification, precies &#233;&#233;n Entoli Context, precies &#233;&#233;n Instruction Set en precies &#233;&#233;n daadwerkelijk gebruikte Model Assignment.
 
 Voorbeelden:
 - NIAM-analyse van Agent Development &#8212; run 2026-09-05-01 &#8212; Concrete uitvoering van &#233;&#233;n NIAM-analysestap met een specifiek Instruction Set en daadwerkelijk gebruikte Model Assignment.
@@ -93,14 +93,14 @@ Voorbeelden:
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
+								<tr id="used-in-views-id-9af041ed1c474511bfe81f2be872945d">
+																	<td><a href="../views/id-9af041ed1c474511bfe81f2be872945d.html" target="view" title="tenant-conceptueel-datamodel"> tenant-conceptueel-datamodel </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-e370b29df1904e7aa3dff365806a402d">
 																	<td><a href="../views/id-e370b29df1904e7aa3dff365806a402d.html" target="view" title="entoli-conceptueel-datamodel"> entoli-conceptueel-datamodel </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr><tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
 																	<td><a href="../views/id-80862bce335d49df81cf62aaaf626834.html" target="view" title="entoli-conceptueel-datamodel_v2"> entoli-conceptueel-datamodel_v2 </a></td>
-																	<td><span class="i18n-viewpoint-" /></td>
-																</tr><tr id="used-in-views-id-9af041ed1c474511bfe81f2be872945d">
-																	<td><a href="../views/id-9af041ed1c474511bfe81f2be872945d.html" target="view" title="tenant-conceptueel-datamodel"> tenant-conceptueel-datamodel </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
 																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
@@ -139,6 +139,11 @@ Voorbeelden:
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
 											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-6d2e9a41c3b84f07a1e5c92b7d30f418.html" target="element" title="0..* is performed in 1">0..* is performed in 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
+											<td><a href="../elements/id-b5f98772aead4deea735f885c4ba46d3.html" target="element"> entoli context (entoli studio)</a></td>
 										</tr>
 									<tr>
 											<td><a href="../elements/id-478037499a934c57a353226c3694f575.html" target="element" title="1 is used by 0..*">1 is used by 0..*</a></td>

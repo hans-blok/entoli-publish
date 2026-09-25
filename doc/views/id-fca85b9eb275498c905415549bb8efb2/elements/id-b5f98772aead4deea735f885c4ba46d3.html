@@ -50,20 +50,20 @@
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
 
-Een Entoli Context (Entoli-context) is de context waarin Entoli zijn eigen Agents, LLM-toegang en orchestraties beschikbaar stelt en beheert, onafhankelijk van een specifieke klantcontext.
+Een Entoli Context (Entoli-context) is de context waarin Entoli zijn eigen Agents en LLM-toegang beschikbaar stelt en beheert en herbruikbare orchestraties gebruikt, onafhankelijk van een specifieke klantcontext.
 
 DOEL
 
-De Entoli-eigen operationele omgeving expliciet onderscheiden van contexten waarin Entoli-capabilities worden toegepast, zodat eigenaarschap van Agents, beschikbaarheid van LLM-toegang en Entoli-eigen orchestratie niet impliciet aan een klantcontext worden toegeschreven.
+De Entoli-eigen operationele omgeving expliciet onderscheiden van contexten waarin Entoli-capabilities worden toegepast, zodat eigenaarschap van Agents, beschikbaarheid van LLM-toegang en het gebruik van orchestraties niet impliciet aan een klantcontext worden toegeschreven.
 
 LEIDENDE VRAAG
 
-Welke Agents, voorzieningen en orchestraties behoren tot en worden beheerd vanuit de Entoli-eigen context?
+Welke Agents en voorzieningen behoren tot en worden beheerd vanuit de Entoli-eigen context, en welke orchestraties worden daarin gebruikt?
 
 RELATIES
 Een Entoli Context owns nul of meer Agents; iedere aldus gekoppelde Agent wordt door precies &#233;&#233;n Entoli Context beheerd.
 Een Entoli Context makes available nul of meer LLM Accounts; ieder aldus gekoppeld LLM Account wordt door precies &#233;&#233;n Entoli Context beschikbaar gemaakt.
-Tussen Entoli Context en Orchestration Specification bestaat in het huidige model een associatie, maar de bron geeft hiervoor geen richting, predicate of cardinaliteit. Deze relatie kan daarom nog niet normatief worden omschreven.
+Een Entoli Context gebruikt nul of meer Orchestration Specifications; een Orchestration Specification kan door nul of meer Entoli Contexts worden gebruikt. De Orchestration Specification is een herbruikbare definitie die onafhankelijk van een Entoli Context bestaat; het gebruik ervan wordt aan de zijde van de Entoli Context vastgelegd. Predicaat en cardinaliteit volgen uit de ArchiMate-connector "0..* uses 0..*". Een Entoli Context legt voor iedere Execution Step Specification die zij gebruikt vast welke Model Assignment daarvoor geldt, en maximaal &#233;&#233;n. Een Entoli Context kent nul of meer Executions; iedere Execution vindt plaats binnen precies &#233;&#233;n Entoli Context.
 BEPERKINGEN
 
 Een Entoli Context is geen Agent, Agent Package of Orchestration Specification. Zij beschrijft de Entoli-zijde waarbinnen dergelijke objecten worden beheerd of beschikbaar gesteld, niet hun professionele of inhoudelijke betekenis.
@@ -96,11 +96,11 @@ Een Entoli Context verandert de betekenis van een Agent, Agent Intent, LLM Accou
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
-																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
-																	<td><span class="i18n-viewpoint-" /></td>
-																</tr><tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
+								<tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
 																	<td><a href="../views/id-80862bce335d49df81cf62aaaf626834.html" target="view" title="entoli-conceptueel-datamodel_v2"> entoli-conceptueel-datamodel_v2 </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
+																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -117,11 +117,6 @@ Een Entoli Context verandert de betekenis van een Agent, Agent Intent, LLM Accou
 							</thead>
 							<tbody>
 									<tr>
-											<td><a href="../elements/id-8e8eef25df2642229f4002b8800232f5.html" target="element" title="1 defines 0..*">1 defines 0..*</a></td>
-											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
-											<td><a href="../elements/id-b5f98772aead4deea735f885c4ba46d3.html" target="element"> entoli context (entoli studio)</a></td>
-											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
-										</tr><tr>
 											<td><a href="../elements/id-3ab875f40d804798be95d095e6bc9e2d.html" target="element" title="1 makes available 0..*">1 makes available 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-b5f98772aead4deea735f885c4ba46d3.html" target="element"> entoli context (entoli studio)</a></td>
@@ -131,8 +126,18 @@ Een Entoli Context verandert de betekenis van een Agent, Agent Intent, LLM Accou
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-b5f98772aead4deea735f885c4ba46d3.html" target="element"> entoli context (entoli studio)</a></td>
 											<td><a href="../elements/id-a21ac844b75946b0b94ab3450c81ed27.html" target="element"> agent</a></td>
+										</tr><tr>
+											<td><a href="../elements/id-8e8eef25df2642229f4002b8800232f5.html" target="element" title="0..* uses 0..*">0..* uses 0..*</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-b5f98772aead4deea735f885c4ba46d3.html" target="element"> entoli context (entoli studio)</a></td>
+											<td><a href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html" target="element"> orchestration specification</a></td>
 										</tr>
 									<tr>
+											<td><a href="../elements/id-6d2e9a41c3b84f07a1e5c92b7d30f418.html" target="element" title="0..* is performed in 1">0..* is performed in 1</a></td>
+											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
+											<td><a href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html" target="element"> execution</a></td>
+											<td><a href="../elements/id-b5f98772aead4deea735f885c4ba46d3.html" target="element"> entoli context (entoli studio)</a></td>
+										</tr><tr>
 											<td><a href="../elements/id-dca677a261024bfcbf525e90507982e2.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
 											<td><a href="../elements/id-64f19a334e974108b93f342c683cf1d5.html" target="element"> execution-configuration</a></td>

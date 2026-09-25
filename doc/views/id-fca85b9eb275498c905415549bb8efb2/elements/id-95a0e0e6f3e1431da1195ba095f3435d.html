@@ -49,22 +49,22 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="documentation">
 						<div class="convertlinks documentation" style="white-space:pre-wrap">DEFINITIE
-Een Execution Step Specification is de vooraf vastgelegde specificatie van &#233;&#233;n uitvoeringsstap binnen een Orchestration Specification. De stap bepaalt welke Agent Intent wordt aangeroepen en kan vooraf worden geconfigureerd met een Model Assignment.
+Een Execution Step Specification is de vooraf vastgelegde specificatie van &#233;&#233;n uitvoeringsstap binnen een Orchestration Specification. De inhoud van de stap, waaronder de Agent Intent die zij aanroept, wordt vastgelegd in versies; een gepubliceerde versie is onveranderlijk. Welke Model Assignment bij de stap wordt gebruikt, legt iedere Entoli Context die de stap gebruikt zelf vast.
 
 DOEL
 Het expliciet en herhaalbaar specificeren van &#233;&#233;n afzonderlijke uitvoeringsstap, zodat dezelfde stapconfiguratie nul, &#233;&#233;n of meerdere keren als concrete Execution kan worden uitgevoerd.
 
 LEIDENDE VRAAG
-Welke Agent Intent moet in deze stap worden uitgevoerd en welke vooraf bepaalde configuratie geldt daarvoor?
+Welke Agent Intent moet in deze stap worden uitgevoerd, en welke gepubliceerde versie van de stap geldt?
 
 RELATIES
-Iedere Execution Step Specification behoort tot precies &#233;&#233;n Orchestration Specification; een Orchestration Specification bevat &#233;&#233;n of meerdere Execution Step Specifications. Iedere Execution Step Specification roept precies &#233;&#233;n Agent Intent aan; een Agent Intent kan door nul of meerdere Execution Step Specifications worden aangeroepen. Een Execution Step Specification kan door maximaal &#233;&#233;n Model Assignment vooraf worden geconfigureerd; een Model Assignment kan nul of meerdere Execution Step Specifications configureren. Een Execution Step Specification kan nul of meerdere keren als Execution worden uitgevoerd; iedere Execution is de concrete uitvoering van precies &#233;&#233;n Execution Step Specification.
+Iedere Execution Step Specification behoort tot precies &#233;&#233;n Orchestration Specification; een Orchestration Specification bevat &#233;&#233;n of meerdere Execution Step Specifications. Iedere versie van een Execution Step Specification roept precies &#233;&#233;n Agent Intent aan; een Agent Intent kan door nul of meerdere versies worden aangeroepen. Binnen &#233;&#233;n Entoli Context wordt een Execution Step Specification door maximaal &#233;&#233;n Model Assignment geconfigureerd; over alle Entoli Contexts heen kan zij door nul of meer Model Assignments worden geconfigureerd. De Execution Step Specification verwijst zelf niet naar een Model Assignment. Een gepubliceerde versie kan nul of meerdere keren als Execution worden uitgevoerd; iedere Execution is de concrete uitvoering van precies &#233;&#233;n gepubliceerde versie van precies &#233;&#233;n Execution Step Specification.
 
 BEPERKINGEN
 Een Execution Step Specification is geen Execution en bevat geen runtime-resultaat. Zij vertegenwoordigt &#233;&#233;n gespecificeerde stap en niet de volledige orchestratie. De interne werking van de aangeroepen Agent Intent behoort evenmin tot de Execution Step Specification.
 
 INVARIANTEN
-Iedere Execution Step Specification behoort tot precies &#233;&#233;n Orchestration Specification en roept precies &#233;&#233;n Agent Intent aan. Indien een Model Assignment vooraf is bepaald, is maximaal &#233;&#233;n Model Assignment aan de Execution Step Specification gekoppeld. Een concrete Execution is altijd herleidbaar tot precies &#233;&#233;n Execution Step Specification.
+Iedere Execution Step Specification behoort tot precies &#233;&#233;n Orchestration Specification. Iedere versie roept precies &#233;&#233;n Agent Intent aan, en een gepubliceerde versie wordt nooit meer gewijzigd. Binnen &#233;&#233;n Entoli Context is maximaal &#233;&#233;n Model Assignment aan de Execution Step Specification gekoppeld. Een concrete Execution is altijd herleidbaar tot precies &#233;&#233;n gepubliceerde versie van precies &#233;&#233;n Execution Step Specification.
 
 Voorbeelden:
 - Stap 10 &#8212; Analyseer domeinuitspraken &#8212; Gespecificeerde stap die het Agent Intent Analyseer domeinuitspraken van de NIAM-analist aanroept.
@@ -99,11 +99,11 @@ Voorbeelden:
 																</tr><tr id="used-in-views-id-9af041ed1c474511bfe81f2be872945d">
 																	<td><a href="../views/id-9af041ed1c474511bfe81f2be872945d.html" target="view" title="tenant-conceptueel-datamodel"> tenant-conceptueel-datamodel </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
-																</tr><tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
-																	<td><a href="../views/id-80862bce335d49df81cf62aaaf626834.html" target="view" title="entoli-conceptueel-datamodel_v2"> entoli-conceptueel-datamodel_v2 </a></td>
-																	<td><span class="i18n-viewpoint-" /></td>
 																</tr><tr id="used-in-views-id-cbd780d82d40493fa36ca540fd74bf41">
 																	<td><a href="../views/id-cbd780d82d40493fa36ca540fd74bf41.html" target="view" title="logical-instances-bedrijfsobjecten"> logical-instances-bedrijfsobjecten </a></td>
+																	<td><span class="i18n-viewpoint-" /></td>
+																</tr><tr id="used-in-views-id-80862bce335d49df81cf62aaaf626834">
+																	<td><a href="../views/id-80862bce335d49df81cf62aaaf626834.html" target="view" title="entoli-conceptueel-datamodel_v2"> entoli-conceptueel-datamodel_v2 </a></td>
 																	<td><span class="i18n-viewpoint-" /></td>
 																</tr>
 							</tbody>
@@ -136,14 +136,14 @@ Voorbeelden:
 											<td><a href="../elements/id-fc519c97c3c04fb3b43a50b72f0aef38.html" target="element"> agent intent</a></td>
 											<td><a href="../elements/id-95a0e0e6f3e1431da1195ba095f3435d.html" target="element"> execution step specification</a></td>
 										</tr><tr>
-											<td><a href="../elements/id-1c71d1b3599b4163a5f573d06a429888.html" target="element" title="0..1 configures 0..*">0..1 configures 0..*</a></td>
+											<td><a href="../elements/id-1c71d1b3599b4163a5f573d06a429888.html" target="element" title="0..* configures 0..*">0..* configures 0..*</a></td>
 											<td><span class="i18n-elementtype-AssociationRelationship" /></td>
 											<td><a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment</a></td>
 											<td><a href="../elements/id-95a0e0e6f3e1431da1195ba095f3435d.html" target="element"> execution step specification</a></td>
 										</tr><tr>
 											<td><a href="../elements/id-3234f8141ad24c61aeadb365d0d0a4d4.html" target="element" title=""></a></td>
 											<td><span class="i18n-elementtype-CompositionRelationship" /></td>
-											<td><a href="../elements/id-64f19a334e974108b93f342c683cf1d5.html" target="element"> execution-configuration</a></td>
+											<td><a href="../elements/id-7e3c1f0a9b2d4c58a6e41d2f0b9c3a71.html" target="element"> orchestration-definition</a></td>
 											<td><a href="../elements/id-95a0e0e6f3e1431da1195ba095f3435d.html" target="element"> execution step specification</a></td>
 										</tr>
 							</tbody>

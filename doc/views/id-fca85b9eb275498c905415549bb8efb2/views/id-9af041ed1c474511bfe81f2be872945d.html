@@ -40,7 +40,7 @@
 				  		<area shape="rect" coords="1618,1204,1738,1259" href="../elements/id-7970b9b7176341039f2e4af29e4d2d3a.html"  target="element">
 				  		<area shape="rect" coords="1762,964,1882,1019" href="../elements/id-4215cbb5ea2e4b41bf3966ed673a5740.html"  target="element">
 				  		<area shape="rect" coords="2314,652,2555,707" href="../elements/id-0a67e6f41ebb45b9b7a3fc306bc08cd1.html"  target="element">
-				  		<area shape="rect" coords="1762,541,1882,596" href="../elements/id-2e25dc5832d04ffb907846209ef549b7.html"  target="element">
+				  		<area shape="rect" coords="1762,490,1882,545" href="../elements/id-2e25dc5832d04ffb907846209ef549b7.html"  target="element">
 				  		<area shape="rect" coords="2158,541,2278,596" href="../elements/id-3208e79172454362b69c0661b8e55589.html"  target="element">
 				  		<area shape="rect" coords="1474,256,1594,311" href="../elements/id-abdf3fc1a9504d1eb988ab196a0ecf67.html"  target="element">
 				  		<area shape="rect" coords="1641,844,1882,911" href="../elements/id-2e8c595bfedb4d8ba8cedbdf2eb284f2.html"  target="element">
@@ -108,7 +108,7 @@ LEESWIJZE
 De view kan globaal van links naar rechts en van boven naar beneden worden gelezen. Links ligt de semantische grondslag: Knowledge Domain, Knowledge Specification, Canon, Semantic Model, Element en Relationship. Centraal staan de professionele functie en haar contract: Agent, Agent Intent, Rules, Reasoning Mode en Execution Regime. Rechts ligt de operationele configuratie: Operational Context, Orchestration Specification, Execution Step Specification, LLM Model en Model Assignment. Onderaan wordt zichtbaar hoe deze onderdelen voor concrete uitvoering samenkomen in Instruction Set, Execution, Human Context, Handoff en Artifact.
 
 KERNSTRUCTUUR 
-Een Knowledge Specification specificeert kennis voor een Knowledge Domain, kan door een Canon worden gerealiseerd en scopet Agent Packages. Een Canon definieert een Semantic Model en canonieke Rules. Een Agent Package bevat Agents; een Agent exposeert Agent Intents. Reasoning Mode en Rules begrenzen het gedrag van Agent en Agent Intent. Voor cognitieve uitvoering worden Source Regime, Synthesis Regime en Task Regime gebruikt als onderscheiden dimensies van Execution Regime. Een Operational Context definieert Orchestration Specifications, die uit Execution Step Specifications bestaan. Een Execution Step Specification roept een Agent Intent aan en kan met een Model Assignment worden geconfigureerd. Voor een concrete Execution wordt een Instruction Set samengesteld uit de relevante semantiek, regels en context. De Execution kan Artifacts en een Handoff produceren.
+Een Knowledge Specification specificeert kennis voor een Knowledge Domain, kan door een Canon worden gerealiseerd en scopet Agent Packages. Een Canon definieert een Semantic Model en canonieke Rules. Een Agent Package bevat Agents; een Agent exposeert Agent Intents. Reasoning Mode en Rules begrenzen het gedrag van Agent en Agent Intent. Voor cognitieve uitvoering worden Source Regime, Synthesis Regime en Task Regime gebruikt als onderscheiden dimensies van Execution Regime. Een Entoli Context gebruikt herbruikbare Orchestration Specifications, die uit Execution Step Specifications bestaan. Een Execution Step Specification roept een Agent Intent aan en kan met een Model Assignment worden geconfigureerd. Voor een concrete Execution wordt een Instruction Set samengesteld uit de relevante semantiek, regels en context. De Execution kan Artifacts en een Handoff produceren.
 
 ARCHITECTUURBETEKENIS 
 De view maakt een fundamentele scheiding zichtbaar tussen betekenis, professionele capability, configuratie en runtime. Een Agent is niet de Execution; een Agent Intent is niet de Execution Step Specification; een Semantic Model is niet het Instruction Set; een Orchestration Specification is niet een runtimeproces; en een Artifact is niet hetzelfde als een Handoff. Juist deze scheidingen maken het mogelijk om dezelfde canon, professionele functies en configuraties gecontroleerd in meerdere uitvoeringen en klantcontexten toe te passen.
@@ -182,7 +182,7 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
 											</tr>
 
 													<tr>
-													    <td> <a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule </a> </td>
+													    <td> <a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> regime rule </a> </td>
 													    <td> <a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element" class="i18n-elementtype-BusinessObject">
 													    </a> </td>
 													</tr>
@@ -408,7 +408,7 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
 																				<td> <a href="../elements/id-91a5511abcf545e198f98a4d4559ec82.html" target="element"> 0..* governs 1 </a> </td>
 																				<td> <a href="../elements/id-91a5511abcf545e198f98a4d4559ec82.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																				</a> </td>
-																				<td> <a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> core rule </a> </td>
+																				<td> <a href="../elements/id-697686712c9f40faa2f23c8994eaef05.html" target="element"> regime rule </a> </td>
 																				<td> <a href="../elements/id-4cab30c96f5d468d98f0c6624bc3bd5d.html" target="element"> execution regime </a> </td>
 																			</tr>
 
@@ -458,7 +458,7 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
 																		<td> <a href="../elements/id-03e98ce0196345b599d814c30d4a986a.html" target="element"> canon rule </a> </td>
 																	</tr>
 																	<tr>
-																		<td> <a href="../elements/id-c6feabfe08b7400c8aeede4d57ab03bc.html" target="element"> 0..* defines 1 </a> </td>
+																		<td> <a href="../elements/id-c6feabfe08b7400c8aeede4d57ab03bc.html" target="element"> 0..* are defined by 1 </a> </td>
 																		<td> <a href="../elements/id-c6feabfe08b7400c8aeede4d57ab03bc.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																		</a> </td>
 																		<td> <a href="../elements/id-6d66d6cdd2534270b0f3732e4ecec8cc.html" target="element"> canon </a> </td>
@@ -707,7 +707,7 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
 																	</tr>
 
 																	<tr>
-																		<td> <a href="../elements/id-1c71d1b3599b4163a5f573d06a429888.html" target="element"> 0..1 configures 0..* </a> </td>
+																		<td> <a href="../elements/id-1c71d1b3599b4163a5f573d06a429888.html" target="element"> 0..* configures 0..* </a> </td>
 																		<td> <a href="../elements/id-1c71d1b3599b4163a5f573d06a429888.html" target="element" class="i18n-elementtype-AssociationRelationship">
 																		</a> </td>
 																		<td> <a href="../elements/id-3208e79172454362b69c0661b8e55589.html" target="element"> model assignment </a> </td>
