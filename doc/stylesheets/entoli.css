@@ -39,6 +39,15 @@
   }
 }
 
+/* Material verbergt de tabs onder 76.25em (1220px) en toont dan alleen het
+   hamburgermenu. Met Windows-schaling (125–150%) valt een gewoon
+   laptopvenster daaronder. Houd de tabs zichtbaar vanaf 60em (960px). */
+@media screen and (min-width: 60em) and (max-width: 76.234375em) {
+  .md-tabs {
+    display: block;
+  }
+}
+
 /* Zeer subtiele markering dat een navigatie-item de site verlaat. Het
    target-attribuut wordt gezet door de hook in scripts/external_links.py. */
 .md-tabs__link[target="_blank"]::after,

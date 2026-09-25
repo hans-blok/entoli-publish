@@ -22,6 +22,11 @@ site_url: "https://hans-blok.github.io/entoli-publish/"
 docs_dir: "doc"
 site_dir: "site"
 
+# De BMP-bronnen van de TDM-diagrammen (samen ~40 MB) blijven buiten de site;
+# de pagina's gebruiken de PNG-versies ernaast.
+exclude_docs: |
+  fysiek-datamodel/*.bmp
+
 # ------------------------------------------------------------
 # 3. Theme & Presentation
 # Entoli house style with Material theme
@@ -145,6 +150,7 @@ nav:
   - Fysiek datamodel:
       - TDM developer reference: fysiek-datamodel/tdm-developer-reference.md
       - Kleurgids GraphML: fysiek-datamodel/graphml-colour-guide.md
+      - Diagrammen: fysiek-datamodel/diagrammen.md
 
 # ------------------------------------------------------------
 # 8. Extra Configuration
