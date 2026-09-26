@@ -151,6 +151,7 @@ nav:
       - Naslag voor ontwikkelaars: fysiek-datamodel/tdm-developer-reference.md
       - Diagrammen: fysiek-datamodel/diagrammen.md
   - Regels:
+      - regels/index.md
       - Operational Rules: regels/entoli-agent-development.operational-rules.nl.html
       - Canon Rules SAFe: regels/scaled-agile-framework.canon-rules.nl.html
 
