@@ -148,9 +148,11 @@ nav:
       - LLM-constraints: canon-datamodelleren/llm-constraints.md
       - Canon-grafiek: canon-datamodelleren/canon-graph.md
   - Fysiek datamodel:
-      - TDM developer reference: fysiek-datamodel/tdm-developer-reference.md
+      - Naslag voor ontwikkelaars: fysiek-datamodel/tdm-developer-reference.md
       - Kleurgids GraphML: fysiek-datamodel/graphml-colour-guide.md
       - Diagrammen: fysiek-datamodel/diagrammen.md
+  - Regels:
+      - Operational Rules: regels/entoli-agent-development.operational-rules.nl.html
 
 # ------------------------------------------------------------
 # 8. Extra Configuration
