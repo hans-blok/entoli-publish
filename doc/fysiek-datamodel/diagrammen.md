@@ -1,6 +1,6 @@
 # Diagrammen technisch datamodel
 
-Eén diagram per Logical Instance van het technisch datamodel (TDM). De kleuren van de tabellen staan uitgelegd in de [kleurgids](graphml-colour-guide.md); de tabellen zelf in de [naslag voor ontwikkelaars](tdm-developer-reference.md). Klik op een diagram om het op ware grootte te openen.
+Eén diagram per Logical Instance van het technisch datamodel (TDM). De tabellen, de terminologie en de [betekenis van de kleuren](tdm-developer-reference.md#kleuren-in-de-diagrammen) staan in de [naslag voor ontwikkelaars](tdm-developer-reference.md). Klik op een diagram om het op ware grootte te openen.
 
 ## semantic-foundation
 

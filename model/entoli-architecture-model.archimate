@@ -1725,7 +1725,7 @@ Als een Template wordt toegepast op een Artifact, moet het Artifact geclassifice
       <element xsi:type="archimate:BusinessObject" name="regime rule" id="id-697686712c9f40faa2f23c8994eaef05">
         <documentation>DEFINITIE&#xD;
 &#xD;
-Een Core Rule (Kernregel) is een Operational Rule die afkomstig is uit de canon, niet door de gebruiker wijzigbaar is, en die de structurele en gedragsmatige integriteit van precies één Execution Regime waarborgt.&#xD;
+Een regime rule is een Operational Rule die afkomstig is uit de canon, niet door de gebruiker wijzigbaar is, en die de structurele en gedragsmatige integriteit van precies één Execution Regime waarborgt.&#xD;
 &#xD;
 DOEL&#xD;
 &#xD;
@@ -2014,6 +2014,26 @@ Het Reasoning Regime blijft onafhankelijk van de technische mogelijkheden en con
 Een Model Assignment moet het vereiste Reasoning Regime realiseren zonder de semantische betekenis ervan te wijzigen.&#xD;
 </documentation>
       </element>
+      <element xsi:type="archimate:BusinessObject" name="universal rule" id="id-631dae4d85e14ae3b012542de8f8ea6a">
+        <documentation>DEFINITIE&#xD;
+Een Universal Rule is een specifieke operationele regel die bij iedere uitvoering van een Agent Intent van toepassing is, onafhankelijk van het gekozen uitvoeringsregime. Het Large Language Model interpreteert de regel en past haar toe wanneer de beschreven voorwaarde optreedt.&#xD;
+&#xD;
+DOEL&#xD;
+Concreet gedrag vastleggen dat voor alle Agent Intents geldt, zonder het per regime of Agent Intent opnieuw te specificeren.&#xD;
+&#xD;
+LEIDENDE VRAAG&#xD;
+Welk concreet gedrag moet het Large Language Model bij iedere uitvoering toepassen wanneer de beschreven voorwaarde optreedt?&#xD;
+&#xD;
+RELATIES&#xD;
+Een Universal Rule wordt bij het samenstellen van iedere Instruction Set betrokken. Zij heeft geen relatie met een uitvoeringsregime nodig om van toepassing te zijn. Haar grondslag ligt in de constitutie; de constitutie blijft buiten het datamodel.&#xD;
+&#xD;
+BEPERKINGEN&#xD;
+Een Universal Rule is een operationele uitwerking, geen algemene constitutieregel en geen Regime Rule. Universele toepasselijkheid betekent niet dat de voorgeschreven handeling bij iedere uitvoering plaatsvindt.&#xD;
+&#xD;
+INVARIANTEN&#xD;
+Iedere actuele Universal Rule wordt in iedere Instruction Set opgenomen. Haar toepasselijkheid hangt niet af van Agent, Agent Intent of uitvoeringsregime. Het Large Language Model beoordeelt de beschreven voorwaarde en volgt de regel wanneer die voorwaarde is vervuld.&#xD;
+</documentation>
+      </element>
     </folder>
     <folder name="processes" id="id-c486479a6d7646ebac80a85c0438998c">
       <element xsi:type="archimate:BusinessProcess" name="advies over semantische ontwikkeling" id="id-eb4b465c43174e4893fd6149d7b4ee55"/>
@@ -2237,26 +2257,6 @@ Een Entoli Agent Rule is niet de Canon Rule zelf: de Canon Rule ontleent haar ge
 &#xD;
 INVARIANTEN&#xD;
 Iedere Entoli Agent Rule behoort tot precies één Entoli Agent en heeft maximaal één Canon Rule als normatieve grondslag. Zij blijft binnen de boundary van haar Entoli Agent en, wanneer zij een Canon Rule concretiseert, binnen het geldigheidsbereik daarvan. Zij mag die Canon Rule concretiseren, maar nooit verzwakken, overschrijven of tegenspreken.</documentation>
-    </element>
-    <element xsi:type="archimate:BusinessObject" name="universal rule" id="id-631dae4d85e14ae3b012542de8f8ea6a">
-      <documentation>DEFINITIE&#xD;
-Een Universal Rule is een specifieke operationele regel die bij iedere uitvoering van een Agent Intent van toepassing is, onafhankelijk van het gekozen uitvoeringsregime. Het Large Language Model interpreteert de regel en past haar toe wanneer de beschreven voorwaarde optreedt.&#xD;
-&#xD;
-DOEL&#xD;
-Concreet gedrag vastleggen dat voor alle Agent Intents geldt, zonder het per regime of Agent Intent opnieuw te specificeren.&#xD;
-&#xD;
-LEIDENDE VRAAG&#xD;
-Welk concreet gedrag moet het Large Language Model bij iedere uitvoering toepassen wanneer de beschreven voorwaarde optreedt?&#xD;
-&#xD;
-RELATIES&#xD;
-Een Universal Rule wordt bij het samenstellen van iedere Instruction Set betrokken. Zij heeft geen relatie met een uitvoeringsregime nodig om van toepassing te zijn. Haar grondslag ligt in de constitutie; de constitutie blijft buiten het datamodel.&#xD;
-&#xD;
-BEPERKINGEN&#xD;
-Een Universal Rule is een operationele uitwerking, geen algemene constitutieregel en geen Regime Rule. Universele toepasselijkheid betekent niet dat de voorgeschreven handeling bij iedere uitvoering plaatsvindt.&#xD;
-&#xD;
-INVARIANTEN&#xD;
-Iedere actuele Universal Rule wordt in iedere Instruction Set opgenomen. Haar toepasselijkheid hangt niet af van Agent, Agent Intent of uitvoeringsregime. Het Large Language Model beoordeelt de beschreven voorwaarde en volgt de regel wanneer die voorwaarde is vervuld.&#xD;
-</documentation>
     </element>
   </folder>
   <folder name="Application" id="id-1b7f4bd17a8a4ccca4de4ed0056a7792" type="application">
@@ -3254,6 +3254,7 @@ Dat brengt drie commerciële beloften samen: productiviteit, schaalbaarheid en v
     <element xsi:type="archimate:TriggeringRelationship" id="id-6b9b6fa93c144e368ab18c3172649a07" source="id-7e3c1f0a9b2d4c58a6e41d2f0b9c3a71" target="id-64f19a334e974108b93f342c683cf1d5"/>
     <element xsi:type="archimate:TriggeringRelationship" id="id-3184ff219ede456ea968f355187a0211" source="id-64f19a334e974108b93f342c683cf1d5" target="id-bcfa69ae40094ba780197b67f2a9adc5"/>
     <element xsi:type="archimate:CompositionRelationship" id="id-bc3c84f696fb463ea2010616a9980689" source="id-8c1dee167ccc432f98eba888e90ba805" target="id-631dae4d85e14ae3b012542de8f8ea6a"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-755a518897994e2bbbcd5ade75cead55" source="id-d9f34a0d340843fdb0bd11abfca6ed80" target="id-631dae4d85e14ae3b012542de8f8ea6a"/>
   </folder>
   <folder name="Views" id="id-ca7ad8080a214939a0e88c60169a9612" type="diagrams">
     <folder name=".prelimanary" id="id-b6a723fd32f9454b94c62fd4198f1e82">
@@ -4968,11 +4969,6 @@ no execution</documentation>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-cf5f89ecf0b44e4ca4e9e4b68d5d1acb" targetConnections="id-21aa8a8694de4a23bcb0b1abed07a96b id-37d2616d92274da993eb8dfc9ba56c89 id-2c925cc5865f42969dc29c7f3ac073a8" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
             <bounds x="300" y="330" width="120" height="55"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-534987c4891d4cbdb50207f4defdd7d4" source="id-cf5f89ecf0b44e4ca4e9e4b68d5d1acb" target="id-1b43ceb9ef194cf1b987b3758794a452" archimateRelationship="id-bcb53d4d82d04e49aa41d9c62996e6ce">
-              <bendpoint startX="-48" startY="-117" endX="-138" endY="-9"/>
-              <bendpoint startX="24" startY="-123" endX="-150" endY="-9"/>
-              <bendpoint startX="-48" startY="-129" endX="-138" endY="-21"/>
-            </sourceConnection>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-f08d4d07fe2c45b38f90e45f3c1e8430" targetConnections="id-597e4fc527c44e6ba1bf9c94cb8b9015 id-28140345b7664abfa6993051f07c1f80" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
             <bounds x="192" y="138" width="120" height="55"/>
@@ -5011,18 +5007,22 @@ no execution</documentation>
               <sourceConnection xsi:type="archimate:Connection" id="id-6e14cc1261f04b4fa3010281f9a3c6ae" source="id-d862848773744017b4eb1aba1289f6dd" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-d361fdf90c0e4085aa846316dc7955b9"/>
             </child>
           </child>
-          <child xsi:type="archimate:DiagramObject" id="id-1b43ceb9ef194cf1b987b3758794a452" targetConnections="id-9d70454faef442398407ae7022b34554 id-8e8bd2d5737041d896387a48e7daef5b id-534987c4891d4cbdb50207f4defdd7d4" textPosition="2" archimateElement="id-d9f34a0d340843fdb0bd11abfca6ed80">
-            <bounds x="372" y="204" width="301" height="91"/>
+          <child xsi:type="archimate:DiagramObject" id="id-1b43ceb9ef194cf1b987b3758794a452" targetConnections="id-9d70454faef442398407ae7022b34554 id-8e8bd2d5737041d896387a48e7daef5b" textPosition="2" archimateElement="id-d9f34a0d340843fdb0bd11abfca6ed80">
+            <bounds x="372" y="204" width="433" height="91"/>
             <sourceConnection xsi:type="archimate:Connection" id="id-c49dfb015a02436b924528239cdda16a" source="id-1b43ceb9ef194cf1b987b3758794a452" target="id-0a3cbdf7386d4c7386934f2beb45388b" archimateRelationship="id-6612bef55bdd4e358326f6b6d76ee891"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-127536ea7e484856a6a83a2baf4f44ef" source="id-1b43ceb9ef194cf1b987b3758794a452" target="id-c954e04b62a24f43bf2bf7747cf0a002" archimateRelationship="id-755a518897994e2bbbcd5ade75cead55"/>
             <child xsi:type="archimate:DiagramObject" id="id-d8d8d8621ef54a45b6dad7ba9528a05c" targetConnections="id-1db6aa32e2074a189a822943b186fe83" textPosition="1" archimateElement="id-03e98ce0196345b599d814c30d4a986a">
               <bounds x="36" y="24" width="120" height="43"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-8e8bd2d5737041d896387a48e7daef5b" source="id-d8d8d8621ef54a45b6dad7ba9528a05c" target="id-1b43ceb9ef194cf1b987b3758794a452" archimateRelationship="id-6b29455302464259886e4c5a186773db"/>
             </child>
             <child xsi:type="archimate:DiagramObject" id="id-0a3cbdf7386d4c7386934f2beb45388b" targetConnections="id-c49dfb015a02436b924528239cdda16a" textPosition="1" archimateElement="id-697686712c9f40faa2f23c8994eaef05">
-              <bounds x="168" y="24" width="120" height="43"/>
+              <bounds x="300" y="24" width="108" height="43"/>
               <sourceConnection xsi:type="archimate:Connection" id="id-da778c11eca340c6b0181bda8e9187aa" source="id-0a3cbdf7386d4c7386934f2beb45388b" target="id-6e1d18c8a3d44e09b0381e9805d026b1" archimateRelationship="id-91a5511abcf545e198f98a4d4559ec82">
                 <bendpoint startX="288" startY="-3" endX="6" endY="142"/>
               </sourceConnection>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-c954e04b62a24f43bf2bf7747cf0a002" targetConnections="id-127536ea7e484856a6a83a2baf4f44ef" textPosition="1" archimateElement="id-631dae4d85e14ae3b012542de8f8ea6a">
+              <bounds x="180" y="24" width="109" height="43"/>
             </child>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-f13fc2c1f839407689f18b240eacff12" targetConnections="id-00ade29fa2274fb092fdb8d3d1d5982d" textPosition="1" archimateElement="id-2e25dc5832d04ffb907846209ef549b7">

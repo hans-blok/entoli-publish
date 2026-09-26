@@ -149,10 +149,10 @@ nav:
       - Canon-grafiek: canon-datamodelleren/canon-graph.md
   - Fysiek datamodel:
       - Naslag voor ontwikkelaars: fysiek-datamodel/tdm-developer-reference.md
-      - Kleurgids GraphML: fysiek-datamodel/graphml-colour-guide.md
       - Diagrammen: fysiek-datamodel/diagrammen.md
   - Regels:
       - Operational Rules: regels/entoli-agent-development.operational-rules.nl.html
+      - Canon Rules SAFe: regels/scaled-agile-framework.canon-rules.nl.html
 
 # ------------------------------------------------------------
 # 8. Extra Configuration

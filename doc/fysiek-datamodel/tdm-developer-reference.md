@@ -1,100 +1,121 @@
 # Technisch datamodel — naslag voor ontwikkelaars
 
-Geschreven voor: ontwikkelaars die bouwen op de Entoli PostgreSQL-database, die bevragen of die laden.
+Geschreven voor: ervaren architecten en ontwikkelaars die bouwen op de Entoli PostgreSQL-database, die bevragen of die laden.
 
-Dit document beschrijft elke tabel van de huidige PostgreSQL Technical Data Models (TDM), gegroepeerd per Logical Instance. De TDM-JSON-bestanden zijn de bron voor de fysieke structuur. De Logical Data Models (LDM) zijn de bron voor de logische namen van entiteiten en relaties. De tabeldefinities ("Eén rij") zijn samenvattingen die voor deze naslag zijn geschreven; de definities in het LDM blijven leidend. Dit document wordt niet door een script in de repository gegenereerd en niet automatisch bijgewerkt: als een TDM verandert, moet dit document worden herzien.
+Aanvulling op de [diagrammen](diagrammen.md): die tonen tabellen, kolommen, typen en foreign keys. Dit document geeft wat de diagrammen niet laten zien: de betekenis van tabellen en kolommen, de verwijzingen tussen instanties, de terminologie en de kleuren.
 
-> **Let op:** dit is een vertaling van de Engelse versie. Er kunnen vertaalfouten in zitten. Voorbeelddata, kolomnamen, constraintnamen en de namen van LDM-entiteiten en -relaties zijn onvertaald gebleven.
+!!! warning "Er kunnen fouten in zitten"
+    De omschrijvingen zijn met de hand geschreven op basis van de LDM-definities. Bij twijfel zijn de TDM- en LDM-bestanden in `entoli-canon` leidend.
 
-## Zo lees je dit document
+## Opbouw
 
-- **Verplicht** `ja` betekent dat de kolom `NOT NULL` is.
-- **Sleutel** `PK` markeert een primaire-sleutelkolom en `FK` een kolom van een foreign key.
-- **Logische verwijzing** markeert een codekolom die verwijst naar een rij in een andere Logical Instance. Er zit geen foreign key achter: PostgreSQL dwingt de verwijzing niet af. De applicatie houdt haar consistent.
-- Constraintnamen worden opgebouwd uit de tabelcode (`PK_<table>`, `FK_<child>_<parent>_<nn>`, `UC_<table>_<nn>`, `CK_<table>_<nn>`); zie `physical-naming-convention.md` (niet gepubliceerd op deze site).
-- De relatie die bij een foreign key of een logische verwijzing staat, is de LDM-relatie die het TDM als bron vastlegt.
-- Foreign keys gebruiken `ON DELETE NO ACTION` en `ON UPDATE NO ACTION`, tenzij anders vermeld.
+Het model is verdeeld over vijf Logical Instances. Elke instantie heeft een eigen TDM en een eigen reeks tabelcodes. Binnen een instantie zijn verwijzingen foreign keys; tussen instanties zijn het grensverwijzingen (zie [Terminologie](#terminologie)).
 
-**Voorbeeldrijen zijn illustratief.** Het is geen database-inhoud en geen voorgeschreven seed data. Eén scenario loopt door alle tabellen: de NIAM Analyst inventariseert bronnen, waarna de Logical Data Modeller een logisch datamodel afleidt. Rijen die naar elkaar verwijzen gebruiken dezelfde sleutels, ook over Logical Instances heen. Waarden van surrogaatsleutels zijn illustratief; de database kent ze toe. Codes van referentietabellen komen uit de LDM-posities waar het LDM die definieert. Waar uit de bronnen geen waarde volgt, is een herkenbare fictieve waarde gebruikt en staat er een opmerking bij. Lange tekst is ingekort met `…`; `↵` markeert een regeleinde.
-
-## Bronnen
-
-| Logical Instance | Tabelcodes | Technical Data Model | Versie | Versie Logical Data Model |
+| Logical Instance | Inhoud | Tabelcodes | TDM-versie | LDM-versie |
 |---|---|---|---|---|
-| semantic-foundation | 100–199 | `entoli-agent-development-semantic-foundation-postgresql` | 2.0.0 | 2.0.0 |
-| agent-definition | 200–299 | `entoli-agent-development-agent-definition-postgresql` | 2.0.0 | 2.0.0 |
-| execution-configuration | 300–399 | `entoli-agent-development-execution-configuration-postgresql` | 2.2.0 | 2.2.0 |
-| work-execution | 400–499 | `entoli-agent-development-work-execution-postgresql` | 4.0.0 | 4.0.0 |
-| orchestration-definition | 500–599 | `entoli-agent-development-orchestration-definition-postgresql` | 4.0.0 | 4.0.0 |
+| [semantic-foundation](#semantic-foundation) | De canon: semantisch model (elementen en relaties), kennisdomeinen, execution profiles en de regels uit de canon. | 100–199 | 2.0.0 | 2.0.0 |
+| [agent-definition](#agent-definition) | De agents: packages, agents, agent intents met hun instructies, en de agentregels. | 200–299 | 2.0.0 | 2.0.0 |
+| [execution-configuration](#execution-configuration) | De uitvoeringsomgeving: Entoli Contexts, LLM-providers, -accounts en -modellen, en de modelkeuze per stap. | 300–399 | 2.2.0 | 2.2.0 |
+| [work-execution](#work-execution) | Het werk zelf: instruction sets en wat erin is opgenomen, executions, artefacten, handoffs en menselijke invoer. | 400–499 | 4.0.0 | 4.0.0 |
+| [orchestration-definition](#orchestration-definition) | De orchestraties: specificaties, stappen, en hun geversioneerde definities en volgorde. | 500–599 | 4.0.0 | 4.0.0 |
 
-## Inhoud
+## Terminologie
 
-- [semantic-foundation](#semantic-foundation) (22 tabellen): `artifact_type`, `canon`, `canon_rule`, `element`, `element_canon_rule`, `element_regime_rule`, `element_universal_rule`, `execution_profile`, `knowledge_domain`, `knowledge_specification`, `ref_development_phase`, `ref_reasoning_regime`, `ref_rule_status`, `ref_rule_type`, `ref_source_regime`, `ref_synthesis_regime`, `ref_task_regime`, `regime_rule`, `relationship`, `semantic_model`, `template`, `universal_rule`
-- [agent-definition](#agent-definition) (8 tabellen): `agent`, `agent_intent`, `agent_package`, `entoli_agent_intent_rule`, `entoli_agent_rule`, `intent_instruction`, `ref_rule_status`, `ref_rule_type`
-- [execution-configuration](#execution-configuration) (9 tabellen): `entoli_context`, `entoli_context_orchestration_specification`, `llm_account`, `llm_model`, `llm_provider`, `llm_provider_thinking_effort`, `model_assignment`, `ref_thinking_effort`, `step_model_selection`
-- [work-execution](#work-execution) (17 tabellen): `artifact`, `artifact_derivation`, `execution`, `handoff`, `human_context`, `human_context_parameter`, `instruction_set`, `instruction_set_artifact`, `instruction_set_element`, `instruction_set_entoli_agent_intent_rule`, `instruction_set_intent_instruction`, `instruction_set_parameter_value`, `instruction_set_regime_rule`, `instruction_set_relationship`, `instruction_set_universal_rule`, `ref_instruction_set_artifact_role`, `ref_termination_reason`
-- [orchestration-definition](#orchestration-definition) (6 tabellen): `orchestration_specification`, `orchestration_specification_version`, `orchestration_step`, `orchestration_step_definition`, `orchestration_step_precedence`, `orchestration_version_step`
+Deze termen gebruiken we in dit document, in de diagrammen en bij overdracht. Ze gaan over de fysieke tabellen, niet over de logische entiteiten.
+
+| Term | Betekenis |
+|---|---|
+| **Logical Instance** | Afgebakend deel van het model met een eigen LDM en TDM, zoals `work-execution`. Kortweg *instantie*. |
+| **parent-tabel** | Tabel waarnaar een foreign key uit een andere tabel van dezelfde instantie verwijst. |
+| **child-tabel** | Tabel met ten minste één foreign key naar een parent-tabel in dezelfde instantie. |
+| **worteltabel** | Tabel zonder parent: geen foreign key (ook geen verwijzing naar zichzelf) en geen grensverwijzing. |
+| **junction-tabel** | Tabel die een veel-op-veelrelatie of een associatieve entiteit realiseert, zoals `instruction_set_element`. |
+| **referentietabel** | Tabel met de posities van een gesloten classificatie: `id`, code en omschrijving. Naam begint met `ref_`. |
+| **functionele sleutel** | Stabiele, betekenisdragende code die een rij buiten zijn eigen tabel identificeert, afgedwongen met een unique constraint. Grensverwijzingen wijzen altijd naar een functionele sleutel. |
+| **grensverwijzing** | Kolom die met een functionele sleutel verwijst naar een rij in een andere instantie. Er zit geen foreign key achter: de applicatie houdt de verwijzing consistent. |
+| **grensparent** | Tabel waarnaar een grensverwijzing uit een andere instantie wijst. Tegenhanger van parent-tabel, maar over de instantiegrens. |
+| **grenschild** | Tabel met ten minste één grensverwijzing. Tegenhanger van child-tabel, maar over de instantiegrens. |
+| **concreet subtype** | Subtype uit het LDM dat als zelfstandige tabel is gematerialiseerd, met de kolommen van het supertype erin. Er is geen supertypetabel; zo zijn `canon_rule`, `regime_rule` en `universal_rule` drie losse tabellen. |
+| **surrogaatsleutel** | Betekenisloze `integer`-sleutel die de database toekent, meestal `<tabel>_id`. |
+
+Rollen sluiten elkaar niet uit: `instruction_set` is bijvoorbeeld tegelijk parent-tabel en grenschild. Per tabel staan hieronder alle rollen.
+
+## Conventies
+
+- **Sleutel**: `PK` primaire sleutel, `FK` deel van een foreign key, `UK` deel van een unique constraint, `GV` grensverwijzing.
+- Constraintnamen volgen de tabelcode: `PK_<tabel>`, `FK_<child>_<parent>_<nn>`, `UC_<tabel>_<nn>`, `CK_<tabel>_<nn>`. Alle foreign keys zijn `NO ACTION`.
+- Kolommen met de naam `status`, `data_type` of `content_format` zijn vrije tekst: het model kent er geen codelijst voor.
+- **Publicatiepatroon.** `model_assignment`, `orchestration_specification_version` en `orchestration_step_definition` hebben een `publication_timestamp`. Leeg betekent in bewerking; gevuld betekent gepubliceerd en onveranderlijk. Een wijziging is een nieuwe rij. De database dwingt die onveranderlijkheid niet af.
+- **UUID-codes.** Versies en instruction sets hebben een `uuid`-code die bij aanmaak wordt toegekend en nooit verandert. Andere instanties verwijzen met die code.
+
+## Kleuren in de diagrammen
+
+De [diagrammen](diagrammen.md) geven elke tabel één vulkleur. Omdat een tabel meerdere rollen kan hebben, kiest de renderer de eerste klasse die van toepassing is, in de volgorde van deze tabel. De rand is altijd grijsblauw; foreign-keylijnen zijn grijsblauw.
+
+| Volgorde | Vulklasse | Kleur | Term | Wanneer |
+|---|---|---|---|---|
+| 1 | `junction` | wit | junction-tabel | De tabel realiseert een relatie of een associatieve entiteit. |
+| 2 | `reference` | groen | referentietabel | Referentie-entiteit, of een naam die begint met `ref_`. |
+| 3 | `cross-instance-parent` | sterk roze | grensparent | Een grensverwijzing uit een andere instantie wijst naar een kolom van deze tabel. |
+| 4 | `cross-instance-child` | lichtroze | grenschild | De tabel heeft een grensverwijzing. |
+| 5 | `without-parents` | geel | worteltabel | Geen foreign key (een verwijzing naar zichzelf telt als foreign key) en geen grensverwijzing. |
+| 6 | `remaining` | lichtblauw | overige tabel | Alle andere tabellen. |
+
+Gevolgen van die volgorde: een tabel die zowel grensparent als grenschild is, wordt sterk roze. Een junction- of referentietabel blijft wit of groen, ook als andere instanties ernaar verwijzen.
+
+Twee kanttekeningen:
+
+- De renderer herkent een grensparent aan het LDM-attribuut waarnaar de grensverwijzing wijst, inclusief geërfde attributen. Verwijst een grensverwijzing naar `rule_code` van het supertype Entoli Rule, dan kleuren alle regeltabellen van die instantie sterk roze, ook een regeltabel waar niemand echt naar verwijst, zoals `entoli_agent_rule`. De rollen per tabel in dit document volgen de werkelijke verwijzing.
+- In de GraphML staat per knoop ook `derived.role`. Dat veld gebruikt nog een ouder schema met vier rollen (`parent`, `reference`, `junction`, `ordinary`) en wijkt af van de vulkleur. Lees de kleur af met de graafeigenschap `presentation.legend`.
 
 ## semantic-foundation
 
-Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` versie 2.0.0, afgeleid van Logical Data Model `entoli-agent-development-semantic-foundation` versie 2.0.0.
+De canon: semantisch model (elementen en relaties), kennisdomeinen, execution profiles en de regels uit de canon. TDM `entoli-agent-development-semantic-foundation-postgresql` versie 2.0.0.
 
-### `artifact_type`
+### `artifact_type` { #semantic-foundation-artifact-type }
 
-**Eén rij:** Eén soort artefact dat een canon definieert, zoals een logisch datamodel of een broninventarisatie.  
-**Tabelcode:** 120 · **LDM-bron:** entiteit **ARTIFACT TYPE** (`artifact-type`)
+Soort professioneel werkproduct dat een canon definieert, zoals een logisch datamodel of een broninventarisatie. Classificeert de artefacten in work-execution en krijgt zijn vorm via templates.
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `artifact_type_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `name` | text | ja |  |
-| `description` | text | nee |  |
-| `canon_id` | integer | ja | FK |
+**Tabelcode** 120 · **Rollen** parent, child, grensparent · **Kleur** sterk roze
 
-**Primaire sleutel:** `PK_120` (`artifact_type_id`)
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `artifact_type_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Functionele sleutel van het artefacttype. |
+| `name` |  | Weergavenaam. |
+| `description` |  | Toelichting op het soort werkproduct. |
+| `canon_id` | FK | De canon die dit artefacttype definieert. → `canon` |
 
-**Uniciteitsconstraints:**
+**Grenschildren** [`artifact.artifact_type_code`](#work-execution-artifact) (work-execution)
 
-- `UC_120_01` (`code`)
-
-**Foreign keys:**
-
-- `FK_120_121_01`: (`canon_id`) → `canon` (`canon_id`) · relatie CANON defines ARTIFACT TYPE (`canon-defines-artifact-type`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | artifact_type_id | code | name | description | canon_id |
 |---|---|---|---|---|
 | 1 | logical-data-model | Logical Data Model | NULL | 1 |
 | 2 | source-survey | Source Survey | A demarcated subset of cited external sources. | 1 |
 
-### `canon`
+</details>
 
-**Eén rij:** Eén canon: een geversioneerd geheel van normatieve kennis dat een semantisch model, regels, artefacttypen en templates definieert.  
-**Tabelcode:** 121 · **LDM-bron:** entiteit **CANON** (`canon`)
+### `canon` { #semantic-foundation-canon }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `canon_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `name` | text | ja |  |
-| `description` | text | nee |  |
-| `version` | text | ja |  |
-| `status` | text | ja |  |
-| `semantic_model_id` | integer | ja | FK |
+Autoritatieve semantische grondslag van een domein: een geversioneerd geheel van normatieve kennis dat precies één semantisch model definieert, met de bijbehorende canon rules, artefacttypen en templates. Tijdens uitvoering niet muteerbaar.
 
-**Primaire sleutel:** `PK_121` (`canon_id`)
+**Tabelcode** 121 · **Rollen** parent, child · **Kleur** lichtblauw
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `canon_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Functionele sleutel van de canon. |
+| `name` |  | Weergavenaam. |
+| `description` |  | Toelichting op de canon. |
+| `version` |  | Versie van de canon als tekst, bijvoorbeeld `2.6.0`. |
+| `status` |  | Levenscyclustoestand van de canon. Vrije tekst: er is geen codelijst. |
+| `semantic_model_id` | FK | Het semantisch model dat deze canon definieert. Een canon definieert precies één semantisch model. → `semantic_model` |
 
-- `UC_121_01` (`code`)
-
-**Foreign keys:**
-
-- `FK_121_133_01`: (`semantic_model_id`) → `semantic_model` (`semantic_model_id`) · relatie CANON defines SEMANTIC MODEL (`canon-defines-semantic-model`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | canon_id | code | name | description | version | status | semantic_model_id |
 |---|---|---|---|---|---|---|
@@ -102,34 +123,28 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 
 *Opmerking:* `status` heeft in de bronnen geen codelijst; `current` is een aangenomen waarde.
 
-### `canon_rule`
+</details>
 
-**Eén rij:** Eén regel die een canon stelt. Het is een concrete soort Entoli Rule en draagt de gedeelde regelcode, tekst, status en type.  
-**Tabelcode:** 122 · **LDM-bron:** entiteit **CANON RULE** (`canon-rule`), gematerialiseerd als zelfstandig concreet subtype
+### `canon_rule` { #semantic-foundation-canon-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `entoli_rule_id` | integer | ja | PK |
-| `rule_code` | text | ja |  |
-| `rule_text` | text | ja |  |
-| `reference` | text | nee |  |
-| `canon_id` | integer | ja | FK |
-| `ref_rule_status_id` | integer | ja | FK |
-| `ref_rule_type_id` | integer | ja | FK |
+Regel die haar normatieve gezag ontleent aan de canon en systeemintegriteit en architecturale invarianten bewaakt. Concreet subtype van Entoli Rule: de gedeelde regelkolommen staan in deze tabel zelf; er is geen supertypetabel.
 
-**Primaire sleutel:** `PK_122` (`entoli_rule_id`)
+**Tabelcode** 122 · **Rollen** parent, child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `entoli_rule_id` | PK | Surrogaatsleutel. De naam komt van het supertype Entoli Rule. |
+| `rule_code` | UK | Functionele sleutel van de regel, uniek binnen deze tabel. |
+| `rule_text` |  | De regeltekst. |
+| `reference` |  | Vindplaats van de regel in de canonbron, bijvoorbeeld document en artikel. |
+| `canon_id` | FK | De canon die de regel stelt. → `canon` |
+| `ref_rule_status_id` | FK | Levenscyclustoestand van de regel (actief of inactief). → `ref_rule_status` |
+| `ref_rule_type_id` | FK | Modaliteit van de regel: gebod, verbod of toestemming. → `ref_rule_type` |
 
-- `UC_122_01` (`rule_code`)
+**Grenschildren** [`entoli_agent_rule.canon_rule_code`](#agent-definition-entoli-agent-rule) (agent-definition)
 
-**Foreign keys:**
-
-- `FK_122_121_01`: (`canon_id`) → `canon` (`canon_id`) · relatie CANON defines CANON RULE (`canon-defines-canon-rule`)
-- `FK_122_106_01`: (`ref_rule_status_id`) → `ref_rule_status` (`ref_rule_status_id`) · relatie ENTOLI RULE has RULE STATUS (REF) (`entoli-rule-has-rule-status`)
-- `FK_122_107_01`: (`ref_rule_type_id`) → `ref_rule_type` (`ref_rule_type_id`) · relatie ENTOLI RULE has RULE TYPE (REF) (`entoli-rule-has-rule-type`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | entoli_rule_id | rule_code | rule_text | reference | canon_id | ref_rule_status_id | ref_rule_type_id |
 |---|---|---|---|---|---|---|
@@ -137,30 +152,26 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 
 *Opmerking:* De bronnen noemen geen codes van Canon Rules; `CR-TRM-001` is fictief.
 
-### `element`
+</details>
 
-**Eén rij:** Eén element van een semantisch model: een benoemd begrip met zijn definitie, zoals Agent of Instruction Set.  
-**Tabelcode:** 124 · **LDM-bron:** entiteit **ELEMENT** (`element`)
+### `element` { #semantic-foundation-element }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `element_id` | integer | ja | PK |
-| `element_code` | text | ja |  |
-| `element_name` | text | ja |  |
-| `definition` | text | ja |  |
-| `semantic_model_id` | integer | ja | FK |
+Benoemde betekeniseenheid in de semantische graaf, zoals Agent of Instruction Set. Hoort bij precies één semantisch model.
 
-**Primaire sleutel:** `PK_124` (`element_id`)
+**Tabelcode** 124 · **Rollen** parent, child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `element_id` | PK | Surrogaatsleutel. |
+| `element_code` | UK | Functionele sleutel: de `id` die de canonieke semantische graaf voor dit element publiceert, bijvoorbeeld `agent` of `instruction-set`. |
+| `element_name` |  | Naam van het begrip. |
+| `definition` |  | Definitie van het begrip. |
+| `semantic_model_id` | FK | Het semantisch model waartoe het element behoort. → `semantic_model` |
 
-- `UC_124_01` (`element_code`)
+**Grenschildren** [`instruction_set_element.element_code`](#work-execution-instruction-set-element) (work-execution)
 
-**Foreign keys:**
-
-- `FK_124_133_01`: (`semantic_model_id`) → `semantic_model` (`semantic_model_id`) · relatie SEMANTIC MODEL consists of ELEMENT (`semantic-model-consists-of-element`)
-
-**Illustratieve voorbeeldrijen (4):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (4), illustratief</summary>
 
 | element_id | element_code | element_name | definition | semantic_model_id |
 |---|---|---|---|---|
@@ -169,204 +180,168 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 | 3 | instruction-set | Instruction Set | The assembled instructions for one Execution … | 1 |
 | 4 | execution | Execution | One run of an orchestration step by an LLM … | 1 |
 
-### `element_canon_rule`
+</details>
 
-**Eén rij:** Eén gebruik van een Element in een Canon Rule: de regel noemt dat Element of hangt ervan af.  
-**Tabelcode:** 130 · **LDM-bron:** relatie **ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)**, gerealiseerd als koppeltabel
+### `element_canon_rule` { #semantic-foundation-element-canon-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `element_canon_rule_id` | integer | ja | PK |
-| `element_id` | integer | ja | FK |
-| `entoli_rule_id` | integer | ja | FK |
+Junction-tabel tussen `element` en `canon_rule`: de canon rule noemt het element of hangt ervan af. Het LDM kent één relatie ELEMENT is used in ENTOLI RULE. Omdat de regelsubtypen als losse tabellen zijn gematerialiseerd, is die relatie verdeeld over `element_canon_rule`, `element_regime_rule` en `element_universal_rule`.
 
-**Primaire sleutel:** `PK_130` (`element_canon_rule_id`)
+**Tabelcode** 130 · **Rollen** junction-tabel, child · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `element_canon_rule_id` | PK | Surrogaatsleutel. |
+| `element_id` | FK, UK | Het gebruikte element. → `element` |
+| `entoli_rule_id` | FK, UK | De canon rule die het element gebruikt. → `canon_rule` |
 
-- `UC_130_01` (`element_id`, `entoli_rule_id`)
-
-**Foreign keys:**
-
-- `FK_130_124_01`: (`element_id`) → `element` (`element_id`) · relatie ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)
-- `FK_130_122_01`: (`entoli_rule_id`) → `canon_rule` (`entoli_rule_id`) · relatie ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | element_canon_rule_id | element_id | entoli_rule_id |
 |---|---|---|
 | 1 | 1 | 1 |
 
-### `element_regime_rule`
+</details>
 
-**Eén rij:** Eén gebruik van een Element in een Regime Rule: de regel noemt dat Element of hangt ervan af.  
-**Tabelcode:** 131 · **LDM-bron:** relatie **ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)**, gerealiseerd als koppeltabel
+### `element_regime_rule` { #semantic-foundation-element-regime-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `element_regime_rule_id` | integer | ja | PK |
-| `element_id` | integer | ja | FK |
-| `regime_rule_id` | integer | ja | FK |
+Junction-tabel tussen `element` en `regime_rule`: de regime rule noemt het element of hangt ervan af. Het LDM kent één relatie ELEMENT is used in ENTOLI RULE. Omdat de regelsubtypen als losse tabellen zijn gematerialiseerd, is die relatie verdeeld over `element_canon_rule`, `element_regime_rule` en `element_universal_rule`.
 
-**Primaire sleutel:** `PK_131` (`element_regime_rule_id`)
+**Tabelcode** 131 · **Rollen** junction-tabel, child · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `element_regime_rule_id` | PK | Surrogaatsleutel. |
+| `element_id` | FK, UK | Het gebruikte element. → `element` |
+| `regime_rule_id` | FK, UK | De regime rule die het element gebruikt. → `regime_rule` |
 
-- `UC_131_01` (`element_id`, `regime_rule_id`)
-
-**Foreign keys:**
-
-- `FK_131_124_01`: (`element_id`) → `element` (`element_id`) · relatie ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)
-- `FK_131_123_01`: (`regime_rule_id`) → `regime_rule` (`regime_rule_id`) · relatie ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | element_regime_rule_id | element_id | regime_rule_id |
 |---|---|---|
 | 1 | 2 | 3 |
 
-### `element_universal_rule`
+</details>
 
-**Eén rij:** Eén gebruik van een Element in een Universal Rule: de regel noemt dat Element of hangt ervan af.  
-**Tabelcode:** 137 · **LDM-bron:** relatie **ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)**, gerealiseerd als koppeltabel
+### `element_universal_rule` { #semantic-foundation-element-universal-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `element_universal_rule_id` | integer | ja | PK |
-| `element_id` | integer | ja | FK |
-| `universal_rule_id` | integer | ja | FK |
+Junction-tabel tussen `element` en `universal_rule`: de universal rule noemt het element of hangt ervan af. Het LDM kent één relatie ELEMENT is used in ENTOLI RULE. Omdat de regelsubtypen als losse tabellen zijn gematerialiseerd, is die relatie verdeeld over `element_canon_rule`, `element_regime_rule` en `element_universal_rule`.
 
-**Primaire sleutel:** `PK_137` (`element_universal_rule_id`)
+**Tabelcode** 137 · **Rollen** junction-tabel, child · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `element_universal_rule_id` | PK | Surrogaatsleutel. |
+| `element_id` | FK, UK | Het gebruikte element. → `element` |
+| `universal_rule_id` | FK, UK | De universal rule die het element gebruikt. → `universal_rule` |
 
-- `UC_137_01` (`element_id`, `universal_rule_id`)
-
-**Foreign keys:**
-
-- `FK_137_124_01`: (`element_id`) → `element` (`element_id`) · relatie ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)
-- `FK_137_136_01`: (`universal_rule_id`) → `universal_rule` (`universal_rule_id`) · relatie ELEMENT is used in ENTOLI RULE (`element-is-used-in-entoli-rule`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | element_universal_rule_id | element_id | universal_rule_id |
 |---|---|---|
 | 1 | 4 | 1 |
 | 2 | 3 | 2 |
 
-### `execution_profile`
+</details>
 
-**Eén rij:** Eén kenmerkende combinatie van een Development Phase en één positie op elk van de vier Execution Regime-assen.  
-**Tabelcode:** 135 · **LDM-bron:** entiteit **EXECUTION PROFILE** (`execution-profile`)
+### `execution_profile` { #semantic-foundation-execution-profile }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `execution_profile_id` | integer | ja | PK |
-| `execution_profile_code` | text | ja |  |
-| `execution_profile_name` | text | ja |  |
-| `execution_profile_description` | text | ja |  |
-| `ref_development_phase_id` | integer | ja | FK |
-| `ref_reasoning_regime_id` | integer | ja | FK |
-| `ref_source_regime_id` | integer | ja | FK |
-| `ref_synthesis_regime_id` | integer | ja | FK |
-| `ref_task_regime_id` | integer | ja | FK |
+Benoemde combinatie van één Development Phase en één positie op elk van de vier Execution Regime-assen. Een model assignment in execution-configuration realiseert een execution profile.
 
-**Primaire sleutel:** `PK_135` (`execution_profile_id`)
+**Tabelcode** 135 · **Rollen** child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `execution_profile_id` | PK | Surrogaatsleutel. |
+| `execution_profile_code` | UK | Functionele sleutel van het profiel, bijvoorbeeld `DPG-EXP-C2`. |
+| `execution_profile_name` |  | Weergavenaam. |
+| `execution_profile_description` |  | Omschrijving van de semantische uitvoeringskenmerken die het profiel vastlegt. |
+| `ref_development_phase_id` | FK | De ontwikkelfase waarbinnen het profiel geldt. → `ref_development_phase` |
+| `ref_reasoning_regime_id` | FK | Positie op de Reasoning Regime-as (cognitieve vrijheid van het LLM). → `ref_reasoning_regime` |
+| `ref_source_regime_id` | FK | Positie op de Source Regime-as (welke bronnen toelaatbaar zijn). → `ref_source_regime` |
+| `ref_synthesis_regime_id` | FK | Positie op de Synthesis Regime-as (wat met betekenis mag gebeuren). → `ref_synthesis_regime` |
+| `ref_task_regime_id` | FK | Positie op de Task Regime-as (type bewerking en structuur van de uitvoer). → `ref_task_regime` |
 
-- `UC_135_01` (`execution_profile_code`)
+**Grenschildren** [`model_assignment.execution_profile_code`](#execution-configuration-model-assignment) (execution-configuration)
 
-**Foreign keys:**
-
-- `FK_135_101_01`: (`ref_development_phase_id`) → `ref_development_phase` (`ref_development_phase_id`) · relatie DEVELOPMENT PHASE (REF) guides EXECUTION PROFILE (`development-phase-guides-execution-profile`)
-- `FK_135_102_01`: (`ref_reasoning_regime_id`) → `ref_reasoning_regime` (`ref_reasoning_regime_id`) · relatie EXECUTION PROFILE declares REASONING REGIME (REF) (`execution-profile-declares-reasoning-regime`)
-- `FK_135_103_01`: (`ref_source_regime_id`) → `ref_source_regime` (`ref_source_regime_id`) · relatie EXECUTION PROFILE declares SOURCE REGIME (REF) (`execution-profile-declares-source-regime`)
-- `FK_135_104_01`: (`ref_synthesis_regime_id`) → `ref_synthesis_regime` (`ref_synthesis_regime_id`) · relatie EXECUTION PROFILE declares SYNTHESIS REGIME (REF) (`execution-profile-declares-synthesis-regime`)
-- `FK_135_105_01`: (`ref_task_regime_id`) → `ref_task_regime` (`ref_task_regime_id`) · relatie EXECUTION PROFILE declares TASK REGIME (REF) (`execution-profile-declares-task-regime`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | execution_profile_id | execution_profile_code | execution_profile_name | execution_profile_description | ref_development_phase_id | ref_reasoning_regime_id | ref_source_regime_id | ref_synthesis_regime_id | ref_task_regime_id |
 |---|---|---|---|---|---|---|---|---|
 | 1 | DPG-EXP-C2 | Source survey | The Intent surveys named external sources, each cited … | 1 | 2 | 3 | 1 | 1 |
 | 2 | DPG-SPE-C2 | Formalising a structure | The Intent makes the architecture of canonical material explicit … | 3 | 3 | 2 | 2 | 2 |
 
-### `knowledge_domain`
+</details>
 
-**Eén rij:** Eén kennisgebied waarin agents werken, zoals agentontwikkeling of datamodellering.  
-**Tabelcode:** 125 · **LDM-bron:** entiteit **KNOWLEDGE DOMAIN** (`knowledge-domain`)
+### `knowledge_domain` { #semantic-foundation-knowledge-domain }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `knowledge_domain_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `name` | text | ja |  |
-| `description` | text | nee |  |
+Vakgebied of afgebakend kennisdomein, onafhankelijk van een framework of methode, zoals agentontwikkeling of datamodellering.
 
-**Primaire sleutel:** `PK_125` (`knowledge_domain_id`)
+**Tabelcode** 125 · **Rollen** parent, worteltabel · **Kleur** geel
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `knowledge_domain_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Functionele sleutel van het domein. |
+| `name` |  | Weergavenaam. |
+| `description` |  | Toelichting op het domein. |
 
-- `UC_125_01` (`code`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | knowledge_domain_id | code | name | description |
 |---|---|---|---|
 | 1 | agent-development | Agent Development | NULL |
 | 2 | data-modelling | Data Modelling | Conceptual, logical and technical data modelling. |
 
-### `knowledge_specification`
+</details>
 
-**Eén rij:** Eén specificatie van de kennis die binnen een Knowledge Domain geldt, optioneel gerealiseerd door een canon.  
-**Tabelcode:** 126 · **LDM-bron:** entiteit **KNOWLEDGE SPECIFICATION** (`knowledge-specification`)
+### `knowledge_specification` { #semantic-foundation-knowledge-specification }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `knowledge_specification_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `name` | text | ja |  |
-| `description` | text | nee |  |
-| `canon_id` | integer | nee | FK |
-| `knowledge_domain_id` | integer | ja | FK |
+Specificatie van de kennis uit één knowledge domain die voor een doel gerepresenteerd en gegoverneerd moet worden. Kan bestaan voordat een canon haar realiseert.
 
-**Primaire sleutel:** `PK_126` (`knowledge_specification_id`)
+**Tabelcode** 126 · **Rollen** child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `knowledge_specification_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Functionele sleutel van de specificatie. |
+| `name` |  | Weergavenaam. |
+| `description` |  | Toelichting op de specificatie. |
+| `canon_id` | FK | De canon die deze specificatie realiseert. Leeg zolang er geen canon is. → `canon` |
+| `knowledge_domain_id` | FK | Het kennisdomein dat wordt gespecificeerd. → `knowledge_domain` |
 
-- `UC_126_01` (`code`)
+**Grenschildren** [`agent.knowledge_specification_code`](#agent-definition-agent) (agent-definition), [`agent_package.knowledge_specification_code`](#agent-definition-agent-package) (agent-definition)
 
-**Foreign keys:**
-
-- `FK_126_121_01`: (`canon_id`) → `canon` (`canon_id`) · relatie KNOWLEDGE SPECIFICATION is realized by CANON (`knowledge-specification-is-realized-by-canon`)
-- `FK_126_125_01`: (`knowledge_domain_id`) → `knowledge_domain` (`knowledge_domain_id`) · relatie KNOWLEDGE SPECIFICATION specifies KNOWLEDGE DOMAIN (`knowledge-specification-specifies-knowledge-domain`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | knowledge_specification_id | code | name | description | canon_id | knowledge_domain_id |
 |---|---|---|---|---|---|
 | 1 | ks-agent-development | Agent development knowledge | NULL | 1 | 1 |
 | 2 | ks-data-modelling | Data modelling knowledge | Not yet realized by a canon. | NULL | 2 |
 
-### `ref_development_phase`
+</details>
 
-**Eén rij:** Eén positie van Development Phase die een agent classificeert, zoals Exploration of Specification.  
-**Tabelcode:** 101 · **LDM-bron:** entiteit **DEVELOPMENT PHASE (REF)** (`development-phase`)
+### `ref_development_phase` { #semantic-foundation-ref-development-phase }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_development_phase_id` | integer | ja | PK |
-| `development_phase_code` | text | ja |  |
-| `development_phase_description` | text | ja |  |
+Referentietabel met de posities van Development Phase, zoals Exploration en Specification. Classificeert agents en execution profiles.
 
-**Primaire sleutel:** `PK_101` (`ref_development_phase_id`)
+**Tabelcode** 101 · **Rollen** referentietabel, parent, grensparent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_development_phase_id` | PK | Surrogaatsleutel. |
+| `development_phase_code` | UK | Code van de fase, bijvoorbeeld `EXP`. |
+| `development_phase_description` |  | Omschrijving van de fase. |
 
-- `UC_101_01` (`development_phase_code`)
+**Grenschildren** [`agent.development_phase_code`](#agent-definition-agent) (agent-definition)
 
-**Illustratieve voorbeeldrijen (5):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (5), illustratief</summary>
 
 | ref_development_phase_id | development_phase_code | development_phase_description |
 |---|---|---|
@@ -378,24 +353,24 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 
 *Opmerking:* Vijf van de zeven posities zijn weergegeven; `REG` (Registering) en `OPR` (Operationalisation) zijn weggelaten.
 
-### `ref_reasoning_regime`
+</details>
 
-**Eén rij:** Eén positie van Reasoning Regime: hoeveel cognitieve vrijheid het LLM heeft.  
-**Tabelcode:** 102 · **LDM-bron:** entiteit **REASONING REGIME (REF)** (`reasoning-regime`), gematerialiseerd als zelfstandig concreet subtype
+### `ref_reasoning_regime` { #semantic-foundation-ref-reasoning-regime }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_reasoning_regime_id` | integer | ja | PK |
-| `execution_regime_code` | text | ja |  |
-| `execution_regime_description` | text | ja |  |
+Referentietabel met de posities op de Reasoning Regime-as (cognitieve vrijheid van het LLM). Concreet subtype van EXECUTION REGIME (REF); de vier regimetabellen hebben daarom dezelfde kolomnamen.
 
-**Primaire sleutel:** `PK_102` (`ref_reasoning_regime_id`)
+**Tabelcode** 102 · **Rollen** referentietabel, parent, grensparent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_reasoning_regime_id` | PK | Surrogaatsleutel. |
+| `execution_regime_code` | UK | Code van de positie, bijvoorbeeld `EXP` of `CNB`. |
+| `execution_regime_description` |  | Omschrijving van de positie. |
 
-- `UC_102_01` (`execution_regime_code`)
+**Grenschildren** [`agent_intent.reasoning_regime_code`](#agent-definition-agent-intent) (agent-definition)
 
-**Illustratieve voorbeeldrijen (4):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (4), illustratief</summary>
 
 | ref_reasoning_regime_id | execution_regime_code | execution_regime_description |
 |---|---|---|
@@ -404,48 +379,44 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 | 3 | CNS | Constrained |
 | 4 | DTM | Deterministic |
 
-### `ref_rule_status`
+</details>
 
-**Eén rij:** Eén status die een Canon Rule, Regime Rule of Universal Rule kan hebben (inactief of actief).  
-**Tabelcode:** 106 · **LDM-bron:** entiteit **RULE STATUS (REF)** (`rule-status`)
+### `ref_rule_status` { #semantic-foundation-ref-rule-status }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_rule_status_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `description` | text | ja |  |
+Referentietabel met de levenscyclustoestanden van een regel (actief, inactief). Gebruikt door canon rules, regime rules en universal rules.
 
-**Primaire sleutel:** `PK_106` (`ref_rule_status_id`)
+**Tabelcode** 106 · **Rollen** referentietabel, parent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_rule_status_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Code van de toestand. |
+| `description` |  | Omschrijving van de toestand. |
 
-- `UC_106_01` (`code`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | ref_rule_status_id | code | description |
 |---|---|---|
 | 1 | 0 | Inactive |
 | 2 | 1 | Active |
 
-### `ref_rule_type`
+</details>
 
-**Eén rij:** Eén regeltype voor Canon Rules, Regime Rules en Universal Rules: gebod, verbod of toestemming.  
-**Tabelcode:** 107 · **LDM-bron:** entiteit **RULE TYPE (REF)** (`rule-type`)
+### `ref_rule_type` { #semantic-foundation-ref-rule-type }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_rule_type_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `description` | text | ja |  |
+Referentietabel met de modaliteiten van een regel: gebod, verbod of toestemming. Gebruikt door canon rules, regime rules en universal rules.
 
-**Primaire sleutel:** `PK_107` (`ref_rule_type_id`)
+**Tabelcode** 107 · **Rollen** referentietabel, parent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_rule_type_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Code van de modaliteit. |
+| `description` |  | Omschrijving van de modaliteit. |
 
-- `UC_107_01` (`code`)
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | ref_rule_type_id | code | description |
 |---|---|---|
@@ -453,24 +424,24 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 | 2 | prh | Prohibition |
 | 3 | prm | Permission |
 
-### `ref_source_regime`
+</details>
 
-**Eén rij:** Eén positie van Source Regime: welke kennis toelaatbaar is.  
-**Tabelcode:** 103 · **LDM-bron:** entiteit **SOURCE REGIME (REF)** (`source-regime`), gematerialiseerd als zelfstandig concreet subtype
+### `ref_source_regime` { #semantic-foundation-ref-source-regime }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_source_regime_id` | integer | ja | PK |
-| `execution_regime_code` | text | ja |  |
-| `execution_regime_description` | text | ja |  |
+Referentietabel met de posities op de Source Regime-as (welke bronnen toelaatbaar zijn). Concreet subtype van EXECUTION REGIME (REF); de vier regimetabellen hebben daarom dezelfde kolomnamen.
 
-**Primaire sleutel:** `PK_103` (`ref_source_regime_id`)
+**Tabelcode** 103 · **Rollen** referentietabel, parent, grensparent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_source_regime_id` | PK | Surrogaatsleutel. |
+| `execution_regime_code` | UK | Code van de positie, bijvoorbeeld `EXP` of `CNB`. |
+| `execution_regime_description` |  | Omschrijving van de positie. |
 
-- `UC_103_01` (`execution_regime_code`)
+**Grenschildren** [`agent_intent.source_regime_code`](#agent-definition-agent-intent) (agent-definition)
 
-**Illustratieve voorbeeldrijen (4):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (4), illustratief</summary>
 
 | ref_source_regime_id | execution_regime_code | execution_regime_description |
 |---|---|---|
@@ -479,24 +450,24 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 | 3 | EXB | External-source-bound |
 | 4 | OPN | Open |
 
-### `ref_synthesis_regime`
+</details>
 
-**Eén rij:** Eén positie van Synthesis Regime: wat er met betekenis mag gebeuren.  
-**Tabelcode:** 104 · **LDM-bron:** entiteit **SYNTHESIS REGIME (REF)** (`synthesis-regime`), gematerialiseerd als zelfstandig concreet subtype
+### `ref_synthesis_regime` { #semantic-foundation-ref-synthesis-regime }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_synthesis_regime_id` | integer | ja | PK |
-| `execution_regime_code` | text | ja |  |
-| `execution_regime_description` | text | ja |  |
+Referentietabel met de posities op de Synthesis Regime-as (wat met betekenis mag gebeuren). Concreet subtype van EXECUTION REGIME (REF); de vier regimetabellen hebben daarom dezelfde kolomnamen.
 
-**Primaire sleutel:** `PK_104` (`ref_synthesis_regime_id`)
+**Tabelcode** 104 · **Rollen** referentietabel, parent, grensparent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_synthesis_regime_id` | PK | Surrogaatsleutel. |
+| `execution_regime_code` | UK | Code van de positie, bijvoorbeeld `EXP` of `CNB`. |
+| `execution_regime_description` |  | Omschrijving van de positie. |
 
-- `UC_104_01` (`execution_regime_code`)
+**Grenschildren** [`agent_intent.synthesis_regime_code`](#agent-definition-agent-intent) (agent-definition)
 
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | ref_synthesis_regime_id | execution_regime_code | execution_regime_description |
 |---|---|---|
@@ -504,24 +475,24 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 | 2 | REL | Relating |
 | 3 | GEN | Generating |
 
-### `ref_task_regime`
+</details>
 
-**Eén rij:** Eén positie van Task Regime: het type bewerking en de structuur van de uitvoer.  
-**Tabelcode:** 105 · **LDM-bron:** entiteit **TASK REGIME (REF)** (`task-regime`), gematerialiseerd als zelfstandig concreet subtype
+### `ref_task_regime` { #semantic-foundation-ref-task-regime }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_task_regime_id` | integer | ja | PK |
-| `execution_regime_code` | text | ja |  |
-| `execution_regime_description` | text | ja |  |
+Referentietabel met de posities op de Task Regime-as (type bewerking en structuur van de uitvoer). Concreet subtype van EXECUTION REGIME (REF); de vier regimetabellen hebben daarom dezelfde kolomnamen.
 
-**Primaire sleutel:** `PK_105` (`ref_task_regime_id`)
+**Tabelcode** 105 · **Rollen** referentietabel, parent, grensparent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_task_regime_id` | PK | Surrogaatsleutel. |
+| `execution_regime_code` | UK | Code van de positie, bijvoorbeeld `EXP` of `CNB`. |
+| `execution_regime_description` |  | Omschrijving van de positie. |
 
-- `UC_105_01` (`execution_regime_code`)
+**Grenschildren** [`agent_intent.task_regime_code`](#agent-definition-agent-intent) (agent-definition)
 
-**Illustratieve voorbeeldrijen (5):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (5), illustratief</summary>
 
 | ref_task_regime_id | execution_regime_code | execution_regime_description |
 |---|---|---|
@@ -531,44 +502,31 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 | 4 | EVL | Evaluating |
 | 5 | ORI | Originating |
 
-### `regime_rule`
+</details>
 
-**Eén rij:** Eén Operational Rule die via precies één Execution Regime-as geldt. Precies één van de vier regimeverwijzingen is gevuld.  
-**Tabelcode:** 123 · **LDM-bron:** entiteit **REGIME RULE** (`regime-rule`), gematerialiseerd als zelfstandig concreet subtype
+### `regime_rule` { #semantic-foundation-regime-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `regime_rule_id` | integer | ja | PK |
-| `rule_code` | text | ja |  |
-| `rule_text` | text | ja |  |
-| `reference` | text | nee |  |
-| `ref_rule_status_id` | integer | ja | FK |
-| `ref_rule_type_id` | integer | ja | FK |
-| `ref_reasoning_regime_id` | integer | nee | FK |
-| `ref_source_regime_id` | integer | nee | FK |
-| `ref_synthesis_regime_id` | integer | nee | FK |
-| `ref_task_regime_id` | integer | nee | FK |
+Operationele regel uit de canon die de integriteit van precies één Execution Regime bewaakt. Niet door de gebruiker te wijzigen. Concreet subtype van Entoli Rule. Van de vier regimekolommen is er precies één gevuld (`CK_123_01`).
 
-**Primaire sleutel:** `PK_123` (`regime_rule_id`)
+**Tabelcode** 123 · **Rollen** parent, child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `regime_rule_id` | PK | Surrogaatsleutel. |
+| `rule_code` | UK | Functionele sleutel van de regel, uniek binnen deze tabel. |
+| `rule_text` |  | De regeltekst. |
+| `reference` |  | Vindplaats van de regel in de canonbron. |
+| `ref_rule_status_id` | FK | Levenscyclustoestand van de regel. → `ref_rule_status` |
+| `ref_rule_type_id` | FK | Modaliteit van de regel. → `ref_rule_type` |
+| `ref_reasoning_regime_id` | FK | Gevuld als de regel een positie op de Reasoning Regime-as (cognitieve vrijheid van het LLM) bewaakt. → `ref_reasoning_regime` |
+| `ref_source_regime_id` | FK | Gevuld als de regel een positie op de Source Regime-as (welke bronnen toelaatbaar zijn) bewaakt. → `ref_source_regime` |
+| `ref_synthesis_regime_id` | FK | Gevuld als de regel een positie op de Synthesis Regime-as (wat met betekenis mag gebeuren) bewaakt. → `ref_synthesis_regime` |
+| `ref_task_regime_id` | FK | Gevuld als de regel een positie op de Task Regime-as (type bewerking en structuur van de uitvoer) bewaakt. → `ref_task_regime` |
 
-- `UC_123_01` (`rule_code`)
+**Grenschildren** [`instruction_set_regime_rule.regime_rule_code`](#work-execution-instruction-set-regime-rule) (work-execution)
 
-**Foreign keys:**
-
-- `FK_123_106_01`: (`ref_rule_status_id`) → `ref_rule_status` (`ref_rule_status_id`) · relatie ENTOLI RULE has RULE STATUS (REF) (`entoli-rule-has-rule-status`)
-- `FK_123_107_01`: (`ref_rule_type_id`) → `ref_rule_type` (`ref_rule_type_id`) · relatie ENTOLI RULE has RULE TYPE (REF) (`entoli-rule-has-rule-type`)
-- `FK_123_102_01`: (`ref_reasoning_regime_id`) → `ref_reasoning_regime` (`ref_reasoning_regime_id`) · relatie REGIME RULE governs REASONING REGIME (REF) (`regime-rule-governs-reasoning-regime`)
-- `FK_123_103_01`: (`ref_source_regime_id`) → `ref_source_regime` (`ref_source_regime_id`) · relatie REGIME RULE governs SOURCE REGIME (REF) (`regime-rule-governs-source-regime`)
-- `FK_123_104_01`: (`ref_synthesis_regime_id`) → `ref_synthesis_regime` (`ref_synthesis_regime_id`) · relatie REGIME RULE governs SYNTHESIS REGIME (REF) (`regime-rule-governs-synthesis-regime`)
-- `FK_123_105_01`: (`ref_task_regime_id`) → `ref_task_regime` (`ref_task_regime_id`) · relatie REGIME RULE governs TASK REGIME (REF) (`regime-rule-governs-task-regime`)
-
-**Check-constraints:**
-
-- `CK_123_01`: `num_nonnulls(ref_reasoning_regime_id, ref_source_regime_id, ref_synthesis_regime_id, ref_task_regime_id) = 1`
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | regime_rule_id | rule_code | rule_text | reference | ref_rule_status_id | ref_rule_type_id | ref_reasoning_regime_id | ref_source_regime_id | ref_synthesis_regime_id | ref_task_regime_id |
 |---|---|---|---|---|---|---|---|---|---|
@@ -578,89 +536,75 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 
 *Opmerking:* Regelcodes en -teksten komen uit de Operational Rules; de teksten zijn ingekort.
 
-### `relationship`
+</details>
 
-**Eén rij:** Eén benoemde relatie tussen twee Elements van een semantisch model.  
-**Tabelcode:** 127 · **LDM-bron:** entiteit **RELATIONSHIP** (`relationship`)
+### `relationship` { #semantic-foundation-relationship }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `relationship_id` | integer | ja | PK |
-| `relationship_code` | text | ja |  |
-| `name` | text | ja |  |
-| `from_element_id` | integer | ja | FK |
-| `to_element_id` | integer | ja | FK |
-| `semantic_model_id` | integer | ja | FK |
+Gerichte, benoemde semantische verbinding tussen twee elementen van hetzelfde semantisch model.
 
-**Primaire sleutel:** `PK_127` (`relationship_id`)
+**Tabelcode** 127 · **Rollen** child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `relationship_id` | PK | Surrogaatsleutel. |
+| `relationship_code` | UK | Functionele sleutel: de `id` uit de canonieke graaf, in de vorm `<bron>--<type>--<doel>`. |
+| `name` |  | Naam van de relatie, bijvoorbeeld `exposes capabilities via`. |
+| `from_element_id` | FK | Het element waar de relatie begint. → `element` |
+| `to_element_id` | FK | Het element waar de relatie eindigt. → `element` |
+| `semantic_model_id` | FK | Het semantisch model waartoe de relatie behoort. → `semantic_model` |
 
-- `UC_127_01` (`relationship_code`)
+**Grenschildren** [`instruction_set_relationship.relationship_code`](#work-execution-instruction-set-relationship) (work-execution)
 
-**Foreign keys:**
-
-- `FK_127_124_01`: (`from_element_id`) → `element` (`element_id`) · relatie RELATIONSHIP from ELEMENT (`relationship-from-element`)
-- `FK_127_124_02`: (`to_element_id`) → `element` (`element_id`) · relatie RELATIONSHIP to ELEMENT (`relationship-to-element`)
-- `FK_127_133_01`: (`semantic_model_id`) → `semantic_model` (`semantic_model_id`) · relatie SEMANTIC MODEL consists of RELATIONSHIP (`semantic-model-consists-of-relationship`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | relationship_id | relationship_code | name | from_element_id | to_element_id | semantic_model_id |
 |---|---|---|---|---|---|
 | 1 | agent-exposes-agent-intent | exposes capabilities via | 1 | 2 | 1 |
 | 2 | execution-is-instructed-by-instruction-set | is instructed by | 4 | 3 | 1 |
 
-### `semantic_model`
+</details>
 
-**Eén rij:** Eén semantisch model: de verzameling Elements en Relationships die een canon definieert.  
-**Tabelcode:** 133 · **LDM-bron:** entiteit **SEMANTIC MODEL** (`semantic-model`)
+### `semantic_model` { #semantic-foundation-semantic-model }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `semantic_model_id` | integer | ja | PK |
-| `semantic_model_code` | text | ja |  |
-| `semantic_model_name` | text | ja |  |
-| `semantic_model_description` | text | nee |  |
+De volledige semantische graaf die één canon definieert: de elementen en de relaties daartussen. Read-only tijdens uitvoering.
 
-**Primaire sleutel:** `PK_133` (`semantic_model_id`)
+**Tabelcode** 133 · **Rollen** parent, worteltabel · **Kleur** geel
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `semantic_model_id` | PK | Surrogaatsleutel. |
+| `semantic_model_code` | UK | Functionele sleutel van het model. |
+| `semantic_model_name` |  | Weergavenaam. |
+| `semantic_model_description` |  | Toelichting op het model. |
 
-- `UC_133_01` (`semantic_model_code`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | semantic_model_id | semantic_model_code | semantic_model_name | semantic_model_description |
 |---|---|---|---|
 | 1 | entoli-agent-development | Entoli Agent Development | Elements and relationships of agent development … |
 
-### `template`
+</details>
 
-**Eén rij:** Eén template dat de inhoud van een Artifact Type structureert.  
-**Tabelcode:** 134 · **LDM-bron:** entiteit **TEMPLATE** (`template`)
+### `template` { #semantic-foundation-template }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `template_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `name` | text | ja |  |
-| `description` | text | nee |  |
-| `content_format` | text | ja |  |
-| `template_content` | text | ja |  |
-| `artifact_type_id` | integer | ja | FK |
+Herbruikbare vormspecificatie voor artefacten van één artefacttype.
 
-**Primaire sleutel:** `PK_134` (`template_id`)
+**Tabelcode** 134 · **Rollen** child · **Kleur** lichtblauw
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `template_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Functionele sleutel van het template. |
+| `name` |  | Weergavenaam. |
+| `description` |  | Toelichting op het template. |
+| `content_format` |  | Formaat waarin de inhoud is geschreven, zoals Markdown, JSON of YAML. Vrije tekst: er is geen codelijst. |
+| `template_content` |  | De volledige inhoud van het template, opgeslagen zoals geschreven. Wordt niet geparst of genormaliseerd; ook JSON en YAML staan hier als tekst. |
+| `artifact_type_id` | FK | Het artefacttype waarvoor het template de vorm vastlegt. → `artifact_type` |
 
-- `UC_134_01` (`code`)
-
-**Foreign keys:**
-
-- `FK_134_120_01`: (`artifact_type_id`) → `artifact_type` (`artifact_type_id`) · relatie ARTIFACT TYPE is structured by TEMPLATE (`artifact-type-is-structured-by-template`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | template_id | code | name | description | content_format | template_content | artifact_type_id |
 |---|---|---|---|---|---|---|
@@ -668,32 +612,27 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 
 *Opmerking:* `content_format` heeft in de bronnen geen codelijst; `json` is een aangenomen waarde.
 
-### `universal_rule`
+</details>
 
-**Eén rij:** Eén Operational Rule die geldt voor elke Agent en elke Agent Intent, ongeacht hun Execution Regimes.  
-**Tabelcode:** 136 · **LDM-bron:** entiteit **UNIVERSAL RULE** (`universal-rule`), gematerialiseerd als zelfstandig concreet subtype
+### `universal_rule` { #semantic-foundation-universal-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `universal_rule_id` | integer | ja | PK |
-| `rule_code` | text | ja |  |
-| `rule_text` | text | ja |  |
-| `reference` | text | nee |  |
-| `ref_rule_status_id` | integer | ja | FK |
-| `ref_rule_type_id` | integer | ja | FK |
+Operationele regel die geldt voor elke agent en elke agent intent, ongeacht hun execution regimes. Concreet subtype van Entoli Rule. Elke instruction set bevat elke universal rule die actief was toen de set werd samengesteld.
 
-**Primaire sleutel:** `PK_136` (`universal_rule_id`)
+**Tabelcode** 136 · **Rollen** parent, child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `universal_rule_id` | PK | Surrogaatsleutel. |
+| `rule_code` | UK | Functionele sleutel van de regel, uniek binnen deze tabel. |
+| `rule_text` |  | De regeltekst. |
+| `reference` |  | Vindplaats van de regel in de canonbron. |
+| `ref_rule_status_id` | FK | Levenscyclustoestand van de regel. → `ref_rule_status` |
+| `ref_rule_type_id` | FK | Modaliteit van de regel. → `ref_rule_type` |
 
-- `UC_136_01` (`rule_code`)
+**Grenschildren** [`instruction_set_universal_rule.universal_rule_code`](#work-execution-instruction-set-universal-rule) (work-execution)
 
-**Foreign keys:**
-
-- `FK_136_106_01`: (`ref_rule_status_id`) → `ref_rule_status` (`ref_rule_status_id`) · relatie ENTOLI RULE has RULE STATUS (REF) (`entoli-rule-has-rule-status`)
-- `FK_136_107_01`: (`ref_rule_type_id`) → `ref_rule_type` (`ref_rule_type_id`) · relatie ENTOLI RULE has RULE TYPE (REF) (`entoli-rule-has-rule-type`)
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | universal_rule_id | rule_code | rule_text | reference | ref_rule_status_id | ref_rule_type_id |
 |---|---|---|---|---|---|
@@ -701,116 +640,86 @@ Technical Data Model `entoli-agent-development-semantic-foundation-postgresql` v
 | 2 | UNI-002 | Where the work depends on information that is neither supplied nor obtainable …, the LLM MUST identify … . | constitution.md#Article 3 §1 | 2 | 1 |
 | 3 | UNI-003 | The LLM MUST NOT resolve a material ambiguity or a decisive gap silently. … | constitution.md#Proposition | 2 | 2 |
 
+</details>
+
 ## agent-definition
 
-Technical Data Model `entoli-agent-development-agent-definition-postgresql` versie 2.0.0, afgeleid van Logical Data Model `entoli-agent-development-agent-definition` versie 2.0.0.
+De agents: packages, agents, agent intents met hun instructies, en de agentregels. TDM `entoli-agent-development-agent-definition-postgresql` versie 2.0.0.
 
-### `agent`
+### `agent` { #agent-definition-agent }
 
-**Eén rij:** Eén Entoli-agent: een expliciet gedefinieerde, autonome uitvoerder met een eigen grens, geclassificeerd door één Development Phase.  
-**Tabelcode:** 220 · **LDM-bron:** entiteit **AGENT** (`agent`)
+Entoli-agent: expliciet gedefinieerde, autonome uitvoerder met een eigen boundary, geclassificeerd door één Development Phase en in eigendom van één Entoli Context.
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `agent_id` | integer | ja | PK |
-| `agent_code` | text | ja |  |
-| `agent_name` | text | ja |  |
-| `boundary` | text | nee |  |
-| `knowledge_specification_code` | text | nee | logical reference |
-| `development_phase_code` | text | ja | logical reference |
-| `entoli_context_code` | text | ja | logical reference |
-| `agent_package_id` | integer | nee | FK |
+**Tabelcode** 220 · **Rollen** parent, child, grenschild · **Kleur** lichtroze
 
-**Primaire sleutel:** `PK_220` (`agent_id`)
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `agent_id` | PK | Surrogaatsleutel. |
+| `agent_code` | UK | Functionele sleutel van de agent. |
+| `agent_name` |  | Weergavenaam. |
+| `boundary` |  | Beschrijving van de agent-boundary: waar de verantwoordelijkheid van de agent begint en eindigt. |
+| `knowledge_specification_code` | GV | De kennisspecificatie waarvoor de agent kennis specificeert. Grensverwijzing naar `knowledge_specification.code` in semantic-foundation. |
+| `development_phase_code` | GV | De ontwikkelfase van de agent. Grensverwijzing naar `ref_development_phase.development_phase_code` in semantic-foundation. |
+| `entoli_context_code` | GV | De Entoli Context die de agent bezit. Grensverwijzing naar `entoli_context.entoli_context_code` in execution-configuration. |
+| `agent_package_id` | FK | Het package waartoe de agent behoort. → `agent_package` |
 
-**Uniciteitsconstraints:**
-
-- `UC_220_01` (`agent_code`)
-
-**Foreign keys:**
-
-- `FK_220_222_01`: (`agent_package_id`) → `agent_package` (`agent_package_id`) · relatie AGENT belongs to AGENT PACKAGE (`agent-belongs-to-agent-package`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `knowledge_specification_code` → `knowledge_specification`.`code` in semantic-foundation · relatie AGENT specifies knowledge for KNOWLEDGE SPECIFICATION (`agent-specifies-knowledge-for-knowledge-specification`)
-- `development_phase_code` → `ref_development_phase`.`development_phase_code` in semantic-foundation · relatie DEVELOPMENT PHASE (REF) classifies AGENT (`development-phase-classifies-agent`)
-- `entoli_context_code` → `entoli_context`.`entoli_context_code` in execution-configuration · relatie ENTOLI CONTEXT owns AGENT (`entoli-context-owns-agent`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | agent_id | agent_code | agent_name | boundary | knowledge_specification_code | development_phase_code | entoli_context_code | agent_package_id |
 |---|---|---|---|---|---|---|---|
 | 1 | niam-analyst | NIAM Analyst | Analyses domain statements and source material … | ks-data-modelling | EXP | entoli-dev | 1 |
 | 2 | ldm-modeller | Logical Data Modeller | Translates conceptual meaning into a logical data model … | NULL | SPC | entoli-dev | 1 |
 
-### `agent_intent`
+</details>
 
-**Eén rij:** Eén aanroepbaar vermogen van een agent, met zijn gedeclareerde positie op elke Execution Regime-as.  
-**Tabelcode:** 221 · **LDM-bron:** entiteit **AGENT INTENT** (`agent-intent`)
+### `agent_intent` { #agent-definition-agent-intent }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `agent_intent_id` | integer | ja | PK |
-| `agent_intent_code` | text | ja |  |
-| `agent_intent_name` | text | ja |  |
-| `reasoning_regime_code` | text | ja | logical reference |
-| `source_regime_code` | text | nee | logical reference |
-| `synthesis_regime_code` | text | nee | logical reference |
-| `task_regime_code` | text | nee | logical reference |
-| `agent_id` | integer | ja | FK |
+Aanroepbare capability van een agent: één samenhangende eenheid werk binnen de agent-boundary, met per Execution Regime-as de gedeclareerde positie.
 
-**Primaire sleutel:** `PK_221` (`agent_intent_id`)
+**Tabelcode** 221 · **Rollen** parent, child, grensparent, grenschild · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `agent_intent_id` | PK, UK | Surrogaatsleutel. |
+| `agent_intent_code` | UK | Functionele sleutel, in de vorm `<agent>.<intent>`, bijvoorbeeld `ldm-modeller.derive-ldm`. |
+| `agent_intent_name` |  | Weergavenaam. |
+| `reasoning_regime_code` | GV | Positie op de Reasoning Regime-as. Verplicht: elke intent die een LLM uitvoert heeft een reasoning regime. Grensverwijzing naar `ref_reasoning_regime.execution_regime_code` in semantic-foundation. |
+| `source_regime_code` | GV | Positie op de Source Regime-as. Leeg als de as niet van toepassing is. Grensverwijzing naar `ref_source_regime.execution_regime_code` in semantic-foundation. |
+| `synthesis_regime_code` | GV | Positie op de Synthesis Regime-as. Leeg als de as niet van toepassing is. Grensverwijzing naar `ref_synthesis_regime.execution_regime_code` in semantic-foundation. |
+| `task_regime_code` | GV | Positie op de Task Regime-as. Leeg als de as niet van toepassing is. Grensverwijzing naar `ref_task_regime.execution_regime_code` in semantic-foundation. |
+| `agent_id` | FK, UK | De agent die de capability aanbiedt. → `agent` |
 
-- `UC_221_01` (`agent_intent_code`)
-- `UC_221_02` (`agent_id`, `agent_intent_id`)
+**Grenschildren** [`instruction_set.agent_intent_code`](#work-execution-instruction-set) (work-execution), [`orchestration_step_definition.agent_intent_code`](#orchestration-definition-orchestration-step-definition) (orchestration-definition)
 
-**Foreign keys:**
-
-- `FK_221_220_01`: (`agent_id`) → `agent` (`agent_id`) · relatie AGENT exposes capabilities via AGENT INTENT (`agent-exposes-capabilities-via-agent-intent`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `reasoning_regime_code` → `ref_reasoning_regime`.`execution_regime_code` in semantic-foundation · relatie AGENT INTENT declares REASONING REGIME (REF) (`agent-intent-declares-reasoning-regime`)
-- `source_regime_code` → `ref_source_regime`.`execution_regime_code` in semantic-foundation · relatie AGENT INTENT declares SOURCE REGIME (REF) (`agent-intent-declares-source-regime`)
-- `synthesis_regime_code` → `ref_synthesis_regime`.`execution_regime_code` in semantic-foundation · relatie AGENT INTENT declares SYNTHESIS REGIME (REF) (`agent-intent-declares-synthesis-regime`)
-- `task_regime_code` → `ref_task_regime`.`execution_regime_code` in semantic-foundation · relatie AGENT INTENT declares TASK REGIME (REF) (`agent-intent-declares-task-regime`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | agent_intent_id | agent_intent_code | agent_intent_name | reasoning_regime_code | source_regime_code | synthesis_regime_code | task_regime_code | agent_id |
 |---|---|---|---|---|---|---|---|
 | 1 | niam-analyst.survey-sources | Survey sources | ITP | EXB | PRV | EXT | 1 |
 | 2 | ldm-modeller.derive-ldm | Derive logical data model | CNS | CNB | REL | STR | 2 |
 
-### `agent_package`
+</details>
 
-**Eén rij:** Eén pakket dat agents groepeert onder een gemeenschappelijke Knowledge Specification.  
-**Tabelcode:** 222 · **LDM-bron:** entiteit **AGENT PACKAGE** (`agent-package`)
+### `agent_package` { #agent-definition-agent-package }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `agent_package_id` | integer | ja | PK |
-| `package_code` | text | ja |  |
-| `package_name` | text | ja |  |
-| `version` | text | ja |  |
-| `status` | text | ja |  |
-| `description` | text | nee |  |
-| `knowledge_specification_code` | text | ja | logical reference |
+Beheerde bundel van agents, gescoped door precies één knowledge specification. Een andere kennisscope betekent een ander package.
 
-**Primaire sleutel:** `PK_222` (`agent_package_id`)
+**Tabelcode** 222 · **Rollen** parent, grenschild · **Kleur** lichtroze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `agent_package_id` | PK | Surrogaatsleutel. |
+| `package_code` | UK | Functionele sleutel van het package. |
+| `package_name` |  | Weergavenaam. |
+| `version` |  | Versie van het package als tekst. |
+| `status` |  | Levenscyclustoestand. Vrije tekst: er is geen codelijst. |
+| `description` |  | Toelichting op het package. |
+| `knowledge_specification_code` | GV | De vaste kennisscope van het package. Grensverwijzing naar `knowledge_specification.code` in semantic-foundation. |
 
-- `UC_222_01` (`package_code`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `knowledge_specification_code` → `knowledge_specification`.`code` in semantic-foundation · relatie KNOWLEDGE SPECIFICATION scopes AGENT PACKAGE (`knowledge-specification-scopes-agent-package`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | agent_package_id | package_code | package_name | version | status | description | knowledge_specification_code |
 |---|---|---|---|---|---|---|
@@ -818,39 +727,30 @@ Technical Data Model `entoli-agent-development-agent-definition-postgresql` vers
 
 *Opmerking:* `status` heeft in de bronnen geen codelijst; `active` is een aangenomen waarde.
 
-### `entoli_agent_intent_rule`
+</details>
 
-**Eén rij:** Eén regel die één Agent Intent begrenst en één Entoli Agent Rule van dezelfde agent operationaliseert.  
-**Tabelcode:** 223 · **LDM-bron:** entiteit **ENTOLI AGENT INTENT RULE** (`entoli-agent-intent-rule`), gematerialiseerd als zelfstandig concreet subtype
+### `entoli_agent_intent_rule` { #agent-definition-entoli-agent-intent-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `entoli_rule_id` | integer | ja | PK |
-| `rule_code` | text | ja |  |
-| `rule_text` | text | ja |  |
-| `reference` | text | nee |  |
-| `agent_intent_id` | integer | ja | FK |
-| `agent_rule_id` | integer | ja | FK |
-| `ref_rule_status_id` | integer | ja | FK |
-| `ref_rule_type_id` | integer | ja | FK |
-| `agent_id` | integer | ja | FK |
+Operationele regel die voor één agent intent één toetsbare verplichting of één toetsbaar verbod vastlegt, en daarmee precies één Entoli Agent Rule van dezelfde agent operationaliseert. Concreet subtype van Entoli Rule.
 
-**Primaire sleutel:** `PK_223` (`entoli_rule_id`)
+**Tabelcode** 223 · **Rollen** child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `entoli_rule_id` | PK | Surrogaatsleutel. De naam komt van het supertype Entoli Rule. |
+| `rule_code` | UK | Functionele sleutel van de regel, uniek binnen deze tabel. |
+| `rule_text` |  | De regeltekst. |
+| `reference` |  | Vindplaats van de regel in de bron. |
+| `agent_intent_id` | FK | De agent intent die de regel begrenst. → `agent_intent` |
+| `agent_rule_id` | FK | De agentregel die deze regel operationaliseert. → `entoli_agent_rule` |
+| `ref_rule_status_id` | FK | Levenscyclustoestand van de regel. → `ref_rule_status` |
+| `ref_rule_type_id` | FK | Modaliteit van de regel. → `ref_rule_type` |
+| `agent_id` | FK | Herhaalt de agent van zowel de intent als de agentregel. Beide foreign keys zijn samengesteld met deze kolom (`FK_223_221_01` naar `agent_intent`, `FK_223_224_01` naar `entoli_agent_rule`) en dwingen zo af dat intent en agentregel bij dezelfde agent horen. → `agent_intent`, `entoli_agent_rule` |
 
-- `UC_223_01` (`rule_code`)
+**Grenschildren** [`instruction_set_entoli_agent_intent_rule.entoli_agent_intent_rule_code`](#work-execution-instruction-set-entoli-agent-intent-rule) (work-execution)
 
-**Foreign keys:**
-
-- `FK_223_221_01`: (`agent_intent_id`) → `agent_intent` (`agent_intent_id`) · relatie ENTOLI AGENT INTENT RULE constraints AGENT INTENT (`entoli-agent-intent-rule-constraints-agent-intent`)
-- `FK_223_224_01`: (`agent_rule_id`) → `entoli_agent_rule` (`entoli_rule_id`) · relatie ENTOLI AGENT RULE is operationalized by ENTOLI AGENT INTENT RULE (`entoli-agent-rule-is-operationalized-by-entoli-agent-intent-rule`)
-- `FK_223_201_01`: (`ref_rule_status_id`) → `ref_rule_status` (`ref_rule_status_id`) · relatie ENTOLI RULE has RULE STATUS (REF) (`entoli-rule-has-rule-status`)
-- `FK_223_202_01`: (`ref_rule_type_id`) → `ref_rule_type` (`ref_rule_type_id`) · relatie ENTOLI RULE has RULE TYPE (REF) (`entoli-rule-has-rule-type`)
-- `FK_223_221_02`: (`agent_id`, `agent_intent_id`) → `agent_intent` (`agent_id`, `agent_intent_id`) · relatie ENTOLI AGENT INTENT RULE constraints AGENT INTENT (`entoli-agent-intent-rule-constraints-agent-intent`)
-- `FK_223_224_02`: (`agent_id`, `agent_rule_id`) → `entoli_agent_rule` (`agent_id`, `entoli_rule_id`) · relatie ENTOLI AGENT RULE is operationalized by ENTOLI AGENT INTENT RULE (`entoli-agent-rule-is-operationalized-by-entoli-agent-intent-rule`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | entoli_rule_id | rule_code | rule_text | reference | agent_intent_id | agent_rule_id | ref_rule_status_id | ref_rule_type_id | agent_id |
 |---|---|---|---|---|---|---|---|---|
@@ -858,40 +758,27 @@ Technical Data Model `entoli-agent-development-agent-definition-postgresql` vers
 
 *Opmerking:* `agent_id` herhaalt de agent van zowel de Agent Intent als de Entoli Agent Rule; de samengestelde foreign keys eisen dat het dezelfde agent is. De regelcode is fictief.
 
-### `entoli_agent_rule`
+</details>
 
-**Eén rij:** Eén regel die voor één agent geldt en optioneel een Canon Rule concretiseert.  
-**Tabelcode:** 224 · **LDM-bron:** entiteit **ENTOLI AGENT RULE** (`entoli-agent-rule`), gematerialiseerd als zelfstandig concreet subtype
+### `entoli_agent_rule` { #agent-definition-entoli-agent-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `entoli_rule_id` | integer | ja | PK |
-| `rule_code` | text | ja |  |
-| `rule_text` | text | ja |  |
-| `reference` | text | nee |  |
-| `canon_rule_code` | text | nee | logical reference |
-| `agent_id` | integer | ja | FK |
-| `ref_rule_status_id` | integer | ja | FK |
-| `ref_rule_type_id` | integer | ja | FK |
+Normatieve regel voor precies één agent. Concretiseert optioneel één canon rule, zonder die te verzwakken of tegen te spreken.
 
-**Primaire sleutel:** `PK_224` (`entoli_rule_id`)
+**Tabelcode** 224 · **Rollen** parent, child, grenschild · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `entoli_rule_id` | PK, UK | Surrogaatsleutel. De naam komt van het supertype Entoli Rule. |
+| `rule_code` | UK | Functionele sleutel van de regel, uniek binnen deze tabel. |
+| `rule_text` |  | De regeltekst. |
+| `reference` |  | Vindplaats van de regel in de bron. |
+| `canon_rule_code` | GV | De canon rule die deze regel concretiseert. Leeg als de regel geen canonieke grondslag heeft. Grensverwijzing naar `canon_rule.rule_code` in semantic-foundation. |
+| `agent_id` | FK, UK | De agent waarvoor de regel geldt. → `agent` |
+| `ref_rule_status_id` | FK | Levenscyclustoestand van de regel. → `ref_rule_status` |
+| `ref_rule_type_id` | FK | Modaliteit van de regel. → `ref_rule_type` |
 
-- `UC_224_01` (`rule_code`)
-- `UC_224_02` (`agent_id`, `entoli_rule_id`)
-
-**Foreign keys:**
-
-- `FK_224_220_01`: (`agent_id`) → `agent` (`agent_id`) · relatie ENTOLI AGENT RULE governs AGENT (`entoli-agent-rule-governs-agent`)
-- `FK_224_201_01`: (`ref_rule_status_id`) → `ref_rule_status` (`ref_rule_status_id`) · relatie ENTOLI RULE has RULE STATUS (REF) (`entoli-rule-has-rule-status`)
-- `FK_224_202_01`: (`ref_rule_type_id`) → `ref_rule_type` (`ref_rule_type_id`) · relatie ENTOLI RULE has RULE TYPE (REF) (`entoli-rule-has-rule-type`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `canon_rule_code` → `canon_rule`.`rule_code` in semantic-foundation · relatie CANON RULE is concretized by ENTOLI AGENT RULE (`canon-rule-is-concretized-by-entoli-agent-rule`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | entoli_rule_id | rule_code | rule_text | reference | canon_rule_code | agent_id | ref_rule_status_id | ref_rule_type_id |
 |---|---|---|---|---|---|---|---|
@@ -899,35 +786,26 @@ Technical Data Model `entoli-agent-development-agent-definition-postgresql` vers
 
 *Opmerking:* De regelcodes zijn fictief.
 
-### `intent_instruction`
+</details>
 
-**Eén rij:** Eén instructie van een Agent Intent, op een vaste positie in de volgorde van de instructies van die intent.  
-**Tabelcode:** 225 · **LDM-bron:** entiteit **INTENT INSTRUCTION** (`intent-instruction`)
+### `intent_instruction` { #agent-definition-intent-instruction }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `intent_instruction_id` | integer | ja | PK |
-| `intent_instruction_code` | text | ja |  |
-| `instruction` | text | ja |  |
-| `sequence` | integer | ja |  |
-| `agent_intent_id` | integer | ja | FK |
+Geordende, normatieve aanwijzing die beschrijft hoe een agent intent inhoudelijk door een LLM wordt uitgevoerd. Onafhankelijk van een concrete execution.
 
-**Primaire sleutel:** `PK_225` (`intent_instruction_id`)
+**Tabelcode** 225 · **Rollen** child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `intent_instruction_id` | PK | Surrogaatsleutel. |
+| `intent_instruction_code` | UK | Functionele sleutel van de instructie. |
+| `instruction` |  | De instructie zelf: welke inhoudelijke handeling het LLM op dit punt uitvoert. |
+| `sequence` | UK | Positie in de uitvoeringsvolgorde binnen de agent intent. Positief (`CK_225_01`); gaten zijn toegestaan. |
+| `agent_intent_id` | FK, UK | De agent intent waartoe de instructie behoort. → `agent_intent` |
 
-- `UC_225_01` (`intent_instruction_code`)
-- `UC_225_02` (`agent_intent_id`, `sequence`)
+**Grenschildren** [`instruction_set_intent_instruction.intent_instruction_code`](#work-execution-instruction-set-intent-instruction) (work-execution)
 
-**Foreign keys:**
-
-- `FK_225_221_01`: (`agent_intent_id`) → `agent_intent` (`agent_intent_id`) · relatie AGENT INTENT performed through INTENT INSTRUCTION (`agent-intent-performed-through-intent-instruction`)
-
-**Check-constraints:**
-
-- `CK_225_01`: `sequence > 0`
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | intent_instruction_id | intent_instruction_code | instruction | sequence | agent_intent_id |
 |---|---|---|---|---|
@@ -937,48 +815,44 @@ Technical Data Model `entoli-agent-development-agent-definition-postgresql` vers
 
 *Opmerking:* Het formaat van codes van intent instructions ligt in de bronnen niet vast; de codes zijn fictief.
 
-### `ref_rule_status`
+</details>
 
-**Eén rij:** Eén status die een agentregel of agent-intentregel kan hebben (inactief of actief).  
-**Tabelcode:** 201 · **LDM-bron:** entiteit **RULE STATUS (REF)** (`rule-status`)
+### `ref_rule_status` { #agent-definition-ref-rule-status }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_rule_status_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `description` | text | ja |  |
+Referentietabel met de levenscyclustoestanden van agentregels en agent-intentregels. Eigen kopie van de lijst in semantic-foundation.
 
-**Primaire sleutel:** `PK_201` (`ref_rule_status_id`)
+**Tabelcode** 201 · **Rollen** referentietabel, parent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_rule_status_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Code van de toestand. |
+| `description` |  | Omschrijving van de toestand. |
 
-- `UC_201_01` (`code`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | ref_rule_status_id | code | description |
 |---|---|---|
 | 1 | 0 | Inactive |
 | 2 | 1 | Active |
 
-### `ref_rule_type`
+</details>
 
-**Eén rij:** Eén regeltype voor agentregels en agent-intentregels: gebod, verbod of toestemming.  
-**Tabelcode:** 202 · **LDM-bron:** entiteit **RULE TYPE (REF)** (`rule-type`)
+### `ref_rule_type` { #agent-definition-ref-rule-type }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_rule_type_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `description` | text | ja |  |
+Referentietabel met de modaliteiten van agentregels en agent-intentregels: gebod, verbod of toestemming. Eigen kopie van de lijst in semantic-foundation.
 
-**Primaire sleutel:** `PK_202` (`ref_rule_type_id`)
+**Tabelcode** 202 · **Rollen** referentietabel, parent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_rule_type_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Code van de modaliteit. |
+| `description` |  | Omschrijving van de modaliteit. |
 
-- `UC_202_01` (`code`)
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | ref_rule_type_id | code | description |
 |---|---|---|
@@ -986,30 +860,30 @@ Technical Data Model `entoli-agent-development-agent-definition-postgresql` vers
 | 2 | prh | Prohibition |
 | 3 | prm | Permission |
 
+</details>
+
 ## execution-configuration
 
-Technical Data Model `entoli-agent-development-execution-configuration-postgresql` versie 2.2.0, afgeleid van Logical Data Model `entoli-agent-development-execution-configuration` versie 2.2.0.
+De uitvoeringsomgeving: Entoli Contexts, LLM-providers, -accounts en -modellen, en de modelkeuze per stap. TDM `entoli-agent-development-execution-configuration-postgresql` versie 2.2.0.
 
-### `entoli_context`
+### `entoli_context` { #execution-configuration-entoli-context }
 
-**Eén rij:** Eén Entoli Context: een omgeving die agents, LLM-accounts en modelselecties bezit.  
-**Tabelcode:** 320 · **LDM-bron:** entiteit **ENTOLI CONTEXT** (`entoli-context`)
+Omgeving waarin Entoli zijn agents, LLM-toegang en modelselecties beheert en herbruikbare orchestraties gebruikt.
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `entoli_context_id` | integer | ja | PK |
-| `entoli_context_code` | text | ja |  |
-| `name` | text | ja |  |
-| `description` | text | nee |  |
-| `status` | text | ja |  |
+**Tabelcode** 320 · **Rollen** parent, grensparent, worteltabel · **Kleur** sterk roze
 
-**Primaire sleutel:** `PK_320` (`entoli_context_id`)
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `entoli_context_id` | PK | Surrogaatsleutel. |
+| `entoli_context_code` | UK | Functionele sleutel van de context. |
+| `name` |  | Weergavenaam. |
+| `description` |  | Toelichting op de context. |
+| `status` |  | Levenscyclustoestand. Vrije tekst: er is geen codelijst. |
 
-**Uniciteitsconstraints:**
+**Grenschildren** [`agent.entoli_context_code`](#agent-definition-agent) (agent-definition), [`execution.entoli_context_code`](#work-execution-execution) (work-execution)
 
-- `UC_320_01` (`entoli_context_code`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | entoli_context_id | entoli_context_code | name | description | status |
 |---|---|---|---|---|
@@ -1017,66 +891,49 @@ Technical Data Model `entoli-agent-development-execution-configuration-postgresq
 
 *Opmerking:* `status` heeft in de bronnen geen codelijst; `active` is een aangenomen waarde.
 
-### `entoli_context_orchestration_specification`
+</details>
 
-**Eén rij:** Eén Orchestration Specification die in één Entoli Context beschikbaar is gesteld.  
-**Tabelcode:** 329 · **LDM-bron:** relatie **ENTOLI CONTEXT uses ORCHESTRATION SPECIFICATION (`entoli-context-orchestration-specification`)**, gerealiseerd als koppeltabel
+### `entoli_context_orchestration_specification` { #execution-configuration-entoli-context-orchestration-specification }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `entoli_context_orchestration_specification_id` | integer | ja | PK |
-| `orchestration_specification_code` | text | ja | logical reference |
-| `entoli_context_id` | integer | ja | FK |
+Junction-tabel: welke orchestration specifications in een Entoli Context beschikbaar zijn. De orchestration specification ligt in een andere Logical Instance; die kant is daarom een grensverwijzing en geen foreign key.
 
-**Primaire sleutel:** `PK_329` (`entoli_context_orchestration_specification_id`)
+**Tabelcode** 329 · **Rollen** junction-tabel, child, grenschild · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `entoli_context_orchestration_specification_id` | PK | Surrogaatsleutel. |
+| `orchestration_specification_code` | UK, GV | De beschikbaar gestelde orchestration specification. Grensverwijzing naar `orchestration_specification.specification_code` in orchestration-definition. |
+| `entoli_context_id` | FK, UK | De context die de specificatie beschikbaar stelt. → `entoli_context` |
 
-- `UC_329_01` (`entoli_context_id`, `orchestration_specification_code`)
-
-**Foreign keys:**
-
-- `FK_329_320_01`: (`entoli_context_id`) → `entoli_context` (`entoli_context_id`) · relatie ENTOLI CONTEXT uses ORCHESTRATION SPECIFICATION (`entoli-context-orchestration-specification`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `orchestration_specification_code` → `orchestration_specification`.`specification_code` in orchestration-definition · relatie ENTOLI CONTEXT uses ORCHESTRATION SPECIFICATION (`entoli-context-orchestration-specification`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | entoli_context_orchestration_specification_id | orchestration_specification_code | entoli_context_id |
 |---|---|---|
 | 1 | model-derivation | 1 |
 
-### `llm_account`
+</details>
 
-**Eén rij:** Eén account bij een LLM Provider dat een Entoli Context beschikbaar stelt, met de versleutelde API-sleutel.  
-**Tabelcode:** 322 · **LDM-bron:** entiteit **LLM ACCOUNT** (`llm-account`)
+### `llm_account` { #execution-configuration-llm-account }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `llm_account_id` | integer | ja | PK |
-| `account_code` | text | ja |  |
-| `account_name` | text | ja |  |
-| `description` | text | nee |  |
-| `api_key_ciphertext` | bytea | nee |  |
-| `created_at` | timestamptz (default `CURRENT_TIMESTAMP`) | ja |  |
-| `api_key_rotated_at` | timestamptz | nee |  |
-| `entoli_context_id` | integer | ja | FK |
-| `llm_provider_id` | integer | ja | FK |
+Toegang bij een LLM Provider die een Entoli Context beschikbaar stelt, met de versleutelde API-sleutel.
 
-**Primaire sleutel:** `PK_322` (`llm_account_id`)
+**Tabelcode** 322 · **Rollen** child · **Kleur** lichtblauw
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `llm_account_id` | PK | Surrogaatsleutel. |
+| `account_code` | UK | Functionele sleutel van het account. |
+| `account_name` |  | Weergavenaam. |
+| `description` |  | Toelichting op het account. |
+| `api_key_ciphertext` |  | Versleutelde API-sleutel als bytes. Nooit de sleutel in klare tekst. Technische kolom, niet afkomstig uit het LDM. |
+| `created_at` |  | Moment waarop het account is vastgelegd. Technische kolom, niet afkomstig uit het LDM. |
+| `api_key_rotated_at` |  | Moment van de laatste sleutelrotatie; leeg als de sleutel nooit is geroteerd. Technische kolom, niet afkomstig uit het LDM. |
+| `entoli_context_id` | FK | De context die het account beschikbaar stelt. → `entoli_context` |
+| `llm_provider_id` | FK | De provider die het account verstrekt. → `llm_provider` |
 
-- `UC_322_01` (`account_code`)
-
-**Foreign keys:**
-
-- `FK_322_320_01`: (`entoli_context_id`) → `entoli_context` (`entoli_context_id`) · relatie ENTOLI CONTEXT makes available LLM ACCOUNT (`entoli-context-makes-available-llm-account`)
-- `FK_322_324_01`: (`llm_provider_id`) → `llm_provider` (`llm_provider_id`) · relatie LLM ACCOUNT is provided by LLM PROVIDER (`llm-account-is-provided-by-llm-provider`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | llm_account_id | account_code | account_name | description | api_key_ciphertext | created_at | api_key_rotated_at | entoli_context_id | llm_provider_id |
 |---|---|---|---|---|---|---|---|---|
@@ -1084,30 +941,24 @@ Technical Data Model `entoli-agent-development-execution-configuration-postgresq
 
 *Opmerking:* `api_key_ciphertext` bevat versleutelde bytes; de waarde is een placeholder, nooit een echte sleutel.
 
-### `llm_model`
+</details>
 
-**Eén rij:** Eén model dat een LLM Provider aanbiedt.  
-**Tabelcode:** 323 · **LDM-bron:** entiteit **LLM MODEL** (`llm-model`)
+### `llm_model` { #execution-configuration-llm-model }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `llm_model_id` | integer | ja | PK |
-| `model_code` | text | ja |  |
-| `context_window_size` | integer | nee |  |
-| `description` | text | nee |  |
-| `llm_provider_id` | integer | ja | FK |
+Specifiek taalmodel dat één LLM Provider aanbiedt en dat een model assignment kan selecteren.
 
-**Primaire sleutel:** `PK_323` (`llm_model_id`)
+**Tabelcode** 323 · **Rollen** parent, child · **Kleur** lichtblauw
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `llm_model_id` | PK | Surrogaatsleutel. |
+| `model_code` | UK | Functionele sleutel van het model. |
+| `context_window_size` |  | Omvang van het contextvenster in tokens. |
+| `description` |  | Toelichting op het model. |
+| `llm_provider_id` | FK | De provider die het model aanbiedt. → `llm_provider` |
 
-- `UC_323_01` (`model_code`)
-
-**Foreign keys:**
-
-- `FK_323_324_01`: (`llm_provider_id`) → `llm_provider` (`llm_provider_id`) · relatie LLM PROVIDER provides LLM MODEL (`llm-provider-provides-llm-model`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | llm_model_id | model_code | context_window_size | description | llm_provider_id |
 |---|---|---|---|---|
@@ -1116,25 +967,23 @@ Technical Data Model `entoli-agent-development-execution-configuration-postgresq
 
 *Opmerking:* `context_window_size` is een illustratieve waarde, geen gedocumenteerde eigenschap van het model.
 
-### `llm_provider`
+</details>
 
-**Eén rij:** Eén aanbieder van LLM-modellen.  
-**Tabelcode:** 324 · **LDM-bron:** entiteit **LLM PROVIDER** (`llm-provider`)
+### `llm_provider` { #execution-configuration-llm-provider }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `llm_provider_id` | integer | ja | PK |
-| `provider_code` | text | ja |  |
-| `name` | text | ja |  |
-| `status` | text | nee |  |
+Aanbieder van LLM-modellen, via wie ook LLM-accounts worden verstrekt.
 
-**Primaire sleutel:** `PK_324` (`llm_provider_id`)
+**Tabelcode** 324 · **Rollen** parent, worteltabel · **Kleur** geel
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `llm_provider_id` | PK | Surrogaatsleutel. |
+| `provider_code` | UK | Stabiele functionele sleutel. Verandert niet als de naam van de provider verandert. |
+| `name` |  | Weergavenaam. Mag wijzigen zonder dat een andere provider wordt bedoeld. |
+| `status` |  | Levenscyclustoestand. Vrije tekst: er is geen codelijst. |
 
-- `UC_324_01` (`provider_code`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | llm_provider_id | provider_code | name | status |
 |---|---|---|---|
@@ -1142,30 +991,23 @@ Technical Data Model `entoli-agent-development-execution-configuration-postgresq
 
 *Opmerking:* `status` heeft in de bronnen geen codelijst; `active` is een aangenomen waarde.
 
-### `llm_provider_thinking_effort`
+</details>
 
-**Eén rij:** De waarde die één LLM Provider verwacht voor één positie van Thinking Effort.  
-**Tabelcode:** 328 · **LDM-bron:** entiteit **PROVIDER THINKING EFFORT** (`provider-thinking-effort`)
+### `llm_provider_thinking_effort` { #execution-configuration-llm-provider-thinking-effort }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `llm_provider_thinking_effort_id` | integer | ja | PK |
-| `provider_value` | text | ja |  |
-| `llm_provider_id` | integer | ja | FK |
-| `ref_thinking_effort_id` | integer | ja | FK |
+Junction-tabel (associatieve entiteit): de waarde die een provider in zijn API verwacht voor een Thinking Effort-positie. Per combinatie van provider en thinking effort ten hoogste één rij.
 
-**Primaire sleutel:** `PK_328` (`llm_provider_thinking_effort_id`)
+**Tabelcode** 328 · **Rollen** junction-tabel, child · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `llm_provider_thinking_effort_id` | PK | Surrogaatsleutel. |
+| `provider_value` |  | De waarde die de provider verwacht, letterlijk zoals de provider die schrijft. Draagt zelf geen Entoli-betekenis. |
+| `llm_provider_id` | FK, UK | De provider. → `llm_provider` |
+| `ref_thinking_effort_id` | FK, UK | De Thinking Effort-positie die wordt vertaald. → `ref_thinking_effort` |
 
-- `UC_328_01` (`llm_provider_id`, `ref_thinking_effort_id`)
-
-**Foreign keys:**
-
-- `FK_328_324_01`: (`llm_provider_id`) → `llm_provider` (`llm_provider_id`) · relatie PROVIDER THINKING EFFORT concerns LLM PROVIDER (`provider-thinking-effort-concerns-llm-provider`)
-- `FK_328_301_01`: (`ref_thinking_effort_id`) → `ref_thinking_effort` (`ref_thinking_effort_id`) · relatie PROVIDER THINKING EFFORT concerns THINKING EFFORT (REF) (`provider-thinking-effort-concerns-thinking-effort`)
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | llm_provider_thinking_effort_id | provider_value | llm_provider_id | ref_thinking_effort_id |
 |---|---|---|---|
@@ -1175,63 +1017,52 @@ Technical Data Model `entoli-agent-development-execution-configuration-postgresq
 
 *Opmerking:* De providerwaarden zijn fictief.
 
-### `model_assignment`
+</details>
 
-**Eén rij:** Eén gepubliceerde keuze van een LLM-model en de bijbehorende generatie-instellingen die één Execution Profile realiseert.  
-**Tabelcode:** 325 · **LDM-bron:** entiteit **MODEL ASSIGNMENT** (`model-assignment`)
+### `model_assignment` { #execution-configuration-model-assignment }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `model_assignment_id` | integer | ja | PK |
-| `assignment_code` | text | ja |  |
-| `temperature` | numeric | nee |  |
-| `top_p` | numeric | nee |  |
-| `maximum_output_tokens` | integer | nee |  |
-| `publication_timestamp` | timestamptz | nee |  |
-| `execution_profile_code` | text | ja | logical reference |
-| `llm_model_id` | integer | ja | FK |
-| `ref_thinking_effort_id` | integer | nee | FK |
+Keuze van een LLM-model met generatie-instellingen die één execution profile realiseert. Na publicatie onveranderlijk: een gewijzigde configuratie is een nieuwe model assignment.
 
-**Primaire sleutel:** `PK_325` (`model_assignment_id`)
+**Tabelcode** 325 · **Rollen** parent, child, grensparent, grenschild · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `model_assignment_id` | PK | Surrogaatsleutel. |
+| `assignment_code` | UK | Functionele sleutel van de assignment. |
+| `temperature` |  | Sampling-temperatuur. Leeg als niet ingesteld. |
+| `top_p` |  | Nucleus-sampling-drempel. Leeg als niet ingesteld. |
+| `maximum_output_tokens` |  | Maximaal aantal uitvoertokens. Leeg als niet ingesteld. |
+| `publication_timestamp` |  | Moment van publicatie. Leeg zolang de assignment in voorbereiding is; daarna wijzigt de rij niet meer. |
+| `execution_profile_code` | GV | Het execution profile dat de assignment realiseert. Grensverwijzing naar `execution_profile.execution_profile_code` in semantic-foundation. |
+| `llm_model_id` | FK | Het geselecteerde model. → `llm_model` |
+| `ref_thinking_effort_id` | FK | De gevraagde denkinspanning. Leeg als niet ingesteld. → `ref_thinking_effort` |
 
-- `UC_325_01` (`assignment_code`)
+**Grenschildren** [`execution.model_assignment_code`](#work-execution-execution) (work-execution)
 
-**Foreign keys:**
-
-- `FK_325_323_01`: (`llm_model_id`) → `llm_model` (`llm_model_id`) · relatie LLM MODEL is selected by MODEL ASSIGNMENT (`llm-model-is-selected-by-model-assignment`)
-- `FK_325_301_01`: (`ref_thinking_effort_id`) → `ref_thinking_effort` (`ref_thinking_effort_id`) · relatie MODEL ASSIGNMENT declares THINKING EFFORT (REF) (`model-assignment-declares-thinking-effort`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `execution_profile_code` → `execution_profile`.`execution_profile_code` in semantic-foundation · relatie MODEL ASSIGNMENT realises EXECUTION PROFILE (`model-assignment-realises-execution-profile`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | model_assignment_id | assignment_code | temperature | top_p | maximum_output_tokens | publication_timestamp | execution_profile_code | llm_model_id | ref_thinking_effort_id |
 |---|---|---|---|---|---|---|---|---|
 | 1 | ma-survey-sources | NULL | NULL | 8000 | 2026-09-10 12:00:00+00 | DPG-EXP-C2 | 2 | NULL |
 | 2 | ma-derive-ldm | 0.2 | NULL | 16000 | 2026-09-10 12:00:00+00 | DPG-SPE-C2 | 1 | 3 |
 
-### `ref_thinking_effort`
+</details>
 
-**Eén rij:** Eén positie van Thinking Effort: hoeveel redeneerinspanning van het model wordt gevraagd.  
-**Tabelcode:** 301 · **LDM-bron:** entiteit **THINKING EFFORT (REF)** (`thinking-effort`)
+### `ref_thinking_effort` { #execution-configuration-ref-thinking-effort }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_thinking_effort_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `description` | text | ja |  |
+Referentietabel met de posities van Thinking Effort: hoeveel redeneerinspanning van het model wordt gevraagd (`standard`, `medium`, `high`).
 
-**Primaire sleutel:** `PK_301` (`ref_thinking_effort_id`)
+**Tabelcode** 301 · **Rollen** referentietabel, parent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_thinking_effort_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Code van de positie. |
+| `description` |  | Omschrijving van de positie. |
 
-- `UC_301_01` (`code`)
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | ref_thinking_effort_id | code | description |
 |---|---|---|
@@ -1241,74 +1072,53 @@ Technical Data Model `entoli-agent-development-execution-configuration-postgresq
 
 *Opmerking:* De omschrijvingen zijn ingekorte Engelse weergaven van de Nederlandse LDM-posities.
 
-### `step_model_selection`
+</details>
 
-**Eén rij:** De Model Assignment die één Entoli Context kiest voor één Orchestration Step.  
-**Tabelcode:** 330 · **LDM-bron:** entiteit **STEP MODEL SELECTION** (`step-model-selection`)
+### `step_model_selection` { #execution-configuration-step-model-selection }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `step_model_selection_id` | integer | ja | PK |
-| `orchestration_step_code` | text | ja | logical reference |
-| `entoli_context_id` | integer | ja | FK |
-| `model_assignment_id` | integer | ja | FK |
+Junction-tabel (associatieve entiteit): welke model assignment een Entoli Context gebruikt voor één orchestration step. Per context en stap ten hoogste één rij.
 
-**Primaire sleutel:** `PK_330` (`step_model_selection_id`)
+**Tabelcode** 330 · **Rollen** junction-tabel, child, grenschild · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `step_model_selection_id` | PK | Surrogaatsleutel. |
+| `orchestration_step_code` | UK, GV | De orchestration step waarvoor het model wordt gekozen. Grensverwijzing naar `orchestration_step.orchestration_step_code` in orchestration-definition. |
+| `entoli_context_id` | FK, UK | De context die de keuze maakt. → `entoli_context` |
+| `model_assignment_id` | FK | De gekozen model assignment. → `model_assignment` |
 
-- `UC_330_01` (`entoli_context_id`, `orchestration_step_code`)
-
-**Foreign keys:**
-
-- `FK_330_320_01`: (`entoli_context_id`) → `entoli_context` (`entoli_context_id`) · relatie STEP MODEL SELECTION is made in ENTOLI CONTEXT (`step-model-selection-is-made-in-entoli-context`)
-- `FK_330_325_01`: (`model_assignment_id`) → `model_assignment` (`model_assignment_id`) · relatie STEP MODEL SELECTION selects MODEL ASSIGNMENT (`step-model-selection-selects-model-assignment`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `orchestration_step_code` → `orchestration_step`.`orchestration_step_code` in orchestration-definition · relatie STEP MODEL SELECTION concerns ORCHESTRATION STEP (`step-model-selection-concerns-orchestration-step`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | step_model_selection_id | orchestration_step_code | entoli_context_id | model_assignment_id |
 |---|---|---|---|
 | 1 | survey-sources | 1 | 1 |
 | 2 | derive-ldm | 1 | 2 |
 
+</details>
+
 ## work-execution
 
-Technical Data Model `entoli-agent-development-work-execution-postgresql` versie 4.0.0, afgeleid van Logical Data Model `entoli-agent-development-work-execution` versie 4.0.0.
+Het werk zelf: instruction sets en wat erin is opgenomen, executions, artefacten, handoffs en menselijke invoer. TDM `entoli-agent-development-work-execution-postgresql` versie 4.0.0.
 
-### `artifact`
+### `artifact` { #work-execution-artifact }
 
-**Eén rij:** Eén artefact dat een Execution heeft voortgebracht, geclassificeerd door een Artifact Type.  
-**Tabelcode:** 420 · **LDM-bron:** entiteit **ARTIFACT** (`artifact`)
+Duurzame, expliciete vastlegging van een resultaat of beslissing. Voortgebracht door precies één execution en bruikbaar als werkbron voor latere instruction sets.
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `artifact_id` | integer | ja | PK |
-| `artifact_code` | text | ja |  |
-| `origin_code` | text | nee |  |
-| `status` | text | ja |  |
-| `artifact_content` | text | nee |  |
-| `artifact_type_code` | text | ja | logical reference |
-| `execution_id` | integer | ja | FK |
+**Tabelcode** 420 · **Rollen** parent, child, grenschild · **Kleur** lichtroze
 
-**Primaire sleutel:** `PK_420` (`artifact_id`)
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `artifact_id` | PK | Surrogaatsleutel. |
+| `artifact_code` | UK | Workspace-brede identificatie: de `artifact-id` uit de YAML-frontmatter van het artefact. Uniek en nooit hergebruikt. |
+| `origin_code` |  | Herkomstcode in de vorm `YYMM.XXXX`. Meerdere artefacten kunnen dezelfde herkomst delen, dus niet uniek. |
+| `status` |  | Levenscyclustoestand, bijvoorbeeld `draft` of `final`. Vrije tekst: er is geen codelijst. |
+| `artifact_content` |  | Tekstuele inhoud van het artefact. Eén inhoud per artefact, zonder versies. |
+| `artifact_type_code` | GV | Het artefacttype dat het artefact classificeert. Grensverwijzing naar `artifact_type.code` in semantic-foundation. |
+| `execution_id` | FK | De execution die het artefact heeft voortgebracht. → `execution` |
 
-**Uniciteitsconstraints:**
-
-- `UC_420_01` (`artifact_code`)
-
-**Foreign keys:**
-
-- `FK_420_421_01`: (`execution_id`) → `execution` (`execution_id`) · relatie EXECUTION produces ARTIFACT (`execution-produces-artifact`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `artifact_type_code` → `artifact_type`.`code` in semantic-foundation · relatie ARTIFACT TYPE classifies ARTIFACT (`artifact-type-classifies-artifact`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | artifact_id | artifact_code | origin_code | status | artifact_content | artifact_type_code | execution_id |
 |---|---|---|---|---|---|---|
@@ -1317,77 +1127,51 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* `status` heeft in de bronnen geen codelijst; `final` en `draft` zijn aangenomen waarden. Het formaat van de artefactcodes is fictief.
 
-### `artifact_derivation`
+</details>
 
-**Eén rij:** Eén afleiding: het afgeleide artefact is gebaseerd op het bronartefact.  
-**Tabelcode:** 428 · **LDM-bron:** relatie **ARTIFACT is based on ARTIFACT (`artifact-is-based-on-source-artifact`)**, gerealiseerd als koppeltabel
+### `artifact_derivation` { #work-execution-artifact-derivation }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `artifact_derivation_id` | integer | ja | PK |
-| `derived_artifact_id` | integer | ja | FK |
-| `source_artifact_id` | integer | ja | FK |
+Junction-tabel voor de relatie ARTIFACT is based on ARTIFACT: het afgeleide artefact is gebaseerd op het bronartefact. Een artefact kan niet van zichzelf zijn afgeleid (`CK_428_01`).
 
-**Primaire sleutel:** `PK_428` (`artifact_derivation_id`)
+**Tabelcode** 428 · **Rollen** junction-tabel, child · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `artifact_derivation_id` | PK | Surrogaatsleutel. |
+| `derived_artifact_id` | FK, UK | Het afgeleide artefact. → `artifact` |
+| `source_artifact_id` | FK, UK | Het bronartefact. → `artifact` |
 
-- `UC_428_01` (`derived_artifact_id`, `source_artifact_id`)
-
-**Foreign keys:**
-
-- `FK_428_420_01`: (`derived_artifact_id`) → `artifact` (`artifact_id`) · relatie ARTIFACT is based on ARTIFACT (`artifact-is-based-on-source-artifact`)
-- `FK_428_420_02`: (`source_artifact_id`) → `artifact` (`artifact_id`) · relatie ARTIFACT is based on ARTIFACT (`artifact-is-based-on-source-artifact`)
-
-**Check-constraints:**
-
-- `CK_428_01`: `derived_artifact_id <> source_artifact_id`
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | artifact_derivation_id | derived_artifact_id | source_artifact_id |
 |---|---|---|
 | 1 | 2 | 1 |
 
-### `execution`
+</details>
 
-**Eén rij:** Eén uitvoering van een orchestration step definition door een LLM, geïnstrueerd door precies één Instruction Set.  
-**Tabelcode:** 421 · **LDM-bron:** entiteit **EXECUTION** (`execution`)
+### `execution` { #work-execution-execution }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `execution_id` | integer | ja | PK |
-| `execution_code` | text | ja |  |
-| `start_timestamp` | timestamptz | ja |  |
-| `status` | text | ja |  |
-| `model_assignment_code` | text | ja | logical reference |
-| `orchestration_step_definition_code` | uuid | ja | logical reference |
-| `entoli_context_code` | text | ja | logical reference |
-| `orchestration_specification_version_code` | uuid | ja | logical reference |
-| `instruction_set_id` | integer | ja | FK |
-| `handoff_id` | integer | nee | FK |
-| `ref_termination_reason_id` | integer | nee | FK |
+Tijdgebonden uitvoering van één gepubliceerde versie van één orchestration step, binnen één Entoli Context en volgens één gepubliceerde orchestratieversie, geïnstrueerd door één instruction set en met één model assignment.
 
-**Primaire sleutel:** `PK_421` (`execution_id`)
+**Tabelcode** 421 · **Rollen** parent, child, grenschild · **Kleur** lichtroze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `execution_id` | PK | Surrogaatsleutel. |
+| `execution_code` | UK | Functionele sleutel van de execution. |
+| `start_timestamp` |  | Moment waarop de execution begon. |
+| `status` |  | Toestand, bijvoorbeeld `completed` of `terminated`. Vrije tekst: er is geen codelijst. |
+| `model_assignment_code` | GV | De model assignment die daadwerkelijk is gebruikt. Grensverwijzing naar `model_assignment.assignment_code` in execution-configuration. |
+| `orchestration_step_definition_code` | GV | De gepubliceerde stapversie die is uitgevoerd. Grensverwijzing naar `orchestration_step_definition.orchestration_step_definition_code` in orchestration-definition. |
+| `entoli_context_code` | GV | De context waarin de execution plaatsvond. Grensverwijzing naar `entoli_context.entoli_context_code` in execution-configuration. |
+| `orchestration_specification_version_code` | GV | De gepubliceerde orchestratieversie die de execution volgde. Grensverwijzing naar `orchestration_specification_version.orchestration_specification_version_code` in orchestration-definition. |
+| `instruction_set_id` | FK | De instruction set die de execution instrueert. → `instruction_set` |
+| `handoff_id` | FK | De handoff die de execution heeft voortgebracht. Leeg als er geen is. → `handoff` |
+| `ref_termination_reason_id` | FK | Reden van voortijdige beëindiging. Leeg bij normale afloop. → `ref_termination_reason` |
 
-- `UC_421_01` (`execution_code`)
-
-**Foreign keys:**
-
-- `FK_421_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie EXECUTION is instructed by INSTRUCTION SET (`execution-is-instructed-by-instruction-set`)
-- `FK_421_422_01`: (`handoff_id`) → `handoff` (`handoff_id`) · relatie EXECUTION produces HANDOFF (`execution-produces-handoff`)
-- `FK_421_402_01`: (`ref_termination_reason_id`) → `ref_termination_reason` (`ref_termination_reason_id`) · relatie EXECUTION has TERMINATION REASON (REF) (`execution-has-termination-reason`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `model_assignment_code` → `model_assignment`.`assignment_code` in execution-configuration · relatie EXECUTION uses MODEL ASSIGNMENT (`execution-uses-model-assignment`)
-- `orchestration_step_definition_code` → `orchestration_step_definition`.`orchestration_step_definition_code` in orchestration-definition · relatie ORCHESTRATION STEP DEFINITION is executed as EXECUTION (`orchestration-step-definition-is-executed-as-execution`)
-- `entoli_context_code` → `entoli_context`.`entoli_context_code` in execution-configuration · relatie EXECUTION is performed in ENTOLI CONTEXT (`execution-is-performed-in-entoli-context`)
-- `orchestration_specification_version_code` → `orchestration_specification_version`.`orchestration_specification_version_code` in orchestration-definition · relatie EXECUTION follows ORCHESTRATION SPECIFICATION VERSION (`execution-follows-orchestration-specification-version`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | execution_id | execution_code | start_timestamp | status | model_assignment_code | orchestration_step_definition_code | entoli_context_code | orchestration_specification_version_code | instruction_set_id | handoff_id | ref_termination_reason_id |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -1396,31 +1180,25 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* `status` heeft in de bronnen geen codelijst; `completed` en `terminated` zijn aangenomen waarden.
 
-### `handoff`
+</details>
 
-**Eén rij:** Eén handoff die een Execution voortbrengt en die in een latere Instruction Set wordt opgenomen, mogelijk met een verzoek om menselijke tussenkomst.  
-**Tabelcode:** 422 · **LDM-bron:** entiteit **HANDOFF** (`handoff`)
+### `handoff` { #work-execution-handoff }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `handoff_id` | integer | ja | PK |
-| `handoff_code` | text | ja |  |
-| `human_intervention` | boolean | ja |  |
-| `timestamp` | timestamptz | ja |  |
-| `content_message` | text | nee |  |
-| `instruction_set_id` | integer | ja | FK |
+Expliciete overdracht van interpretatie en context van een afgeronde execution naar vervolgwerk. Opgenomen in precies één latere instruction set.
 
-**Primaire sleutel:** `PK_422` (`handoff_id`)
+**Tabelcode** 422 · **Rollen** parent, child · **Kleur** lichtblauw
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `handoff_id` | PK | Surrogaatsleutel. |
+| `handoff_code` | UK | Functionele sleutel van de handoff. |
+| `human_intervention` |  | Waar als de overdracht om menselijke tussenkomst vraagt. |
+| `timestamp` |  | Moment van de overdracht. |
+| `content_message` |  | Inhoud van de overdracht. |
+| `instruction_set_id` | FK | De latere instruction set waarin de handoff is opgenomen. De ontvangende execution vind je via die instruction set. → `instruction_set` |
 
-- `UC_422_01` (`handoff_code`)
-
-**Foreign keys:**
-
-- `FK_422_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie HANDOFF is included in INSTRUCTION SET (`handoff-is-included-in-instruction-set`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | handoff_id | handoff_code | human_intervention | timestamp | content_message | instruction_set_id |
 |---|---|---|---|---|---|
@@ -1428,26 +1206,24 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* De handoff die execution 1 voortbrengt, is opgenomen in Instruction Set 2, die de volgende stap instrueert.
 
-### `human_context`
+</details>
 
-**Eén rij:** Eén definitie van de invoer die een mens levert, opgebouwd uit Human Context Parameters.  
-**Tabelcode:** 423 · **LDM-bron:** entiteit **HUMAN CONTEXT** (`human-context`)
+### `human_context` { #work-execution-human-context }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `human_context_id` | integer | ja | PK |
-| `human_context_code` | text | ja |  |
-| `name` | text | ja |  |
-| `description` | text | nee |  |
-| `status` | text | ja |  |
+Definitie van de invoer die een mens levert om een agent intent te starten en inhoudelijk te sturen. De velden staan in `human_context_parameter`.
 
-**Primaire sleutel:** `PK_423` (`human_context_id`)
+**Tabelcode** 423 · **Rollen** parent, worteltabel · **Kleur** geel
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `human_context_id` | PK | Surrogaatsleutel. |
+| `human_context_code` | UK | Functionele sleutel van de human context. |
+| `name` |  | Weergavenaam. |
+| `description` |  | Toelichting op de human context. |
+| `status` |  | Levenscyclustoestand. Vrije tekst: er is geen codelijst. |
 
-- `UC_423_01` (`human_context_code`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | human_context_id | human_context_code | name | description | status |
 |---|---|---|---|---|
@@ -1455,34 +1231,27 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* `status` heeft in de bronnen geen codelijst; `active` is een aangenomen waarde.
 
-### `human_context_parameter`
+</details>
 
-**Eén rij:** Eén veld van een Human Context, met label, datatype en weergavevolgorde.  
-**Tabelcode:** 429 · **LDM-bron:** entiteit **HUMAN CONTEXT PARAMETER** (`human-context-parameter`)
+### `human_context_parameter` { #work-execution-human-context-parameter }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `human_context_parameter_id` | integer | ja | PK |
-| `parameter_code` | text | ja |  |
-| `label` | text | ja |  |
-| `description` | text | nee |  |
-| `data_type` | text | ja |  |
-| `required` | boolean | ja |  |
-| `display_order` | integer | ja |  |
-| `human_context_id` | integer | ja | FK |
+Eén veld van een human context. Dit is de definitie van het veld, geen ingevulde waarde; ingevulde waarden staan in `instruction_set_parameter_value`.
 
-**Primaire sleutel:** `PK_429` (`human_context_parameter_id`)
+**Tabelcode** 429 · **Rollen** parent, child · **Kleur** lichtblauw
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `human_context_parameter_id` | PK | Surrogaatsleutel. |
+| `parameter_code` | UK | Code van het veld, uniek binnen de eigen human context (niet daarbuiten). |
+| `label` |  | Tekst die de gebruiker naast het veld ziet. Mag wijzigen zonder dat het veld verandert. |
+| `description` |  | Toelichting die naast het veld wordt getoond. |
+| `data_type` |  | Type waarde dat het veld accepteert, bijvoorbeeld `text` of `date`. Bepaalt hoe een ingevulde waarde wordt gelezen. Vrije tekst: er is geen codelijst. |
+| `required` |  | Waar als de gebruiker het veld moet invullen. |
+| `display_order` | UK | Positie van het veld in de weergavevolgorde, uniek binnen de human context. |
+| `human_context_id` | FK, UK | De human context waartoe het veld behoort. → `human_context` |
 
-- `UC_429_01` (`human_context_id`, `parameter_code`)
-- `UC_429_02` (`human_context_id`, `display_order`)
-
-**Foreign keys:**
-
-- `FK_429_423_01`: (`human_context_id`) → `human_context` (`human_context_id`) · relatie HUMAN CONTEXT PARAMETER belongs to HUMAN CONTEXT (`human-context-parameter-belongs-to-human-context`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | human_context_parameter_id | parameter_code | label | description | data_type | required | display_order | human_context_id |
 |---|---|---|---|---|---|---|---|
@@ -1491,156 +1260,112 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* `data_type` heeft in de bronnen geen codelijst; `text` en `date` zijn aangenomen waarden.
 
-### `instruction_set`
+</details>
 
-**Eén rij:** Eén samengestelde set instructies voor één Execution, aangestuurd door één Agent Intent.  
-**Tabelcode:** 424 · **LDM-bron:** entiteit **INSTRUCTION SET** (`instruction-set`)
+### `instruction_set` { #work-execution-instruction-set }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_id` | integer | ja | PK |
-| `instruction_set_code` | uuid | ja |  |
-| `content` | text | nee |  |
-| `created_at` | timestamptz (default `CURRENT_TIMESTAMP`) | ja |  |
-| `agent_intent_code` | text | ja | logical reference |
+Execution-specifieke samenstelling van normatieve, semantische en aangeleverde context die één execution instrueert, aangestuurd door één agent intent. Wat erin is opgenomen, staat in de `instruction_set_*`-tabellen.
 
-**Primaire sleutel:** `PK_424` (`instruction_set_id`)
+**Tabelcode** 424 · **Rollen** parent, grenschild · **Kleur** lichtroze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_id` | PK | Surrogaatsleutel. |
+| `instruction_set_code` | UK | Stabiele identificatie (UUID), toegekend bij aanmaak, nooit gewijzigd of hergebruikt. |
+| `content` |  | De samengestelde instructie-inhoud, inclusief ingevulde parameterwaarden. Leeg zolang de samenstelling loopt. Legt vast wat is verstuurd; vervangt de onderliggende rijen niet. |
+| `created_at` |  | Moment van aanmaak. Technische kolom, niet afkomstig uit het LDM. |
+| `agent_intent_code` | GV | De agent intent die de samenstelling aanstuurt. Grensverwijzing naar `agent_intent.agent_intent_code` in agent-definition. |
 
-- `UC_424_01` (`instruction_set_code`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `agent_intent_code` → `agent_intent`.`agent_intent_code` in agent-definition · relatie AGENT INTENT drives assembly of INSTRUCTION SET (`agent-intent-drives-assembly-of-instruction-set`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | instruction_set_id | instruction_set_code | content | created_at | agent_intent_code |
 |---|---|---|---|---|
 | 1 | 0b6e4d2a-1f3c-4e5b-9a7d-8c2f6e4a1d01 | ## Instructions ↵ 1. List every external source … | 2026-09-25 09:00:00+00 | niam-analyst.survey-sources |
 | 2 | 7e9a1c3b-5d2f-4a6e-8b0c-9d1e3f5a7c02 | ## Instructions ↵ 1. Read the conceptual model … | 2026-09-25 09:14:00+00 | ldm-modeller.derive-ldm |
 
-### `instruction_set_artifact`
+</details>
 
-**Eén rij:** Eén Artifact waarop een Instruction Set betrekking heeft, in één rol (werkbron of uitvoer).  
-**Tabelcode:** 426 · **LDM-bron:** entiteit **INSTRUCTION SET ARTIFACT** (`instruction-set-artifact`)
+### `instruction_set_artifact` { #work-execution-instruction-set-artifact }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_artifact_id` | integer | ja | PK |
-| `artifact_id` | integer | ja | FK |
-| `instruction_set_id` | integer | ja | FK |
-| `ref_instruction_set_artifact_role_id` | integer | ja | FK |
+Legt vast dat een artefact in een instruction set voorkomt, en in welke rol (werkbron of uitvoer). Het LDM modelleert dit als gewone entiteit, dus in de kleurregels geen junction-tabel.
 
-**Primaire sleutel:** `PK_426` (`instruction_set_artifact_id`)
+**Tabelcode** 426 · **Rollen** child · **Kleur** lichtblauw
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_artifact_id` | PK | Surrogaatsleutel. |
+| `artifact_id` | FK, UK | Het artefact. → `artifact` |
+| `instruction_set_id` | FK, UK | De instruction set. → `instruction_set` |
+| `ref_instruction_set_artifact_role_id` | FK, UK | De rol van het artefact in de instruction set. → `ref_instruction_set_artifact_role` |
 
-- `UC_426_01` (`instruction_set_id`, `artifact_id`, `ref_instruction_set_artifact_role_id`)
-
-**Foreign keys:**
-
-- `FK_426_420_01`: (`artifact_id`) → `artifact` (`artifact_id`) · relatie INSTRUCTION SET ARTIFACT concerns ARTIFACT (`instruction-set-artifact-concerns-artifact`)
-- `FK_426_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie INSTRUCTION SET ARTIFACT concerns INSTRUCTION SET (`instruction-set-artifact-concerns-instruction-set`)
-- `FK_426_401_01`: (`ref_instruction_set_artifact_role_id`) → `ref_instruction_set_artifact_role` (`ref_instruction_set_artifact_role_id`) · relatie INSTRUCTION SET ARTIFACT has INSTRUCTION SET ARTIFACT ROLE (REF) (`instruction-set-artifact-has-role`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | instruction_set_artifact_id | artifact_id | instruction_set_id | ref_instruction_set_artifact_role_id |
 |---|---|---|---|
 | 1 | 1 | 2 | 1 |
 | 2 | 2 | 2 | 2 |
 
-### `instruction_set_element`
+</details>
 
-**Eén rij:** Eén Element dat in één Instruction Set is opgenomen.  
-**Tabelcode:** 431 · **LDM-bron:** relatie **ELEMENT is included in INSTRUCTION SET (`element-is-included-in-instruction-set`)**, gerealiseerd als koppeltabel
+### `instruction_set_element` { #work-execution-instruction-set-element }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_element_id` | integer | ja | PK |
-| `element_code` | text | ja | logical reference |
-| `instruction_set_id` | integer | ja | FK |
+Junction-tabel: een element uit het semantisch model die in een instruction set is opgenomen. Die kant ligt in semantic-foundation; daarom is het een grensverwijzing en geen foreign key.
 
-**Primaire sleutel:** `PK_431` (`instruction_set_element_id`)
+**Tabelcode** 431 · **Rollen** junction-tabel, child, grenschild · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_element_id` | PK | Surrogaatsleutel. |
+| `element_code` | UK, GV | De opgenomen element uit het semantisch model. Grensverwijzing naar `element.element_code` in semantic-foundation. |
+| `instruction_set_id` | FK, UK | De instruction set. → `instruction_set` |
 
-- `UC_431_01` (`element_code`, `instruction_set_id`)
-
-**Foreign keys:**
-
-- `FK_431_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie ELEMENT is included in INSTRUCTION SET (`element-is-included-in-instruction-set`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `element_code` → `element`.`element_code` in semantic-foundation · relatie ELEMENT is included in INSTRUCTION SET (`element-is-included-in-instruction-set`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | instruction_set_element_id | element_code | instruction_set_id |
 |---|---|---|
 | 1 | agent | 2 |
 | 2 | agent-intent | 2 |
 
-### `instruction_set_entoli_agent_intent_rule`
+</details>
 
-**Eén rij:** Eén Entoli Agent Intent Rule die in één Instruction Set is opgenomen.  
-**Tabelcode:** 436 · **LDM-bron:** relatie **ENTOLI AGENT INTENT RULE is included in INSTRUCTION SET (`entoli-agent-intent-rule-is-included-in-instruction-set`)**, gerealiseerd als koppeltabel
+### `instruction_set_entoli_agent_intent_rule` { #work-execution-instruction-set-entoli-agent-intent-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_entoli_agent_intent_rule_id` | integer | ja | PK |
-| `entoli_agent_intent_rule_code` | text | ja | logical reference |
-| `instruction_set_id` | integer | ja | FK |
+Junction-tabel: een Entoli Agent Intent Rule die in een instruction set is opgenomen. Die kant ligt in agent-definition; daarom is het een grensverwijzing en geen foreign key.
 
-**Primaire sleutel:** `PK_436` (`instruction_set_entoli_agent_intent_rule_id`)
+**Tabelcode** 436 · **Rollen** junction-tabel, child, grenschild · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_entoli_agent_intent_rule_id` | PK | Surrogaatsleutel. |
+| `entoli_agent_intent_rule_code` | UK, GV | De opgenomen Entoli Agent Intent Rule. Grensverwijzing naar `entoli_agent_intent_rule.rule_code` in agent-definition. |
+| `instruction_set_id` | FK, UK | De instruction set. → `instruction_set` |
 
-- `UC_436_01` (`entoli_agent_intent_rule_code`, `instruction_set_id`)
-
-**Foreign keys:**
-
-- `FK_436_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie ENTOLI AGENT INTENT RULE is included in INSTRUCTION SET (`entoli-agent-intent-rule-is-included-in-instruction-set`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `entoli_agent_intent_rule_code` → `entoli_agent_intent_rule`.`rule_code` in agent-definition · relatie ENTOLI AGENT INTENT RULE is included in INSTRUCTION SET (`entoli-agent-intent-rule-is-included-in-instruction-set`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | instruction_set_entoli_agent_intent_rule_id | entoli_agent_intent_rule_code | instruction_set_id |
 |---|---|---|
 | 1 | EAIR-LDM-001 | 2 |
 
-### `instruction_set_intent_instruction`
+</details>
 
-**Eén rij:** Eén Intent Instruction die in één Instruction Set is opgenomen.  
-**Tabelcode:** 427 · **LDM-bron:** relatie **INTENT INSTRUCTION is included in INSTRUCTION SET (`intent-instruction-is-included-in-instruction-set`)**, gerealiseerd als koppeltabel
+### `instruction_set_intent_instruction` { #work-execution-instruction-set-intent-instruction }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_intent_instruction_id` | integer | ja | PK |
-| `intent_instruction_code` | text | ja | logical reference |
-| `instruction_set_id` | integer | ja | FK |
+Junction-tabel: een intent instruction die in een instruction set is opgenomen. Die kant ligt in agent-definition; daarom is het een grensverwijzing en geen foreign key.
 
-**Primaire sleutel:** `PK_427` (`instruction_set_intent_instruction_id`)
+**Tabelcode** 427 · **Rollen** junction-tabel, child, grenschild · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_intent_instruction_id` | PK | Surrogaatsleutel. |
+| `intent_instruction_code` | UK, GV | De opgenomen intent instruction. Grensverwijzing naar `intent_instruction.intent_instruction_code` in agent-definition. |
+| `instruction_set_id` | FK, UK | De instruction set. → `instruction_set` |
 
-- `UC_427_01` (`intent_instruction_code`, `instruction_set_id`)
-
-**Foreign keys:**
-
-- `FK_427_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie INTENT INSTRUCTION is included in INSTRUCTION SET (`intent-instruction-is-included-in-instruction-set`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `intent_instruction_code` → `intent_instruction`.`intent_instruction_code` in agent-definition · relatie INTENT INSTRUCTION is included in INSTRUCTION SET (`intent-instruction-is-included-in-instruction-set`)
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | instruction_set_intent_instruction_id | intent_instruction_code | instruction_set_id |
 |---|---|---|
@@ -1648,62 +1373,45 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 | 2 | ldm-modeller.derive-ldm.01 | 2 |
 | 3 | ldm-modeller.derive-ldm.02 | 2 |
 
-### `instruction_set_parameter_value`
+</details>
 
-**Eén rij:** De waarde die voor één Human Context Parameter in één Instruction Set is geleverd.  
-**Tabelcode:** 430 · **LDM-bron:** entiteit **INSTRUCTION SET PARAMETER VALUE** (`instruction-set-parameter-value`)
+### `instruction_set_parameter_value` { #work-execution-instruction-set-parameter-value }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_parameter_value_id` | integer | ja | PK |
-| `parameter_value` | text | ja |  |
-| `instruction_set_id` | integer | ja | FK |
-| `human_context_parameter_id` | integer | ja | FK |
+Junction-tabel (associatieve entiteit): de waarde die voor één veld van een human context is ingevuld bij het samenstellen van één instruction set. Per instruction set en veld ten hoogste één rij; een niet-ingevuld veld heeft geen rij.
 
-**Primaire sleutel:** `PK_430` (`instruction_set_parameter_value_id`)
+**Tabelcode** 430 · **Rollen** junction-tabel, child · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_parameter_value_id` | PK | Surrogaatsleutel. |
+| `parameter_value` |  | De ingevulde waarde als tekst, te lezen volgens `human_context_parameter.data_type`. |
+| `instruction_set_id` | FK, UK | De instruction set. → `instruction_set` |
+| `human_context_parameter_id` | FK, UK | Het veld waarvoor de waarde is ingevuld. → `human_context_parameter` |
 
-- `UC_430_01` (`instruction_set_id`, `human_context_parameter_id`)
-
-**Foreign keys:**
-
-- `FK_430_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie INSTRUCTION SET PARAMETER VALUE concerns INSTRUCTION SET (`instruction-set-parameter-value-concerns-instruction-set`)
-- `FK_430_429_01`: (`human_context_parameter_id`) → `human_context_parameter` (`human_context_parameter_id`) · relatie INSTRUCTION SET PARAMETER VALUE concerns HUMAN CONTEXT PARAMETER (`instruction-set-parameter-value-concerns-human-context-parameter`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | instruction_set_parameter_value_id | parameter_value | instruction_set_id | human_context_parameter_id |
 |---|---|---|---|
 | 1 | Agent definition | 2 | 1 |
 | 2 | 2026-10-01 | 2 | 2 |
 
-### `instruction_set_regime_rule`
+</details>
 
-**Eén rij:** Eén Regime Rule die in één Instruction Set is opgenomen.  
-**Tabelcode:** 435 · **LDM-bron:** relatie **REGIME RULE is included in INSTRUCTION SET (`regime-rule-is-included-in-instruction-set`)**, gerealiseerd als koppeltabel
+### `instruction_set_regime_rule` { #work-execution-instruction-set-regime-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_regime_rule_id` | integer | ja | PK |
-| `regime_rule_code` | text | ja | logical reference |
-| `instruction_set_id` | integer | ja | FK |
+Junction-tabel: een regime rule die in een instruction set is opgenomen. Die kant ligt in semantic-foundation; daarom is het een grensverwijzing en geen foreign key.
 
-**Primaire sleutel:** `PK_435` (`instruction_set_regime_rule_id`)
+**Tabelcode** 435 · **Rollen** junction-tabel, child, grenschild · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_regime_rule_id` | PK | Surrogaatsleutel. |
+| `regime_rule_code` | UK, GV | De opgenomen regime rule. Grensverwijzing naar `regime_rule.rule_code` in semantic-foundation. |
+| `instruction_set_id` | FK, UK | De instruction set. → `instruction_set` |
 
-- `UC_435_01` (`regime_rule_code`, `instruction_set_id`)
-
-**Foreign keys:**
-
-- `FK_435_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie REGIME RULE is included in INSTRUCTION SET (`regime-rule-is-included-in-instruction-set`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `regime_rule_code` → `regime_rule`.`rule_code` in semantic-foundation · relatie REGIME RULE is included in INSTRUCTION SET (`regime-rule-is-included-in-instruction-set`)
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | instruction_set_regime_rule_id | regime_rule_code | instruction_set_id |
 |---|---|---|
@@ -1713,63 +1421,43 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* Dit zijn de Regime Rules voor de posities CNB, REL en STR die de Agent Intent `ldm-modeller.derive-ldm` declareert.
 
-### `instruction_set_relationship`
+</details>
 
-**Eén rij:** Eén Relationship die in één Instruction Set is opgenomen.  
-**Tabelcode:** 432 · **LDM-bron:** relatie **RELATIONSHIP is included in INSTRUCTION SET (`relationship-is-included-in-instruction-set`)**, gerealiseerd als koppeltabel
+### `instruction_set_relationship` { #work-execution-instruction-set-relationship }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_relationship_id` | integer | ja | PK |
-| `relationship_code` | text | ja | logical reference |
-| `instruction_set_id` | integer | ja | FK |
+Junction-tabel: een relatie uit het semantisch model die in een instruction set is opgenomen. Die kant ligt in semantic-foundation; daarom is het een grensverwijzing en geen foreign key.
 
-**Primaire sleutel:** `PK_432` (`instruction_set_relationship_id`)
+**Tabelcode** 432 · **Rollen** junction-tabel, child, grenschild · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_relationship_id` | PK | Surrogaatsleutel. |
+| `relationship_code` | UK, GV | De opgenomen relatie uit het semantisch model. Grensverwijzing naar `relationship.relationship_code` in semantic-foundation. |
+| `instruction_set_id` | FK, UK | De instruction set. → `instruction_set` |
 
-- `UC_432_01` (`relationship_code`, `instruction_set_id`)
-
-**Foreign keys:**
-
-- `FK_432_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie RELATIONSHIP is included in INSTRUCTION SET (`relationship-is-included-in-instruction-set`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `relationship_code` → `relationship`.`relationship_code` in semantic-foundation · relatie RELATIONSHIP is included in INSTRUCTION SET (`relationship-is-included-in-instruction-set`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | instruction_set_relationship_id | relationship_code | instruction_set_id |
 |---|---|---|
 | 1 | agent-exposes-agent-intent | 2 |
 
-### `instruction_set_universal_rule`
+</details>
 
-**Eén rij:** Eén Universal Rule die in één Instruction Set is opgenomen.  
-**Tabelcode:** 434 · **LDM-bron:** relatie **UNIVERSAL RULE is included in INSTRUCTION SET (`universal-rule-is-included-in-instruction-set`)**, gerealiseerd als koppeltabel
+### `instruction_set_universal_rule` { #work-execution-instruction-set-universal-rule }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `instruction_set_universal_rule_id` | integer | ja | PK |
-| `universal_rule_code` | text | ja | logical reference |
-| `instruction_set_id` | integer | ja | FK |
+Junction-tabel: een universal rule die in een instruction set is opgenomen. Die kant ligt in semantic-foundation; daarom is het een grensverwijzing en geen foreign key.
 
-**Primaire sleutel:** `PK_434` (`instruction_set_universal_rule_id`)
+**Tabelcode** 434 · **Rollen** junction-tabel, child, grenschild · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `instruction_set_universal_rule_id` | PK | Surrogaatsleutel. |
+| `universal_rule_code` | UK, GV | De opgenomen universal rule. Grensverwijzing naar `universal_rule.rule_code` in semantic-foundation. |
+| `instruction_set_id` | FK, UK | De instruction set. → `instruction_set` |
 
-- `UC_434_01` (`universal_rule_code`, `instruction_set_id`)
-
-**Foreign keys:**
-
-- `FK_434_424_01`: (`instruction_set_id`) → `instruction_set` (`instruction_set_id`) · relatie UNIVERSAL RULE is included in INSTRUCTION SET (`universal-rule-is-included-in-instruction-set`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `universal_rule_code` → `universal_rule`.`rule_code` in semantic-foundation · relatie UNIVERSAL RULE is included in INSTRUCTION SET (`universal-rule-is-included-in-instruction-set`)
-
-**Illustratieve voorbeeldrijen (4):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (4), illustratief</summary>
 
 | instruction_set_universal_rule_id | universal_rule_code | instruction_set_id |
 |---|---|---|
@@ -1780,24 +1468,22 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* Elke Instruction Set bevat elke actieve Universal Rule. De rijen tonen maar een deel van die opnames.
 
-### `ref_instruction_set_artifact_role`
+</details>
 
-**Eén rij:** Eén rol die een Artifact voor een Instruction Set kan spelen: werkbron of uitvoer.  
-**Tabelcode:** 401 · **LDM-bron:** entiteit **INSTRUCTION SET ARTIFACT ROLE (REF)** (`instruction-set-artifact-role`)
+### `ref_instruction_set_artifact_role` { #work-execution-ref-instruction-set-artifact-role }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_instruction_set_artifact_role_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `description` | text | ja |  |
+Referentietabel met de rollen van een artefact in een instruction set: werkbron of uitvoer.
 
-**Primaire sleutel:** `PK_401` (`ref_instruction_set_artifact_role_id`)
+**Tabelcode** 401 · **Rollen** referentietabel, parent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_instruction_set_artifact_role_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Code van de rol. |
+| `description` |  | Omschrijving van de rol. |
 
-- `UC_401_01` (`code`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | ref_instruction_set_artifact_role_id | code | description |
 |---|---|---|
@@ -1806,24 +1492,22 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* De omschrijvingen zijn ingekorte Engelse weergaven van de Nederlandse LDM-posities.
 
-### `ref_termination_reason`
+</details>
 
-**Eén rij:** Eén reden waarom een Execution voortijdig is beëindigd.  
-**Tabelcode:** 402 · **LDM-bron:** entiteit **TERMINATION REASON (REF)** (`termination-reason`)
+### `ref_termination_reason` { #work-execution-ref-termination-reason }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `ref_termination_reason_id` | integer | ja | PK |
-| `code` | text | ja |  |
-| `description` | text | ja |  |
+Referentietabel met de Entoli-eigen redenen waarom een execution voortijdig eindigt.
 
-**Primaire sleutel:** `PK_402` (`ref_termination_reason_id`)
+**Tabelcode** 402 · **Rollen** referentietabel, parent, worteltabel · **Kleur** groen
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `ref_termination_reason_id` | PK | Surrogaatsleutel. |
+| `code` | UK | Code van de reden. |
+| `description` |  | Omschrijving van de reden. |
 
-- `UC_402_01` (`code`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | ref_termination_reason_id | code | description |
 |---|---|---|
@@ -1832,127 +1516,106 @@ Technical Data Model `entoli-agent-development-work-execution-postgresql` versie
 
 *Opmerking:* Het LDM legt de posities van Termination Reason nog niet vast; beide codes zijn fictief.
 
+</details>
+
 ## orchestration-definition
 
-Technical Data Model `entoli-agent-development-orchestration-definition-postgresql` versie 4.0.0, afgeleid van Logical Data Model `entoli-agent-development-orchestration-definition` versie 4.0.0.
+De orchestraties: specificaties, stappen, en hun geversioneerde definities en volgorde. TDM `entoli-agent-development-orchestration-definition-postgresql` versie 4.0.0.
 
-### `orchestration_specification`
+### `orchestration_specification` { #orchestration-definition-orchestration-specification }
 
-**Eén rij:** Eén orchestration specification: een benoemde, herbruikbare stroom van stappen met een inhoudelijk doel.  
-**Tabelcode:** 522 · **LDM-bron:** entiteit **ORCHESTRATION SPECIFICATION** (`orchestration-specification`)
+Herbruikbare specificatie van een samenhangende reeks orchestration steps en hun volgorde, met een inhoudelijk doel. Onafhankelijk van een Entoli Context.
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `orchestration_specification_id` | integer | ja | PK |
-| `specification_code` | text | ja |  |
-| `specification_name` | text | ja |  |
-| `content_goal` | text | nee |  |
+**Tabelcode** 522 · **Rollen** parent, grensparent, worteltabel · **Kleur** sterk roze
 
-**Primaire sleutel:** `PK_522` (`orchestration_specification_id`)
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `orchestration_specification_id` | PK | Surrogaatsleutel. |
+| `specification_code` | UK | Functionele sleutel van de specificatie. |
+| `specification_name` |  | Weergavenaam. |
+| `content_goal` |  | Het inhoudelijke doel van de orchestratie. |
 
-**Uniciteitsconstraints:**
+**Grenschildren** [`entoli_context_orchestration_specification.orchestration_specification_code`](#execution-configuration-entoli-context-orchestration-specification) (execution-configuration)
 
-- `UC_522_01` (`specification_code`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | orchestration_specification_id | specification_code | specification_name | content_goal |
 |---|---|---|---|
 | 1 | model-derivation | Model derivation | Derive a logical data model from surveyed sources. |
 
-### `orchestration_specification_version`
+</details>
 
-**Eén rij:** Eén genummerde versie van een Orchestration Specification.  
-**Tabelcode:** 524 · **LDM-bron:** entiteit **ORCHESTRATION SPECIFICATION VERSION** (`orchestration-specification-version`)
+### `orchestration_specification_version` { #orchestration-definition-orchestration-specification-version }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `orchestration_specification_version_id` | integer | ja | PK |
-| `orchestration_specification_version_code` | uuid | ja |  |
-| `version_number` | integer | ja |  |
-| `publication_timestamp` | timestamptz | nee |  |
-| `orchestration_specification_id` | integer | ja | FK |
+Genummerde versie van een orchestration specification: welke stapversies erin zitten en welke volgorde geldt. Na publicatie onveranderlijk.
 
-**Primaire sleutel:** `PK_524` (`orchestration_specification_version_id`)
+**Tabelcode** 524 · **Rollen** parent, child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `orchestration_specification_version_id` | PK, UK | Surrogaatsleutel. |
+| `orchestration_specification_version_code` | UK | Stabiele identificatie (UUID), toegekend bij aanmaak, nooit gewijzigd of hergebruikt. |
+| `version_number` | UK | Volgnummer vanaf 1, uniek binnen de specificatie en hoger dan dat van elke eerdere versie. |
+| `publication_timestamp` |  | Moment van publicatie. Leeg zolang de versie wordt bewerkt; daarna wijzigt de rij niet meer. |
+| `orchestration_specification_id` | FK, UK | De specificatie waarvan dit een versie is. → `orchestration_specification` |
 
-- `UC_524_01` (`orchestration_specification_version_code`)
-- `UC_524_02` (`orchestration_specification_id`, `version_number`)
-- `UC_524_03` (`orchestration_specification_id`, `orchestration_specification_version_id`)
+**Grenschildren** [`execution.orchestration_specification_version_code`](#work-execution-execution) (work-execution)
 
-**Foreign keys:**
-
-- `FK_524_522_01`: (`orchestration_specification_id`) → `orchestration_specification` (`orchestration_specification_id`) · relatie ORCHESTRATION SPECIFICATION VERSION belongs to ORCHESTRATION SPECIFICATION (`orchestration-specification-version-belongs-to-orchestration-specification`)
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | orchestration_specification_version_id | orchestration_specification_version_code | version_number | publication_timestamp | orchestration_specification_id |
 |---|---|---|---|---|
 | 1 | 5d0c8f5e-2a61-4c1e-9f0a-1b7e3c2d4a01 | 1 | 2026-09-10 12:00:00+00 | 1 |
 
-### `orchestration_step`
+</details>
 
-**Eén rij:** Eén stap van een Orchestration Specification, los van zijn geversioneerde definitie.  
-**Tabelcode:** 520 · **LDM-bron:** entiteit **ORCHESTRATION STEP** (`orchestration-step`)
+### `orchestration_step` { #orchestration-definition-orchestration-step }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `orchestration_step_id` | integer | ja | PK |
-| `orchestration_step_code` | text | ja |  |
-| `orchestration_specification_id` | integer | ja | FK |
+Stap van een orchestration specification, los van zijn geversioneerde inhoud. Naam en aangeroepen agent intent staan in `orchestration_step_definition`.
 
-**Primaire sleutel:** `PK_520` (`orchestration_step_id`)
+**Tabelcode** 520 · **Rollen** parent, child, grensparent · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `orchestration_step_id` | PK, UK | Surrogaatsleutel. |
+| `orchestration_step_code` | UK | Stabiele functionele sleutel, uniek over alle specificaties. Verandert niet bij hernoemen of herschikken en wordt nooit hergebruikt. |
+| `orchestration_specification_id` | FK, UK | De specificatie waartoe de stap behoort. → `orchestration_specification` |
 
-- `UC_520_01` (`orchestration_step_code`)
-- `UC_520_02` (`orchestration_specification_id`, `orchestration_step_id`)
+**Grenschildren** [`step_model_selection.orchestration_step_code`](#execution-configuration-step-model-selection) (execution-configuration)
 
-**Foreign keys:**
-
-- `FK_520_522_01`: (`orchestration_specification_id`) → `orchestration_specification` (`orchestration_specification_id`) · relatie ORCHESTRATION STEP is part of ORCHESTRATION SPECIFICATION (`orchestration-step-is-part-of-orchestration-specification`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | orchestration_step_id | orchestration_step_code | orchestration_specification_id |
 |---|---|---|
 | 1 | survey-sources | 1 |
 | 2 | derive-ldm | 1 |
 
-### `orchestration_step_definition`
+</details>
 
-**Eén rij:** Eén genummerde versie van de definitie van een Orchestration Step, met de Agent Intent die de stap aanroept.  
-**Tabelcode:** 521 · **LDM-bron:** entiteit **ORCHESTRATION STEP DEFINITION** (`orchestration-step-definition`)
+### `orchestration_step_definition` { #orchestration-definition-orchestration-step-definition }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `orchestration_step_definition_id` | integer | ja | PK |
-| `orchestration_step_definition_code` | uuid | ja |  |
-| `version_number` | integer | ja |  |
-| `publication_timestamp` | timestamptz | nee |  |
-| `step_name` | text | ja |  |
-| `content_description` | text | nee |  |
-| `agent_intent_code` | text | ja | logical reference |
-| `orchestration_step_id` | integer | ja | FK |
+Genummerde versie van de inhoud van een orchestration step: naam, beschrijving en de agent intent die de stap aanroept. Na publicatie onveranderlijk.
 
-**Primaire sleutel:** `PK_521` (`orchestration_step_definition_id`)
+**Tabelcode** 521 · **Rollen** parent, child, grensparent, grenschild · **Kleur** sterk roze
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `orchestration_step_definition_id` | PK, UK | Surrogaatsleutel. |
+| `orchestration_step_definition_code` | UK | Stabiele identificatie (UUID), toegekend bij aanmaak, nooit gewijzigd of hergebruikt. |
+| `version_number` | UK | Volgnummer vanaf 1, uniek binnen de stap en hoger dan dat van elke eerdere versie. |
+| `publication_timestamp` |  | Moment van publicatie. Leeg zolang de versie wordt bewerkt; daarna wijzigt de rij niet meer. |
+| `step_name` |  | Naam van de stap in deze versie. |
+| `content_description` |  | Inhoudelijke beschrijving van de stap. |
+| `agent_intent_code` | GV | De agent intent die de stap aanroept. Grensverwijzing naar `agent_intent.agent_intent_code` in agent-definition. |
+| `orchestration_step_id` | FK, UK | De stap waarvan dit een versie is. → `orchestration_step` |
 
-- `UC_521_01` (`orchestration_step_definition_code`)
-- `UC_521_02` (`orchestration_step_id`, `version_number`)
-- `UC_521_03` (`orchestration_step_id`, `orchestration_step_definition_id`)
+**Grenschildren** [`execution.orchestration_step_definition_code`](#work-execution-execution) (work-execution)
 
-**Foreign keys:**
-
-- `FK_521_520_01`: (`orchestration_step_id`) → `orchestration_step` (`orchestration_step_id`) · relatie ORCHESTRATION STEP DEFINITION belongs to ORCHESTRATION STEP (`orchestration-step-definition-belongs-to-orchestration-step`)
-
-**Logische verwijzingen (geen databaseconstraint):**
-
-- `agent_intent_code` → `agent_intent`.`agent_intent_code` in agent-definition · relatie AGENT INTENT is invoked by ORCHESTRATION STEP DEFINITION (`agent-intent-is-invoked-by-orchestration-step-definition`)
-
-**Illustratieve voorbeeldrijen (3):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (3), illustratief</summary>
 
 | orchestration_step_definition_id | orchestration_step_definition_code | version_number | publication_timestamp | step_name | content_description | agent_intent_code | orchestration_step_id |
 |---|---|---|---|---|---|---|---|
@@ -1962,68 +1625,50 @@ Technical Data Model `entoli-agent-development-orchestration-definition-postgres
 
 *Opmerking:* Versie 2 van de definitie `derive-ldm` is nog niet gepubliceerd (`publication_timestamp` is NULL).
 
-### `orchestration_step_precedence`
+</details>
 
-**Eén rij:** Eén volgordebeperking in een specificatieversie: de voorgaande stap loopt vóór de volgende stap.  
-**Tabelcode:** 523 · **LDM-bron:** entiteit **ORCHESTRATION STEP PRECEDENCE** (`orchestration-step-precedence`)
+### `orchestration_step_precedence` { #orchestration-definition-orchestration-step-precedence }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `orchestration_step_precedence_id` | integer | ja | PK |
-| `orchestration_specification_version_id` | integer | ja | FK |
-| `preceding_step_id` | integer | ja | FK |
-| `following_step_id` | integer | ja | FK |
+Junction-tabel (associatieve entiteit): directe volgorde tussen twee stappen binnen één specificatieversie. De volgende stap start pas als de voorgaande is afgerond. Een stap gaat niet aan zichzelf vooraf (`CK_523_01`); kringloopvrijheid over meerdere rijen dwingt de database niet af.
 
-**Primaire sleutel:** `PK_523` (`orchestration_step_precedence_id`)
+**Tabelcode** 523 · **Rollen** junction-tabel, child · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `orchestration_step_precedence_id` | PK | Surrogaatsleutel. |
+| `orchestration_specification_version_id` | FK, UK | De specificatieversie waarin de volgorde geldt. → `orchestration_specification_version`, `orchestration_version_step` |
+| `preceding_step_id` | FK, UK | De stap die eerst moet zijn afgerond. `FK_523_525_02` eist dat deze stap in dezelfde versie is opgenomen. → `orchestration_version_step` |
+| `following_step_id` | FK, UK | De stap die daarna mag starten. `FK_523_525_01` eist dat deze stap in dezelfde versie is opgenomen. → `orchestration_version_step` |
 
-- `UC_523_01` (`orchestration_specification_version_id`, `preceding_step_id`, `following_step_id`)
-
-**Foreign keys:**
-
-- `FK_523_524_01`: (`orchestration_specification_version_id`) → `orchestration_specification_version` (`orchestration_specification_version_id`) · relatie ORCHESTRATION STEP PRECEDENCE belongs to ORCHESTRATION SPECIFICATION VERSION (`orchestration-step-precedence-belongs-to-orchestration-specification-version`)
-- `FK_523_525_02`: (`orchestration_specification_version_id`, `preceding_step_id`) → `orchestration_version_step` (`orchestration_specification_version_id`, `orchestration_step_id`) · relatie ORCHESTRATION STEP PRECEDENCE has preceding ORCHESTRATION STEP (`orchestration-step-precedence-has-preceding-orchestration-step`)
-- `FK_523_525_01`: (`orchestration_specification_version_id`, `following_step_id`) → `orchestration_version_step` (`orchestration_specification_version_id`, `orchestration_step_id`) · relatie ORCHESTRATION STEP PRECEDENCE has following ORCHESTRATION STEP (`orchestration-step-precedence-has-following-orchestration-step`)
-
-**Check-constraints:**
-
-- `CK_523_01`: `preceding_step_id <> following_step_id`
-
-**Illustratieve voorbeeldrijen (1):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (1), illustratief</summary>
 
 | orchestration_step_precedence_id | orchestration_specification_version_id | preceding_step_id | following_step_id |
 |---|---|---|---|
 | 1 | 1 | 1 | 2 |
 
-### `orchestration_version_step`
+</details>
 
-**Eén rij:** Eén stap die in één specificatieversie is opgenomen, met de stapdefinitie die die versie gebruikt.  
-**Tabelcode:** 525 · **LDM-bron:** entiteit **ORCHESTRATION VERSION STEP** (`orchestration-version-step`)
+### `orchestration_version_step` { #orchestration-definition-orchestration-version-step }
 
-| Kolom | PostgreSQL-type | Verplicht | Sleutel |
-|---|---|---|---|
-| `orchestration_version_step_id` | integer | ja | PK |
-| `orchestration_specification_version_id` | integer | ja | FK |
-| `orchestration_step_id` | integer | ja | FK |
-| `orchestration_step_definition_id` | integer | ja | FK |
-| `orchestration_specification_id` | integer | ja | FK |
+Junction-tabel (associatieve entiteit): legt vast dat een stap in een specificatieversie is opgenomen, en met welke stapversie. Een stap komt hoogstens één keer per versie voor.
 
-**Primaire sleutel:** `PK_525` (`orchestration_version_step_id`)
+**Tabelcode** 525 · **Rollen** junction-tabel, parent, child · **Kleur** wit
 
-**Uniciteitsconstraints:**
+| Kolom | Sleutel | Omschrijving |
+|---|---|---|
+| `orchestration_version_step_id` | PK | Surrogaatsleutel. |
+| `orchestration_specification_version_id` | FK, UK | De specificatieversie. → `orchestration_specification_version` |
+| `orchestration_step_id` | FK, UK | De opgenomen stap. → `orchestration_step`, `orchestration_step_definition` |
+| `orchestration_step_definition_id` | FK | De gebruikte stapversie. `FK_525_521_01` eist dat die versie bij deze stap hoort. → `orchestration_step_definition` |
+| `orchestration_specification_id` | FK | Herhaalt de specificatie van de versie en van de stap. De samengestelde foreign keys `FK_525_524_01` en `FK_525_520_01` dwingen zo af dat stap en versie bij dezelfde specificatie horen. → `orchestration_specification_version`, `orchestration_step` |
 
-- `UC_525_01` (`orchestration_specification_version_id`, `orchestration_step_id`)
-
-**Foreign keys:**
-
-- `FK_525_524_01`: (`orchestration_specification_id`, `orchestration_specification_version_id`) → `orchestration_specification_version` (`orchestration_specification_id`, `orchestration_specification_version_id`) · relatie ORCHESTRATION VERSION STEP belongs to ORCHESTRATION SPECIFICATION VERSION (`orchestration-version-step-belongs-to-orchestration-specification-version`)
-- `FK_525_520_01`: (`orchestration_specification_id`, `orchestration_step_id`) → `orchestration_step` (`orchestration_specification_id`, `orchestration_step_id`) · relatie ORCHESTRATION VERSION STEP concerns ORCHESTRATION STEP (`orchestration-version-step-concerns-orchestration-step`)
-- `FK_525_521_01`: (`orchestration_step_id`, `orchestration_step_definition_id`) → `orchestration_step_definition` (`orchestration_step_id`, `orchestration_step_definition_id`) · relatie ORCHESTRATION VERSION STEP uses ORCHESTRATION STEP DEFINITION (`orchestration-version-step-uses-orchestration-step-definition`)
-
-**Illustratieve voorbeeldrijen (2):**
+<details class="example" markdown>
+<summary>Voorbeeldrijen (2), illustratief</summary>
 
 | orchestration_version_step_id | orchestration_specification_version_id | orchestration_step_id | orchestration_step_definition_id | orchestration_specification_id |
 |---|---|---|---|---|
 | 1 | 1 | 1 | 1 | 1 |
 | 2 | 1 | 2 | 2 | 1 |
+
+</details>

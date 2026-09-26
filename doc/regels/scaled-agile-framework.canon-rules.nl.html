@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entoli Canon Rules — Scaled Agile Framework</title>
+<meta name="description" content="Leesbaar overzicht van de voorgestelde Entoli Canon Rules voor SAFe-werkproducten, ingedeeld per werkproduct. Nederlandse vertaling.">
+<style>
+:root {
+  --bg:#f7f7f5; --surface:#ffffff; --text:#1d1d1b; --muted:#62625d; --line:#e2e1dc; --accent:#2f5d8a;
+  --ob:#2f5d8a; --ob-bg:#e6eef6; --pr:#a13a2c; --pr-bg:#f7e7e3; --pe:#2f7a4a; --pe-bg:#e4f2e8; --int:#8a6a1f; --int-bg:#f6efdc;
+  --mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#161615; --surface:#1f1f1d; --text:#ecebe6; --muted:#a3a29b; --line:#34332f; --accent:#8db6df;
+  --ob:#8db6df; --ob-bg:#1f2c3a; --pr:#e59585; --pr-bg:#3a2320; --pe:#8fd0a5; --pe-bg:#1d3325; --int:#dcc07a; --int-bg:#352d18;
+} }
+:root[data-theme="dark"] {
+  --bg:#161615; --surface:#1f1f1d; --text:#ecebe6; --muted:#a3a29b; --line:#34332f; --accent:#8db6df;
+  --ob:#8db6df; --ob-bg:#1f2c3a; --pr:#e59585; --pr-bg:#3a2320; --pe:#8fd0a5; --pe-bg:#1d3325; --int:#dcc07a; --int-bg:#352d18;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:16px; }
+body { margin:0; background:var(--bg); color:var(--text); font:15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.layout { display:grid; grid-template-columns:260px minmax(0,1fr); max-width:1280px; margin:0 auto; gap:32px; padding:24px 16px; }
+nav { position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; }
+nav ul { list-style:none; margin:0; padding:0; }
+nav li { display:flex; justify-content:space-between; gap:8px; padding:4px 0; }
+nav li.sub { padding-left:14px; font-size:14px; }
+nav li.grp { margin-top:10px; font-weight:600; }
+nav a { color:var(--text); text-decoration:none; } nav a:hover { color:var(--accent); }
+nav li span { color:var(--muted); font-variant-numeric:tabular-nums; }
+.title h1 { margin:0 0 4px; font-size:28px; }
+.meta { color:var(--muted); margin:0 0 16px; }
+.stats { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; }
+.stat { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:8px 12px; }
+.stat b { font-size:20px; display:block; font-variant-numeric:tabular-nums; }
+.tools { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+.tools input { flex:1 1 240px; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--text); font:inherit; }
+.tools button { padding:8px 12px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--text); font:inherit; cursor:pointer; }
+.tools button[aria-pressed="true"] { border-color:var(--accent); color:var(--accent); font-weight:600; }
+section.lvl1, section.lvl2 { margin:0 0 40px; }
+h2 { font-size:22px; margin:0 0 6px; padding-bottom:6px; border-bottom:2px solid var(--line); }
+h3 { font-size:17px; margin:22px 0 8px; }
+section.axis > h3 { font-size:19px; margin-top:28px; }
+.pos h3 { font-size:15px; color:var(--muted); font-weight:600; margin:16px 0 8px; }
+h3 code, .intro code { font-family:var(--mono); font-size:12px; padding:1px 5px; border-radius:4px; background:var(--line); color:var(--text); }
+.count { font-size:13px; font-weight:500; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:0 8px; margin-left:6px; vertical-align:middle; }
+.intro { color:var(--muted); max-width:75ch; margin:4px 0 12px; }
+.none { color:var(--muted); font-style:italic; margin:4px 0; }
+.pos.empty h3 { opacity:.7; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:12px; }
+.rule { background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--ob); border-radius:8px; padding:12px 14px; }
+.rule.t-prohibition { border-left-color:var(--pr); } .rule.t-permission { border-left-color:var(--pe); }
+.integrity .rule { border-left-color:var(--int); }
+.rule header { display:flex; align-items:center; gap:8px; }
+.rid { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--text); text-decoration:none; }
+.badge { font-size:11px; text-transform:uppercase; letter-spacing:.04em; padding:1px 7px; border-radius:999px; font-weight:600; }
+.badge.obligation { color:var(--ob); background:var(--ob-bg); } .badge.prohibition { color:var(--pr); background:var(--pr-bg); } .badge.permission { color:var(--pe); background:var(--pe-bg); }
+.rule h4 { margin:6px 0 4px; font-size:15px; }
+.stmt { margin:0 0 6px; }
+.stmt strong { font-weight:700; }
+details summary { cursor:pointer; color:var(--muted); font-size:13px; }
+dl { margin:6px 0 0; font-size:13px; }
+dl div { display:grid; grid-template-columns:90px minmax(0,1fr); gap:8px; padding:2px 0; }
+dt { color:var(--muted); } dd { margin:0; overflow-wrap:anywhere; }
+dd code { font-family:var(--mono); font-size:12px; }
+.rule:target { outline:2px solid var(--accent); }
+.hidden { display:none !important; }
+footer { color:var(--muted); font-size:13px; border-top:1px solid var(--line); padding-top:12px; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns:minmax(0,1fr); gap:16px; }
+  nav { position:static; max-height:none; border:1px solid var(--line); border-radius:8px; padding:8px 12px; background:var(--surface); }
+  .grid { grid-template-columns:minmax(0,1fr); }
+}
+@media print { nav, .tools { display:none; } .layout { display:block; } details { display:block; } }
+
+.badge.cls { color:var(--muted); background:var(--bg); border:1px solid var(--line); text-transform:none; letter-spacing:0; }
+.badge.cls3 { color:var(--int); background:var(--int-bg); border-color:transparent; }
+.srcs { margin:0; padding-left:18px; }
+.basis { color:var(--muted); max-width:75ch; margin:0 0 16px; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav aria-label="Inhoud"><ul><li><a href="#area-EPC">Epic</a><span>11</span></li><li><a href="#area-CAP">Capability</a><span>2</span></li><li><a href="#area-FEA">Feature</a><span>5</span></li><li><a href="#area-ENB">Enabler</a><span>4</span></li><li><a href="#area-STY">Story</a><span>6</span></li><li><a href="#area-ACC">Acceptatiecriteria</a><span>6</span></li><li><a href="#area-WSJ">WSJF</a><span>14</span></li><li><a href="#area-PIO">PI Objective</a><span>3</span></li><li><a href="#area-TRC">Traceerbaarheid</a><span>6</span></li></ul></nav>
+<main>
+  <div class="title"><h1>Entoli Canon Rules — Scaled Agile Framework</h1>
+  <p class="meta">versie 0.1.0 · 2026-09-26 · concept · gegenereerd uit <code>canons/scaled-agile-framework/canon-rules/scaled-agile-framework.canon-rules.yaml</code> · vertaling <code>canons/scaled-agile-framework/canon-rules/scaled-agile-framework.canon-rules.nl.yaml</code></p></div>
+  <div class="stats">
+    <div class="stat"><b>57</b>regels</div>
+    <div class="stat"><b>24</b>klasse 1</div>
+    <div class="stat"><b>27</b>klasse 2</div>
+    <div class="stat"><b>6</b>klasse 3</div>
+    <div class="stat"><b>52</b>verplichtingen</div>
+    <div class="stat"><b>5</b>verboden</div>
+    <div class="stat"><b>0</b>toestemmingen</div>
+  </div>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Zoek op rule-ID, naam of formulering" aria-label="Zoek regels">
+    <button data-f="all" aria-pressed="true">Alle</button>
+    <button data-f="obligation" aria-pressed="false">Verplichtingen</button>
+    <button data-f="prohibition" aria-pressed="false">Verboden</button>
+    <button data-f="permission" aria-pressed="false">Toestemmingen</button>
+  </div>
+  <p class="basis">Voorstel. Geen van deze regels is geratificeerd. Elke regel is een normatieve standaard voor een SAFe-werkproduct of voor de besturing ervan; geen regel richt zich tot een LLM, een Agent of een tool. Grondslag: SAFe 6.0 zoals gepubliceerd op framework.scaledagile.com, geraadpleegd op 2026-09-26. Alleen het openbaar zichtbare deel van de artikelen, de SAFe-glossary en de officiële Facilitator&#x27;s Guides zijn gebruikt.</p><p class="basis">Klasse 1: geeft officiële SAFe-richtlijnen weer. Klasse 2: een Entoli-standaard afgeleid van SAFe-richtlijnen, geen SAFe-verplichting. Klasse 3: een lokale keuze die SAFe niet vastlegt; er is een besluit nodig.</p><section id="area-EPC" class="lvl2"><h2>Epic <span class="count">11</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-EPC-001" data-search="safe-epc-001 epic — business of enabler elke epic moet worden aangemerkt als business epic of als enabler epic. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-001">SAFE-EPC-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Epic — business of enabler</h4>
+  <p class="stmt">Elke Epic <strong>MOET</strong> worden aangemerkt als business epic of als enabler epic.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Epic (in SAFe de Epic Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau (Portfolio SAFe, Full SAFe); ART- en Solution Train-epics waar die worden gebruikt</dd></div>
+    <div><dt>Artefact</dt><dd>Epic</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — Summary; sectie &#x27;What is an epic?&#x27; (#what-is-an-epic), zichtbaar deel</li><li>S05 <a href="https://framework.scaledagile.com/enablers/">Enablers</a> — Definition; enablers komen voor als epics, capabilities, features of stories</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe onderscheidt business epics en enabler epics. Dat het type op elke Epic expliciet staat, is de Entoli-standaard; zo zijn de Enabler-regels (SAFE-ENB-*) zonder interpretatie toe te passen.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-002" data-search="safe-epc-002 epic — hypothesis statement elke epic moet een epic hypothesis statement bevatten dat de kritieke informatie en de aannames vastlegt waarop de epic rust. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-002">SAFE-EPC-002</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Epic — hypothesis statement</h4>
+  <p class="stmt">Elke Epic <strong>MOET</strong> een Epic Hypothesis Statement bevatten dat de kritieke informatie en de aannames vastlegt waarop de Epic rust.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Epic (in SAFe de Epic Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Epic Hypothesis Statement&#x27;</li><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — sectie &#x27;How are epics defined?&#x27; (#how-are-epics-defined), alleen de kop; de inhoud staat achter de login</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe definieert het Epic Hypothesis Statement als het gestructureerde format voor de kritieke informatie en aannames van een epic. De toegankelijke bronnen zeggen niet dat elke epic er een moet hebben; de verplichting is dus een Entoli-standaard. De regel schrijft geen velden van het format voor.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-003" data-search="safe-epc-003 epic — meetbare benefit hypothesis elke epic moet haar benefit hypothesis formuleren als een voorgesteld business- of klantvoordeel dat meetbaar is. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-003">SAFE-EPC-003</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Epic — meetbare benefit hypothesis</h4>
+  <p class="stmt">Elke Epic <strong>MOET</strong> haar benefit hypothesis formuleren als een voorgesteld business- of klantvoordeel dat meetbaar is.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Epic (in SAFe de Epic Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Benefit Hypothesis&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe definieert de benefit hypothesis van een epic als een voorgesteld meetbaar voordeel. Door die op elke Epic te eisen, is de verwachte uitkomst toetsbaar aan het MVP (SAFE-EPC-005, SAFE-EPC-010). De regel legt geen meetgrootheid vast.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-004" data-search="safe-epc-004 epic — mvp gedefinieerd elke epic moet een minimum viable product definiëren. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-004">SAFE-EPC-004</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Epic — MVP gedefinieerd</h4>
+  <p class="stmt">Elke Epic <strong>MOET</strong> een Minimum Viable Product definiëren.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Epic (in SAFe de Epic Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — Summary en Key Takeaways (zichtbaar deel)</li><li>S40 <a href="https://framework.scaledagile.com/epic-owners">Epic Owners</a> — zichtbare openingsalinea</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Het artikel over Epics stelt dat elke epic een MVP vereist.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-005" data-search="safe-epc-005 epic — mvp toetst de hypothese het minimum viable product van een epic moet aangeven welk deel van de hypothese van de epic het moet bewijzen of weerleggen. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-005">SAFE-EPC-005</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Epic — MVP toetst de hypothese</h4>
+  <p class="stmt">Het Minimum Viable Product van een Epic <strong>MOET</strong> aangeven welk deel van de hypothese van de Epic het moet bewijzen of weerleggen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Epic (in SAFe de Epic Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic (MVP)</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Minimum Viable Product (MVP)&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe definieert een MVP naar zijn doel: genoeg om een epic-hypothese te bewijzen of te weerleggen. Door die koppeling in het artefact te benoemen, is het MVP te beoordelen.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-006" data-search="safe-epc-006 epic — lean business case elke epic moet een lean business case hebben die de epic, haar minimum viable product en haar verwachte bedrijfswaarde beschrijft. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-006">SAFE-EPC-006</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Epic — Lean Business Case</h4>
+  <p class="stmt">Elke Epic <strong>MOET</strong> een Lean Business Case hebben die de Epic, haar Minimum Viable Product en haar verwachte bedrijfswaarde beschrijft.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Epic (in SAFe de Epic Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic (Lean Business Case)</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review, Strategic Investment Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — Key Takeaways (zichtbaar deel)</li><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Lean Business Case (LBC)&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Het artikel over Epics vereist een Lean business case; de glossary zegt wat die beschrijft. Er worden geen templatevelden voorgeschreven.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-007" data-search="safe-epc-007 epic — kostenraming elke epic moet een raming van haar kosten bevatten. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-007">SAFE-EPC-007</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Epic — kostenraming</h4>
+  <p class="stmt">Elke Epic <strong>MOET</strong> een raming van haar kosten bevatten.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Epic (in SAFe de Epic Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review, Strategic Investment Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — Key Takeaways (zichtbaar deel); sectie &#x27;How is the cost and duration of an epic forecast?&#x27;, alleen de kop</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Het artikel over Epics vereist een raming van de kosten. Een doorlooptijdprognose wordt in een sectiekop genoemd, maar de inhoud staat achter de login; daarom wordt geen regel over doorlooptijd voorgesteld (gap G05 in het voorstel).</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-prohibition" id="SAFE-EPC-008" data-search="safe-epc-008 epic — geen implementatie zonder goedkeuring een epic mag niet in implementatie gaan voordat portfolio leadership haar heeft goedgekeurd. verbod klasse 1" data-type="prohibition">
+  <header><a class="rid" href="#SAFE-EPC-008">SAFE-EPC-008</a><span class="badge prohibition">verbod</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Epic — geen implementatie zonder goedkeuring</h4>
+  <p class="stmt">Een Epic <strong>MAG NIET</strong> in implementatie gaan voordat Portfolio Leadership haar heeft goedgekeurd.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>Portfolio Leadership en de eigenaar van de Portfolio Kanban</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — Summary (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Het artikel over Epics stelt dat epics door Portfolio Leadership moeten worden goedgekeurd. De regel gaat over de status van het werkproduct, niet over een stap in een tool.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-009" data-search="safe-epc-009 epic — goedkeuringsbesluit vastgelegd met zijn grondslag het goedkeuringsbesluit over een epic moet worden vastgelegd samen met een verwijzing naar de lean business case waarop het is genomen. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-009">SAFE-EPC-009</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Epic — goedkeuringsbesluit vastgelegd met zijn grondslag</h4>
+  <p class="stmt">Het goedkeuringsbesluit over een Epic <strong>MOET</strong> worden vastgelegd samen met een verwijzing naar de Lean Business Case waarop het is genomen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>Portfolio Leadership</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic (besluitvastlegging)</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — Summary (zichtbaar deel): goedkeuring door Portfolio Leadership</li><li>S09 <a href="https://framework.scaledagile.com/portfolio-backlog/">Portfolio Backlog</a> — sectie &#x27;How is the portfolio backlog built and refined?&#x27; (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe vereist de goedkeuring; het vastleggen van het besluit en zijn grondslag is de Entoli-standaard voor traceerbaarheid. De regel schrijft geen verdere velden voor.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-010" data-search="safe-epc-010 epic — uitkomst van het mvp vastgelegd waar het minimum viable product van een epic is geëvalueerd, moeten de uitkomst van die evaluatie voor de hypothese van de epic en het besluit dat daarop over de epic is genomen bij de epic worden vastgelegd. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-010">SAFE-EPC-010</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Epic — uitkomst van het MVP vastgelegd</h4>
+  <p class="stmt">Waar het Minimum Viable Product van een Epic is geëvalueerd, <strong>MOETEN</strong> de uitkomst van die evaluatie voor de hypothese van de Epic en het besluit dat daarop over de Epic is genomen bij de Epic worden vastgelegd.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>Epic Owner en Portfolio Leadership</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Epic (besluitvastlegging)</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — sectie &#x27;How is the Lean Startup cycle used to manage epic implementation?&#x27;, alleen de kop</li><li>S10 <a href="https://framework.scaledagile.com/lean-portfolio-management-discipline">Lean Portfolio Management Discipline</a> — sectie &#x27;Manage Strategic Initiatives and Enhancing Portfolio Flow&#x27; (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe stuurt epics via een Lean Startup-cyclus waarin het MVP de hypothese toetst vóór een grotere investering. De toegankelijke tekst legt de besluitopties niet vast; daarom legt de regel de uitkomst en het besluit vast zonder die opties te benoemen.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-EPC-011" data-search="safe-epc-011 epic — zichtbaar in de portfolio kanban elke portfolio-epic moet zichtbaar zijn in de portfolio kanban vanaf het moment dat zij wordt voorgesteld totdat zij is afgerond of verwijderd. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-EPC-011">SAFE-EPC-011</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Epic — zichtbaar in de Portfolio Kanban</h4>
+  <p class="stmt">Elke portfolio-Epic <strong>MOET</strong> zichtbaar zijn in de Portfolio Kanban vanaf het moment dat zij wordt voorgesteld totdat zij is afgerond of verwijderd.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de Portfolio Kanban (Portfolio Leadership, Epic Owners)</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Portfolio Backlog</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Portfolio Kanban&#x27;</li><li>S02 <a href="https://framework.scaledagile.com/epic/">Epic</a> — Summary (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe beheert epics met een portfolio-Kanban van idee tot implementatie. De Kanban-statussen zelf staan achter de login en worden hier niet voorgeschreven.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section><section id="area-CAP" class="lvl2"><h2>Capability <span class="count">2</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-CAP-001" data-search="safe-cap-001 capability — leverbaar binnen één pi elke capability moet zo zijn afgebakend dat zij binnen één planning interval kan worden geleverd. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-CAP-001">SAFE-CAP-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Capability — leverbaar binnen één PI</h4>
+  <p class="stmt">Elke Capability <strong>MOET</strong> zo zijn afgebakend dat zij binnen één Planning Interval kan worden geleverd.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Capability (in SAFe Solution Management)</dd></div>
+    <div><dt>Geldt voor</dt><dd>alleen Solution Train-niveau (Large Solution SAFe, Full SAFe)</dd></div>
+    <div><dt>Artefact</dt><dd>Capability</dd></div>
+    <div><dt>Events</dt><dd>Pre-Plan, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Capability&#x27;</li><li>S03 <a href="https://framework.scaledagile.com/features-and-capabilities/">Features and Capabilities</a> — Summary (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>De glossary definieert een capability als afgebakend om binnen een PI te worden geleverd.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-CAP-002" data-search="safe-cap-002 capability — gerealiseerd via features die ernaar verwijzen elke feature die een deel van een capability realiseert, moet naar die capability verwijzen. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-CAP-002">SAFE-CAP-002</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Capability — gerealiseerd via Features die ernaar verwijzen</h4>
+  <p class="stmt">Elke Feature die een deel van een Capability realiseert, <strong>MOET</strong> naar die Capability verwijzen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Feature (in SAFe Product Management)</dd></div>
+    <div><dt>Geldt voor</dt><dd>alleen Solution Train-niveau (Large Solution SAFe, Full SAFe)</dd></div>
+    <div><dt>Artefact</dt><dd>Feature, Capability</dd></div>
+    <div><dt>Events</dt><dd>Pre-Plan, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S03 <a href="https://framework.scaledagile.com/features-and-capabilities/">Features and Capabilities</a> — sectie &#x27;How are capabilities split into multiple features for implementation?&#x27;, alleen de kop</li><li>S07 <a href="https://framework.scaledagile.com/art-and-solution-train-backlogs">ART and Solution Train Backlogs</a> — sectie &#x27;What are the ART &amp; Solution Train backlogs?&#x27; (zichtbaar deel): capabilities opgedeeld in features en enablers</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe deelt capabilities op in features over meerdere ARTs. De verwijzing houdt die opdeling traceerbaar.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section><section id="area-FEA" class="lvl2"><h2>Feature <span class="count">5</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-FEA-001" data-search="safe-fea-001 feature — behoefte van de stakeholder en bedrijfswaarde vermeld elke feature moet de behoefte van de stakeholder vermelden die zij vervult en de bedrijfswaarde die zij levert. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-FEA-001">SAFE-FEA-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Feature — behoefte van de stakeholder en bedrijfswaarde vermeld</h4>
+  <p class="stmt">Elke Feature <strong>MOET</strong> de behoefte van de stakeholder vermelden die zij vervult en de bedrijfswaarde die zij levert.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Feature (in SAFe Product Management)</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>Feature</dd></div>
+    <div><dt>Events</dt><dd>PI Planning, ART Sync</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Feature&#x27;</li><li>S03 <a href="https://framework.scaledagile.com/features-and-capabilities/">Features and Capabilities</a> — sectie &#x27;What is a feature?&#x27; (#what-is-a-feature)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe definieert een feature door de bedrijfswaarde die zij levert en de behoefte van de stakeholder die zij vervult. Door beide te vermelden, is de definitie op elke Feature te controleren.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-FEA-002" data-search="safe-fea-002 feature — leverbaar door één art binnen één pi elke feature moet zo zijn afgebakend dat één agile release train haar binnen één planning interval kan leveren. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-FEA-002">SAFE-FEA-002</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Feature — leverbaar door één ART binnen één PI</h4>
+  <p class="stmt">Elke Feature <strong>MOET</strong> zo zijn afgebakend dat één Agile Release Train haar binnen één Planning Interval kan leveren.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Feature (in SAFe Product Management)</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>Feature</dd></div>
+    <div><dt>Events</dt><dd>PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Feature&#x27;</li><li>S03 <a href="https://framework.scaledagile.com/features-and-capabilities/">Features and Capabilities</a> — sectie &#x27;What is a feature?&#x27; (#what-is-a-feature)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Rechtstreeks uit de SAFe-definitie van een feature.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-FEA-003" data-search="safe-fea-003 feature — meetbare benefit hypothesis elke feature moet haar benefit hypothesis formuleren als een voorgesteld business- of klantvoordeel dat meetbaar is. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-FEA-003">SAFE-FEA-003</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Feature — meetbare benefit hypothesis</h4>
+  <p class="stmt">Elke Feature <strong>MOET</strong> haar benefit hypothesis formuleren als een voorgesteld business- of klantvoordeel dat meetbaar is.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Feature (in SAFe Product Management)</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>Feature</dd></div>
+    <div><dt>Events</dt><dd>PI Planning, System Demo</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Benefit Hypothesis&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe definieert een benefit hypothesis voor features net als voor epics. De verplichting voor elke Feature is de Entoli-standaard. De System Demo valideert of geïmplementeerde requirements de verwachte bedrijfswaarde leveren (S17, p. 1); daarvoor is een vermelde hypothese nodig.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-FEA-004" data-search="safe-fea-004 feature — acceptatiecriteria vóór pi planning elke feature moet acceptatiecriteria hebben voordat zij in pi planning wordt ingepland. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-FEA-004">SAFE-FEA-004</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Feature — acceptatiecriteria vóór PI Planning</h4>
+  <p class="stmt">Elke Feature <strong>MOET</strong> acceptatiecriteria hebben voordat zij in PI Planning wordt ingepland.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Feature (in SAFe Product Management)</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>Feature (acceptatiecriteria)</dd></div>
+    <div><dt>Events</dt><dd>PI Planning, ART Sync</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Acceptance Criteria&#x27;</li><li>S13 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-PI-Planning-Facilitators-Guide.docx.pdf">SAFe PI Planning Facilitator&#x27;s Guide (PDF)</a> — p. 5, &#x27;Preparation Checklist&#x27;: features geprioriteerd en klaar voor review</li><li>S18 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-ART-Sync-Facilitators-Guide.pdf">SAFe ART Sync Facilitator&#x27;s Guide (PDF)</a> — p. 4, &#x27;Overcoming Challenges&#x27;: focus op de acceptatiecriteria van features</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe past acceptatiecriteria toe op features en verwacht dat features klaar zijn voor PI Planning. Het moment is de Entoli-standaard; SAFe definieert &#x27;klaar&#x27; niet in de toegankelijke tekst. De inhoudelijke regels voor de criteria zijn SAFE-ACC-*.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-FEA-005" data-search="safe-fea-005 feature — verwijzing naar haar epic elke feature die voortkomt uit het opdelen van een epic, moet naar die epic verwijzen. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-FEA-005">SAFE-FEA-005</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Feature — verwijzing naar haar Epic</h4>
+  <p class="stmt">Elke Feature die voortkomt uit het opdelen van een Epic, <strong>MOET</strong> naar die Epic verwijzen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Feature (in SAFe Product Management)</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau waar een portfolio- of ART-epic bestaat</dd></div>
+    <div><dt>Artefact</dt><dd>Feature, Epic</dd></div>
+    <div><dt>Events</dt><dd>PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S07 <a href="https://framework.scaledagile.com/art-and-solution-train-backlogs">ART and Solution Train Backlogs</a> — sectie &#x27;What are the ART &amp; Solution Train backlogs?&#x27; (zichtbaar deel): portfolio-epics opgedeeld in features of capabilities</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe vult de ART Backlog met features die uit epics zijn opgedeeld. De verwijzing houdt de uitkomsten van een epic traceerbaar tot de geleverde features.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section><section id="area-ENB" class="lvl2"><h2>Enabler <span class="count">4</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-ENB-001" data-search="safe-enb-001 enabler — categorie vastgelegd elke enabler moet worden ingedeeld als exploration, architecture, infrastructure of compliance. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-ENB-001">SAFE-ENB-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Enabler — categorie vastgelegd</h4>
+  <p class="stmt">Elke Enabler <strong>MOET</strong> worden ingedeeld als exploration, architecture, infrastructure of compliance.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Enabler (System Architect, of de eigenaar van de backlog waarin de Enabler staat)</dd></div>
+    <div><dt>Geldt voor</dt><dd>elk backlogniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Enabler (Epic, Capability, Feature of Story)</dd></div>
+    <div><dt>Events</dt><dd>PI Planning, Backlog Refinement</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S05 <a href="https://framework.scaledagile.com/enablers/">Enablers</a> — Summary en sectie &#x27;What is an enabler?&#x27; (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe noemt deze vier categorieën. Dat de categorie op elke Enabler wordt vastgelegd, is de Entoli-standaard.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-ENB-002" data-search="safe-enb-002 enabler — tastbare output vermeld elke enabler moet de tastbare output vermelden die zij oplevert. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-ENB-002">SAFE-ENB-002</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Enabler — tastbare output vermeld</h4>
+  <p class="stmt">Elke Enabler <strong>MOET</strong> de tastbare output vermelden die zij oplevert.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Enabler</dd></div>
+    <div><dt>Geldt voor</dt><dd>elk backlogniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Enabler</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, Iteration Review, System Demo</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S05 <a href="https://framework.scaledagile.com/enablers/">Enablers</a> — sectie &#x27;What is an enabler?&#x27; (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe stelt dat enablers tastbare output opleveren. Door die output te benoemen, is een Enabler te demonstreren en te accepteren.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-ENB-003" data-search="safe-enb-003 enabler — beheerd in dezelfde backlog elke enabler moet zichtbaar zijn in, en beheerd worden via, dezelfde backlog als de business-items van haar niveau. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-ENB-003">SAFE-ENB-003</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Enabler — beheerd in dezelfde backlog</h4>
+  <p class="stmt">Elke Enabler <strong>MOET</strong> zichtbaar zijn in, en beheerd worden via, dezelfde backlog als de business-items van haar niveau.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de backlog (Product Owner, Product Management, Solution Management of Portfolio Leadership)</dd></div>
+    <div><dt>Geldt voor</dt><dd>elk backlogniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Enabler; Team, ART, Solution Train en Portfolio Backlog</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S05 <a href="https://framework.scaledagile.com/enablers/">Enablers</a> — sectie &#x27;What is an enabler?&#x27; (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe stelt dat enablers zichtbaar moeten zijn en moeten worden behandeld als andere backlog-items.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-ENB-004" data-search="safe-enb-004 enabler — dezelfde definitieconventies als haar niveau elke enabler moet voldoen aan de canon rules voor het backlog-item van haar niveau, inclusief de regels voor acceptatiecriteria. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-ENB-004">SAFE-ENB-004</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Enabler — dezelfde definitieconventies als haar niveau</h4>
+  <p class="stmt">Elke Enabler <strong>MOET</strong> voldoen aan de Canon Rules voor het backlog-item van haar niveau, inclusief de regels voor acceptatiecriteria.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Enabler</dd></div>
+    <div><dt>Geldt voor</dt><dd>elk backlogniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Enabler</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S05 <a href="https://framework.scaledagile.com/enablers/">Enablers</a> — Summary (zichtbaar deel): definitie en acceptatie volgen dezelfde conventies als andere backlog-items</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Eenmaal vastgelegd, zodat de regels voor Epic, Feature, Story en acceptatiecriteria via verwijzing op Enablers van toepassing zijn in plaats van te worden herhaald.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section><section id="area-STY" class="lvl2"><h2>Story <span class="count">6</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-STY-001" data-search="safe-sty-001 story — af te ronden binnen één iteratie elke story moet klein genoeg zijn om binnen één iteratie te worden afgerond. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-STY-001">SAFE-STY-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Story — af te ronden binnen één iteratie</h4>
+  <p class="stmt">Elke Story <strong>MOET</strong> klein genoeg zijn om binnen één iteratie te worden afgerond.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>Agile Team en Product Owner</dd></div>
+    <div><dt>Geldt voor</dt><dd>teamniveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>Story</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, Iteration Planning, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S04 <a href="https://framework.scaledagile.com/story/">Story</a> — Key Takeaways (zichtbaar deel)</li><li>S14 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/Team-Backlog-Refinement-Facilitators-Guide.pdf">SAFe Team Backlog Refinement Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;; p. 3 &#x27;Overcoming Challenges&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe houdt stories klein genoeg om in één iteratie af te ronden en deelt grotere op. Er wordt geen omvangsdrempel vastgelegd: de splitsdrempel in de PI Planning-gids geldt alleen voor nieuwe ARTs (S13, p. 3).</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-STY-002" data-search="safe-sty-002 user story — perspectief van de gebruiker elke user story moet de gewenste functionaliteit beschrijven vanuit het perspectief van een gebruiker. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-STY-002">SAFE-STY-002</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>User Story — perspectief van de gebruiker</h4>
+  <p class="stmt">Elke User Story <strong>MOET</strong> de gewenste functionaliteit beschrijven vanuit het perspectief van een gebruiker.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Story (Agile Team, Product Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>teamniveau; alleen user stories (enabler stories: SAFE-ENB-*)</dd></div>
+    <div><dt>Artefact</dt><dd>Story</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Story&#x27;</li><li>S04 <a href="https://framework.scaledagile.com/story/">Story</a> — Definition en sectie &#x27;What is a story?&#x27; (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Rechtstreeks uit de SAFe-definitie van een story. Er wordt geen zinsjabloon voorgeschreven; de toegankelijke tekst toont er geen.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-STY-003" data-search="safe-sty-003 story — acceptatiecriteria vóór commitment elke story moet acceptatiecriteria hebben voordat het agile team zich er in iteration planning aan committeert. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-STY-003">SAFE-STY-003</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Story — acceptatiecriteria vóór commitment</h4>
+  <p class="stmt">Elke Story <strong>MOET</strong> acceptatiecriteria hebben voordat het Agile Team zich er in Iteration Planning aan committeert.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>Agile Team en Product Owner</dd></div>
+    <div><dt>Geldt voor</dt><dd>teamniveau (SAFe Scrum-teams; Iteration Planning is een SAFe Scrum-event)</dd></div>
+    <div><dt>Artefact</dt><dd>Story (acceptatiecriteria)</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, Iteration Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S15 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Iteration-Planning-Facilitators-Guide.pdf">SAFe Iteration Planning Facilitator&#x27;s Guide (PDF)</a> — p. 2 &#x27;Outcomes&#x27;: iteration backlog</li><li>S14 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/Team-Backlog-Refinement-Facilitators-Guide.pdf">SAFe Team Backlog Refinement Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>De Iteration Planning-gids zegt dat elke geselecteerde story gedefinieerde acceptatiecriteria zou moeten hebben. SAFe formuleert dit als aanbeveling (&#x27;should&#x27;); de verplichting is de Entoli-standaard.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-STY-004" data-search="safe-sty-004 story — schatting vóór commitment elke story moet een schatting hebben voordat het agile team zich er in iteration planning aan committeert. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-STY-004">SAFE-STY-004</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Story — schatting vóór commitment</h4>
+  <p class="stmt">Elke Story <strong>MOET</strong> een schatting hebben voordat het Agile Team zich er in Iteration Planning aan committeert.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>Agile Team</dd></div>
+    <div><dt>Geldt voor</dt><dd>teamniveau (SAFe Scrum-teams)</dd></div>
+    <div><dt>Artefact</dt><dd>Story (schatting)</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, Iteration Planning, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S15 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Iteration-Planning-Facilitators-Guide.pdf">SAFe Iteration Planning Facilitator&#x27;s Guide (PDF)</a> — p. 2 &#x27;Outcomes&#x27;: iteration backlog</li><li>S08 <a href="https://framework.scaledagile.com/team-backlog/">Team Backlog</a> — sectie &#x27;How is the team backlog created and refined?&#x27; (zichtbaar deel): items mogen ongeschat in de backlog staan</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe staat ongeschatte items in de Team Backlog toe, maar beveelt een schatting aan voor elke story die in Iteration Planning wordt geselecteerd. De verplichting bij commitment is de Entoli-standaard. Er wordt geen schattingseenheid voorgeschreven.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-STY-005" data-search="safe-sty-005 story — geschat door het uitvoerende team de schatting van een story moet worden gemaakt door het agile team dat de story zal uitvoeren. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-STY-005">SAFE-STY-005</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Story — geschat door het uitvoerende team</h4>
+  <p class="stmt">De schatting van een Story <strong>MOET</strong> worden gemaakt door het Agile Team dat de Story zal uitvoeren.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>Agile Team</dd></div>
+    <div><dt>Geldt voor</dt><dd>teamniveau</dd></div>
+    <div><dt>Artefact</dt><dd>Story (schatting)</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, Iteration Planning, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S04 <a href="https://framework.scaledagile.com/story/">Story</a> — Summary (zichtbaar deel): Agile Teams schrijven en schatten stories samen</li><li>S14 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/Team-Backlog-Refinement-Facilitators-Guide.pdf">SAFe Team Backlog Refinement Facilitator&#x27;s Guide (PDF)</a> — p. 2 &#x27;Initial Sizing &amp; Splitting of Stories&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe beschrijft schatten als werk van het team. Een schatting die het team niet zelf heeft gemaakt, bijvoorbeeld een schatting die een tool voorstelt, is daarom een voorstel totdat het team haar overneemt.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-STY-006" data-search="safe-sty-006 story — verwijzing naar haar feature elke story die voortkomt uit het opdelen van een feature, moet naar die feature verwijzen. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-STY-006">SAFE-STY-006</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Story — verwijzing naar haar Feature</h4>
+  <p class="stmt">Elke Story die voortkomt uit het opdelen van een Feature, <strong>MOET</strong> naar die Feature verwijzen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van de Story (Agile Team, Product Owner)</dd></div>
+    <div><dt>Geldt voor</dt><dd>teamniveau binnen een ART</dd></div>
+    <div><dt>Artefact</dt><dd>Story, Feature</dd></div>
+    <div><dt>Events</dt><dd>PI Planning, Backlog Refinement</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S03 <a href="https://framework.scaledagile.com/features-and-capabilities/">Features and Capabilities</a> — Summary (zichtbaar deel): teams delen features op in stories</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe deelt features op in stories. De verwijzing houdt de voortgang en acceptatie van de feature traceerbaar tot haar stories.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section><section id="area-ACC" class="lvl2"><h2>Acceptatiecriteria <span class="count">6</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-ACC-001" data-search="safe-acc-001 acceptatiecriterium — waarneembaar en beslisbaar elk acceptatiecriterium moet een voorwaarde formuleren waarvan de vervulling in de opgeleverde oplossing waarneembaar is en als wel of niet vervuld kan worden beoordeeld. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-ACC-001">SAFE-ACC-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Acceptatiecriterium — waarneembaar en beslisbaar</h4>
+  <p class="stmt">Elk acceptatiecriterium <strong>MOET</strong> een voorwaarde formuleren waarvan de vervulling in de opgeleverde oplossing waarneembaar is en als wel of niet vervuld kan worden beoordeeld.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur en beoordelaar van het backlog-item</dd></div>
+    <div><dt>Geldt voor</dt><dd>Story, Feature, Capability en Enabler</dd></div>
+    <div><dt>Artefact</dt><dd>Acceptatiecriteria</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, Iteration Review, System Demo</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Acceptance Criteria&#x27;</li><li>S04 <a href="https://framework.scaledagile.com/story/">Story</a> — Summary (zichtbaar deel): acceptatiecriteria en tests maken stories specifiek</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe gebruikt acceptatiecriteria om te borgen dat een item correct wordt geïmplementeerd. Dat doel vraagt om een voorwaarde die te controleren is. De formulering (bijvoorbeeld BDD) wordt niet voorgeschreven.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-prohibition" id="SAFE-ACC-002" data-search="safe-acc-002 acceptatiecriterium — geen implementatie-instructie een acceptatiecriterium mag niet voorschrijven hoe de oplossing moet worden gebouwd; het formuleert wat de oplossing moet doen. verbod klasse 1" data-type="prohibition">
+  <header><a class="rid" href="#SAFE-ACC-002">SAFE-ACC-002</a><span class="badge prohibition">verbod</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Acceptatiecriterium — geen implementatie-instructie</h4>
+  <p class="stmt">Een acceptatiecriterium <strong>MAG NIET</strong> voorschrijven hoe de oplossing moet worden gebouwd; het formuleert wat de oplossing moet doen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur en beoordelaar van het backlog-item</dd></div>
+    <div><dt>Geldt voor</dt><dd>Story, Feature, Capability en Enabler</dd></div>
+    <div><dt>Artefact</dt><dd>Acceptatiecriteria</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, ART Sync</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S14 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/Team-Backlog-Refinement-Facilitators-Guide.pdf">SAFe Team Backlog Refinement Facilitator&#x27;s Guide (PDF)</a> — p. 3 &#x27;Overcoming Challenges&#x27;</li><li>S18 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-ART-Sync-Facilitators-Guide.pdf">SAFe ART Sync Facilitator&#x27;s Guide (PDF)</a> — p. 4 &#x27;Overcoming Challenges&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe scheidt acceptatiecriteria (wat de oplossing moet doen) van ontwerp (hoe zij wordt gebouwd) en verwijst ontwerp naar andere overleggen.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-ACC-003" data-search="safe-acc-003 acceptatiecriteria — toepasselijke nfr&#x27;s gedekt waar een niet-functionele eis op een backlog-item van toepassing is en de toepasselijke definition of done die eis niet dekt, moeten de acceptatiecriteria van dat item haar dekken. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-ACC-003">SAFE-ACC-003</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Acceptatiecriteria — toepasselijke NFR&#x27;s gedekt</h4>
+  <p class="stmt">Waar een niet-functionele eis op een backlog-item van toepassing is en de toepasselijke Definition of Done die eis niet dekt, <strong>MOETEN</strong> de acceptatiecriteria van dat item haar dekken.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur en beoordelaar van het backlog-item</dd></div>
+    <div><dt>Geldt voor</dt><dd>Story, Feature, Capability en Enabler</dd></div>
+    <div><dt>Artefact</dt><dd>Acceptatiecriteria</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-items &#x27;Acceptance Criteria&#x27; en &#x27;Nonfunctional Requirements&#x27;</li><li>S07 <a href="https://framework.scaledagile.com/art-and-solution-train-backlogs">ART and Solution Train Backlogs</a> — sectie &#x27;What are the ART &amp; Solution Train backlogs?&#x27; (zichtbaar deel): NFR&#x27;s vastgelegd in acceptatiecriteria of in de Definition of Done</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe plaatst NFR&#x27;s in de acceptatiecriteria of in de Definition of Done. De regel dekt het geval af waarin geen van beide geldt.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-ACC-004" data-search="safe-acc-004 acceptatiecriterium — één voorwaarde per criterium elk acceptatiecriterium moet precies één voorwaarde uitdrukken. verplichting klasse 3" data-type="obligation">
+  <header><a class="rid" href="#SAFE-ACC-004">SAFE-ACC-004</a><span class="badge obligation">verplichting</span><span class="badge cls cls3" title="lokale keuze (besluit nodig)">klasse 3</span></header>
+  <h4>Acceptatiecriterium — één voorwaarde per criterium</h4>
+  <p class="stmt">Elk acceptatiecriterium <strong>MOET</strong> precies één voorwaarde uitdrukken.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>3 — lokale keuze (besluit nodig)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur en beoordelaar van het backlog-item</dd></div>
+    <div><dt>Geldt voor</dt><dd>Story, Feature, Capability en Enabler</dd></div>
+    <div><dt>Artefact</dt><dd>Acceptatiecriteria</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement</dd></div>
+    <div><dt>Bronnen</dt><dd><em>geen bron (lokale keuze)</em></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Lokale keuze. SAFe legt de granulariteit van een criterium in de toegankelijke bronnen niet vast. Atomaire criteria maken het mogelijk om elk criterium afzonderlijk te beoordelen (SAFE-ACC-001, SAFE-ACC-006).</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-prohibition" id="SAFE-ACC-005" data-search="safe-acc-005 acceptatiecriteria — geen herhaling van de definition of done een acceptatiecriterium mag niet een voorwaarde herhalen die de toepasselijke definition of done al aan elk item stelt. verbod klasse 3" data-type="prohibition">
+  <header><a class="rid" href="#SAFE-ACC-005">SAFE-ACC-005</a><span class="badge prohibition">verbod</span><span class="badge cls cls3" title="lokale keuze (besluit nodig)">klasse 3</span></header>
+  <h4>Acceptatiecriteria — geen herhaling van de Definition of Done</h4>
+  <p class="stmt">Een acceptatiecriterium <strong>MAG NIET</strong> een voorwaarde herhalen die de toepasselijke Definition of Done al aan elk item stelt.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>3 — lokale keuze (besluit nodig)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur en beoordelaar van het backlog-item</dd></div>
+    <div><dt>Geldt voor</dt><dd>Story, Feature, Capability en Enabler</dd></div>
+    <div><dt>Artefact</dt><dd>Acceptatiecriteria, Definition of Done</dd></div>
+    <div><dt>Events</dt><dd>Backlog Refinement</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-items &#x27;Acceptance Criteria&#x27; en &#x27;Definition of Done&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Lokale keuze. SAFe definieert acceptatiecriteria per item en de Definition of Done voor alle werkproducten, maar verbiedt overlap niet. Door ze gescheiden te houden, heeft één voorwaarde niet twee bronnen.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-prohibition" id="SAFE-ACC-006" data-search="safe-acc-006 backlog-item — pas gereed als criteria en dod zijn vervuld een backlog-item mag niet als gereed worden vastgelegd tenzij elk van zijn acceptatiecriteria is vervuld en het voldoet aan de toepasselijke definition of done. verbod klasse 2" data-type="prohibition">
+  <header><a class="rid" href="#SAFE-ACC-006">SAFE-ACC-006</a><span class="badge prohibition">verbod</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Backlog-item — pas gereed als criteria en DoD zijn vervuld</h4>
+  <p class="stmt">Een backlog-item <strong>MAG NIET</strong> als gereed worden vastgelegd tenzij elk van zijn acceptatiecriteria is vervuld en het voldoet aan de toepasselijke Definition of Done.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>Product Owner (stories), Product Management (features), Solution Management (capabilities)</dd></div>
+    <div><dt>Geldt voor</dt><dd>Story, Feature, Capability en Enabler</dd></div>
+    <div><dt>Artefact</dt><dd>Story, Feature, Capability, Enabler (gereedstatus)</dd></div>
+    <div><dt>Events</dt><dd>Iteration Review, System Demo, Solution Demo</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S16 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Iteration-Review-Facilitators-Guide.pdf">SAFe Iteration Review Facilitator&#x27;s Guide (PDF)</a> — p. 3 &#x27;Overcoming Challenges&#x27;: afgeronde stories voldoen aan de DoD</li><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-items &#x27;Acceptance Criteria&#x27; en &#x27;Definition of Done&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe toetst afgeronde stories aan de Definition of Done en gebruikt acceptatiecriteria om een correcte implementatie te borgen. De toegankelijke tekst noemt niet wie features en capabilities accepteert; de adressaat voor die niveaus is dus voorgesteld, niet geciteerd.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section><section id="area-WSJ" class="lvl2"><h2>WSJF <span class="count">14</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-WSJ-001" data-search="safe-wsj-001 wsjf — cost of delay gedeeld door doorlooptijd een wsjf-waarde moet worden berekend als de relatieve cost of delay van een job gedeeld door de relatieve doorlooptijd van die job. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-001">SAFE-WSJ-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>WSJF — Cost of Delay gedeeld door doorlooptijd</h4>
+  <p class="stmt">Een WSJF-waarde <strong>MOET</strong> worden berekend als de relatieve Cost of Delay van een job gedeeld door de relatieve doorlooptijd van die job.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — Summary (zichtbaar deel)</li><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Weighted Shortest Job First (WSJF)&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>De formule zoals SAFe haar formuleert. Hetzelfde artikel noemt job size in zijn algoritme; zie SAFE-WSJ-004.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-002" data-search="safe-wsj-002 wsjf — componenten van de cost of delay de cost of delay in een wsjf-beoordeling moet worden geschat op basis van de relatieve gebruikers- en bedrijfswaarde, de tijdkritiek, en de risicoreductie en/of het mogelijk maken van kansen van de job. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-002">SAFE-WSJ-002</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>WSJF — componenten van de Cost of Delay</h4>
+  <p class="stmt">De Cost of Delay in een WSJF-beoordeling <strong>MOET</strong> worden geschat op basis van de relatieve gebruikers- en bedrijfswaarde, de tijdkritiek, en de risicoreductie en/of het mogelijk maken van kansen van de job.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog en de stakeholders die schatten</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — sectie &#x27;Details&#x27;, zichtbare opening</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>De drie componenten zoals SAFe ze opsomt.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-003" data-search="safe-wsj-003 wsjf — cost of delay is de som van de componenten de cost of delay in een wsjf-beoordeling moet de som zijn van de drie componentschattingen. verplichting klasse 3" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-003">SAFE-WSJ-003</a><span class="badge obligation">verplichting</span><span class="badge cls cls3" title="lokale keuze (besluit nodig)">klasse 3</span></header>
+  <h4>WSJF — Cost of Delay is de som van de componenten</h4>
+  <p class="stmt">De Cost of Delay in een WSJF-beoordeling <strong>MOET</strong> de som zijn van de drie componentschattingen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>3 — lokale keuze (besluit nodig)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><em>geen bron (lokale keuze)</em></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Lokale keuze die een besluit vraagt. De toegankelijke officiële tekst noemt de componenten, maar niet hoe ze worden gecombineerd; die combinatie staat in het deel achter de login. Een blog van een SAFe Fellow beschrijft een optelling, maar die is uitdrukkelijk verkennend en wordt niet als normatieve grondslag gebruikt.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-004" data-search="safe-wsj-004 wsjf — noemer vermeld een wsjf-beoordeling moet vermelden of haar noemer de doorlooptijd rechtstreeks schat of job size als maat gebruikt. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-004">SAFE-WSJ-004</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>WSJF — noemer vermeld</h4>
+  <p class="stmt">Een WSJF-beoordeling <strong>MOET</strong> vermelden of haar noemer de doorlooptijd rechtstreeks schat of job size als maat gebruikt.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — Summary en sectie &#x27;Details&#x27;, zichtbare delen</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe formuleert de formule met job duration en het algoritme met job size. De regel maakt de keuze zichtbaar in plaats van haar te maken.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-005" data-search="safe-wsj-005 wsjf — relatieve schattingen binnen één beoordeling elke schatting in een wsjf-beoordeling moet worden gemaakt ten opzichte van de andere jobs in dezelfde beoordeling. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-005">SAFE-WSJ-005</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>WSJF — relatieve schattingen binnen één beoordeling</h4>
+  <p class="stmt">Elke schatting in een WSJF-beoordeling <strong>MOET</strong> worden gemaakt ten opzichte van de andere jobs in dezelfde beoordeling.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog en de stakeholders die schatten</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — Summary en sectie &#x27;Details&#x27;, zichtbare delen</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe formuleert elke WSJF-term als relatief. De WSJF-waarde van een job heeft daarom alleen betekenis binnen haar beoordeling.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-006" data-search="safe-wsj-006 wsjf — één schaal per beoordeling alle jobs in één wsjf-beoordeling moeten op één schaal worden geschat. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-006">SAFE-WSJ-006</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>WSJF — één schaal per beoordeling</h4>
+  <p class="stmt">Alle jobs in één WSJF-beoordeling <strong>MOETEN</strong> op één schaal worden geschat.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — Summary (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Relatieve schattingen zijn alleen vergelijkbaar op een gedeelde schaal. Welke schaal wordt gebruikt, wordt hier niet voorgeschreven: de toegankelijke WSJF-tekst noemt er geen, en de Modified Fibonacci Sequence uit de glossary wordt in toegankelijke tekst niet aan WSJF gekoppeld (voorstel U5).</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-prohibition" id="SAFE-WSJ-007" data-search="safe-wsj-007 wsjf — verzonken kosten uitgesloten een schatting in een wsjf-beoordeling mag niet rekening houden met kosten of inspanning die al aan de job zijn besteed. verbod klasse 1" data-type="prohibition">
+  <header><a class="rid" href="#SAFE-WSJ-007">SAFE-WSJ-007</a><span class="badge prohibition">verbod</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>WSJF — verzonken kosten uitgesloten</h4>
+  <p class="stmt">Een schatting in een WSJF-beoordeling <strong>MAG NIET</strong> rekening houden met kosten of inspanning die al aan de job zijn besteed.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog en de stakeholders die schatten</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — sectie &#x27;Details&#x27;, zichtbare opening</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe merkt op dat WSJF verzonken kosten buiten beschouwing laat, in lijn met Lean-economie.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-008" data-search="safe-wsj-008 wsjf — features geprioriteerd op pi-grenzen features in de art backlog moeten met wsjf worden geprioriteerd wanneer zij op een grens van een planning interval worden beoordeeld. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-008">SAFE-WSJ-008</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>WSJF — features geprioriteerd op PI-grenzen</h4>
+  <p class="stmt">Features in de ART Backlog <strong>MOETEN</strong> met WSJF worden geprioriteerd wanneer zij op een grens van een Planning Interval worden beoordeeld.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>Product Management</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>ART Backlog, WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog); input voor PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S03 <a href="https://framework.scaledagile.com/features-and-capabilities/">Features and Capabilities</a> — Summary (zichtbaar deel)</li><li>S13 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-PI-Planning-Facilitators-Guide.docx.pdf">SAFe PI Planning Facilitator&#x27;s Guide (PDF)</a> — p. 5 &#x27;Attendees, Location, and Inputs&#x27;: prioriteiten van features uit de ART Backlog</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Dit is het beslismoment waarop SAFe WSJF op features toepast. Er is geen apart WSJF-event; de geprioriteerde ART Backlog is input voor PI Planning.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-009" data-search="safe-wsj-009 wsjf — epics in de portfolio backlog epics in de portfolio backlog moeten met wsjf worden geprioriteerd wanneer de portfolio backlog wordt verfijnd. verplichting klasse 3" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-009">SAFE-WSJ-009</a><span class="badge obligation">verplichting</span><span class="badge cls cls3" title="lokale keuze (besluit nodig)">klasse 3</span></header>
+  <h4>WSJF — epics in de Portfolio Backlog</h4>
+  <p class="stmt">Epics in de Portfolio Backlog <strong>MOETEN</strong> met WSJF worden geprioriteerd wanneer de Portfolio Backlog wordt verfijnd.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>3 — lokale keuze (besluit nodig)</dd></div>
+    <div><dt>Adressaat</dt><dd>Portfolio Leadership</dd></div>
+    <div><dt>Geldt voor</dt><dd>portfolioniveau (Portfolio SAFe, Full SAFe)</dd></div>
+    <div><dt>Artefact</dt><dd>Portfolio Backlog, WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — sectie &#x27;Details&#x27;, zichtbare opening: SAFe past WSJF toe om backlogs te prioriteren</li><li>S09 <a href="https://framework.scaledagile.com/portfolio-backlog/">Portfolio Backlog</a> — sectie &#x27;How is the portfolio backlog built and refined?&#x27; (zichtbaar deel): verfijning tijdens Portfolio Sync en Strategic Portfolio Review</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Lokale keuze die een besluit vraagt. SAFe past WSJF toe op backlogs in het algemeen en verfijnt de Portfolio Backlog in deze events, maar geen toegankelijke officiële tekst stelt dat epics met WSJF worden geprioriteerd. Deze regel geeft de werkwijze weer die de klant noemt (epics rangschikken op WSJF) en moet worden aangenomen als Entoli-besluit, niet als SAFe-doctrine.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-010" data-search="safe-wsj-010 wsjf — capabilities in de solution train backlog capabilities in de solution train backlog moeten met wsjf worden geprioriteerd wanneer zij op een grens van een planning interval worden beoordeeld. verplichting klasse 3" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-010">SAFE-WSJ-010</a><span class="badge obligation">verplichting</span><span class="badge cls cls3" title="lokale keuze (besluit nodig)">klasse 3</span></header>
+  <h4>WSJF — capabilities in de Solution Train Backlog</h4>
+  <p class="stmt">Capabilities in de Solution Train Backlog <strong>MOETEN</strong> met WSJF worden geprioriteerd wanneer zij op een grens van een Planning Interval worden beoordeeld.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>3 — lokale keuze (besluit nodig)</dd></div>
+    <div><dt>Adressaat</dt><dd>Solution Management</dd></div>
+    <div><dt>Geldt voor</dt><dd>alleen Solution Train-niveau (Large Solution SAFe, Full SAFe)</dd></div>
+    <div><dt>Artefact</dt><dd>Solution Train Backlog, WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Pre-Plan</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — sectie &#x27;Details&#x27;, zichtbare opening</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Lokale keuze die een besluit vraagt. De toegankelijke tekst over Features and Capabilities verbindt WSJF op PI-grenzen alleen met features.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-011" data-search="safe-wsj-011 wsjf — hogere waarde eerst een wsjf-uitkomst moet worden gelezen als een volgorde waarin een job met een hogere wsjf-waarde voorgaat op een job met een lagere waarde binnen dezelfde beoordeling. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-011">SAFE-WSJ-011</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>WSJF — hogere waarde eerst</h4>
+  <p class="stmt">Een WSJF-uitkomst <strong>MOET</strong> worden gelezen als een volgorde waarin een job met een hogere WSJF-waarde voorgaat op een job met een lagere waarde binnen dezelfde beoordeling.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling, geprioriteerde backlog</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S01 <a href="https://framework.scaledagile.com/glossary">SAFe Glossary</a> — glossary-item &#x27;Weighted Shortest Job First (WSJF)&#x27;</li><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — Summary (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe gebruikt WSJF om werk te ordenen voor maximaal economisch voordeel; met de Cost of Delay in de teller betekent een hogere waarde een eerdere positie.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-012" data-search="safe-wsj-012 wsjf — afwijking van de volgorde vastgelegd waar de verantwoordelijke eigenaar een backlog anders ordent dan de wsjf-uitkomst, moeten de afwijking en de reden ervan bij de backlog worden vastgelegd. verplichting klasse 3" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-012">SAFE-WSJ-012</a><span class="badge obligation">verplichting</span><span class="badge cls cls3" title="lokale keuze (besluit nodig)">klasse 3</span></header>
+  <h4>WSJF — afwijking van de volgorde vastgelegd</h4>
+  <p class="stmt">Waar de verantwoordelijke eigenaar een backlog anders ordent dan de WSJF-uitkomst, <strong>MOETEN</strong> de afwijking en de reden ervan bij de backlog worden vastgelegd.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>3 — lokale keuze (besluit nodig)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>geprioriteerde backlog (besluitvastlegging)</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), ART Sync, Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><em>geen bron (lokale keuze)</em></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Lokale keuze. SAFe behandelt WSJF als een model dat de ordening onderbouwt; de toegankelijke tekst verbiedt noch regelt een afwijking. Door de afwijking vast te leggen, blijft het besluit traceerbaar (SAFE-TRC-*).</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-013" data-search="safe-wsj-013 wsjf — beoordeling gedateerd elke wsjf-beoordeling moet de datum vastleggen waarop zij is gemaakt. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-013">SAFE-WSJ-013</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>WSJF — beoordeling gedateerd</h4>
+  <p class="stmt">Elke WSJF-beoordeling <strong>MOET</strong> de datum vastleggen waarop zij is gemaakt.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — sectie &#x27;Details&#x27;, zichtbare opening: backlogs worden doorlopend geprioriteerd</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe werkt prioriteiten doorlopend bij. Een gedateerde beoordeling laat zien of een prioriteit nog op actuele schattingen rust.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-WSJ-014" data-search="safe-wsj-014 wsjf — schaal vastgelegd elke wsjf-beoordeling moet de schaal vastleggen waarop haar schattingen zijn gemaakt. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-WSJ-014">SAFE-WSJ-014</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>WSJF — schaal vastgelegd</h4>
+  <p class="stmt">Elke WSJF-beoordeling <strong>MOET</strong> de schaal vastleggen waarop haar schattingen zijn gemaakt.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de geprioriteerde backlog</dd></div>
+    <div><dt>Geldt voor</dt><dd>elke WSJF-beoordeling</dd></div>
+    <div><dt>Artefact</dt><dd>WSJF-beoordeling</dd></div>
+    <div><dt>Events</dt><dd>Voorbereiding PI Planning (ART Backlog), Portfolio Sync, Strategic Portfolio Review</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S06 <a href="https://framework.scaledagile.com/wsjf/">Weighted Shortest Job First</a> — Summary (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Een relatieve waarde is alleen met haar schaal te lezen en te herhalen. De regel legt de schaal vast; hij kiest er geen (voorstel U5).</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section><section id="area-PIO" class="lvl2"><h2>PI Objective <span class="count">3</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-PIO-001" data-search="safe-pio-001 pi objective — committed of uncommitted elk pi objective moet worden gemarkeerd als committed of uncommitted. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-PIO-001">SAFE-PIO-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>PI Objective — committed of uncommitted</h4>
+  <p class="stmt">Elk PI Objective <strong>MOET</strong> worden gemarkeerd als committed of uncommitted.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>Agile Team (team-PI Objectives) en RTE (ART-PI Objectives)</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>PI Objective</dd></div>
+    <div><dt>Events</dt><dd>PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S31 <a href="https://framework.scaledagile.com/pi-objectives">PI Objectives</a> — Definition (zichtbaar deel)</li><li>S13 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-PI-Planning-Facilitators-Guide.docx.pdf">SAFe PI Planning Facilitator&#x27;s Guide (PDF)</a> — p. 4 &#x27;Team PI Objectives&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe deelt PI Objectives in als committed of uncommitted.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-PIO-002" data-search="safe-pio-002 pi objective — geplande bedrijfswaarde van de business owners elk team-pi objective moet een geplande bedrijfswaarde hebben die de business owners in pi planning hebben toegekend. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-PIO-002">SAFE-PIO-002</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>PI Objective — geplande bedrijfswaarde van de Business Owners</h4>
+  <p class="stmt">Elk team-PI Objective <strong>MOET</strong> een geplande bedrijfswaarde hebben die de Business Owners in PI Planning hebben toegekend.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>Business Owners</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>PI Objective</dd></div>
+    <div><dt>Events</dt><dd>PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S13 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-PI-Planning-Facilitators-Guide.docx.pdf">SAFe PI Planning Facilitator&#x27;s Guide (PDF)</a> — p. 4 &#x27;Team PI Objectives&#x27; en &#x27;Final Plan Review&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Volgens de PI Planning-gids kennen de Business Owners bedrijfswaarde toe aan team-PI Objectives, ook aan uncommitted objectives. Hier wordt geen waardeschaal voorgeschreven; de toegankelijke bronnen noemen er geen.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-PIO-003" data-search="safe-pio-003 pi objective — werkelijke bedrijfswaarde vastgelegd bij i&amp;a bij het inspect and adapt-event moet de werkelijk behaalde bedrijfswaarde bij elk pi objective worden vastgelegd, naast de geplande bedrijfswaarde. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-PIO-003">SAFE-PIO-003</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>PI Objective — werkelijke bedrijfswaarde vastgelegd bij I&amp;A</h4>
+  <p class="stmt">Bij het Inspect and Adapt-event <strong>MOET</strong> de werkelijk behaalde bedrijfswaarde bij elk PI Objective worden vastgelegd, naast de geplande bedrijfswaarde.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>Business Owners</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>PI Objective</dd></div>
+    <div><dt>Events</dt><dd>Inspect and Adapt</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S19 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Inspect-and-Adapt-Facilitators-Guide.pdf">SAFe Inspect and Adapt Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;; p. 2 &#x27;Agenda&#x27;, Part 1; p. 3 &#x27;Inputs&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>De I&amp;A-gids sluit de verantwoordingscirkel door per PI Objective de werkelijke bedrijfswaarde met de geplande te vergelijken.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section><section id="area-TRC" class="lvl2"><h2>Traceerbaarheid <span class="count">6</span></h2><div class="grid">
+<article class="rule t-obligation" id="SAFE-TRC-001" data-search="safe-trc-001 backlogwijziging na feedback — event vermeld een wijziging van de prioriteit, de scope of de acceptatiecriteria van een backlog-item die voortkomt uit feedback in een iteration review, system demo, solution demo of art sync, moet worden vastgelegd met een verwijzing naar dat event. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-TRC-001">SAFE-TRC-001</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Backlogwijziging na feedback — event vermeld</h4>
+  <p class="stmt">Een wijziging van de prioriteit, de scope of de acceptatiecriteria van een backlog-item die voortkomt uit feedback in een Iteration Review, System Demo, Solution Demo of ART Sync, <strong>MOET</strong> worden vastgelegd met een verwijzing naar dat event.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>eigenaar van de gewijzigde backlog (Product Owner, Product Management, Solution Management)</dd></div>
+    <div><dt>Geldt voor</dt><dd>elk niveau waarop het genoemde event plaatsvindt</dd></div>
+    <div><dt>Artefact</dt><dd>Story, Feature, Capability, Enabler; Team, ART en Solution Train Backlog</dd></div>
+    <div><dt>Events</dt><dd>Iteration Review, System Demo, Solution Demo, ART Sync</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S16 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Iteration-Review-Facilitators-Guide.pdf">SAFe Iteration Review Facilitator&#x27;s Guide (PDF)</a> — p. 2 &#x27;Refine the Team Backlog&#x27;; p. 4 &#x27;Post-Event Actions&#x27;</li><li>S17 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/System-Demo-Facilitators-Guide.pdf">SAFe System Demo Facilitator&#x27;s Guide (PDF)</a> — p. 4 &#x27;Post-Event Actions&#x27;: Backlog Adjustment</li><li>S18 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-ART-Sync-Facilitators-Guide.pdf">SAFe ART Sync Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;: bijgewerkte ART Backlog</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe past backlogs en acceptatiecriteria aan op basis van de feedback uit deze events. De verwijzing naar het event is de Entoli-standaard voor traceerbaarheid.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-TRC-002" data-search="safe-trc-002 nieuw backlog-item uit een event — herkomst vermeld een backlog-item dat is aangemaakt op basis van feedback of bevindingen uit een iteration review, system demo, solution demo, iteration retrospective of inspect and adapt-event, moet naar dat event verwijzen als zijn herkomst. verplichting klasse 2" data-type="obligation">
+  <header><a class="rid" href="#SAFE-TRC-002">SAFE-TRC-002</a><span class="badge obligation">verplichting</span><span class="badge cls cls2" title="Entoli-standaard (afgeleid)">klasse 2</span></header>
+  <h4>Nieuw backlog-item uit een event — herkomst vermeld</h4>
+  <p class="stmt">Een backlog-item dat is aangemaakt op basis van feedback of bevindingen uit een Iteration Review, System Demo, Solution Demo, Iteration Retrospective of Inspect and Adapt-event, <strong>MOET</strong> naar dat event verwijzen als zijn herkomst.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>2 — Entoli-standaard (afgeleid)</dd></div>
+    <div><dt>Adressaat</dt><dd>auteur van het backlog-item</dd></div>
+    <div><dt>Geldt voor</dt><dd>elk niveau waarop het genoemde event plaatsvindt</dd></div>
+    <div><dt>Artefact</dt><dd>Story, Feature, Epic, Enabler</dd></div>
+    <div><dt>Events</dt><dd>Iteration Review, System Demo, Solution Demo, Iteration Retrospective, Inspect and Adapt</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S17 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/System-Demo-Facilitators-Guide.pdf">SAFe System Demo Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;: kandidaat-features of -stories</li><li>S20 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Iteration-Retrospective-Facilitators-Guide.pdf">SAFe Iteration Retrospective Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;: improvement stories</li><li>S19 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Inspect-and-Adapt-Facilitators-Guide.pdf">SAFe Inspect and Adapt Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;: improvement backlog items</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>SAFe noemt deze events als bron van nieuwe backlog-items. De herkomstverwijzing is de Entoli-standaard voor traceerbaarheid.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-TRC-003" data-search="safe-trc-003 i&amp;a-verbeteritem — geschreven als epic, feature of story elk improvement backlog item uit een inspect and adapt-event moet worden geschreven als een epic, een feature of een story. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-TRC-003">SAFE-TRC-003</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>I&amp;A-verbeteritem — geschreven als Epic, Feature of Story</h4>
+  <p class="stmt">Elk improvement backlog item uit een Inspect and Adapt-event <strong>MOET</strong> worden geschreven als een Epic, een Feature of een Story.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>RTE en ART-leiding</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties); Solution Train-I&amp;A waar die wordt gebruikt</dd></div>
+    <div><dt>Artefact</dt><dd>Improvement backlog item</dd></div>
+    <div><dt>Events</dt><dd>Inspect and Adapt</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S19 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Inspect-and-Adapt-Facilitators-Guide.pdf">SAFe Inspect and Adapt Facilitator&#x27;s Guide (PDF)</a> — p. 4 &#x27;Overcoming Challenges&#x27; en &#x27;Post-Event Actions&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>De I&amp;A-gids schrijft voor dat verbeteritems als concrete Epics, Features of Stories worden geschreven. Daarmee vallen ze onder de regels voor die werkproducten.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-TRC-004" data-search="safe-trc-004 i&amp;a-verbeteritem — eigenaar benoemd elk improvement backlog item uit een inspect and adapt-event moet een eigenaar noemen. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-TRC-004">SAFE-TRC-004</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>I&amp;A-verbeteritem — eigenaar benoemd</h4>
+  <p class="stmt">Elk improvement backlog item uit een Inspect and Adapt-event <strong>MOET</strong> een eigenaar noemen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>RTE en ART-leiding</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties); Solution Train-I&amp;A waar die wordt gebruikt</dd></div>
+    <div><dt>Artefact</dt><dd>Improvement backlog item</dd></div>
+    <div><dt>Events</dt><dd>Inspect and Adapt</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S19 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Inspect-and-Adapt-Facilitators-Guide.pdf">SAFe Inspect and Adapt Facilitator&#x27;s Guide (PDF)</a> — p. 4 &#x27;Overcoming Challenges&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>De I&amp;A-gids vraagt om een benoemde eigenaar voor elk verbeteritem.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-TRC-005" data-search="safe-trc-005 i&amp;a-verbeteritem — opgenomen in de art backlog elk improvement backlog item uit een inspect and adapt-event moet in de art backlog worden opgenomen, zodat het in de volgende pi planning wordt overwogen. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-TRC-005">SAFE-TRC-005</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>I&amp;A-verbeteritem — opgenomen in de ART Backlog</h4>
+  <p class="stmt">Elk improvement backlog item uit een Inspect and Adapt-event <strong>MOET</strong> in de ART Backlog worden opgenomen, zodat het in de volgende PI Planning wordt overwogen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>Product Management en RTE</dd></div>
+    <div><dt>Geldt voor</dt><dd>ART-niveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>ART Backlog</dd></div>
+    <div><dt>Events</dt><dd>Inspect and Adapt, PI Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S23 <a href="https://framework.scaledagile.com/inspect-and-adapt/">Inspect and Adapt</a> — Summary (zichtbaar deel)</li><li>S19 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Inspect-and-Adapt-Facilitators-Guide.pdf">SAFe Inspect and Adapt Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>Rechtstreeks uit het I&amp;A-artikel en de I&amp;A-gids.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article>
+<article class="rule t-obligation" id="SAFE-TRC-006" data-search="safe-trc-006 improvement story uit de retrospective — opgenomen in de team backlog elke improvement story die een iteration retrospective oplevert, moet in de team backlog worden opgenomen. verplichting klasse 1" data-type="obligation">
+  <header><a class="rid" href="#SAFE-TRC-006">SAFE-TRC-006</a><span class="badge obligation">verplichting</span><span class="badge cls cls1" title="SAFe-richtlijn">klasse 1</span></header>
+  <h4>Improvement story uit de retrospective — opgenomen in de Team Backlog</h4>
+  <p class="stmt">Elke improvement story die een Iteration Retrospective oplevert, <strong>MOET</strong> in de Team Backlog worden opgenomen.</p>
+  <details><summary>Details</summary><dl>
+    <div><dt>Klasse</dt><dd>1 — SAFe-richtlijn</dd></div>
+    <div><dt>Adressaat</dt><dd>Agile Team en Product Owner</dd></div>
+    <div><dt>Geldt voor</dt><dd>teamniveau (alle configuraties)</dd></div>
+    <div><dt>Artefact</dt><dd>Team Backlog</dd></div>
+    <div><dt>Events</dt><dd>Iteration Retrospective, Iteration Planning</dd></div>
+    <div><dt>Bronnen</dt><dd><ul class="srcs"><li>S20 <a href="https://framework.scaledagile.com/wp-content/uploads/2026/03/SAFe-Iteration-Retrospective-Facilitators-Guide.pdf">SAFe Iteration Retrospective Facilitator&#x27;s Guide (PDF)</a> — p. 1 &#x27;Outcomes&#x27;</li><li>S08 <a href="https://framework.scaledagile.com/team-backlog/">Team Backlog</a> — sectie &#x27;What is the team backlog?&#x27; (zichtbaar deel)</li></ul></dd></div>
+    <div><dt>Onderbouwing</dt><dd>De retrospective-gids neemt improvement stories op in de Team Backlog, zodat ze in Iteration Planning worden geprioriteerd. Verbeteringen die direct worden afgesproken en uitgevoerd, hebben geen backlog-item nodig.</dd></div>
+    <div><dt>Status</dt><dd>voorgesteld</dd></div>
+  </dl></details>
+</article></div></section>
+  <footer>Deze pagina is een Nederlandse weergave van de canonieke YAML-bron en heeft zelf geen normatieve autoriteit. Bij verschil gaat de Engelse YAML-bron voor.</footer>
+</main>
+</div>
+<script>
+(function () {
+  var q = document.getElementById('q'), type = 'all';
+  var btns = document.querySelectorAll('.tools button');
+  function apply() {
+    var term = q.value.trim().toLowerCase();
+    document.querySelectorAll('.rule').forEach(function (el) {
+      var ok = (type === 'all' || el.dataset.type === type) && (!term || el.dataset.search.indexOf(term) !== -1);
+      el.classList.toggle('hidden', !ok);
+    });
+    document.querySelectorAll('.pos').forEach(function (p) {
+      if (p.classList.contains('empty')) { p.classList.toggle('hidden', !!term || type !== 'all'); return; }
+      p.classList.toggle('hidden', !p.querySelector('.rule:not(.hidden)'));
+    });
+  }
+  q.addEventListener('input', apply);
+  btns.forEach(function (b) { b.addEventListener('click', function () {
+    type = b.dataset.f; btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); apply();
+  }); });
+})();
+</script>
+</body>
+</html>
