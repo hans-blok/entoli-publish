@@ -65,7 +65,9 @@ extra_css:
   - stylesheets/entoli.css
   - stylesheets/home.css
 
-extra_javascript: []
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js
 
 # ------------------------------------------------------------
 # 5. Plugins

@@ -158,6 +158,20 @@
   margin: 0.25rem 0;
 }
 
+/* Waardeformule ------------------------------------------------------- */
+.md-typeset .entoli-contact > .entoli-value {
+  max-width: 42rem;
+  margin: 0 auto 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-wrap: balance;
+}
+
+.md-typeset .entoli-value__label {
+  color: var(--entoli-orange);
+  font-weight: 600;
+}
+
 /* Responsive ---------------------------------------------------------- */
 /* Onder ~1040px worden drie kolommen te smal voor de kaarttekst
    (circa 29 tekens per regel); de reeks leest dan beter onder elkaar. */
