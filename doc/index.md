@@ -67,6 +67,8 @@ Entoli maakt uw kennis en gegevens niet afhankelijk van één AI-leverancier. He
 
 <div class="entoli-contact" markdown="1">
 
+Waarde van Entoli = Professionele kennis × Uitvoeringsvermogen × Gebruikerservaring
+
 ## Contact
 
 **Hans Blok**
