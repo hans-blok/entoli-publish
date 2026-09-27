@@ -142,6 +142,7 @@ nav:
   - In een notendop: in-een-notendop.md
   - Artikelen:
       - Normatieve concretisering: artikelen/normatieve=concretisering-met-entoli.md
+      - "Kwaliteit, context en kosten: een onderzoeksvoorstel": artikelen/thesis-onderzoek.md
   - Canon Datamodelleren:
       - canon-datamodelleren/index.md
       - Begrippen: canon-datamodelleren/concepts-datamodelling.md
@@ -166,4 +167,3 @@ extra:
 # 9. Copyright
 # ------------------------------------------------------------
 copyright: "Copyright &copy; 2026 Maxia Consultancy. Alle rechten voorbehouden."
-
