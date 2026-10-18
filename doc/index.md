@@ -65,15 +65,15 @@ Entoli maakt uw kennis en gegevens niet afhankelijk van één AI-leverancier. He
 
 <div class="entoli-sovereignty" markdown="1">
 
-## Artikel
+## Discussiestuk
 
 <div class="entoli-sovereignty__body" markdown="1">
 
 ### Wat een mens stilzwijgend weet, moet voor een LLM op papier staan
 
-Een discussiestuk voor data-architecten over semantic models, ontologieën en knowledge graphs, en de vraag hoe Entoli ze invult.
+Voor data-architecten: over semantic models, ontologieën en knowledge graphs, en de vraag hoe Entoli ze invult.
 
-[Lees het artikel →](artikelen/semantiek-en-ai-voor-data-architecten.html)
+[Lees het discussiestuk →](artikelen/semantiek-en-ai-voor-data-architecten.html)
 
 </div>
 
