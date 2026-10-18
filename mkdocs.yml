@@ -145,6 +145,7 @@ nav:
   - Artikelen:
       - Normatieve concretisering: artikelen/normatieve=concretisering-met-entoli.md
       - "Kwaliteit, context en kosten: een onderzoeksvoorstel": artikelen/thesis-onderzoek.md
+      - "Semantiek en AI voor data-architecten": artikelen/semantiek-en-ai-voor-data-architecten.html
   - Canon Datamodelleren:
       - canon-datamodelleren/index.md
       - Begrippen: canon-datamodelleren/concepts-datamodelling.md

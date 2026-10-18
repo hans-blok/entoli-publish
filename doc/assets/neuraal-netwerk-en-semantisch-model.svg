@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title id="t">Neuraal netwerk naast een semantisch model</title>
+  <desc id="d">Links een sterk vereenvoudigd neuraal netwerk met een invoerlaag van drie neuronen, twee verborgen lagen van vier neuronen en een uitvoerlaag van twee neuronen. Elke verbinding tussen twee lagen heeft een numeriek gewicht; drie voorbeelden zijn 0,8, min 0,3 en 0,5. Rechts een illustratief semantisch model met de begrippen Aanvrager, Aanvraag en Vergunning, verbonden door de relaties dient in en betreft.</desc>
+  <style>
+    :root { --ink:#1d2327; --muted:#5b6670; --line:#9aa5ad; --accent:#215732; --card:#ffffff; --node:#f3f5f6; --rule:#d5dbe0; }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink:#e4e8ea; --muted:#9aa5ad; --line:#5b6670; --accent:#6cc08a; --card:#14181b; --node:#1e2428; --rule:#2f373c; }
+    }
+    text { fill: var(--ink); }
+    .title { font-size: 26px; font-weight: 700; }
+    .sub { font-size: 19px; fill: var(--muted); font-style: italic; }
+    .layer { font-size: 18px; fill: var(--muted); text-anchor: middle; }
+    .cap { font-size: 19px; font-weight: 600; text-anchor: middle; }
+    .flow { font-size: 18px; fill: var(--muted); text-anchor: middle; }
+    .w { font-size: 20px; font-weight: 700; fill: var(--accent); text-anchor: middle; }
+    .node-label { font-size: 22px; font-weight: 600; text-anchor: middle; }
+    .rel { font-size: 20px; fill: var(--accent); font-weight: 600; }
+    .conn { stroke: var(--line); stroke-width: 1; opacity: .45; fill: none; }
+    .hot { stroke: var(--accent); stroke-width: 3; fill: none; }
+    .neuron { fill: var(--card); stroke: var(--muted); stroke-width: 2; }
+    .box { fill: var(--node); stroke: var(--muted); stroke-width: 2; }
+    .edge { stroke: var(--accent); stroke-width: 3; fill: none; }
+    .tag { fill: var(--card); stroke: var(--accent); stroke-width: 1.5; }
+    .divider { stroke: var(--rule); stroke-width: 2; }
+    .flowline { stroke: var(--muted); stroke-width: 2; fill: none; }
+  </style>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
+    </marker>
+    <marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--muted)"/>
+    </marker>
+  </defs>
+
+  <!-- Linkerdeel: neuraal netwerk -->
+  <text class="title" x="20" y="38">Neuraal netwerk</text>
+  <text class="sub" x="20" y="64">sterk vereenvoudigd, geen transformer</text>
+
+  <!-- alle verbindingen tussen lagen (invoer 60, verborgen 1 170, verborgen 2 280, uitvoer 390) -->
+  <g class="conn">
+    <!-- invoer -> verborgen 1 -->
+    <path d="M60 130 L170 90 M60 130 L170 170 M60 130 L170 250 M60 130 L170 330"/>
+    <path d="M60 210 L170 90 M60 210 L170 170 M60 210 L170 250 M60 210 L170 330"/>
+    <path d="M60 290 L170 90 M60 290 L170 170 M60 290 L170 250 M60 290 L170 330"/>
+    <!-- verborgen 1 -> verborgen 2 -->
+    <path d="M170 90 L280 90 M170 90 L280 170 M170 90 L280 250 M170 90 L280 330"/>
+    <path d="M170 170 L280 90 M170 170 L280 170 M170 170 L280 250 M170 170 L280 330"/>
+    <path d="M170 250 L280 90 M170 250 L280 170 M170 250 L280 250 M170 250 L280 330"/>
+    <path d="M170 330 L280 90 M170 330 L280 170 M170 330 L280 250 M170 330 L280 330"/>
+    <!-- verborgen 2 -> uitvoer -->
+    <path d="M280 90 L390 170 M280 90 L390 250"/>
+    <path d="M280 170 L390 170 M280 170 L390 250"/>
+    <path d="M280 250 L390 170 M280 250 L390 250"/>
+    <path d="M280 330 L390 170 M280 330 L390 250"/>
+  </g>
+
+  <!-- uitgelichte verbindingen met gewicht -->
+  <path class="hot" d="M76 125 L154 95" marker-end="url(#ah)"/>
+  <path class="hot" d="M184 180 L266 240" marker-end="url(#ah)"/>
+  <path class="hot" d="M294 320 L376 260" marker-end="url(#ah)"/>
+
+  <g>
+    <rect class="tag" x="87" y="94" width="56" height="30" rx="6"/>
+    <text class="w" x="115" y="116">0,8</text>
+    <rect class="tag" x="197" y="195" width="56" height="30" rx="6"/>
+    <text class="w" x="225" y="217">−0,3</text>
+    <rect class="tag" x="307" y="275" width="56" height="30" rx="6"/>
+    <text class="w" x="335" y="297">0,5</text>
+  </g>
+
+  <!-- neuronen -->
+  <g>
+    <circle class="neuron" cx="60" cy="130" r="17"/>
+    <circle class="neuron" cx="60" cy="210" r="17"/>
+    <circle class="neuron" cx="60" cy="290" r="17"/>
+
+    <circle class="neuron" cx="170" cy="90" r="17"/>
+    <circle class="neuron" cx="170" cy="170" r="17"/>
+    <circle class="neuron" cx="170" cy="250" r="17"/>
+    <circle class="neuron" cx="170" cy="330" r="17"/>
+
+    <circle class="neuron" cx="280" cy="90" r="17"/>
+    <circle class="neuron" cx="280" cy="170" r="17"/>
+    <circle class="neuron" cx="280" cy="250" r="17"/>
+    <circle class="neuron" cx="280" cy="330" r="17"/>
+
+    <circle class="neuron" cx="390" cy="170" r="17"/>
+    <circle class="neuron" cx="390" cy="250" r="17"/>
+  </g>
+
+  <text class="layer" x="60" y="372">Invoer</text>
+  <text class="layer" x="170" y="372">Verborgen</text>
+  <text class="layer" x="280" y="372">Verborgen</text>
+  <text class="layer" x="390" y="372">Uitvoer</text>
+
+  <path class="flowline" d="M40 392 L420 392" marker-end="url(#am)"/>
+  <text class="flow" x="230" y="418">ontvangt getallen · rekent · geeft door</text>
+  <text class="cap" x="230" y="448">Gewichten: getallen, geleerd bij training</text>
+
+  <line class="divider" x1="480" y1="20" x2="480" y2="440"/>
+
+  <!-- Rechterdeel: semantisch model -->
+  <text class="title" x="520" y="38">Semantisch model</text>
+  <text class="sub" x="520" y="64">illustratief voorbeeld</text>
+
+  <rect class="box" x="520" y="110" width="170" height="64" rx="10"/>
+  <text class="node-label" x="605" y="150">Aanvrager</text>
+
+  <rect class="box" x="735" y="210" width="170" height="64" rx="10"/>
+  <text class="node-label" x="820" y="250">Aanvraag</text>
+
+  <rect class="box" x="520" y="310" width="170" height="64" rx="10"/>
+  <text class="node-label" x="605" y="350">Vergunning</text>
+
+  <path class="edge" d="M690 142 Q820 142 820 208" marker-end="url(#ah)"/>
+  <text class="rel" x="738" y="132">dient in</text>
+
+  <path class="edge" d="M820 276 Q820 342 692 342" marker-end="url(#ah)"/>
+  <text class="rel" x="834" y="312" text-anchor="start">betreft</text>
+
+  <text class="cap" x="720" y="448">Relaties: benoemd en betekenisvol</text>
+</svg>

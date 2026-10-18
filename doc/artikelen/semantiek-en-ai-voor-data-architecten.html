@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Betekenis expliciet maken in het AI-tijdperk — een discussiestuk voor data-architecten</title>
+<style>
+:root { --bg:#fff; --fg:#1d2327; --muted:#5b6670; --line:#d5dbe0; --accent:#215732; --code:#f3f5f6; }
+@media (prefers-color-scheme: dark) { :root { --bg:#14181b; --fg:#e4e8ea; --muted:#9aa5ad; --line:#2f373c; --accent:#6cc08a; --code:#1e2428; } }
+body { background:var(--bg); color:var(--fg); font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; margin:0; }
+main { max-width:46rem; margin:0 auto; padding:2rem 1rem 4rem; }
+h1 { font-size:2rem; line-height:1.25; }
+h2 { margin-top:2.5rem; border-bottom:1px solid var(--line); padding-bottom:.25rem; }
+h3 { margin-top:1.8rem; }
+h2, h3 { clear:both; }
+img.illustratie { max-width:26rem; width:100%; }
+.cover { position:relative; margin:0 0 1.5rem; }
+img.cover-img { margin:0; width:100%; }
+.cover-meta { position:absolute; left:1rem; bottom:1rem; margin:0; padding:.3rem .7rem; background:rgba(255,255,255,.85); color:#1d2327; font-size:.95rem; border-radius:3px; }
+@media (max-width:30rem) { .cover-meta { left:.5rem; bottom:.5rem; font-size:.8rem; padding:.2rem .5rem; } }
+img.logo-float { float:left; width:200px; margin:.35rem 1.25rem .75rem 0; }
+@media (max-width:30rem) { img.logo-float { width:120px; margin-right:1rem; } }
+a { color:var(--accent); }
+img { max-width:100%; height:auto; display:block; margin:1rem auto; }
+table { border-collapse:collapse; width:100%; margin:1rem 0; font-size:.95rem; display:block; overflow-x:auto; }
+th, td { border:1px solid var(--line); padding:.4rem .6rem; text-align:left; vertical-align:top; }
+th { background:var(--code); }
+blockquote { border-left:4px solid var(--accent); margin:1rem 0; padding:.2rem 1rem; color:var(--muted); }
+code { background:var(--code); padding:.1rem .3rem; border-radius:3px; font-size:.9em; }
+pre { background:var(--code); padding:1rem; overflow-x:auto; border-radius:4px; }
+pre code { background:none; padding:0; }
+pre.mermaid { background:transparent; text-align:center; }
+.diagram-statisch { background:#fff; border-radius:6px; padding:.5rem; margin:1rem 0; overflow-x:auto; }
+.diagram-statisch svg { display:block; margin:0 auto; min-width:40rem; height:auto; }
+</style>
+</head>
+<body>
+<main>
+<div class="cover"><img class="cover-img" src="../assets/AI-verwerking%20tussen%20documenten%20en%20systemen.png" alt="Illustratie: links mensen in overleg bij documenten, rechts servers en schermen met diagrammen. In het midden stromen gegevens door de lagen van een neuraal netwerk; daarboven staat een model van verbonden begrippen."><p class="cover-meta">Hans Blok · 18 oktober 2026</p></div>
+<h1 id="wat-een-mens-stilzwijgend-weet-moet-voor-een-llm-op-papier-staan">Wat een mens stilzwijgend weet, moet voor een LLM op papier staan</h1>
+<p><em>Over semantic models, ontologieën, knowledge graphs en de vraag hoe ze in Entoli worden ingevuld. Een discussiestuk voor data-architecten.</em></p>
+<h2 id="inleiding">Inleiding</h2>
+<h3 id="begrippen-die-niemand-vastlegt">Begrippen die niemand vastlegt</h3>
+<p>Drie afdelingen gebruiken het woord "aanvrager". De ene bedoelt de persoon die iets aanvraagt, de tweede het dossier, de derde de organisatie die namens iemand aanvraagt. Een mens lost dat op in de wandelgang. Een taalmodel (<em>large language model</em>, LLM) kent alleen de tekst die het krijgt voorgelegd en wat het uit zijn training heeft overgehouden. Wie het de verkeerde context geeft, krijgt een antwoord dat klopt voor de verkeerde betekenis.</p>
+<p>Dat probleem wordt groter nu AI ook software bouwt. Een agent die op basis van een opdracht een ontwerp, code of een datamodel maakt, werkt met de begrippen die hij aantreft. Ontbreekt de definitie van "aanvrager", dan kiest hij zelf een betekenis. Die keuze staat daarna in het systeem, zonder dat iemand haar heeft gemaakt of gecontroleerd.</p>
+<h3 id="de-vraag-van-dit-artikel">De vraag van dit artikel</h3>
+<p>Dat roept de vraag op waar dit artikel om draait:</p>
+<blockquote>
+<p><strong>Waarom zijn semantiek en ontologie belangrijker geworden nu AI wordt ingezet om software te realiseren? En hoe houd je het vastleggen van betekenis beheersbaar?</strong></p>
+</blockquote>
+<p>Het voorlopige antwoord is dat een mens onduidelijke begrippen aanvult met overleg en ervaring, en een model met wat statistisch aannemelijk is. Een ontbrekende definitie is dan geen ongemak meer, maar een bron van fouten die niemand ziet. Expliciete begrippen en relaties maken het mogelijk om een model gericht te voeden en zijn uitkomst na te lopen. Hoe groot de gevolgen van onvolledige semantiek zijn, is nog maar beperkt onderzocht. In de geraadpleegde bronnen is geen onderzoek aangetroffen dat ze meet voor het realiseren van software. Tegelijk brengt het voeden van een model met begrippen en relaties kosten met zich mee. Die combinatie maakt de vraag relevant. Dit essay is een voorzichtige aanzet om haar te beantwoorden.</p>
+<p><img class="illustratie" src="../assets/wie-is-de-aanvrager.png" alt="Strip in twee vakken. In vak 1 vraagt een man aan een collega: Wie is de aanvrager? Naast hen staan een pictogram van een persoon en van een dossier; de collega kijkt twijfelend. In vak 2 overleggen ze over de papieren op tafel, met het onderschrift: Een mens vult aan met overleg en ervaring."></p>
+<h3 id="wat-is-entoli">Wat is Entoli?</h3>
+<img class="logo-float" src="../assets/entoli.logo.png" alt="Logo van Entoli">
+<p>Entoli is een kennisgedreven ontwikkelsysteem waarmee AI-agents op basis van expliciete semantische modellen en normatieve regels systematisch kunnen worden ontworpen, geconfigureerd en ingezet.</p>
+<p>De naam komt van het Griekse <em>εντολή</em> (entolí): opdracht, en in computertaal een commando. Die naam drukt het uitgangspunt uit: een agent handelt op wat is vastgelegd, niet op wat hij zelf aannemelijk vindt.</p>
+<p>De kern bestaat uit twee dingen. Per kennisdomein, zoals datamodellering of enterprise-architectuur, legt een <em>Canon</em> de betekenis vast in een <em>Semantic Model</em>: de begrippen van dat domein en hun relaties. Daarnaast definieert de canon normatieve regels die begrenzen wat geldige interpretatie en geldig gebruik van die betekenis is. Boven alle canons staat een constitution met de bindende uitgangspunten voor het hele ecosysteem. Als doel noemt die voorspelbaarheid, kwaliteit, veiligheid en herleidbaarheid. Agents zijn de uitvoerders: voor elke agent ligt vast wat hij mag en wat hij oplevert.</p>
+<p>Entoli zit in de testfase. Wat in dit essay over Entoli staat, is een momentopname. Op de vraag van dit essay bevatten de Entoli-bronnen wel al een uitgesproken antwoord. Hoofdstuk 5 en 6 beschrijven hoe Entoli de vraag invult; hoofdstuk 7 trekt de slotsom.</p>
+<h3 id="lezers-en-bronnen">Lezers en bronnen</h3>
+<p>Het stuk is geschreven voor data-architecten die DAMA kennen en geen AI-achtergrond hoeven te hebben. Het heeft daarom een tweede doel: de AI-begrippen die het gebruikt zo eenvoudig mogelijk uitleggen. Zonder kennis van die begrippen, is het betoog niet te volgen. Wat uit een bron komt, staat met verwijzing in de tekst. Interpretaties van de auteur zijn als zodanig benoemd. De Entoli-bronnen zijn in het Engels geschreven. Definities daaruit staan in dit artikel in een eigen Nederlandse vertaling; andere citaten staan in de taal van de bron.</p>
+<p>In dit essay wordt betoogd dat een semantisch model waarde heeft voor wie met LLM's werkt. Die redenering geldt ook voor de lezer. Ook de lezer heeft, in het geval dit een mens is, een taalmodel, en ook dat vult ontbrekende definities aan met wat aannemelijk klinkt. In Bijlage D krijgt de lezer daarom wat in dit essay voor een LLM wordt aanbevolen: de belangrijkste begrippen en hun relaties, op een rij en in een graaf. Wie tijdens het lezen merkt dat het eigen taalmodel begint te raden, kan daar spieken.</p>
+<h3 id="het-voorbeeld-in-dit-essay">Het voorbeeld in dit essay</h3>
+<p>De begrippen en keuzes worden in dit essay concreet gemaakt met één fictief, vereenvoudigd voorbeeld: een gemeente die aanvragen van inwoners verwerkt. Het voorbeeld is speciaal voor dit essay opgesteld. Het beschrijft geen bestaande Entoli-casus en komt niet uit een canonieke Entoli-bron.</p>
+<h2 id="inhoudsopgave">Inhoudsopgave</h2>
+<ul>
+<li><a href="#1-wat-een-llm-is-en-waarom-semantiek-ertoe-doet">1. Wat een LLM is en waarom semantiek ertoe doet</a><ul>
+<li><a href="#11-hoe-een-taalmodel-werkt">1.1 Hoe een taalmodel werkt</a><ul>
+<li><a href="#111-wat-is-een-taalmodel">1.1.1 Wat is een taalmodel?</a></li>
+<li><a href="#112-wat-is-een-token">1.1.2 Wat is een token?</a></li>
+<li><a href="#113-neuraal-netwerk-en-modelgewichten">1.1.3 Neuraal netwerk en modelgewichten</a></li>
+<li><a href="#114-training-transformer-en-contextvenster">1.1.4 Training, transformer en contextvenster</a></li>
+</ul>
+</li>
+<li><a href="#12-wat-dit-betekent-voor-betekenis">1.2 Wat dit betekent voor betekenis</a><ul>
+<li><a href="#121-kennis-zit-impliciet-in-het-model">1.2.1 Kennis zit impliciet in het model</a></li>
+<li><a href="#122-hallucinatie">1.2.2 Hallucinatie</a></li>
+<li><a href="#123-herkomst-en-contextvenster">1.2.3 Herkomst en contextvenster</a></li>
+<li><a href="#124-expliciete-relaties-en-hun-prijs">1.2.4 Expliciete relaties en hun prijs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-was-dit-niet-altijd-al-zo">2. Was dit niet altijd al zo?</a><ul>
+<li><a href="#21-een-bekend-inzicht">2.1 Een bekend inzicht</a></li>
+<li><a href="#22-waarom-het-vaak-niet-gebeurt">2.2 Waarom het vaak niet gebeurt</a></li>
+<li><a href="#23-van-gedeelde-term-naar-model">2.3 Van gedeelde term naar model</a></li>
+</ul>
+</li>
+<li><a href="#3-archimate-als-bron-van-inspiratie">3. ArchiMate als bron van inspiratie</a><ul>
+<li><a href="#31-de-top-level-language-structure">3.1 De top-level language structure</a><ul>
+<li><a href="#311-wat-laat-het-model-zien">3.1.1 Wat laat het model zien?</a></li>
+<li><a href="#312-relaties-als-concepten-in-het-entoli-metamodel">3.1.2 Relaties als concepten in het Entoli-metamodel</a></li>
+</ul>
+</li>
+<li><a href="#32-soorten-elementen-archimate-en-entoli">3.2 Soorten elementen: ArchiMate en Entoli</a><ul>
+<li><a href="#321-de-vijf-entoli-classificaties">3.2.1 De vijf Entoli-classificaties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-de-vakliteratuur-drie-begrippen-drie-accenten">4. De vakliteratuur: drie begrippen, drie accenten</a><ul>
+<li><a href="#41-semantic-model-ontologie-en-knowledge-graph">4.1 Semantic model, ontologie en knowledge graph</a></li>
+<li><a href="#42-de-entoli-keuze-voor-de-term-semantic-model">4.2 De Entoli-keuze voor de term semantic model</a></li>
+<li><a href="#43-dezelfde-gemeente-als-knowledge-graph">4.3 Dezelfde gemeente als knowledge graph</a></li>
+</ul>
+</li>
+<li><a href="#5-deze-begrippen-in-entoli">5. Deze begrippen in Entoli</a><ul>
+<li><a href="#51-drie-begrippen-drie-verschillende-posities">5.1 Drie begrippen, drie verschillende posities</a><ul>
+<li><a href="#511-semantic-model">5.1.1 Semantic Model</a></li>
+<li><a href="#512-ontology">5.1.2 Ontology</a></li>
+<li><a href="#513-knowledge-graph">5.1.3 Knowledge graph</a></li>
+</ul>
+</li>
+<li><a href="#52-twee-verschijningsvormen">5.2 Twee verschijningsvormen</a></li>
+<li><a href="#53-het-gemeentevoorbeeld-in-entoli-vorm">5.3 Het gemeentevoorbeeld in Entoli-vorm</a></li>
+</ul>
+</li>
+<li><a href="#6-de-rol-van-canon-en-rules">6. De rol van canon en rules</a><ul>
+<li><a href="#61-betekenis-regels-en-gedrag">6.1 Betekenis, regels en gedrag</a></li>
+</ul>
+</li>
+<li><a href="#7-slotsom">7. Slotsom</a></li>
+<li><a href="#8-vragen-voor-de-discussie">8. Vragen voor de discussie</a></li>
+<li><a href="#bronnen">Bronnen</a></li>
+<li><a href="#bijlage-a-entoli-bronnen">Bijlage A. Entoli-bronnen</a></li>
+<li><a href="#bijlage-b-de-relatietypen">Bijlage B. De relatietypen</a></li>
+<li><a href="#bijlage-c-fragment-uit-de-entoli-semantic-graph">Bijlage C. Fragment uit de Entoli Semantic Graph</a></li>
+<li><a href="#bijlage-d-de-begrippen-van-dit-essay">Bijlage D. De begrippen van dit essay</a></li>
+</ul>
+<h2 id="1-wat-een-llm-is-en-waarom-semantiek-ertoe-doet">1. Wat een LLM is en waarom semantiek ertoe doet</h2>
+<h3 id="11-hoe-een-taalmodel-werkt">1.1 Hoe een taalmodel werkt</h3>
+<h4 id="111-wat-is-een-taalmodel">1.1.1 Wat is een taalmodel?</h4>
+<p>Wie op een telefoon een bericht typt, kent de automatische aanvulling. Na "Ik ben onderweg en kom" stelt het toetsenbord "zo" of "later" voor, op basis van wat er al staat en van wat in de praktijk vaak volgt.</p>
+<p>Een taalmodel doet in de kern hetzelfde: het berekent bij een stuk tekst welke tekst er waarschijnlijk op volgt. Het verschil zit in de schaal. Een groot taalmodel is getraind op enorme hoeveelheden tekst en kijkt niet naar de laatste twee woorden, maar naar alles wat er tot dan toe staat. Na "De hoofdstad van Frankrijk is" ligt "Parijs" voor de hand. Na "De inwoner dient een" is dat eerder "aanvraag".</p>
+<p>Moderne modellen doen veel meer dan zinnen afmaken. Ze beantwoorden vragen, vatten documenten samen, vertalen en schrijven code. Dat lijkt een andere soort werk, maar het mechanisme is hetzelfde: een vraag is het begin van een tekst en het antwoord is de voortzetting. Na de eerste training worden de meeste modellen nog bijgestuurd om instructies te volgen en bruikbare antwoorden te geven, maar ook dan zetten ze tekst voort.</p>
+<p>Daaruit volgt iets wat voor de rest van dit artikel zwaar weegt. Het model zoekt een <em>aannemelijk</em> vervolg, geen <em>gecontroleerd juist</em> vervolg. Meestal vallen die twee samen. Niet altijd.</p>
+<h4 id="112-wat-is-een-token">1.1.2 Wat is een token?</h4>
+<p>Een taalmodel werkt niet met letters of hele woorden, maar met tokens: tekstfragmenten uit een vaste lijst die het model kent. Een token kan een heel woord zijn, een woorddeel, een leesteken, een spatie met een woord erachter of een los cijfer.</p>
+<p>Neem de zin "Aanvragen worden beoordeeld." Een model kan die opdelen als</p>
+<p><code>Aan</code> · <code>vragen</code> · <code>worden</code> · <code>beoordeeld</code> · <code>.</code></p>
+<p><em>Dit is een illustratie. Hoe een zin precies wordt opgedeeld, verschilt per model.</em> Een token is dus niet altijd een woord. Korte, veelvoorkomende woorden zijn vaak één token, lange of zeldzame woorden, zoals Nederlandse samenstellingen, vallen meestal uiteen in meerdere stukken. Nederlandse tekst telt daardoor doorgaans meer tokens dan woorden.</p>
+<p>Dat doet ertoe, omdat tokens de eenheid zijn waarin een model leest, schrijft, rekent en wordt gefactureerd. Ook de grens van wat het in één keer kan verwerken, wordt in tokens uitgedrukt (zie 1.1.4).</p>
+<h4 id="113-neuraal-netwerk-en-modelgewichten">1.1.3 Neuraal netwerk en modelgewichten</h4>
+<p>Een neuraal netwerk is een rekenstructuur van heel veel eenvoudige eenheden in lagen. Elke eenheid ontvangt getallen, rekent er iets mee en geeft de uitkomst door aan de volgende laag. Aan elke verbinding hangt een getal dat bepaalt hoe sterk het ene signaal het andere beïnvloedt. Zo'n getal heet een gewicht, of modelgewicht.</p>
+<p><img alt="Links een sterk vereenvoudigd neuraal netwerk: een invoerlaag van drie neuronen, twee verborgen lagen van vier neuronen en een uitvoerlaag van twee neuronen. De verbindingen hebben numerieke gewichten, waarvan er drie zijn uitgelicht: 0,8, −0,3 en 0,5. Rechts een illustratief semantisch model met de begrippen Aanvrager, Aanvraag en Vergunning, verbonden door de relaties &quot;dient in&quot; en &quot;betreft&quot;." src="../assets/neuraal-netwerk-en-semantisch-model.svg"></p>
+<p><em>Figuur 1. Links: gewichten tussen rekeneenheden, zonder benoemde betekenis. Rechts: benoemde relaties tussen domeinbegrippen.</em></p>
+<p>Een groot taalmodel heeft er miljarden. Samen bepalen ze wat het model met een tekst doet. Een data-architect doet er goed aan vooral te zien wat dit niet is. Het is geen database: er zijn geen tabellen, records of sleutels, en er valt niets op te zoeken of te wijzigen zoals een rij. De eenheden zijn evenmin domeinbegrippen. Er is geen eenheid "vergunning" en geen eenheid "aanvrager". Wat het model weet, zit verspreid over de getallen, en er is geen plek waar een bepaald feit staat.</p>
+<p>De rechterkant van de figuur laat iets anders zien. In een semantisch model zijn begrippen en hun relaties benoemd en vastgelegd: een Aanvrager dient een Aanvraag in, en een Aanvraag betreft een Vergunning. Aan zo'n relatie hangt geen gewicht. Ze is aan te wijzen en te controleren. Dat betekent niet dat het taalmodel stopt met rekenen. Een semantisch model is een apart document dat aan het taalmodel wordt meegegeven. Het taalmodel verwerkt die tekst zoals elke andere tekst, met zijn gewichten, en zoekt nog steeds een aannemelijk vervolg. Wat de vastgelegde betekenis wel doet, is dit (zie 1.2.4):</p>
+<blockquote>
+<p><strong>Een semantisch model vergroot de kans dat een taalmodel het juiste vervolg kiest, en geeft grip op de uitkomst, omdat die ertegen te controleren is.</strong></p>
+</blockquote>
+<h4 id="114-training-transformer-en-contextvenster">1.1.4 Training, transformer en contextvenster</h4>
+<p>Een model wordt getraind door het enorme hoeveelheden tekst voor te leggen. Het voorspelt telkens het volgende token, vergelijkt dat met het token dat er werkelijk volgt en past de gewichten een heel klein beetje aan. Dat gebeurt ontelbare keren. Wat overblijft is een stel gewichten waarin patronen over taal en over de wereld zijn vastgelegd. Daarna staan ze vast: het model leert niet bij tijdens gebruik.</p>
+<p>Vrijwel alle huidige taalmodellen gebruiken de transformer-architectuur (Vaswani e.a., 2017). Haar kernidee heet <em>attention</em>. Bij elk volgend token weegt het model hoe relevant elk eerder token in de tekst is. Neem de zinnen "De klant diende in maart een aanvraag in. Na twee weken werd ze afgewezen." Grammaticaal kan "ze" zowel naar de klant als naar de aanvraag verwijzen. Attention laat het model "afgewezen" in verband brengen met "aanvraag", dus het kiest de aanvraag. Hetzelfde mechanisme verklaart waarom meegegeven tekst ertoe doet. Staat een definitie van <em>Aanvraag</em> in de tekst die het model verwerkt, dan kan die meewegen bij elk token dat volgt. Een garantie dat het model haar volgt, is dat niet.</p>
+<p>Per aanroep kan een model maar een beperkt aantal tokens verwerken: de instructie, de meegegeven documenten en zijn eigen antwoord samen. Dat is het contextvenster. Tussen twee aanroepen onthoudt het model niets, behalve wat in de gewichten zit. Wat niet in het venster staat en ook niet in de training zat, bestaat voor het model niet.</p>
+<h3 id="12-wat-dit-betekent-voor-betekenis">1.2 Wat dit betekent voor betekenis</h3>
+<h4 id="121-kennis-zit-impliciet-in-het-model">1.2.1 Kennis zit impliciet in het model</h4>
+<p>Een LLM slaat kennis impliciet op. Er is geen tabel met entiteiten en relaties die je kunt inspecteren, en het is dus onjuist om een LLM te beschrijven als een verzameling nodes en edges. Wiskundig kun je elk netwerk als graaf tekenen, maar die nodes zijn geen domeinbegrippen zoals "vergunning" of "aanvrager". Wie wil weten of het model onder "aanvrager" hetzelfde verstaat als zijn organisatie, kan dat niet nakijken. Hij kan het alleen uitproberen.</p>
+<h4 id="122-hallucinatie">1.2.2 Hallucinatie</h4>
+<p>Een taalmodel zoekt een aannemelijk vervolg, geen gecontroleerd juist vervolg (zie 1.1.1). Meestal vallen die twee samen. Lopen ze uiteen, dan schrijft het model een vloeiende, zelfverzekerde zin die niet klopt. Dat heet <em>hallucinatie</em>. Een verzonnen voorbeeld van zo'n antwoord:</p>
+<blockquote>
+<p>De toren van Pisa is scheef, zo heeft de architect het bedacht.</p>
+</blockquote>
+<p>De zin klinkt aannemelijk: een opvallend gebouw, een architect met een bijzonder idee. Hij is onjuist. De toren is tijdens de bouw gaan hellen, doordat de slappe ondergrond aan één kant inklonk. Niets in de zin verraadt de fout. Dat maakt hallucinatie lastig: een onjuist antwoord ziet er net zo uit als een juist antwoord.</p>
+<p>Het verschijnsel is goed gedocumenteerd (Ji e.a., 2023). Kalai e.a. (2025) zoeken de oorzaak in de manier waarop modellen worden getraind en beoordeeld: een gok levert gemiddeld meer op dan "ik weet het niet". Een model vult een gat dus liever met iets aannemelijks dan dat het het gat laat zien.</p>
+<p>Voor dit essay is dat de kern. Ontbreekt de definitie van "aanvrager", dan kan het model er zelf een kiezen, en die keuze ziet er even overtuigend uit als een juiste. Het onderzoek richt zich vooral op feitelijke vragen en samenvattingen. Dat het bij onvolledig gedefinieerde domeinbegrippen net zo werkt, is een interpretatie van de auteur van dit essay.</p>
+<h4 id="123-herkomst-en-contextvenster">1.2.3 Herkomst en contextvenster</h4>
+<p>Een LLM schrijft vloeiende tekst die ook onjuist kan zijn, en kan niet betrouwbaar aanwijzen uit welke bron een bewering komt. In de Entoli-begrippenlijst voor LLM's is daarom onderscheid gemaakt: een <em>trainingsbron</em> is na de training niet meer individueel herleidbaar, een <em>runtime-bron</em> wordt tijdens de aanroep aangeboden (Entoli, begrippenlijst LLM, begrip <em>Bron</em>).</p>
+<p>Omdat het contextvenster eindig is, moet bovendien iemand kiezen welke kennis het model meekrijgt. Dat is een architectuurkeuze, en om te kunnen kiezen heb je iets nodig om op te selecteren.</p>
+<h4 id="124-expliciete-relaties-en-hun-prijs">1.2.4 Expliciete relaties en hun prijs</h4>
+<p>Als betekenis is vastgelegd in begrippen en relaties, kun je op die structuur selecteren: geef alle begrippen die met <em>Aanvraag</em> samenhangen. Je kunt ook nagaan of een antwoord terug te voeren is op een vastgelegd begrip. Dat is geen eigenschap van het model, maar van de omgeving die je eromheen bouwt.</p>
+<p>GraphRAG (Edge e.a., 2024) is daar een voorbeeld van. Gewone <em>retrieval-augmented generation</em> (RAG) zoekt bij een vraag eerst passende tekstfragmenten op en geeft die als context aan het model mee. GraphRAG laat een LLM eerst een graaf van entiteiten uit brondocumenten opbouwen en beantwoordt vragen over een hele verzameling documenten met die graaf en samenvattingen van clusters van verwante entiteiten. De auteurs rapporteren voor zulke brede vragen betere volledigheid en diversiteit dan bij gewone RAG. Dat is hun eigen evaluatie op hun eigen datasets, en het bewijst niet dat het overal werkt.</p>
+<p>Er is ook een serieus tegenargument. Een expliciete graaf kost beheer, en veel toepassingen redden zich prima met goede documenten en eenvoudige zoekmethoden. Het voordeel hangt af van de taak: groot bij controle, hergebruik en samenhang over veel documenten, klein bij een eenmalige vraag over één document.</p>
+<h2 id="2-was-dit-niet-altijd-al-zo">2. Was dit niet altijd al zo?</h2>
+<h3 id="21-een-bekend-inzicht">2.1 Een bekend inzicht</h3>
+<p>Ja, en dat is het ongemakkelijke deel. Eric Evans noemde in <em>Domain-Driven Design</em> (2003) het opbouwen van een gedeelde, nauwkeurige taal tussen ontwikkelaars en domeinexperts een kernpraktijk: de <em>Ubiquitous Language</em>. Martin Fowler vat samen dat die taal gebaseerd moet zijn op het domeinmodel van de software. Domeinexperts moeten bezwaar maken tegen termen die onhandig of ontoereikend zijn, en taal en model veranderen mee met het groeiende begrip (<a href="https://martinfowler.com/bliki/UbiquitousLanguage.html">Fowler (2006), Ubiquitous Language</a>).</p>
+<p>Data-architecten kennen het dagelijkse equivalent: de business glossary, metadatamanagement, datamodellering. DAMA-DMBOK2 behandelt <em>Data Modeling and Design</em> en <em>Metadata Management</em> als aparte kennisgebieden (DAMA International, 2017).</p>
+<h3 id="22-waarom-het-vaak-niet-gebeurt">2.2 Waarom het vaak niet gebeurt</h3>
+<p>Toch gebeurt het vaak niet, of half. Twee verklaringen liggen voor de hand, al is geen van beide universeel. Begrippen definiëren, afbakenen en onderhouden vraagt overleg en discipline, en dat is arbeidsintensief. Bovendien is documentatie onder druk op de planning een van de eerste dingen die sneuvelt, ook als vastgelegde taal later tijd zou besparen. Beide verklaringen komen uit de ervaring van de auteur van het document waarop dit artikel is gebaseerd. Onderzoek dat ze meet, is in de geraadpleegde bronnen niet aangetroffen.</p>
+<p>Wat AI verandert, is niet het belang van betekenis, maar wie de gevolgen draagt van onvolledige afspraken. Een collega vult de gaten stilzwijgend aan. Een LLM vult ze ook aan, met iets plausibels dat niemand heeft gecontroleerd: het hallucineert (zie 1.2.2).</p>
+<h3 id="23-van-gedeelde-term-naar-model">2.3 Van gedeelde term naar model</h3>
+<p>Een gemeente verwerkt aanvragen van inwoners. Het woord "aanvrager" wordt zo gebruikt:</p>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Bedoelt met "aanvrager"</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Klantcontact</td>
+<td>de persoon die belt</td>
+</tr>
+<tr>
+<td>Behandeling</td>
+<td>het dossier dat is aangemaakt</td>
+</tr>
+<tr>
+<td>Juridische zaken</td>
+<td>de rechtspersoon die formeel de aanvraag indient</td>
+</tr>
+</tbody>
+</table>
+<p>Het oplossen gaat in drie stappen.</p>
+<ol>
+<li><strong>Term en definitie.</strong> Het team kiest één term per begrip: <em>Inwoner</em>, <em>Aanvraag</em> en <em>Machtiging</em> (het recht om namens een ander een aanvraag te doen). Elk begrip krijgt een korte definitie.</li>
+<li><strong>Relaties.</strong> "Een Inwoner dient een Aanvraag in." "Een Aanvraag leidt tot een Besluit." "Een Aanvraag namens een ander steunt op een Machtiging." Nu staat vast hoe de begrippen samenhangen, en niet alleen wat ze betekenen.</li>
+<li><strong>Toepassing.</strong> Een mens of een LLM kan vragen: "welke Besluiten horen bij deze Inwoner?", zonder te raden wat "aanvrager" betekent.</li>
+</ol>
+<pre class="mermaid">flowchart LR
+  I[&quot;Inwoner&quot;] -- &quot;dient in&quot; --&gt; A[&quot;Aanvraag&quot;]
+  A -- &quot;leidt tot&quot; --&gt; B[&quot;Besluit&quot;]
+  A -- &quot;steunt op&quot; --&gt; M[&quot;Machtiging&quot;]
+</pre>
+<p><em>Figuur 2. Eigen visualisatie van de begrippen en relaties uit het voorbeeld, zonder concrete gegevens.</em></p>
+<p>In het diagram is te zien waar de verwarring ontstond. "Aanvrager" kan wijzen naar de Inwoner, naar de Aanvraag en, via de Machtiging, naar iemand anders dan de Inwoner. Zodra elk van die begrippen een eigen naam en een eigen plek heeft, hoeft niemand meer te raden welke bedoeld is.</p>
+<h2 id="3-archimate-als-bron-van-inspiratie">3. ArchiMate als bron van inspiratie</h2>
+<p>ArchiMate is de modelleertaal van The Open Group voor enterprise-architectuur. In de Entoli-documentatie wordt een klein deel ervan als inspiratie genoemd; het Entoli-metamodel wijkt er op een paar punten van af.</p>
+<h3 id="31-de-top-level-language-structure">3.1 De top-level language structure</h3>
+<h4 id="311-wat-laat-het-model-zien">3.1.1 Wat laat het model zien?</h4>
+<p><img alt="Bovenaan staat Model, verbonden met een gevulde ruit aan Concept. Concept heeft drie specialisaties: Element, Relationship en Relationship Connector. Element heeft vier specialisaties: Behavior Element, Structure Element, Motivation Element en Composite Element. Alle namen zijn schuingedrukt." src="../assets/archimate%20model.png"></p>
+<p><em>Figuur 3. De top-level language structure van ArchiMate. Bron: The Open Group, ArchiMate Specification 3.2, §3.2. © The Open Group.</em></p>
+<p>Een <em>Model</em> bestaat uit <em>Concepten</em>. Een <em>Concept</em> is een <em>Element</em>, een <em>Relationship</em> of een <em>Relationship Connector</em>. Een <em>Element</em> is een <em>Behavior Element</em>, een <em>Structure Element</em>, een <em>Motivation Element</em> of een <em>Composite Element</em>.</p>
+<p>Voor dit essay telt vooral de middelste specialisatie. In ArchiMate is een <em>Relationship</em> geen lijn tussen twee elementen, maar een <em>Concept</em> naast het <em>Element</em>. Een relatie heeft daardoor een eigen type en een eigen betekenis. Een <em>Serving</em>-relatie zegt iets anders dan een <em>Realization</em>- of een <em>Assignment</em>-relatie, en de specificatie legt per type vast tussen welke elementen het is toegestaan. Voor een ArchiMate-gecertificeerde lezer is dat bekend terrein. Wat het betekent voor het werken met een taalmodel, is minder vanzelfsprekend.</p>
+<p>Leg het naast de werking van een taalmodel (zie 1.1.3). Ook een neuraal netwerk bestaat uit eenheden en verbindingen. Daar is een verbinding alleen een getal: een gewicht zonder naam, zonder type en zonder betekenis die je kunt aanwijzen. In ArchiMate is de verbinding zelf een benoemd begrip met een vastgelegde betekenis. Hoe begrippen samenhangen, staat in een taalmodel nergens als zodanig vastgelegd. In een model waarin relaties concepten zijn, staat het er wel, en je kunt het als tekst aan het taalmodel meegeven. Paragraaf 3.1.2 laat zien hoe het Entoli-metamodel dit uitgangspunt overneemt.</p>
+<blockquote>
+<p><strong>Net als ArchiMate beperkt het Entoli-relatieregister relaties tot een vaste set typen met vastgelegde gebruiksregels. Zo bepaalt het model, en niet het taalmodel, wat voor soort verbinding twee begrippen hebben.</strong></p>
+</blockquote>
+<h4 id="312-relaties-als-concepten-in-het-entoli-metamodel">3.1.2 Relaties als concepten in het Entoli-metamodel</h4>
+<ul>
+<li>Het Entoli-metamodel heeft een vergelijkbare indeling, maar met twee uitkomsten in plaats van drie: <strong>Concept</strong> is de verzamelterm voor "een Element of een Relationship". Een Relationship Connector kent Entoli niet. </li>
+</ul>
+<p>Wat ArchiMate en Entoli delen, is het best te zien aan de relatie. Het Entoli-metamodel volgt die lijn in zoverre dat een relatie geen lijntje is, maar een eigen, expliciet vastgelegde constructie. In het register is ze omschreven als een gerichte, semantische verbinding tussen twee elementen, met precies één bronelement, precies één doelelement en precies één type uit een vaste lijst, op dit moment zeven (zie <a href="#bijlage-b-de-relatietypen">Bijlage B</a>). Daarbij is ze onderscheiden van het element: het element is de eenheid van betekenis, de relatie legt de betekenis van de graaf vast. Regel REL-001 is daarin vergaand: alle betekenis moet via relaties worden uitgedrukt. "Concept" is in Entoli overigens alleen een verzamelterm in de documentatie voor "element of relatie", geen gemodelleerd supertype. Figuur 4 toont de relatie in het conceptuele model van Entoli. Een semantic model bestaat uit elementen en uit relationships, en elke relationship heeft een element als bron en een element als doel.</p>
+<p><img alt="Een gele rechthoek &quot;semantic model&quot; bovenaan, verbonden met &quot;relationship&quot; (1 consists of 0..*) en met &quot;element&quot; (1 consists of 1..*). Tussen &quot;relationship&quot; en &quot;element&quot; lopen twee verbindingen: een met het label &quot;0..* from 1&quot; en een met het label &quot;0..* to 1&quot;." src="../assets/entoli-semantic-model.png"></p>
+<p><em>Figuur 4. Uitsnede uit het conceptuele datamodel van Entoli (Entoli Conceptual Model, getekend in ArchiMate-notatie): een semantic model bestaat uit elementen en relationships, en een relationship verwijst naar een element als bron en een element als doel.</em></p>
+<p>Een relatie verbindt dus een bron met een doel en heeft zelf betekenis. Neem de relatie <em>Aanvraag — wordt-beoordeeld-door → Medewerker</em>. In een database is dit meestal een kolom met een sleutel naar de medewerker. De kolom legt een verwijzing vast, maar de betekenis zit alleen in de naam die iemand eraan gaf. Is de relatie zelf een vastgelegde constructie, dan heeft <em>wordt beoordeeld door</em> een naam, een richting en een type, en kun je er iets over vastleggen: alleen een Medewerker mag beoordelen, een Aanvraag heeft precies één beoordelaar. In Entoli zou zo'n label worden gekoppeld aan een canoniek type. Omdat geen van de zes specifieke types past, zou dat <em>relates-to</em> zijn, dat volgens het relatieregister (REL-026) alleen als laatste redmiddel is toegestaan. De betekenis staat dan expliciet in het model, en niet impliciet in een attribuut, een sleutel of een informele verbinding. Regels in het relatieregister gelden voor relatietypen, bijvoorbeeld welk type tussen welke soorten elementen is toegestaan (zie 5.3). In de geraadpleegde bronnen is niet aangetroffen dat ook herkomst aan een afzonderlijke relatie hangt; dat is een mogelijkheid van deze manier van modelleren.</p>
+<p>Wat hierna volgt is architecturale duiding van de auteur. In de geraadpleegde canonieke Entoli-bronnen is geen besluit aangetroffen dat deze keuze expliciet op deze gronden motiveert. Voor AI levert het één mogelijk voordeel op. Omdat begrippen en relaties expliciet in het model staan, kun je de begrippen en relaties die bij een opdracht horen gericht als context aan een LLM meegeven, bijvoorbeeld <em>Aanvraag</em> met alles wat daaraan hangt, in plaats van het hele register. Het kan ook helpen om na te gaan op welke begrippen en relaties een antwoord is gebaseerd, voor zover die zijn meegegeven. Dat zijn mogelijkheden van de architectuur. Of ze tot betere antwoorden leiden, is een open vraag: in de geraadpleegde bronnen staat daarvoor geen onderbouwing.</p>
+<p>Een nuancering is hier nodig. Dat een semantisch model een graafstructuur heeft, betekent niet dat een LLM zo werkt, en ook niet dat een LLM werkt als ArchiMate. Een LLM rekent met gewichten (zie 1.1.3) en bevat geen domeingraaf met expliciete concepten en relaties. Een semantisch domeinmodel en het rekenmodel van een neuraal netwerk zijn verschillende dingen. De overeenkomst zit hooguit in het bruikbare idee van expliciete relaties: in Entoli staat zo'n model naast het taalmodel en wordt het als context meegegeven.</p>
+<h3 id="32-soorten-elementen-archimate-en-entoli">3.2 Soorten elementen: ArchiMate en Entoli</h3>
+<h4 id="321-de-vijf-entoli-classificaties">3.2.1 De vijf Entoli-classificaties</h4>
+<p>ArchiMate deelt elementen in naar wát ze zijn in een organisatie: gedrag, structuur, motivatie of een samenstelling daarvan. De Entoli-eigen indeling volgt de rol die elementen spelen in het semantische apparaat zelf. Ze staat in het begrippenregister van het Semantic Metamodel:</p>
+<table>
+<thead>
+<tr>
+<th>Entoli-classificatie</th>
+<th>Definitie in het register (verkort)</th>
+<th>Voorbeeld uit het register</th>
+<th>Voorbeeld uit data-architectuur</th>
+<th>Toelichting op de indeling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Domain Element</strong></td>
+<td>draagt de inhoud van een Knowledge Domain: een entiteit, handeling of werkproduct van dat domein; het enige type dat andere elementen mag <em>gebruiken</em></td>
+<td>Agent, Agent Package; Logical Data Model, Entity (Data Modelling); Data Governance, Data Steward (illustratief)</td>
+<td>Een datakwaliteitsreview als handeling</td>
+<td>Een entiteit, handeling of werkproduct van een domein. De voorbeelden zijn illustratief</td>
+</tr>
+<tr>
+<td><strong>Classification Element</strong></td>
+<td>definieert een ordeningsas; heeft geen operationele functie</td>
+<td>Source Regime; Attribute Classification, Data Type (Data Modelling)</td>
+<td>Een schema voor de gevoeligheid of vertrouwelijkheid van gegevens</td>
+<td>Een as waarlangs gegevens worden ingedeeld, zonder zelf gegevens te zijn. Zelf bedacht voorbeeld, geen onderdeel van een Entoli-register</td>
+</tr>
+<tr>
+<td><strong>Position Element</strong></td>
+<td>één positie op zo'n as; is altijd onderdeel van precies één Classification Element</td>
+<td>Canon-bound; Semantic, Temporal, Process, System (Attribute Classification)</td>
+<td><em>Public</em>, <em>Internal</em>, <em>Confidential</em> (illustratief)</td>
+<td>Alleen zinvol als waarden op de as. Naam en aantal niveaus verschillen per organisatie en zijn hier niet aan DAMA-DMBOK2 toegeschreven</td>
+</tr>
+<tr>
+<td><strong>Para Element</strong></td>
+<td>beschrijft gegevens over uitvoering, status, overdracht en controleerbaarheid van handelingen binnen een domein; observerend, beschrijft het proces en niet het inhoudelijke resultaat</td>
+<td>Paradata; bij het uitvoeren van een prompt: het aantal gebruikte tokens voor invoer en uitvoer, de responsetijd van het LLM en het tijdstip waarop de prompt is uitgevoerd (illustratief)</td>
+<td>Goedkeuringsstatus en tijdstip van een classificatiebesluit; de overdracht van een dataset aan een andere verantwoordelijke</td>
+<td>Procesgegevens over de handeling. De klantgegevens zelf, het besluit "Confidential" en het antwoord van het LLM zijn inhoud en geen Para Element</td>
+</tr>
+<tr>
+<td><strong>Meta Concept</strong></td>
+<td>beschrijft de constructies waarmee Entoli betekenis vastlegt en interpreteert; domeinonafhankelijk</td>
+<td>Concept, Term, Definition</td>
+<td>Term en definitie in een business glossary (vergelijking)</td>
+<td>Metamodelbegrippen van een externe standaard, zoals het Business Object van ArchiMate, zijn voor Entoli domeininhoud</td>
+</tr>
+</tbody>
+</table>
+<p>Het zijn er <em>vijf</em>, maar ze staan niet op één niveau. Meta Concept markeert het metamodel-niveau: een element is een Meta Concept dan en slechts dan als het Semantic Metamodel het bezit. De andere vier zijn soorten element binnen het domein van een canon. In het register heet Meta Concept een "fifth, sibling" classificatie naast de andere vier. In het uitgangsdocument staan alleen de eerste vier.</p>
+<p>De voorbeelden uit data-architectuur zijn illustratief. DAMA-DMBOK en ArchiMate helpen om ze te herkennen, maar bepalen niet hoe ze in Entoli worden geclassificeerd. Die classificatie volgt uit de Entoli-definities en de canon.</p>
+<h2 id="4-de-vakliteratuur-drie-begrippen-drie-accenten">4. De vakliteratuur: drie begrippen, drie accenten</h2>
+<h3 id="41-semantic-model-ontologie-en-knowledge-graph">4.1 Semantic model, ontologie en knowledge graph</h3>
+<p>De drie begrippen komen uit verschillende tradities en worden in de praktijk door elkaar gebruikt. De matrix toont per begrip enkele bronnen en wat ze met de term bedoelen. Het is een beperkte selectie en geen systematische literatuurreview.</p>
+<table>
+<thead>
+<tr>
+<th>Begrip</th>
+<th>Bron en jaar</th>
+<th>Discipline of context</th>
+<th>Betekenis of accent in deze bron</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Semantic model (<em>semantic data model</em>)</td>
+<td>Hull &amp; King (1987)</td>
+<td>Databases, datamodellering</td>
+<td>Semantische modellering biedt rijkere structureringsmogelijkheden dan een eenvoudig recordgebaseerd model ("richer data structuring capabilities"): expliciete objecten, attributen en relaties, complexe typen, ISA-relaties en afgeleide schemacomponenten</td>
+</tr>
+<tr>
+<td>Semantic model</td>
+<td>Microsoft (z.d.), productdocumentatie</td>
+<td>BI-tooling (Power BI)</td>
+<td>Een gegevensbron die klaar is voor rapportage en visualisatie, technisch een datamodel op basis van Analysis Services. In de documentatie worden "semantic model" en "model" vrijwel als synoniemen gebruikt</td>
+</tr>
+<tr>
+<td>Ontologie</td>
+<td>Gruber (1993)</td>
+<td>Gene Ontology (biologie), SNOMED CT (zorg)</td>
+<td>Een specificatie van een representatievocabulaire voor een gedeeld domein; "An ontology is an explicit specification of a conceptualization"</td>
+</tr>
+<tr>
+<td>Ontologie</td>
+<td>Studer, Benjamins &amp; Fensel (1998)</td>
+<td>Knowledge engineering</td>
+<td>Ligt in het verlengde van Gruber en benadrukt drie kenmerken: formeel (machineleesbaar), expliciet en gedeeld (een conceptualisering waarover consensus bestaat)</td>
+</tr>
+<tr>
+<td>Knowledge graph</td>
+<td>Fensel e.a. (2020)</td>
+<td>Wikidata, DBpedia. Op kleine schaal: Figuur 5 als geheel, het schema plus de gegevens Mevrouw Jansen, Aanvraag A-123 en Besluit D-77</td>
+<td>Het boek opent met de vraag wat een knowledge graph is. Het stelt dat de term geen vaststaande definitie heeft en leidt een werkdefinitie af uit definities in de literatuur</td>
+</tr>
+<tr>
+<td>Knowledge graph</td>
+<td>Hogan e.a. (2021)</td>
+<td>Gegevensbeheer en AI; overzichtsartikel</td>
+<td>Een inclusieve definitie: een graaf van gegevens, bedoeld om kennis over de werkelijkheid te verzamelen en over te brengen, met entiteiten als nodes en relaties als edges. De auteurs noemen de definitie omstreden</td>
+</tr>
+</tbody>
+</table>
+<p><em>Microsoft is productdocumentatie en geen wetenschappelijke literatuur; de pagina vermeldt geen publicatiejaar, vandaar "z.d." (geraadpleegd op 17 oktober 2026). De weergave van Studer e.a. en Fensel e.a. berust op secundaire beschrijvingen en niet op de volledige tekst. De overige bronnen zijn in de oorspronkelijke publicatie of pagina geraadpleegd.</em></p>
+<p>Wie "semantic model" leest, moet dus eerst nagaan welke traditie bedoeld wordt. In de databaseliteratuur is een <em>semantic data model</em> een specifiek soort modelleerformalisme, en dat gebruik is niet zonder toelichting gelijk te stellen aan ieder ander gebruik van "semantic model", zoals dat in Power BI. Bij ontologie liggen de formuleringen van Gruber en Studer e.a. dicht bij elkaar. Volgens secundaire bronnen voegen Studer e.a. eerdere definities samen, waaronder die van Gruber, en leggen ze de nadruk op het formele en het gedeelde. Dat is een aanscherping en geen meningsverschil. De twee knowledge-graph-bronnen laten andere accenten zien: Fensel e.a. beschouwen de term als nog zonder vaststaande definitie en kiezen een werkdefinitie, Hogan e.a. kiezen een inclusieve definitie en erkennen dat die omstreden blijft. Geen van beide stelt één definitie als universeel vast.</p>
+<p>De conclusie blijft daarom beperkt. De besproken bronnen gebruiken de termen vanuit verschillende contexten en met verschillende accenten. Dat zegt iets over deze selectie en niet over de literatuur als geheel.</p>
+<p>De drie begrippen blijven wel te onderscheiden, al overlappen ze. Een semantic model legt de betekenis van een domein vast op schemaniveau, een ontologie voegt daar formaliteit en gedeeldheid aan toe en een knowledge graph richt zich op de gegevens zelf. Die onderscheiding is een lezing van de auteur; geen van de geraadpleegde bronnen deelt het zo in.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Semantic model</th>
+<th>Ontologie</th>
+<th>Knowledge graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Niveau</td>
+<td>schema</td>
+<td>schema, vaak met logica</td>
+<td>gegevens, soms ook schema</td>
+</tr>
+<tr>
+<td>Vaste notatie</td>
+<td>nee</td>
+<td>vaak (bijvoorbeeld OWL)</td>
+<td>vaak (bijvoorbeeld RDF)</td>
+</tr>
+<tr>
+<td>Overlap</td>
+<td>kan op een ontologie lijken</td>
+<td>kan als schema van een graaf dienen</td>
+<td>kan een semantic model of ontologie gebruiken</td>
+</tr>
+<tr>
+<td>In Entoli</td>
+<td>Semantic Model (canoniek begrip)</td>
+<td>geen canoniek begrip</td>
+<td>geen canoniek begrip; de Entoli-bronnen spreken van een semantic graph</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-de-entoli-keuze-voor-de-term-semantic-model">4.2 De Entoli-keuze voor de term semantic model</h3>
+<p>In Entoli staat <em>semantic model</em> voor een model waarin begrippen, definities en relaties expliciet worden vastgelegd, zodat hun betekenis voor mensen en systemen te begrijpen, te raadplegen en te controleren is. In het register is het formeler vastgelegd: het Semantic Model is de volledige, gezaghebbende semantische graaf die één Canon definieert, en bestaat uit de canonieke Elementen en de Relationships die hun onderlinge betekenis en structuur expliciet maken. Dat de normatieve regels van de Canon er niet bij horen, staat niet met zoveel woorden in het register; het is de lezing van dit artikel (zie 5.1.1 en 6.1).</p>
+<p>De term past bij wat in Entoli wordt gemodelleerd: betekenisvolle concepten en hun onderlinge relaties. Hij is bovendien niet beperkt tot rapportage of analyse. De productdocumentatie van Microsoft gebruikt <em>semantic model</em> voor een gegevensbron die klaar is voor rapportage. Dat is een andere laag dan het model van Entoli.</p>
+<p>Het is een bewuste afbakening. De matrix laat zien dat de besproken bronnen de term met uiteenlopende accenten gebruiken, en dat zegt iets over deze selectie en niet over de literatuur als geheel. De Entoli-invulling is dus geen universele definitie en geen bestaande consensus, maar een Entoli-eigen keuze, expliciet vastgelegd in het register en consequent gebruikt.</p>
+<p>Drie verwante termen liggen als alternatief voor de hand. <em>Semantic data model</em> heeft een sterke traditie in databasemodellering. De constructies die Hull en King beschrijven, namelijk expliciete objecten, relaties tussen objecten en ISA-relaties, komen terug in de Elementen, Relationships en is-a-relaties van Entoli. Het verschil zit in het onderwerp: bij Hull en King is dat het databaseschema, bij Entoli een canon-brede bron van betekenis.</p>
+<p><em>Ontologie</em> kan sterkere verwachtingen oproepen rond formalisering, machineleesbaarheid en een gedeelde conceptualisering. Gruber legt de nadruk op een gedeeld vocabulaire voor een domein, Studer e.a. volgens secundaire bronnen op een formele, expliciete en gedeelde specificatie. Niet elk gebruik van de term vereist al die kenmerken even sterk. In Entoli is het verschil praktisch: de laag voor formele, machineleesbare artefacten is leeg, en het gedeelde karakter is bij Entoli gezag door aanwijzing, omdat één Canon per domein de betekenis bezit, en geen consensus. <em>Ontology</em> is geen canoniek Entoli-begrip (zie 5.1.2).</p>
+<p>Een <em>knowledge graph</em> legt de nadruk op een graafrepresentatie van gegevens. Hogan e.a. hanteren een inclusieve definitie en noemen de definitie zelf omstreden. In de constitution is een graaf vastgelegd als afgeleide representatie van het gezaghebbende register. Die graaf heeft Elementen als nodes en Relationships als edges, wat aansluit bij de brede karakterisering van Hogan e.a., maar is niet zelf gezaghebbend. Een fragment uit een gecompileerde semantic graph staat in <a href="#bijlage-c-fragment-uit-de-entoli-semantic-graph">Bijlage C</a>. De term <em>semantic model</em> benoemt het gezaghebbende model, de gecompileerde graaf is er een afgeleide representatie van.</p>
+<p>Ook verwijst <em>semantic model</em> bij Entoli niet naar de gewichten of de interne werking van een neuraal netwerk (zie 1.1.3). Het is het expliciete, inspecteerbare model dat naast het taalmodel bestaat.</p>
+<p>Voor agentische systemen kan zo'n model expliciete domeincontext bieden: begrippen, definities en relaties waarop gericht kan worden geselecteerd (zie 1.2.4). Dat werkt alleen wanneer een agent die context daadwerkelijk kan raadplegen en toepassen. Het model alleen garandeert geen correct gedrag. Bij Entoli is bovendien de samenstelling van wat een agent ontvangt nog niet als canoniek artefact vastgelegd (zie 6.3).</p>
+<p>De literatuur levert bruikbare perspectieven, maar bepaalt niet welke definities in Entoli gelden. Die werkdefinities moeten in de Entoli-registers expliciet worden vastgelegd en consequent worden gebruikt. In hoofdstuk 5 staat hoe ver dat nu is.</p>
+<h3 id="43-dezelfde-gemeente-als-knowledge-graph">4.3 Dezelfde gemeente als knowledge graph</h3>
+<p>Het diagram heeft twee lagen. Boven staat het schema: wat voor soorten dingen er zijn en hoe ze samenhangen. Onder staan de gegevens over één concreet geval. De pijlen met "is een" verbinden de twee lagen.</p>
+<pre class="mermaid">flowchart TB
+  subgraph schema[&quot;Schema: wat voor soorten dingen bestaan er&quot;]
+    T1[&quot;Inwoner&quot;]
+    T2[&quot;Aanvraag&quot;]
+    T3[&quot;Besluit&quot;]
+    T1 -- &quot;dient in&quot; --&gt; T2
+    T2 -- &quot;leidt tot&quot; --&gt; T3
+  end
+  subgraph data[&quot;Gegevens: één concreet geval&quot;]
+    I1([&quot;Mevrouw Jansen&quot;])
+    I2([&quot;Aanvraag A-123&quot;])
+    I3([&quot;Besluit D-77&quot;])
+    I1 -- &quot;dient in&quot; --&gt; I2
+    I2 -- &quot;leidt tot&quot; --&gt; I3
+  end
+  I1 -. &quot;is een&quot; .-&gt; T1
+  I2 -. &quot;is een&quot; .-&gt; T2
+  I3 -. &quot;is een&quot; .-&gt; T3
+</pre>
+<p><em>Figuur 5. Eigen visualisatie van een kennisgraaf. Rechthoeken zijn begrippen in het schema, afgeronde vormen zijn instanties, onderbroken pijlen leggen het verband tussen beide.</em></p>
+<p><em>Alternatieve tekst: twee gegroepeerde vlakken. Het bovenste vlak toont de begrippen Inwoner, Aanvraag en Besluit met de relaties "dient in" en "leidt tot". Het onderste vlak toont Mevrouw Jansen, Aanvraag A-123 en Besluit D-77 met dezelfde relaties. Drie onderbroken pijlen "is een" verbinden elke instantie met haar begrip.</em></p>
+<p>Het bovenste vlak is wat een <em>semantic model</em> vastlegt. Voeg je er formele logica en een vaste notatie aan toe, dan schuif je op naar een <em>ontologie</em>. Het hele diagram, schema en gegevens samen, is een <em>knowledge graph</em>. Of dat verschil in de praktijk scherp genoeg is om te maken, komt terug in de discussievragen.</p>
+<h2 id="5-deze-begrippen-in-entoli">5. Deze begrippen in Entoli</h2>
+<p>In Entoli worden de woorden niet gebruikt zoals in de literatuur. Dat blijkt zodra je de drie begrippen apart bekijkt.</p>
+<h3 id="51-drie-begrippen-drie-verschillende-posities">5.1 Drie begrippen, drie verschillende posities</h3>
+<h4 id="511-semantic-model">5.1.1 Semantic Model</h4>
+<p><em>Semantic Model</em> is een canoniek Entoli-begrip. Dit artikel hanteert de volgende definitie:</p>
+<blockquote>
+<p><strong>Het Semantic Model legt de canonieke betekenis die een Canon definieert volledig en gezaghebbend vast: alle canonieke Elementen en de Relationships die hun onderlinge betekenis en structuur expliciet maken.</strong></p>
+</blockquote>
+<p>Die structuur is een gerichte graaf, met Elementen als knopen en Relationships als verbindingen. De normatieve regels van de Canon horen niet bij het Semantic Model; zij bepalen hoe die betekenis geldig wordt geïnterpreteerd en gebruikt.</p>
+<p>Elke Canon heeft precies één Semantic Model. Het geldt voor de hele canon en verandert niet tijdens de uitvoering. Het Semantic Metamodel is zelf ook een Canon: de canon waarvan de elementen de metaconcepten zijn.</p>
+<p>Het woord <em>graaf</em> vraagt om een toelichting. In het Entoli Conceptual Model is vastgelegd dat de technische wijze waarop het Semantic Model wordt samengesteld, gecompileerd of opgeslagen, niet tot het begrip behoort. De gecompileerde graaf uit Bijlage C is dus niet het Semantic Model zelf, maar een afgeleide representatie ervan. In de Entoli-bronnen komt het woord <em>graaf</em> in beide betekenissen voor, en de verhouding tussen die twee is nog niet op één plaats vastgelegd. Dit essay houdt ze daarom uit elkaar: <em>graaf</em> of <em>structuur</em> voor het Semantic Model, <em>afgeleide semantic graph</em> voor de gecompileerde vorm.</p>
+<p>De definitie van Canon in hetzelfde register luidt (in de bron in het Engels; vertaling van dit artikel): "Een Canon is de gezaghebbende semantische basis voor een domein. Ze definieert de canonieke betekenis, het Semantic Model en de normatieve regels die nodig zijn voor een eenduidige interpretatie, herleidbaarheid en reproduceerbaar gebruik van die betekenis." Letterlijk gelezen noemt die zin drie dingen die een Canon definieert. Andere Entoli-bronnen noemen er twee. In het inleidende document van het Semantic Metamodel staat dat een Canon "domeinspecifieke Elements, Relationships en Rules" definieert, en in het register is sprake van "canonieke betekenis en normativiteit" (beide vertaald). Omdat het Semantic Model volgens het register uit de canonieke Elementen en Relationships bestaat, leest dit artikel de canonieke betekenis en het Semantic Model als één en hetzelfde. Dat is een interpretatie van dit artikel, geen letterlijke uitspraak van de bronnen. De definitie luidt daarmee:</p>
+<blockquote>
+<p><strong>Een Canon is voor een domein de gezaghebbende semantische basis. Ze definieert een Semantic Model, waarin de canonieke betekenis is vastgelegd, en normatieve regels die de geldige interpretatie en het gebruik van die betekenis begrenzen.</strong></p>
+</blockquote>
+<p>Het werkwoord <em>definieert</em> volgt het register: daar is de verhouding vastgelegd als Canon <em>defines</em> Semantic Model en Canon <em>defines</em> Canon Rule, en een <em>defines</em>-relatie drukt zeggenschap over betekenis uit, geen structuur (REL-022). De definitie zegt dus niet dat een Canon uit die twee bestaat, maar dat hij ze gezaghebbend vastlegt. In de huidige registerdefinitie staan de canonieke betekenis en het Semantic Model nog als twee aparte dingen; dit artikel stelt voor de registerdefinitie hierop aan te passen.</p>
+<p>Het Semantic Model is dus iets wat de canon definieert, niet de canon zelf. De normatieve regels maken gebruik van Elementen uit het model en begrenzen hoe die geldig worden geïnterpreteerd en gebruikt (zie 6.1).</p>
+<p>Het woord <em>canon</em> sluit aan bij het gewone taalgebruik. In Merriam-Webster staan onder meer twee betekenissen die hier passen: "a sanctioned or accepted group or body of related works" en "a body of principles, rules, standards, or norms" (Merriam-Webster, z.d.). De eerste past bij de canon als gezaghebbende, erkende verzameling, de tweede bij de normatieve regels. Een algemeen aanvaarde vakdefinitie van <em>canon</em> voor kennismodellering is in de geraadpleegde bronnen niet aangetroffen. Dat een Entoli-canon precies één Semantic Model en een set normatieve regels definieert, volgt dus niet uit het woordenboek. Het is een Entoli-eigen ontwerpkeuze, vastgelegd in de kenmerken van Canon in het register.</p>
+<h4 id="512-ontology">5.1.2 Ontology</h4>
+<p><em>Ontology</em> is geen gedefinieerd Entoli-begrip. Het register van het Semantic Metamodel bevat geen Element met die naam en in de constitution komt de term niet voor. Het woord komt alleen als gewone vakterm voor, in voorbeeldlijsten en naamgevingsvoorbeelden zoals <em>ontology and concept registers</em> of <em>Ontology Diagram</em>. Een ontologie in de zin van Gruber en Studer e.a., formeel en gedeeld, heeft Entoli dan ook niet: de laag voor formele, machineleesbare artefacten (OWL/RDF) is leeg. De afgeleide, machinegebruikbare vormen die wel in de constitution staan, zijn onder meer een graaf-injectiebron en een relatiematrix.</p>
+<h4 id="513-knowledge-graph">5.1.3 Knowledge graph</h4>
+<p>Ook <em>knowledge graph</em> is geen Entoli-begrip. In de Entoli-bronnen is sprake van een <em>semantic graph</em>, in de twee betekenissen uit 5.1.1. Entoli hanteert de volgende definitie (in het register van de Agent Development Canon in het Engels; vertaling van dit artikel):</p>
+<blockquote>
+<p><strong>Een semantic graph is de representatie van het Semantic Model.</strong></p>
+</blockquote>
+<p>De semantic graph wordt vastgelegd als JSON-bestand. Bijlage C toont er een fragment uit; het bestand zelf staat vermeld in Bijlage A.</p>
+<h3 id="52-twee-verschijningsvormen">5.2 Twee verschijningsvormen</h3>
+<p>Wat in de literatuur <em>semantic model</em> en <em>knowledge graph</em> heet, is bij Entoli één structuur, het Semantic Model, in twee verschijningsvormen: een door mensen geschreven register en een daaruit afgeleide graaf. Dat onderscheid is in de constitution zelf vastgelegd:</p>
+<ul>
+<li><strong>Canonieke representatie</strong>: het leesbare, gezaghebbende register.</li>
+<li><strong>Afgeleide structurele representatie</strong>: een machinegebruikbare vorm, zoals een graaf. Die is "derived, not authoritative".</li>
+</ul>
+<p>Omdat de graaf zonder taalmodel uit het register wordt afgeleid, is alles wat erin staat te herleiden tot een expliciete verklaring die een mens in het register heeft vastgelegd.</p>
+<h3 id="53-het-gemeentevoorbeeld-in-entoli-vorm">5.3 Het gemeentevoorbeeld in Entoli-vorm</h3>
+<p>Een Entoli-registerentry heeft een vaste vorm: een element-classificatie, een definitie, een rubriek "wat het niet is" en relaties. <em>Aanvraag</em> zou er zo uitzien:</p>
+<table>
+<thead>
+<tr>
+<th>Onderdeel</th>
+<th>Inhoud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Naam</td>
+<td>Aanvraag</td>
+</tr>
+<tr>
+<td>Element-classificatie</td>
+<td>Domain Element</td>
+</tr>
+<tr>
+<td>Definitie</td>
+<td>Een aanvraag is een formeel verzoek van een inwoner aan de gemeente om een besluit.</td>
+</tr>
+<tr>
+<td>Wat het niet is</td>
+<td>Niet het dossier waarin de aanvraag wordt behandeld. Niet het besluit zelf.</td>
+</tr>
+<tr>
+<td>Relaties</td>
+<td><em>uses</em> → Machtiging; <em>classified-as</em> → Spoedprocedure</td>
+</tr>
+</tbody>
+</table>
+<p>De canonieke relatietypen zijn is-a, part-of, uses, constrains, defines, classified-as en relates-to (relatieregister). Regels sturen het gebruik ervan:</p>
+<ul>
+<li>REL-011 en REL-012: alleen een Domain Element mag <em>uses</em> gebruiken, en alleen naar een ander Domain Element.</li>
+<li>REL-023 en REL-025: een element wordt alleen geclassificeerd via <em>Element</em> –classified-as→ <em>Position Element</em> –part-of→ <em>Classification Element</em>. In het voorbeeld zou <em>Spoedprocedure</em> een Position Element zijn op een as als <em>Procedurekeuze</em>.</li>
+</ul>
+<h2 id="6-de-rol-van-canon-en-rules">6. De rol van canon en rules</h2>
+<h3 id="61-betekenis-regels-en-gedrag">6.1 Betekenis, regels en gedrag</h3>
+<p>In veel organisaties lopen drie dingen door elkaar die in Entoli gescheiden zijn:</p>
+<table>
+<thead>
+<tr>
+<th>Wat</th>
+<th>Waar het voor dient</th>
+<th>Entoli-bron</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Betekenis</strong></td>
+<td>vastleggen wat begrippen zijn en hoe ze samenhangen</td>
+<td>Semantic Model</td>
+</tr>
+<tr>
+<td><strong>Regels</strong></td>
+<td>beperken wat valide gebruik is</td>
+<td>Canon Rules, Operational Rules</td>
+</tr>
+<tr>
+<td><strong>Gedrag</strong></td>
+<td>wat een agent doet</td>
+<td>Agent, Agent Intent</td>
+</tr>
+</tbody>
+</table>
+<p>Betekenis en normatieve regels zijn wat een canon definieert. In Entoli definieert een canon een Semantic Model, dat de betekenis vastlegt, en de regels die de geldige interpretatie en het gebruik van die betekenis begrenzen (zie 5.1.1). Het Semantic Model is daarbij zelf geen regel: het beschrijft wat begrippen betekenen en hoe ze samenhangen, en legt geen verplichtingen op. Regels leggen wel verplichtingen op. Ze staan niet tegenover de betekenis, maar bouwen erop voort: ze gebruiken begrippen uit het Semantic Model en begrenzen hoe die geldig worden geïnterpreteerd en gebruikt. Het register van de Agent Development Canon definieert de <em>Entoli Rule</em> als volgt (in de bron in het Engels; vertaling van dit artikel):</p>
+<blockquote>
+<p><strong>Een Entoli Rule is een regel die binnen Entoli expliciet is vastgelegd, die gedrag normeert of operationaliseert, en die als gemeenschappelijk supertype de basis vormt voor Normative Rules en Operational Rules.</strong></p>
+</blockquote>
+<p>Een regel benoemt de zaken waarover hij gaat met zelfstandige naamwoorden en zelfstandignaamwoordelijke uitdrukkingen. Een voorbeeld:</p>
+<blockquote>
+<p>"Een Epic MAG NIET in implementatie gaan voordat Portfolio Leadership haar heeft goedgekeurd."</p>
+</blockquote>
+<p>Niet alles wat een regel benoemt, hoeft in het Semantic Model te zijn vastgelegd. Er zijn twee soorten woorden te onderscheiden:</p>
+<ul>
+<li><strong>Domeinbegrippen</strong> die in het Semantic Model expliciet als Domain Element zijn gedefinieerd. In het voorbeeld zijn dat <em>Epic</em> en <em>Portfolio Leadership</em>. Ze hebben in deze context een vakspecifieke betekenis, en de regel is pas eenduidig toe te passen als die betekenis vastligt.</li>
+<li><strong>Gewone zelfstandige naamwoorden</strong>, die niet domeinspecifiek zijn en in de context begrijpelijk genoeg zijn. In het voorbeeld is dat <em>implementatie</em>. Het woord wordt niet als Domain Element vastgelegd.</li>
+</ul>
+<p>Dat niet elk zelfstandig naamwoord wordt gemodelleerd, is een bewuste afweging. Elk Domain Element vraagt een definitie, relaties en onderhoud. Door alleen de domeinbegrippen te modelleren, blijft het Semantic Model beheersbaar en blijven de kosten van modelleren en onderhouden beperkt.</p>
+<p>Die afweging heeft een prijs. Een woord zonder definitie interpreteert het taalmodel met wat statistisch aannemelijk is (zie 1.2.2). Dat gaat vaak goed, maar niet vanzelf. Als een gewoon woord in de context meer dan één relevante betekenis kan hebben, of als de betekenis bepaalt wanneer de regel van toepassing is, moet worden overwogen het alsnog expliciet te definiëren. Ook <em>implementatie</em> kan die grens passeren. Als in een organisatie niet vaststaat of implementatie begint bij het eerste ontwerp, bij de eerste regel code of bij de ingebruikname, dan bepaalt die keuze wanneer de goedkeuring er moet zijn. Het woord is dan geen gewoon zelfstandig naamwoord meer, maar een domeinbegrip.</p>
+<h2 id="7-slotsom">7. Slotsom</h2>
+<p>De vraag van dit essay was waarom semantiek en ontologie belangrijker zijn geworden nu AI wordt ingezet om software te realiseren, en hoe je het vastleggen van betekenis beheersbaar houdt.</p>
+<p>Het antwoord op het eerste deel ligt in de manier waarop een taalmodel werkt. Een LLM bewaart kennis impliciet in zijn gewichten en kan niet aanwijzen waar een bewering vandaan komt. Waar een definitie ontbreekt, vult het model aan met wat statistisch aannemelijk is, en dat ziet er even overtuigend uit als een juist antwoord. Een onduidelijk begrip was altijd al een risico, maar een collega lost het op in overleg; een taalmodel lost het stilzwijgend op. Het inzicht zelf is niet nieuw, Evans en DAMA zeiden het al.</p>
+<p><strong>Nieuw is dat een machine de onvolledige afspraken aanvult.</strong></p>
+<p>Daarom is expliciete betekenis belangrijker geworden: een vastgelegd model vergroot de kans dat het taalmodel de juiste betekenis gebruikt, en het maakt de uitkomst controleerbaar.</p>
+<p>De vakliteratuur gebruikt daarvoor drie overlappende begrippen, elk met een eigen accent: een semantic model legt betekenis vast, een ontologie een formele, gedeelde vocabulaire, een knowledge graph gegevens als graaf. Entoli kiest eigen termen. Een Canon definieert voor een domein een Semantic Model en normatieve regels. Het Semantic Model is vastgelegd in een leesbaar, gezaghebbend register; de semantic graph is daarvan een afgeleide representatie, zonder taalmodel uit het register gecompileerd. Regels staan niet los van de betekenis, maar gebruiken begrippen uit het Semantic Model en begrenzen hoe die worden geïnterpreteerd en gebruikt.</p>
+<p>Het tweede deel van de vraag, de beheersbaarheid, is in de Entoli-bronnen het minst afgerond. Expliciete betekenis kost beheer, en de opbrengst hangt af van de taak: groot bij controle, hergebruik en samenhang over veel documenten, klein bij een eenmalige vraag. Entoli houdt de last op twee manieren beperkt: relaties komen uit een vaste set typen (3.1.2), en alleen domeinbegrippen worden als Domain Element gemodelleerd (6.1). Dat laatste is een afweging: een gewoon woord zonder definitie blijft aan de interpretatie van het taalmodel overgelaten. Entoli zit in de testfase, en of de balans tussen controle en beheerlast in de praktijk goed uitvalt, moet nog blijken.</p>
+<h2 id="8-vragen-voor-de-discussie">8. Vragen voor de discussie</h2>
+<p>Dit essay rust op een hypothese die nog niet is getoetst: expliciete semantiek kan de uitvoer van een LLM beter controleerbaar maken, maar het vastleggen en onderhouden ervan kost tijd en geld. Hoe groot beide effecten zijn, is nog maar beperkt onderzocht (zie de inleiding). De vragen hieronder zijn een uitnodiging aan data-architecten en andere professionals in datamanagement om die hypothese kritisch te toetsen, met voorbeelden uit hun eigen praktijk.</p>
+<ol>
+<li><strong>Wat is de kleinste set die een LLM nodig heeft?</strong> Stel dat een taalmodel bedrijfsobjecten moet genereren of verbeteren, zoals een entiteit in een logisch datamodel of de beschrijving van een <em>Aanvraag</em>. Welke Domain Elements, relaties, regels en context zijn daarvoor minimaal nodig? Wat blijkt overbodig, en wat mis je pas als het misgaat?</li>
+<li><strong>Hoe toets je of expliciete semantiek verschil maakt?</strong> Welke proef zou je opzetten om uitkomsten met en zonder vastgelegde begrippen te vergelijken? Wat meet je dan: of de betekenis klopt, of de uitkomst consistent en volledig is, of elke bewering herleidbaar is tot een vastgelegd begrip? En welke uitkomst zou de hypothese weerleggen?</li>
+<li><strong>Weegt de opbrengst op tegen de beheerlast?</strong> Modelleren en onderhouden kost tijd, en die kosten liggen vaak bij de beheerder, terwijl de winst bij de afnemer van data of AI ligt. Bij welke taken verwacht je dat de opbrengst groter is dan de kosten, en bij welke niet? Hoe voorkom je dat het onderhoud onder tijdsdruk sneuvelt? En kan een LLM een deel van het modelleerwerk overnemen, zoals bij GraphRAG, zonder dat de controleerbaarheid verloren gaat waar het om begonnen was?</li>
+<li><strong>Wanneer wordt een woord een domeinbegrip?</strong> In het voorbeeld uit 6.1 is <em>Epic</em> een Domain Element en <em>implementatie</em> een gewoon zelfstandig naamwoord. Met welke criteria trek je die grens in je eigen domein? Hoe merk je dat een woord dat je aan de taalcontext had overgelaten, toch een eigen definitie nodig heeft, en wie besluit dat?</li>
+<li><strong>Welke afspraken zijn nodig als een community kennis voor AI-systemen expliciteert?</strong> Als vakgenoten samen begrippen, relaties en regels vastleggen: wie is eigenaar van een definitie, hoe wordt de bron vermeld, hoe worden wijzigingen geversioneerd, en wie heeft welke rechten op het resultaat? Gelden dezelfde afspraken voor een graaf die een LLM zelf uit documenten heeft opgebouwd?</li>
+</ol>
+<h2 id="bronnen">Bronnen</h2>
+<ul>
+<li>The Open Group, <em>ArchiMate Specification</em>, versie 3.2, §3.2 "Top-Level Language Structure", afbeelding overgenomen met de vermelding "© The Open Group"</li>
+<li>Evans, E. (2003). <em>Domain-Driven Design: Tackling Complexity in the Heart of Software</em>. Addison-Wesley. Samenvatting via <a href="https://martinfowler.com/bliki/UbiquitousLanguage.html">Fowler (2006), Ubiquitous Language</a></li>
+<li>Gruber, T. R. (1993). A translation approach to portable ontology specifications. <em>Knowledge Acquisition</em>, 5(2), 199–220. <a href="https://tomgruber.org/writing/ontolingua-kaj-1993/">tomgruber.org</a></li>
+<li>Fensel, D., Şimşek, U., Angele, K., Huaman, E., Kärle, E., Panasiuk, O., Toma, I., Umbrich, J. &amp; Wahler, A. (2020). <em>Knowledge Graphs: Methodology, Tools and Selected Use Cases</em>. Springer. <a href="https://doi.org/10.1007/978-3-030-37439-6">doi:10.1007/978-3-030-37439-6</a></li>
+<li>Nyerges, T. (2017). Conceptual Data Models (DM-01-034). In J. P. Wilson (Ed.), <em>The Geographic Information Science &amp; Technology Body of Knowledge</em> (1st Quarter 2017 Edition), UCGIS. <a href="https://gistbok-ltb.ucgis.org/current/concept/DM-01-034">gistbok-ltb.ucgis.org</a>. Citeert Simsion, G. C. &amp; Witt, G. C. (2005), <em>Data Modeling Essentials</em></li>
+<li>Studer, R., Benjamins, V. R. &amp; Fensel, D. (1998). Knowledge engineering: Principles and methods. <em>Data &amp; Knowledge Engineering</em>, 25(1–2), 161–197</li>
+<li>Hull, R. &amp; King, R. (1987). Semantic database modeling: survey, applications, and research issues. <em>ACM Computing Surveys</em>, 19(3), 201–260</li>
+<li>Merriam-Webster (z.d.). Canon. In <em>Merriam-Webster.com Dictionary</em>. <a href="https://www.merriam-webster.com/dictionary/canon">merriam-webster.com</a>. Geraadpleegd op 18 oktober 2026</li>
+<li>Microsoft (z.d.). Semantic models in the Power BI service. Microsoft Learn (productdocumentatie, geen wetenschappelijke literatuur). <a href="https://learn.microsoft.com/en-us/power-bi/connect-data/service-datasets-understand">learn.microsoft.com</a>. Geraadpleegd op 17 oktober 2026</li>
+<li>Hogan, A. e.a. (2021). Knowledge graphs. <em>ACM Computing Surveys</em>, 54(4), artikel 71. <a href="https://arxiv.org/abs/2003.02320">arXiv:2003.02320</a></li>
+<li>Edge, D. e.a. (2024). From local to global: a Graph RAG approach to query-focused summarization. <a href="https://arxiv.org/abs/2404.16130">arXiv:2404.16130</a></li>
+<li>Ji, Z. e.a. (2023). Survey of hallucination in natural language generation. <em>ACM Computing Surveys</em>, 55(12), 1–38. <a href="https://doi.org/10.1145/3571730">doi:10.1145/3571730</a></li>
+<li>Kalai, A. T., Nachum, O., Vempala, S. S. &amp; Zhang, E. (2025). Why language models hallucinate. <a href="https://arxiv.org/abs/2509.04664">arXiv:2509.04664</a></li>
+<li>Vaswani, A. e.a. (2017). Attention is all you need. <em>NeurIPS</em></li>
+<li>DAMA International (2017). <em>DAMA-DMBOK: Data Management Body of Knowledge</em> (2e editie). Technics Publications</li>
+</ul>
+<h2 id="bijlage-a-entoli-bronnen">Bijlage A. Entoli-bronnen</h2>
+<p>De beschrijving van Entoli in dit artikel steunt op interne documenten uit de Entoli-repository. Ze zijn hier vermeld zodat de uitspraken te herleiden zijn; de lezer hoeft ze niet te kennen om het artikel te volgen.</p>
+<ul>
+<li><code>canons/.semantic-metamodel/reference/elements/semantic-metamodel.elements.md</code> (v3.3.0): Concept, Element, Relationship, Rule, Domain/Classification/Position/Para/Meta Concept</li>
+<li><code>canons/.canonical/constitution.md</code> (v2.20.2): Artikel 8.8, 9.1 t/m 9.5, 10.4, Deel II (O.4, G-03, G-10)</li>
+<li><code>canons/.semantic-metamodel/rules.relation.yaml</code> (v1.4.0): relatietypen, labelkoppelingen en REL-regels</li>
+<li><code>canons/.semantic-metamodel/README.md</code> (v2.1.0): onder meer de scheiding tussen metaconcepten, domeinbegrippen en regels, en de passage dat metamodelconstructies van externe standaarden domeininhoud zijn</li>
+<li><code>canons/data-modelling-canon/elements/concepts-datamodelling.md</code> (v1.3.1, status concept): Logical Data Model, Entity, Attribute Classification, Data Type</li>
+<li><code>canons/.entoli-agent-development-canon/reference/data-models/1_conceptual/entoli-conceptual.json</code>: Entoli Conceptual Model (bron van Figuur 4)</li>
+<li><code>canons/.entoli-agent-development-canon/reference/elements/entoli-agent-development.elements.md</code> (v2.10.0): eigenaar van Knowledge Domain, Knowledge Specification, Canon, Semantic Model en Semantic Graph; Element en Relationship als Domain Elements (<code>canon-element</code>, <code>canon-relationship</code>); Entoli Rule, Normative Rule, Operational Rule en Canon Rule</li>
+<li><code>canons/enterprise-architecture-canon/elements/entoli-domain-concepts.md</code> (v1.10.3): beschrijving van Canon en Semantic Model met verwijzing naar de eigenaar en diens definitie</li>
+<li><code>scripts/compile_semantic_graph.py</code></li>
+<li><code>canons/.entoli-agent-development-canon/entoli-agent-development-semantic-model.graph.json</code> (graafversie 2.10.0): gecompileerde semantic graph, bron van het fragment in Bijlage C</li>
+<li><code>docs/LLM-concepts.nl.md</code></li>
+<li><code>CLAUDE.md</code>: projectdocumentatie, onder meer over de lege laag voor formele artefacten</li>
+</ul>
+<h2 id="bijlage-b-de-relatietypen">Bijlage B. De relatietypen</h2>
+<p>Deze bijlage is een momentopname. Entoli zit in de testfase, en het relatieregister heeft versie 1.4.0. Het is aannemelijk dat er relatietypen bijkomen. De regels over <em>relates-to</em> wijzen in die richting: elke relatie van dat type is voorlopig (REL-027), en overmatig gebruik ervan is ongeldig (REL-028). Waar <em>relates-to</em> vaak nodig is, ontbreekt vermoedelijk een specifiek type. Dat laatste is een interpretatie van de auteur van dit essay.</p>
+<p>In het relatieregister van het Semantic Metamodel staan op dit moment zeven canonieke relatietypen. Elke relatie heeft er precies één. Labels die een canon daarnaast gebruikt, worden aan een van deze zeven gekoppeld. Omgekeerde labels zoals <em>groups</em> (omgekeerd van <em>part-of</em>) of <em>used-by</em> (omgekeerd van <em>uses</em>) zijn geen extra types en worden niet als tweede relatie opgeslagen. De tabel geeft per type weer wat de regels (REL) erover vastleggen. Het register bevat geen formele definitie per type.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Wat de regels vastleggen</th>
+<th>Voorbeeld uit de registers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>is-a</strong></td>
+<td>specialisatie; overerving tussen lagen is verboden (REL-006)</td>
+<td>omgekeerd label: <em>specialised-by</em></td>
+</tr>
+<tr>
+<td><strong>part-of</strong></td>
+<td>onderdeel van; een Position Element is onderdeel van precies één Classification Element (REL-008); een Domain Element mag onderdeel zijn van een ander Domain Element (REL-007)</td>
+<td>Agent <em>part-of</em> Agent Package</td>
+</tr>
+<tr>
+<td><strong>uses</strong></td>
+<td>alleen een Domain Element mag gebruiken, en alleen andere Domain Elements (REL-011, REL-012); Para Elements gebruiken niets (REL-014)</td>
+<td>Agent Package <em>uses</em> Knowledge Specification</td>
+</tr>
+<tr>
+<td><strong>constrains</strong></td>
+<td>alleen een Classification of Position Element mag beperken (REL-015); het doel is een Domain Element dat bij de uitvoering betrokken is (REL-016)</td>
+<td>een positie op een as beperkt een Domain Element</td>
+</tr>
+<tr>
+<td><strong>defines</strong></td>
+<td>alleen Domain Elements, Classification Elements of Meta Concepts mogen definiëren (REL-019); het drukt zeggenschap over betekenis uit, geen structuur (REL-022)</td>
+<td>Canon <em>defines</em> Semantic Model</td>
+</tr>
+<tr>
+<td><strong>classified-as</strong></td>
+<td>alleen naar een Position Element (REL-023), volgens het patroon Element –classified-as→ Position Element –part-of→ Classification Element (REL-025)</td>
+<td>doel is bijvoorbeeld de positie <em>Canon-bound</em> op de as <em>Source Regime</em></td>
+</tr>
+<tr>
+<td><strong>relates-to</strong></td>
+<td>terugvaloptie: alleen als geen ander type past (REL-026); elke relatie van dit type is voorlopig (REL-027); overmatig gebruik is ongeldig (REL-028)</td>
+<td>Knowledge Specification <em>specifies</em> Knowledge Domain (label gekoppeld aan <em>relates-to</em>)</td>
+</tr>
+</tbody>
+</table>
+<p>Bron: relatieregister van het Semantic Metamodel, versie 1.4.0 (zie Bijlage A).</p>
+<h2 id="bijlage-c-fragment-uit-de-entoli-semantic-graph">Bijlage C. Fragment uit de Entoli Semantic Graph</h2>
+<p>Deze bijlage toont een fragment uit een gecompileerde semantic graph van Entoli. Het fragment illustreert de bewering in 4.2 dat de graaf Elementen als nodes en Relationships als edges heeft. Het bevat vier Elementen (Canon, Element, Relationship en Semantic Model) en de drie Relationships die ze verbinden: Canon <em>defines</em> Semantic Model, Element <em>part-of</em> Semantic Model en Relationship <em>part-of</em> Semantic Model. Element en Relationship zijn hier Domain Elements van de Agent Development Canon, met de identifiers <code>canon-element</code> en <code>canon-relationship</code>. Het zijn naamgenoten van de gelijknamige Meta Concepts van het Semantic Metamodel, niet dezelfde begrippen (zie Bijlage D).</p>
+<pre><code class="language-json">{
+  &quot;graph&quot;: {
+    &quot;id&quot;: &quot;entoli-agent-development-elements&quot;,
+    &quot;name&quot;: &quot;Enterprise Agent Development Canon — Semantic Model&quot;,
+    &quot;version&quot;: &quot;2.10.0&quot;
+  },
+  &quot;elements&quot;: [
+    {
+      &quot;id&quot;: &quot;canon&quot;,
+      &quot;name&quot;: &quot;Canon&quot;,
+      &quot;classification&quot;: &quot;Domain Element&quot;,
+      &quot;owner&quot;: &quot;entoli-agent-development-canon&quot;,
+      &quot;definition&quot;: &quot;A **Canon** is the authoritative semantic foundation for a domain. It defines the canonical meaning, the Semantic Model and the normative rules required for unambiguous interpretation, traceability and reproducible use of that meaning.&quot;,
+      &quot;recordedIn&quot;: &quot;entoli-agent-development-elements&quot;
+    },
+    {
+      &quot;id&quot;: &quot;canon-element&quot;,
+      &quot;name&quot;: &quot;Element&quot;,
+      &quot;classification&quot;: &quot;Domain Element&quot;,
+      &quot;owner&quot;: &quot;entoli-agent-development-canon&quot;,
+      &quot;definition&quot;: &quot;An **Element** is an explicitly defined, named unit of meaning within the Entoli semantic graph. Each Element is distinguished by its Element classification and by the Relationships it maintains with other Elements.&quot;,
+      &quot;recordedIn&quot;: &quot;entoli-agent-development-elements&quot;
+    },
+    {
+      &quot;id&quot;: &quot;canon-relationship&quot;,
+      &quot;name&quot;: &quot;Relationship&quot;,
+      &quot;classification&quot;: &quot;Domain Element&quot;,
+      &quot;owner&quot;: &quot;entoli-agent-development-canon&quot;,
+      &quot;definition&quot;: &quot;A **Relationship** is an explicit, directed semantic connection between two domain-level Elements — Domain, Classification, Position or Para Elements — in the Semantic Model of a Canon. Relationships carry the meaning of the graph: Elements without Relationships have meaning, but no structure.&quot;,
+      &quot;recordedIn&quot;: &quot;entoli-agent-development-elements&quot;
+    },
+    {
+      &quot;id&quot;: &quot;semantic-model&quot;,
+      &quot;name&quot;: &quot;Semantic Model&quot;,
+      &quot;classification&quot;: &quot;Domain Element&quot;,
+      &quot;owner&quot;: &quot;entoli-agent-development-canon&quot;,
+      &quot;definition&quot;: &quot;The **Semantic Model** is the complete, authoritative semantic graph that one Canon defines. It consists of the canonical Elements and the Relationships that make their mutual meaning and structure explicit.&quot;,
+      &quot;recordedIn&quot;: &quot;entoli-agent-development-elements&quot;
+    }
+  ],
+  &quot;relationships&quot;: [
+    {
+      &quot;id&quot;: &quot;canon--defines--semantic-model&quot;,
+      &quot;source&quot;: &quot;canon&quot;,
+      &quot;type&quot;: &quot;defines&quot;,
+      &quot;target&quot;: &quot;semantic-model&quot;,
+      &quot;owner&quot;: &quot;entoli-agent-development-canon&quot;,
+      &quot;recordedIn&quot;: &quot;entoli-agent-development-elements&quot;
+    },
+    {
+      &quot;id&quot;: &quot;canon-element--part-of--semantic-model&quot;,
+      &quot;source&quot;: &quot;canon-element&quot;,
+      &quot;type&quot;: &quot;part-of&quot;,
+      &quot;target&quot;: &quot;semantic-model&quot;,
+      &quot;owner&quot;: &quot;entoli-agent-development-canon&quot;,
+      &quot;recordedIn&quot;: &quot;entoli-agent-development-elements&quot;
+    },
+    {
+      &quot;id&quot;: &quot;canon-relationship--part-of--semantic-model&quot;,
+      &quot;source&quot;: &quot;canon-relationship&quot;,
+      &quot;type&quot;: &quot;part-of&quot;,
+      &quot;target&quot;: &quot;semantic-model&quot;,
+      &quot;owner&quot;: &quot;entoli-agent-development-canon&quot;,
+      &quot;recordedIn&quot;: &quot;entoli-agent-development-elements&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Bron: <code>canons/.entoli-agent-development-canon/entoli-agent-development-semantic-model.graph.json</code>, graafversie 2.10.0 van 18 oktober 2026 (eerder onder het pad <code>reference/graph/entoli-agent-development-canon.graph.json</code>). Het bestand is met <code>scripts/compile_semantic_graph.py</code> gecompileerd uit het elementenregister van de Enterprise Agent Development Canon.</p>
+<p>Het fragment is een uitsnede. Uit het bronbestand zijn alleen het object <code>graph</code> en de genoemde Elementen en Relationships overgenomen; de sleutel <code>$schema</code> en alle andere Elementen en Relationships zijn weggelaten. Namen, identifiers, relationshiptypen, bron- en doelverwijzingen en de volgorde binnen elke lijst zijn ongewijzigd.</p>
+<p>Het bestand is op dit moment in lijn met zijn register. De graaf en het register hebben beide versie 2.10.0 (zie Bijlage A), en wie het register opnieuw compileert, krijgt dezelfde Elementen en Relationships. Alleen de relatieve verwijzing naar het schema hangt af van de plek van het uitvoerbestand. Vanzelfsprekend is dat niet. De vorige versie van het bestand, graafversie 2.3.0, liep achter op het register: daarin droegen Relationships nog "the structure of the graph", waar het register al "the meaning of the graph" had. Dat verschil liet zien wat de afgeleide status betekent. Bij een verschil geldt het register, en de graaf moet opnieuw worden gecompileerd.</p>
+<p>Het fragment illustreert de afgeleide graaf. Het verleent de graaf geen gezag: gezaghebbend is het register waaruit de graaf is gecompileerd.</p>
+<h2 id="bijlage-d-de-begrippen-van-dit-essay">Bijlage D. De begrippen van dit essay</h2>
+<p>Deze bijlage zet de begrippen op een rij die nodig zijn om de redenering van het essay te volgen, met de relaties ertussen. Ze is een leeshulp en geen Entoli-register, geen ontologie en geen gecompileerde semantic graph. Ze volgt het registerformaat niet en heeft geen gezag.</p>
+<p><strong>Selectie.</strong> Opgenomen zijn alleen begrippen die de kern van het betoog dragen: hoe een LLM rekent (hoofdstuk 1), welke vormen van expliciete betekenis de vakliteratuur onderscheidt (hoofdstuk 4), hoe die vormen in Entoli zijn ingevuld (hoofdstuk 5) en hoe betekenis en regels gescheiden blijven (hoofdstuk 6). Om die laatste reden is ook <em>Rule</em> opgenomen: het Semantic Metamodel legt de regel sinds 18 oktober 2026 vast als Meta Concept, en zonder dat begrip blijft onduidelijk wat een Canon naast zijn Semantic Model definieert. Begrippen die maar op één plek voorkomen of die alleen het voorbeeld dragen, zoals Inwoner, Machtiging, GraphRAG of de vijf Entoli-classificaties, zijn weggelaten. Ze staan in de hoofdtekst of in Bijlage B.</p>
+<p><strong>Reikwijdte.</strong> Het model bevat de begrippen zoals ze in het essay worden gebruikt. Het geeft geen algemene definities en doet geen uitspraak over alle LLM's of alle agentische systemen.</p>
+<p><strong>Lezen.</strong> De tabel geeft per begrip de betekenis in dit essay, een voorbeeld en de grondslag. De voorbeelden komen zoveel mogelijk uit de hoofdtekst of uit de Entoli-registers.</p>
+<p>De graaf daaronder deelt de begrippen in drie vlakken in:</p>
+<ul>
+<li><em>Algemeen technisch</em>: een begrip uit de AI-techniek, beschreven op het niveau van hoofdstuk 1;</li>
+<li><em>Gebruik in dit essay</em>: een begrip dat in de literatuur en de praktijk uiteenlopend wordt gebruikt. De omschrijving geeft de lezing van dit essay;</li>
+<li><em>Entoli</em>: een canoniek Entoli-begrip of een Entoli-eigen keuze, vastgelegd in een register of de constitution. De omschrijving volgt het register of de constitution. Element, Relationship en Rule zijn Meta Concepts van het Semantic Metamodel. Hun definities zijn algemeen en verwijzen niet naar Entoli; ze staan in dit vlak omdat ze in een Entoli-register zijn vastgelegd.</li>
+</ul>
+<p>De pijlen tonen de relaties tussen de begrippen. Elke pijl loopt van een bronbegrip naar een doelbegrip en heeft een eigen naam, zoals het Entoli-metamodel een relatie als eigen constructie behandelt (zie 3.1.2). De relatienamen zijn gewone taal. Alleen bij de Entoli-relaties staat het relatielabel uit het register tussen haakjes. Een doorgetrokken pijl steunt op een bron of op de hoofdtekst, een onderbroken pijl is een interpretatie van de auteur.</p>
+<p>De graaf laat zien hoe Canon, Semantic Model en regels zich tot elkaar verhouden. De Canon definieert het Semantic Model en daarnaast regels. Die regels zijn instanties van het Meta Concept <em>Rule</em>; ze horen niet bij het Semantic Model, maar begrenzen hoe de Elementen daarin geldig worden geïnterpreteerd en gebruikt (5.1.1, 6.1). Het register van het Semantic Metamodel legt voor Rule geen relaties vast. De twee pijlen van Rule steunen op de definitie, het inleidende document van het Semantic Metamodel en de hoofdtekst, en hebben daarom geen relatielabel tussen haakjes. Iets vergelijkbaars geldt voor Element en Relationship. Hun pijlen <em>is onderdeel van (part-of)</em> naar het Semantic Model staan in het register van de Agent Development Canon, bij de gelijknamige Domain Elements <code>canon-element</code> en <code>canon-relationship</code> (zie Bijlage C). Voor de Meta Concepts zelf legt het Semantic Metamodel alleen vast dat een Element tot precies één semantic model behoort.</p>
+<p>Een terminologische waarschuwing. In het register van het Semantic Metamodel heet het gezaghebbende Semantic Model zelf "the complete, authoritative semantic graph". Daar staat <em>graaf</em> voor de structuur van het model. De gecompileerde vorm is een afgeleide representatie ervan (zie 5.1.1). Om die twee uit elkaar te houden, spreekt deze bijlage voor de gecompileerde vorm van de <em>afgeleide semantic graph</em>.</p>
+<h3 id="begrippen">Begrippen</h3>
+<table>
+<thead>
+<tr>
+<th>Begrip</th>
+<th>Betekenis in dit essay</th>
+<th>Voorbeeld</th>
+<th>Grondslag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Groot taalmodel (LLM)</td>
+<td>Een model dat bij een tekst berekent welk vervolg waarschijnlijk is. Het is getraind op enorme hoeveelheden tekst en zoekt een aannemelijk vervolg, geen gecontroleerd juist vervolg</td>
+<td>Claude Opus 5.5 en Claude Sonnet 5.5 (Anthropic), GPT-4o (OpenAI), Gemini (Google), Llama (Meta)</td>
+<td>1.1.1</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>Een tekstfragment uit een vaste lijst die het model kent. Elk token heeft in die lijst een volgnummer, en het model rekent met dat nummer, niet met de letters. Het token is de eenheid waarin een model leest, schrijft, rekent en wordt gefactureerd</td>
+<td><code>Aan</code> en <code>vragen</code> uit het woord "Aanvragen" (1.1.2, illustratief). Het token is het tekstfragment. Het model rekent met het volgnummer van dat fragment in zijn vaste lijst, bijvoorbeeld 4.711 voor <code>Aan</code>; dat nummer is verzonnen en verschilt per model</td>
+<td>1.1.2</td>
+</tr>
+<tr>
+<td>Neuraal netwerk</td>
+<td>Een rekenstructuur van heel veel eenvoudige eenheden in lagen. Elke eenheid ontvangt getallen, rekent ermee en geeft de uitkomst door</td>
+<td>Het netwerk achter elk groot taalmodel; daarnaast bijvoorbeeld de beeldherkenning in een telefooncamera. Figuur 1 toont een sterk vereenvoudigde versie</td>
+<td>1.1.3</td>
+</tr>
+<tr>
+<td>Modelgewicht</td>
+<td>Een getal aan een verbinding in een neuraal netwerk dat bepaalt hoe sterk het ene signaal het andere beïnvloedt. Na de training liggen de gewichten vast. Geen afzonderlijk gewicht staat voor een domeinbegrip</td>
+<td>Elk van de getallen 0,8, −0,3 en 0,5 in Figuur 1 (illustratief). Een groot taalmodel heeft er miljarden</td>
+<td>1.1.3, 1.1.4</td>
+</tr>
+<tr>
+<td>Attention</td>
+<td>Het kernidee van de transformer-architectuur: bij elk volgend token weegt het model hoe relevant elk eerder token in de tekst is</td>
+<td>In "De inwoner dient de aanvraag in. Ze wordt beoordeeld." weegt het model bij "Ze" vooral "aanvraag" mee, niet "inwoner" (illustratief)</td>
+<td>1.1.4; Vaswani e.a. (2017)</td>
+</tr>
+<tr>
+<td>Contextvenster</td>
+<td>Het beperkte aantal tokens dat een model per aanroep kan verwerken: de instructie, de meegegeven documenten en het antwoord samen</td>
+<td>Een venster van 200.000 tokens, een gangbare orde van grootte bij huidige modellen. De omvang verschilt per model</td>
+<td>1.1.4</td>
+</tr>
+<tr>
+<td>Hallucinatie</td>
+<td>Een vloeiend, aannemelijk antwoord van een taalmodel dat onjuist is of nergens op steunt. Het ontstaat doordat het model een aannemelijk vervolg zoekt, geen gecontroleerd juist vervolg</td>
+<td>"De toren van Pisa is scheef, zo heeft de architect het bedacht." Een verzonnen antwoord: de toren helt doordat de ondergrond tijdens de bouw inklonk</td>
+<td>1.2.2; Ji e.a. (2023); Kalai e.a. (2025)</td>
+</tr>
+<tr>
+<td>Agentisch systeem</td>
+<td>Een systeem waarin een agent op basis van een opdracht zelfstandig werk doet, zoals een ontwerp, code of een datamodel maken. De agent werkt met de begrippen die hij aantreft. In het essay is de term niet gedefinieerd; deze omschrijving is samengesteld uit het gebruik</td>
+<td>Claude Code, dat zelfstandig code leest, schrijft en uitvoert; in Entoli de canon-curator, die de samenhang tussen de lagen van de canon bewaakt</td>
+<td>Inleiding, 4.2</td>
+</tr>
+<tr>
+<td>Domeinbegrip</td>
+<td>Een begrip uit een vakgebied of organisatie, met één term en een definitie</td>
+<td><em>Inwoner</em>, <em>Aanvraag</em>, <em>Machtiging</em> en <em>Besluit</em> uit het gemeentevoorbeeld (2.3). Uit andere vakgebieden, elk een ander soort begrip: uit data governance de rol <em>Data steward</em> en het kennisgebied <em>Data governance</em> zelf (DAMA-DMBOK2); uit enterprise-architectuur het ArchiMate-element <em>Application Component</em> en de TOGAF-bouwsteen <em>Solution Building Block</em>; uit datamodellering het werkproduct <em>Logical Data Model</em> en de modelconstructies <em>Entity</em> en <em>Attribute</em>. Een term is pas eenduidig binnen zijn vakgebied: <em>Entity</em> betekent in datamodellering iets anders dan in Domain-Driven Design (illustratief)</td>
+<td>1.1.3, 2.3, 3.2</td>
+</tr>
+<tr>
+<td>Semantic model</td>
+<td>Een model dat de betekenis van een domein op schemaniveau vastlegt: begrippen, definities en relaties. In de bronnen loopt het gebruik uiteen, van databasemodellering tot BI-tooling</td>
+<td>Het schema-vlak van Figuur 5: een Inwoner dient een Aanvraag in, een Aanvraag leidt tot een Besluit. Een ander gebruik van de term: een semantic model in Power BI</td>
+<td>4.1 (lezing van de auteur); Hull &amp; King (1987); Microsoft (z.d.)</td>
+</tr>
+<tr>
+<td>Ontologie</td>
+<td>Een expliciete specificatie van een conceptualisering (Gruber), met de nadruk op formeel, expliciet en gedeeld (Studer e.a.). Geen canoniek Entoli-begrip</td>
+<td>Hetzelfde schema, aangevuld met formele logica en een vaste notatie zoals OWL (4.1, 4.3)</td>
+<td>4.1, 5.1.2</td>
+</tr>
+<tr>
+<td>Knowledge graph</td>
+<td>Een graaf van gegevens, met entiteiten als nodes en relaties als edges, bedoeld om kennis over de werkelijkheid te verzamelen en over te brengen. De definitie is omstreden. Geen canoniek Entoli-begrip</td>
+<td>Figuur 5 als geheel: het schema plus de gegevens Mevrouw Jansen, Aanvraag A-123 en Besluit D-77</td>
+<td>4.1, 5.1.3; Hogan e.a. (2021)</td>
+</tr>
+<tr>
+<td>Canon</td>
+<td>Voor een domein de gezaghebbende semantische basis. Ze definieert een Semantic Model, waarin de canonieke betekenis is vastgelegd, en normatieve regels die de geldige interpretatie en het gebruik van die betekenis begrenzen (zie 5.1.1)</td>
+<td>Semantic Metamodel, Agent Development Canon en Data Modelling Canon (register Agent Development Canon)</td>
+<td>5.1.1; register Agent Development Canon</td>
+</tr>
+<tr>
+<td>Semantic Model (Entoli)</td>
+<td>De canonieke betekenis die een Canon definieert, volledig en gezaghebbend vastgelegd: alle canonieke Elementen en de Relationships ertussen. De structuur is een gerichte graaf; een gecompileerd bestand is daarvan een afgeleide representatie. De normatieve regels van de Canon horen er niet bij. Elke Canon heeft er precies één (aangescherpte omschrijving, zie 5.1.1)</td>
+<td>Het Semantic Model van de Agent Development Canon, met onder meer Agent, Agent Intent, Instruction Set en Execution en hun relaties (register Agent Development Canon)</td>
+<td>4.2, 5.1.1; register Agent Development Canon</td>
+</tr>
+<tr>
+<td>Element</td>
+<td>"Een expliciet gedefinieerde, benoemde eenheid van betekenis binnen een semantic model" (vertaald). In Entoli is dat het Semantic Model van een Canon</td>
+<td>Canon, Element, Relationship en Semantic Model in het fragment van Bijlage C; <em>Aanvraag</em> als Domain Element in 5.3 (illustratief)</td>
+<td>3.1.2; register Semantic Metamodel</td>
+</tr>
+<tr>
+<td>Relationship</td>
+<td>Een expliciete, gerichte semantische verbinding tussen twee Elementen, met precies één bron, precies één doel en precies één relatietype uit een vaste lijst (zie Bijlage B). Een Relationship is geen Element</td>
+<td>Canon <em>defines</em> Semantic Model (Bijlage C); Aanvraag <em>uses</em> Machtiging (5.3, illustratief)</td>
+<td>3.1.2, Bijlage B; register Semantic Metamodel</td>
+</tr>
+<tr>
+<td>Rule (Meta Concept)</td>
+<td>"Een expliciete uitspraak die binnen een vastgelegde reikwijdte iets verplicht, verbiedt of toestaat, en daarmee de geldige interpretatie of het gebruik van betekenis begrenst" (vertaald). Rule is de constructie, niet een afzonderlijke regel: elke afzonderlijke regel is een instantie van Rule en geen Meta Concept. Een Rule heeft precies één regeltype (verplichting, verbod of toestemming) en draagt zelf geen betekenis; die dragen Elementen en Relationships. Rule is geen Definition en geen Relationship. Het begrip omvat zowel regels die vastleggen wat moet gelden als regels die voorschrijven wat in een concrete handeling moet gebeuren</td>
+<td>REL-022, een verplichting: een <em>defines</em>-relatie drukt zeggenschap over betekenis uit, geen structuur (5.1.1). In Entoli zijn ook de Canon Rules en Operational Rules uit 6.1 regels in deze zin. Hun begrippen (Entoli Rule, Normative Rule, Operational Rule) zijn Domain Elements van de Agent Development Canon en zijn niet als <em>is-a</em> Rule gemodelleerd, omdat <em>is-a</em> over classificatielagen heen verboden is (REL-006)</td>
+<td>5.1.1, 6.1; register Semantic Metamodel (v3.3.0); inleidend document Semantic Metamodel; register Agent Development Canon</td>
+</tr>
+<tr>
+<td>Register</td>
+<td>De canonieke representatie: de leesbare, gezaghebbende vorm waarin een Canon zijn Elementen en Relationships vastlegt</td>
+<td>Het elementenregister van de Enterprise Agent Development Canon (Bijlage A)</td>
+<td>5.2</td>
+</tr>
+<tr>
+<td>Afgeleide semantic graph</td>
+<td>De afgeleide structurele representatie: een machinegebruikbare graaf die zonder taalmodel uit het register wordt gecompileerd. Ze is "derived, not authoritative"</td>
+<td><code>entoli-agent-development-semantic-model.graph.json</code>, waaruit het fragment in Bijlage C komt</td>
+<td>5.1.3, 5.2, Bijlage C</td>
+</tr>
+</tbody>
+</table>
+<h3 id="relaties">Relaties</h3>
+<div class="diagram-statisch" role="img" aria-label="Graaf van de begrippen uit Bijlage D in drie vlakken: Algemeen technisch, Gebruik in dit essay en Entoli, met benoemde relaties ertussen."><svg aria-roledescription="flowchart-v2" role="graphics-document document" viewBox="4 4 1087.890625 1703" style="max-width: 1087.890625px;" class="flowchart" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="100%" id="figuur-6"><style>#figuur-6{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#figuur-6 .error-icon{fill:#552222;}#figuur-6 .error-text{fill:#552222;stroke:#552222;}#figuur-6 .edge-thickness-normal{stroke-width:1px;}#figuur-6 .edge-thickness-thick{stroke-width:3.5px;}#figuur-6 .edge-pattern-solid{stroke-dasharray:0;}#figuur-6 .edge-thickness-invisible{stroke-width:0;fill:none;}#figuur-6 .edge-pattern-dashed{stroke-dasharray:3;}#figuur-6 .edge-pattern-dotted{stroke-dasharray:2;}#figuur-6 .marker{fill:#333333;stroke:#333333;}#figuur-6 .marker.cross{stroke:#333333;}#figuur-6 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#figuur-6 p{margin:0;}#figuur-6 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#figuur-6 .cluster-label text{fill:#333;}#figuur-6 .cluster-label span{color:#333;}#figuur-6 .cluster-label span p{background-color:transparent;}#figuur-6 .label text,#figuur-6 span{fill:#333;color:#333;}#figuur-6 .node rect,#figuur-6 .node circle,#figuur-6 .node ellipse,#figuur-6 .node polygon,#figuur-6 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#figuur-6 .rough-node .label text,#figuur-6 .node .label text,#figuur-6 .image-shape .label,#figuur-6 .icon-shape .label{text-anchor:middle;}#figuur-6 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#figuur-6 .rough-node .label,#figuur-6 .node .label,#figuur-6 .image-shape .label,#figuur-6 .icon-shape .label{text-align:center;}#figuur-6 .node.clickable{cursor:pointer;}#figuur-6 .root .anchor path{fill:#333333!important;stroke-width:0;stroke:#333333;}#figuur-6 .arrowheadPath{fill:#333333;}#figuur-6 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#figuur-6 .flowchart-link{stroke:#333333;fill:none;}#figuur-6 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#figuur-6 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#figuur-6 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#figuur-6 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#figuur-6 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#figuur-6 .cluster text{fill:#333;}#figuur-6 .cluster span{color:#333;}#figuur-6 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#figuur-6 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#figuur-6 rect.text{fill:none;stroke-width:0;}#figuur-6 .icon-shape,#figuur-6 .image-shape{background-color:rgba(232,232,232, 0.8);text-align:center;}#figuur-6 .icon-shape p,#figuur-6 .image-shape p{background-color:rgba(232,232,232, 0.8);padding:2px;}#figuur-6 .icon-shape rect,#figuur-6 .image-shape rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#figuur-6 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#figuur-6 .tech&gt;*{fill:#dbeafe!important;stroke:#2563eb!important;stroke-width:1.5px!important;color:#1e3a8a!important;}#figuur-6 .tech span{fill:#dbeafe!important;stroke:#2563eb!important;stroke-width:1.5px!important;color:#1e3a8a!important;}#figuur-6 .tech tspan{fill:#1e3a8a!important;}#figuur-6 .essay&gt;*{fill:#dcfce7!important;stroke:#16a34a!important;stroke-width:1.5px!important;color:#14532d!important;}#figuur-6 .essay span{fill:#dcfce7!important;stroke:#16a34a!important;stroke-width:1.5px!important;color:#14532d!important;}#figuur-6 .essay tspan{fill:#14532d!important;}#figuur-6 .entoli&gt;*{fill:#fef3c7!important;stroke:#d97706!important;stroke-width:1.5px!important;color:#78350f!important;}#figuur-6 .entoli span{fill:#fef3c7!important;stroke:#d97706!important;stroke-width:1.5px!important;color:#78350f!important;}#figuur-6 .entoli tspan{fill:#78350f!important;}</style><g><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="5" viewBox="0 0 10 10" class="marker flowchart-v2" id="figuur-6_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="4.5" viewBox="0 0 10 10" class="marker flowchart-v2" id="figuur-6_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="11" viewBox="0 0 10 10" class="marker flowchart-v2" id="figuur-6_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="-1" viewBox="0 0 10 10" class="marker flowchart-v2" id="figuur-6_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="12" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="figuur-6_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="-1" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="figuur-6_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker></g><g class="subgraphs"><g class="subgraph"><g data-look="classic" id="entoli" class="cluster"><rect height="597" width="1025.3385416666665" y="12" x="58.55208333333337" style="fill:#d977061a !important;stroke:#f59e0b !important;stroke-width:2px !important"></rect><g transform="translate(550.4557291666666, 12)" class="cluster-label"><foreignObject height="24" width="41.53125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Entoli</p></span></div></foreignObject></g></g></g><g class="subgraph"><g data-look="classic" id="essay" class="cluster"><rect height="426" width="588.9140625" y="718" x="12" style="fill:#16a34a1a !important;stroke:#22c55e !important;stroke-width:2px !important"></rect><g transform="translate(235.64453125, 718)" class="cluster-label"><foreignObject height="24" width="141.625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Gebruik in dit essay</p></span></div></foreignObject></g></g></g><g class="subgraph"><g data-look="classic" id="tech" class="cluster"><rect height="411" width="810.1953125" y="1288" x="124.5505208333334" style="fill:#2563eb1a !important;stroke:#3b82f6 !important;stroke-width:2px !important"></rect><g transform="translate(457.9528645833334, 1288)" class="cluster-label"><foreignObject height="24" width="143.390625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Algemeen technisch</p></span></div></foreignObject></g></g></g></g><g class="nodes"><g transform="translate(536.4088541666666, 78)" id="flowchart-CAN-12" class="node default entoli"><rect height="54" width="104.046875" y="-27" x="-52.0234375" style="fill:#fef3c7 !important;stroke:#d97706 !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-22.0234375, -12)" style="color:#78350f !important" class="label"><rect></rect><foreignObject height="24" width="44.046875"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(120, 53, 15) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#78350f !important"><p>Canon</p></span></div></foreignObject></g></g><g transform="translate(711.1609374999999, 570)" id="flowchart-ESM-13" class="node default entoli"><rect height="54" width="230.890625" y="-27" x="-115.4453125" style="fill:#fef3c7 !important;stroke:#d97706 !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-85.4453125, -12)" style="color:#78350f !important" class="label"><rect></rect><foreignObject height="24" width="170.890625"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(120, 53, 15) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#78350f !important"><p>Semantic Model (Entoli)</p></span></div></foreignObject></g></g><g transform="translate(734.25, 393)" id="flowchart-EL-14" class="node default entoli"><rect height="54" width="119.109375" y="-27" x="-59.5546875" style="fill:#fef3c7 !important;stroke:#d97706 !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-29.5546875, -12)" style="color:#78350f !important" class="label"><rect></rect><foreignObject height="24" width="59.109375"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(120, 53, 15) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#78350f !important"><p>Element</p></span></div></foreignObject></g></g><g transform="translate(942.76171875, 216)" id="flowchart-REL-15" class="node default entoli"><rect height="54" width="147.453125" y="-27" x="-73.7265625" style="fill:#fef3c7 !important;stroke:#d97706 !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-43.7265625, -12)" style="color:#78350f !important" class="label"><rect></rect><foreignObject height="24" width="87.453125"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(120, 53, 15) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#78350f !important"><p>Relationship</p></span></div></foreignObject></g></g><g transform="translate(553.75, 216)" id="flowchart-RU-16" class="node default entoli"><rect height="54" width="206.0625" y="-27" x="-103.03125" style="fill:#fef3c7 !important;stroke:#d97706 !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-73.03125, -12)" style="color:#78350f !important" class="label"><rect></rect><foreignObject height="24" width="146.0625"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(120, 53, 15) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#78350f !important"><p>Rule (Meta Concept)</p></span></div></foreignObject></g></g><g transform="translate(232, 393)" id="flowchart-REG-17" class="node default entoli"><rect height="54" width="117.75" y="-27" x="-58.875" style="fill:#fef3c7 !important;stroke:#d97706 !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-28.875, -12)" style="color:#78350f !important" class="label"><rect></rect><foreignObject height="24" width="57.75"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(120, 53, 15) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#78350f !important"><p>Register</p></span></div></foreignObject></g></g><g transform="translate(191.63802083333337, 216)" id="flowchart-GR-18" class="node default entoli"><rect height="54" width="242.171875" y="-27" x="-121.0859375" style="fill:#fef3c7 !important;stroke:#d97706 !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-91.0859375, -12)" style="color:#78350f !important" class="label"><rect></rect><foreignObject height="24" width="182.171875"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(120, 53, 15) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#78350f !important"><p>Afgeleide semantic graph</p></span></div></foreignObject></g></g><g transform="translate(493.046875, 784)" id="flowchart-AS-7" class="node default essay"><rect height="54" width="191.734375" y="-27" x="-95.8671875" style="fill:#dcfce7 !important;stroke:#16a34a !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-65.8671875, -12)" style="color:#14532d !important" class="label"><rect></rect><foreignObject height="24" width="131.734375"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(20, 83, 45) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#14532d !important"><p>Agentisch systeem</p></span></div></foreignObject></g></g><g transform="translate(266.69375, 1105)" id="flowchart-DB-8" class="node default essay"><rect height="54" width="159.078125" y="-27" x="-79.5390625" style="fill:#dcfce7 !important;stroke:#16a34a !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-49.5390625, -12)" style="color:#14532d !important" class="label"><rect></rect><foreignObject height="24" width="99.078125"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(20, 83, 45) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#14532d !important"><p>Domeinbegrip</p></span></div></foreignObject></g></g><g transform="translate(319.1140625, 937)" id="flowchart-SM-9" class="node default essay"><rect height="54" width="174.734375" y="-27" x="-87.3671875" style="fill:#dcfce7 !important;stroke:#16a34a !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-57.3671875, -12)" style="color:#14532d !important" class="label"><rect></rect><foreignObject height="24" width="114.734375"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(20, 83, 45) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#14532d !important"><p>Semantic model</p></span></div></foreignObject></g></g><g transform="translate(301.640625, 784)" id="flowchart-ONT-10" class="node default essay"><rect height="54" width="129.078125" y="-27" x="-64.5390625" style="fill:#dcfce7 !important;stroke:#16a34a !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-34.5390625, -12)" style="color:#14532d !important" class="label"><rect></rect><foreignObject height="24" width="69.078125"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(20, 83, 45) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#14532d !important"><p>Ontologie</p></span></div></foreignObject></g></g><g transform="translate(116, 784)" id="flowchart-KG-11" class="node default essay"><rect height="54" width="182.203125" y="-27" x="-91.1015625" style="fill:#dcfce7 !important;stroke:#16a34a !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-61.1015625, -12)" style="color:#14532d !important" class="label"><rect></rect><foreignObject height="24" width="122.203125"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(20, 83, 45) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#14532d !important"><p>Knowledge graph</p></span></div></foreignObject></g></g><g transform="translate(323.80937500000005, 1354)" id="flowchart-LLM-0" class="node default tech"><rect height="54" width="221.609375" y="-27" x="-110.8046875" style="fill:#dbeafe !important;stroke:#2563eb !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-80.8046875, -12)" style="color:#1e3a8a !important" class="label"><rect></rect><foreignObject height="24" width="161.609375"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(30, 58, 138) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#1e3a8a !important"><p>Groot taalmodel (LLM)</p></span></div></foreignObject></g></g><g transform="translate(402.3708333333334, 1522)" id="flowchart-NN-1" class="node default tech"><rect height="54" width="178.984375" y="-27" x="-89.4921875" style="fill:#dbeafe !important;stroke:#2563eb !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-59.4921875, -12)" style="color:#1e3a8a !important" class="label"><rect></rect><foreignObject height="24" width="118.984375"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(30, 58, 138) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#1e3a8a !important"><p>Neuraal netwerk</p></span></div></foreignObject></g></g><g transform="translate(402.3708333333334, 1660)" id="flowchart-MG-2" class="node default tech"><rect height="54" width="158.53125" y="-27" x="-79.265625" style="fill:#dbeafe !important;stroke:#2563eb !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-49.265625, -12)" style="color:#1e3a8a !important" class="label"><rect></rect><foreignObject height="24" width="98.53125"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(30, 58, 138) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#1e3a8a !important"><p>Modelgewicht</p></span></div></foreignObject></g></g><g transform="translate(746.9932291666668, 1522)" id="flowchart-TOK-3" class="node default tech"><rect height="54" width="101.421875" y="-27" x="-50.7109375" style="fill:#dbeafe !important;stroke:#2563eb !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-20.7109375, -12)" style="color:#1e3a8a !important" class="label"><rect></rect><foreignObject height="24" width="41.421875"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(30, 58, 138) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#1e3a8a !important"><p>Token</p></span></div></foreignObject></g></g><g transform="translate(585.7770833333334, 1522)" id="flowchart-ATT-4" class="node default tech"><rect height="54" width="127.828125" y="-27" x="-63.9140625" style="fill:#dbeafe !important;stroke:#2563eb !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-33.9140625, -12)" style="color:#1e3a8a !important" class="label"><rect></rect><foreignObject height="24" width="67.828125"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(30, 58, 138) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#1e3a8a !important"><p>Attention</p></span></div></foreignObject></g></g><g transform="translate(838.0427083333334, 1354)" id="flowchart-CV-5" class="node default tech"><rect height="54" width="169.40625" y="-27" x="-84.703125" style="fill:#dbeafe !important;stroke:#2563eb !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-54.703125, -12)" style="color:#1e3a8a !important" class="label"><rect></rect><foreignObject height="24" width="109.40625"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(30, 58, 138) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#1e3a8a !important"><p>Contextvenster</p></span></div></foreignObject></g></g><g transform="translate(209.71458333333337, 1522)" id="flowchart-HAL-6" class="node default tech"><rect height="54" width="146.328125" y="-27" x="-73.1640625" style="fill:#dbeafe !important;stroke:#2563eb !important;stroke-width:1.5px !important" class="basic label-container"></rect><g transform="translate(-43.1640625, -12)" style="color:#1e3a8a !important" class="label"><rect></rect><foreignObject height="24" width="86.328125"><div xmlns="http://www.w3.org/1999/xhtml" style="color: rgb(30, 58, 138) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel" style="color:#1e3a8a !important"><p>Hallucinatie</p></span></div></foreignObject></g></g></g><g class="edges edgePaths"><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_LLM_NN_0_0" d="M301.648,1381L301.648,1387.667C301.648,1394.333,301.648,1407.667,302.01,1414.805C302.372,1421.943,303.096,1422.886,303.929,1423.719C304.763,1424.552,305.706,1425.276,321.297,1425.638C336.889,1426,367.13,1426,382.722,1426.362C398.314,1426.724,399.256,1427.448,400.09,1428.281C400.923,1429.114,401.647,1430.057,402.009,1440.529C402.371,1451,402.371,1471,402.371,1481L402.371,1491"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_NN_MG_1_0" d="M402.371,1549L402.371,1629"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_LLM_TOK_2_0" d="M390.292,1381L390.292,1382.667C390.292,1384.333,390.292,1387.667,390.654,1389.805C391.016,1391.943,391.74,1392.886,392.573,1393.719C393.407,1394.552,394.349,1395.276,449.787,1395.638C505.225,1396,615.157,1396,670.595,1396.362C726.032,1396.724,726.975,1397.448,727.809,1398.281C728.642,1399.114,729.366,1400.057,729.728,1415.529C730.09,1431,730.09,1461,730.09,1476L730.09,1491"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_LLM_ATT_3_0" d="M345.97,1381L345.97,1385.167C345.97,1389.333,345.97,1397.667,346.332,1402.305C346.694,1406.943,347.418,1407.886,348.251,1408.719C349.085,1409.552,350.028,1410.276,388.8,1410.638C427.573,1411,504.175,1411,542.947,1411.362C581.72,1411.724,582.663,1412.448,583.496,1413.281C584.329,1414.114,585.053,1415.057,585.415,1428.029C585.777,1441,585.777,1466,585.777,1478.5L585.777,1491"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_CV_TOK_4_0" d="M838.043,1381L838.043,1396.667C838.043,1412.333,838.043,1443.667,837.681,1459.805C837.319,1475.943,836.595,1476.886,835.762,1477.719C834.928,1478.552,833.986,1479.276,822.823,1479.638C811.661,1480,790.279,1480,779.116,1480.362C767.954,1480.724,767.011,1481.448,766.178,1482.281C765.345,1483.114,764.621,1484.057,764.259,1485.529C763.897,1487,763.897,1489,763.897,1490L763.897,1491"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_SM_DB_5_0" d="M266.694,964L266.694,1074"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_SM_CV_6_0" d="M371.534,964L371.534,965.667C371.534,967.333,371.534,970.667,371.896,972.805C372.258,974.943,372.982,975.886,373.815,976.719C374.649,977.552,375.592,978.276,403.63,978.638C431.668,979,486.801,979,514.84,979.362C542.878,979.724,543.821,980.448,544.654,981.281C545.487,982.114,546.211,983.057,546.573,1011.445C546.935,1039.833,546.935,1095.667,546.935,1125.667C546.935,1155.667,546.935,1159.833,547.297,1162.388C547.659,1164.943,548.383,1165.886,549.216,1166.719C550.049,1167.552,550.992,1168.276,598.315,1168.638C645.637,1169,739.34,1169,786.663,1169.362C833.986,1169.724,834.928,1170.448,835.762,1171.281C836.595,1172.114,837.319,1173.057,837.681,1191.279C838.043,1209.5,838.043,1245,838.043,1269.833C838.043,1294.667,838.043,1308.833,838.043,1315.917L838.043,1323"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style=";stroke-dasharray:6 4;stroke:#6b7280;fill:none" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" id="L_SM_LLM_7_0" d="M336.588,964L336.588,968.167C336.588,972.333,336.588,980.667,336.949,985.305C337.311,989.943,338.035,990.886,338.869,991.719C339.702,992.552,340.645,993.276,346.224,993.638C351.803,994,362.018,994,367.597,994.362C373.176,994.724,374.118,995.448,374.952,996.281C375.785,997.114,376.509,998.057,376.871,1023.945C377.233,1049.833,377.233,1100.667,377.233,1140.917C377.233,1181.167,377.233,1210.833,376.871,1226.138C376.509,1241.443,375.785,1242.386,374.952,1243.219C374.118,1244.052,373.176,1244.776,359.311,1245.138C345.447,1245.5,318.661,1245.5,304.796,1245.862C290.932,1246.224,289.989,1246.948,289.156,1247.781C288.322,1248.614,287.598,1249.557,287.236,1255.029C286.874,1260.5,286.874,1270.5,286.874,1282.583C286.874,1294.667,286.874,1308.833,286.874,1315.917L286.874,1323"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_AS_SM_8_0" d="M461.091,811L461.091,824.167C461.091,837.333,461.091,863.667,460.729,877.305C460.367,890.943,459.643,891.886,458.81,892.719C457.977,893.552,457.034,894.276,443.303,894.638C429.572,895,403.053,895,389.322,895.362C375.592,895.724,374.649,896.448,373.815,897.281C372.982,898.114,372.258,899.057,371.896,900.529C371.534,902,371.534,904,371.534,905L371.534,906"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_AS_LLM_9_0" d="M525.003,811L525.003,812.667C525.003,814.333,525.003,817.667,525.003,820.167C525.003,822.667,525.003,824.333,525.836,825.167C526.669,826,528.336,826,528.491,826C528.647,826,527.291,826,527.446,826C527.602,826,529.268,826,530.102,826.833C530.935,827.667,530.935,829.333,530.935,883.583C530.935,937.833,530.935,1044.667,530.935,1103.083C530.935,1161.5,530.935,1171.5,531.297,1176.971C531.659,1182.443,532.383,1183.386,533.216,1184.219C534.049,1185.052,534.992,1185.776,537.667,1186.138C540.341,1186.5,544.748,1186.5,547.423,1186.862C550.097,1187.224,551.04,1187.948,551.874,1188.781C552.707,1189.614,553.431,1190.557,553.793,1202.112C554.155,1213.667,554.155,1235.833,553.793,1247.388C553.431,1258.943,552.707,1259.886,551.874,1260.719C551.04,1261.552,550.097,1262.276,519.058,1262.638C488.018,1263,426.881,1263,395.841,1263.362C364.801,1263.724,363.859,1264.448,363.025,1265.281C362.192,1266.114,361.468,1267.057,361.106,1269.612C360.744,1272.167,360.744,1276.333,360.744,1285.5C360.744,1294.667,360.744,1308.833,360.744,1315.917L360.744,1323"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style=";stroke-dasharray:6 4;stroke:#6b7280;fill:none" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" id="L_ONT_SM_10_0" d="M301.641,811L301.641,906"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style=";stroke-dasharray:6 4;stroke:#6b7280;fill:none" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" id="L_KG_SM_11_0" d="M116,811L116,821.667C116,832.333,116,853.667,116.362,864.805C116.724,875.943,117.448,876.886,118.281,877.719C119.114,878.552,120.057,879.276,143.978,879.638C167.898,880,214.796,880,238.716,880.362C262.637,880.724,263.579,881.448,264.413,882.281C265.246,883.114,265.97,884.057,266.332,888.029C266.694,892,266.694,899,266.694,902.5L266.694,906"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_ESM_SM_12_0" d="M711.161,597L711.161,600.25C711.161,603.5,711.161,610,711.161,615.333C711.161,620.667,711.161,624.833,710.799,627.388C710.437,629.943,709.713,630.886,708.88,631.719C708.047,632.552,707.104,633.276,653.302,633.638C599.501,634,492.84,634,439.038,634.362C385.237,634.724,384.294,635.448,383.461,636.281C382.627,637.114,381.904,638.057,381.542,650.445C381.18,662.833,381.18,686.667,381.18,726C381.18,765.333,381.18,820.167,380.818,848.055C380.456,875.943,379.732,876.886,378.899,877.719C378.065,878.552,377.122,879.276,370.886,879.638C364.649,880,353.118,880,346.881,880.362C340.645,880.724,339.702,881.448,338.869,882.281C338.035,883.114,337.311,884.057,336.949,888.029C336.588,892,336.588,899,336.588,902.5L336.588,906"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_CAN_ESM_13_0" d="M519.068,105L519.068,106.667C519.068,108.333,519.068,111.667,518.706,113.805C518.344,115.943,517.62,116.886,516.787,117.719C515.953,118.552,515.011,119.276,491.223,119.638C467.436,120,420.804,120,397.016,120.362C373.229,120.724,372.286,121.448,371.453,122.281C370.62,123.114,369.896,124.057,369.534,188.362C369.172,252.667,369.172,380.333,369.534,444.638C369.896,508.943,370.62,509.886,371.453,510.719C372.286,511.552,373.229,512.276,425.184,512.638C477.139,513,580.105,513,632.06,513.362C684.015,513.724,684.957,514.448,685.791,515.281C686.624,516.114,687.348,517.057,687.71,521.029C688.072,525,688.072,532,688.072,535.5L688.072,539"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_EL_ESM_14_0" d="M734.25,420L734.25,539"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_REL_ESM_15_0" d="M979.625,243L979.625,287.167C979.625,331.333,979.625,419.667,979.263,464.305C978.901,508.943,978.177,509.886,977.344,510.719C976.511,511.552,975.568,512.276,943.564,512.638C911.559,513,848.494,513,816.49,513.362C784.485,513.724,783.543,514.448,782.709,515.281C781.876,516.114,781.152,517.057,780.79,521.029C780.428,525,780.428,532,780.428,535.5L780.428,539"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_REL_EL_16_0" d="M942.762,243L942.762,247.167C942.762,251.333,942.762,259.667,942.4,264.305C942.038,268.943,941.314,269.886,940.481,270.719C939.647,271.552,938.705,272.276,931.005,272.638C923.305,273,908.848,273,901.148,273.362C893.448,273.724,892.505,274.448,891.672,275.281C890.838,276.114,890.114,277.057,889.753,288.862C889.391,300.667,889.391,323.333,889.029,335.138C888.667,346.943,887.943,347.886,887.11,348.719C886.276,349.552,885.333,350.276,865.635,350.638C845.936,351,807.482,351,787.783,351.362C768.085,351.724,767.142,352.448,766.308,353.281C765.475,354.114,764.751,355.057,764.389,356.529C764.027,358,764.027,360,764.027,361L764.027,362"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_REL_EL_17_0" d="M905.898,243L905.898,244.667C905.898,246.333,905.898,249.667,905.537,251.805C905.175,253.943,904.451,254.886,903.617,255.719C902.784,256.552,901.841,257.276,874.428,257.638C847.016,258,793.133,258,765.72,258.362C738.307,258.724,737.364,259.448,736.531,260.281C735.698,261.114,734.974,262.057,734.612,279.029C734.25,296,734.25,329,734.25,345.5L734.25,362"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style=";stroke-dasharray:6 4;stroke:#6b7280;fill:none" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" id="L_REG_ESM_18_0" d="M232,420L232,437.167C232,454.333,232,488.667,232.362,506.305C232.724,523.943,233.448,524.886,234.281,525.719C235.114,526.552,236.057,527.276,303.178,527.638C370.298,528,503.596,528,570.716,528.362C637.837,528.724,638.779,529.448,639.613,530.281C640.446,531.114,641.17,532.057,641.532,533.529C641.894,535,641.894,537,641.894,538L641.894,539"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_GR_REG_19_0" d="M232,243L232,362"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_GR_KG_20_0" d="M151.276,243L151.276,244.667C151.276,246.333,151.276,249.667,150.914,251.805C150.552,253.943,149.828,254.886,148.995,255.719C148.162,256.552,147.219,257.276,142.535,257.638C137.851,258,129.425,258,124.741,258.362C120.057,258.724,119.114,259.448,118.281,260.281C117.448,261.114,116.724,262.057,116.362,321.445C116,380.833,116,498.667,116,573.25C116,647.833,116,679.167,116,701.917C116,724.667,116,738.833,116,745.917L116,753"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_LLM_HAL_21_0" d="M257.327,1381L257.327,1396.667C257.327,1412.333,257.327,1443.667,256.965,1459.805C256.603,1475.943,255.879,1476.886,255.046,1477.719C254.212,1478.552,253.269,1479.276,250.594,1479.638C247.919,1480,243.511,1480,240.835,1480.362C238.16,1480.724,237.217,1481.448,236.384,1482.281C235.55,1483.114,234.826,1484.057,234.465,1485.529C234.103,1487,234.103,1489,234.103,1490L234.103,1491"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style=";stroke-dasharray:6 4;stroke:#6b7280;fill:none" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" id="L_SM_HAL_22_0" d="M301.641,964L301.641,970.667C301.641,977.333,301.641,990.667,302.003,997.805C302.364,1004.943,303.088,1005.886,303.922,1006.719C304.755,1007.552,305.698,1008.276,314.435,1008.638C323.171,1009,339.702,1009,348.439,1009.362C357.176,1009.724,358.118,1010.448,358.952,1011.281C359.785,1012.114,360.509,1013.057,360.871,1036.445C361.233,1059.833,361.233,1105.667,361.233,1130.667C361.233,1155.667,361.233,1159.833,360.871,1162.388C360.509,1164.943,359.785,1165.886,358.952,1166.719C358.118,1167.552,357.176,1168.276,329.053,1168.638C300.931,1169,245.629,1169,217.506,1169.362C189.384,1169.724,188.441,1170.448,187.608,1171.281C186.774,1172.114,186.05,1173.057,185.688,1191.279C185.327,1209.5,185.327,1245,185.327,1297.833C185.327,1350.667,185.327,1420.833,185.327,1455.917L185.327,1491"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_CAN_RU_23_0" d="M553.75,105L553.75,185"></path><path marker-end="url(#figuur-6_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_RU_EL_24_0" d="M553.75,243L553.75,260.167C553.75,277.333,553.75,311.667,554.112,329.305C554.474,346.943,555.198,347.886,556.031,348.719C556.864,349.552,557.807,350.276,581.732,350.638C605.658,351,652.565,351,676.49,351.362C700.415,351.724,701.358,352.448,702.192,353.281C703.025,354.114,703.749,355.057,704.111,356.529C704.473,358,704.473,360,704.473,361L704.473,362"></path></g><g class="edgeLabels"><g transform="translate(401.9255208333334, 1453)" class="edgeLabel"><g transform="translate(-52.0546875, -12)" class="label"><foreignObject height="24" width="104.109375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>is gebouwd als</p></span></div></foreignObject></g></g><g transform="translate(402.0973958333334, 1591)" class="edgeLabel"><g transform="translate(-19.2265625, -12)" class="label"><foreignObject height="24" width="38.453125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>heeft</p></span></div></foreignObject></g></g><g transform="translate(730.0661458333334, 1453)" class="edgeLabel"><g transform="translate(-61.4765625, -12)" class="label"><foreignObject height="24" width="122.953125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>verwerkt tekst in</p></span></div></foreignObject></g></g><g transform="translate(585.6833333333334, 1453)" class="edgeLabel"><g transform="translate(-67.90625, -12)" class="label"><foreignObject height="24" width="135.8125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>past doorgaans toe</p></span></div></foreignObject></g></g><g transform="translate(837.6364583333334, 1453)" class="edgeLabel"><g transform="translate(-31.09375, -12)" class="label"><foreignObject height="24" width="62.1875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>begrenst</p></span></div></foreignObject></g></g><g transform="translate(266.5453125, 1036)" class="edgeLabel"><g transform="translate(-30.8515625, -12)" class="label"><foreignObject height="24" width="61.703125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>legt vast</p></span></div></foreignObject></g></g><g transform="translate(838.0270833333334, 1216)" class="edgeLabel"><g transform="translate(-80.984375, -12)" class="label"><foreignObject height="24" width="161.96875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>wordt meegegeven via</p></span></div></foreignObject></g></g><g transform="translate(376.94375, 1216)" class="edgeLabel"><g transform="translate(-81.2109375, -12)" class="label"><foreignObject height="24" width="162.421875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>kan richting geven aan</p></span></div></foreignObject></g></g><g transform="translate(461.0130208333333, 853)" class="edgeLabel"><g transform="translate(-54.921875, -12)" class="label"><foreignObject height="24" width="109.84375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>kan raadplegen</p></span></div></foreignObject></g></g><g transform="translate(553.9828125, 1216)" class="edgeLabel"><g transform="translate(-78.328125, -12)" class="label"><foreignObject height="24" width="156.65625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>wordt uitgevoerd met</p></span></div></foreignObject></g></g><g transform="translate(301.5, 853)" class="edgeLabel"><g transform="translate(-41.859375, -12)" class="label"><foreignObject height="24" width="83.71875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>scherpt aan</p></span></div></foreignObject></g></g><g transform="translate(115.7890625, 853)" class="edgeLabel"><g transform="translate(-91.7890625, -12)" class="label"><foreignObject height="24" width="183.578125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>kan als schema gebruiken</p></span></div></foreignObject></g></g><g transform="translate(380.78125, 663.5)" class="edgeLabel"><g transform="translate(-88.6015625, -12)" class="label"><foreignObject height="24" width="177.203125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>geeft eigen invulling aan</p></span></div></foreignObject></g></g><g transform="translate(368.7109375, 312)" class="edgeLabel"><g transform="translate(-70.0390625, -12)" class="label"><foreignObject height="24" width="140.078125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>definieert (defines)</p></span></div></foreignObject></g></g><g transform="translate(734.1328125, 474)" class="edgeLabel"><g transform="translate(-92.3828125, -12)" class="label"><foreignObject height="24" width="184.765625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>is onderdeel van (part-of)</p></span></div></foreignObject></g></g><g transform="translate(979.5078125, 393)" class="edgeLabel"><g transform="translate(-92.3828125, -12)" class="label"><foreignObject height="24" width="184.765625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>is onderdeel van (part-of)</p></span></div></foreignObject></g></g><g transform="translate(889.2578125, 312)" class="edgeLabel"><g transform="translate(-75.3671875, -12)" class="label"><foreignObject height="24" width="150.734375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>heeft als bron (from)</p></span></div></foreignObject></g></g><g transform="translate(733.8203125, 312)" class="edgeLabel"><g transform="translate(-65.0703125, -12)" class="label"><foreignObject height="24" width="130.140625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>heeft als doel (to)</p></span></div></foreignObject></g></g><g transform="translate(232, 474)" class="edgeLabel"><g transform="translate(-100, -24)" class="label"><foreignObject height="48" width="200"><div style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>is de canonieke representatie van</p></span></div></foreignObject></g></g><g transform="translate(231.8359375, 312)" class="edgeLabel"><g transform="translate(-51.8359375, -12)" class="label"><foreignObject height="24" width="103.671875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>is afgeleid van</p></span></div></foreignObject></g></g><g transform="translate(115.9453125, 663.5)" class="edgeLabel"><g transform="translate(-67.9453125, -12)" class="label"><foreignObject height="24" width="135.890625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>lijkt structureel op</p></span></div></foreignObject></g></g><g transform="translate(257.2015625, 1453)" class="edgeLabel"><g transform="translate(-55.875, -12)" class="label"><foreignObject height="24" width="111.75"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>kan produceren</p></span></div></foreignObject></g></g><g transform="translate(185.02968750000002, 1216)" class="edgeLabel"><g transform="translate(-93.203125, -12)" class="label"><foreignObject height="24" width="186.40625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>kan de kans verkleinen op</p></span></div></foreignObject></g></g><g transform="translate(553.4765625, 147)" class="edgeLabel"><g transform="translate(-87.7265625, -12)" class="label"><foreignObject height="24" width="175.453125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>definieert instanties van</p></span></div></foreignObject></g></g><g transform="translate(553.75, 312)" class="edgeLabel"><g transform="translate(-100, -24)" class="label"><foreignObject height="48" width="200"><div style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>begrenst interpretatie en gebruik van</p></span></div></foreignObject></g></g></g></svg></div>
+<!-- Bron van Figuur 6 (Mermaid met ELK-layout); vooraf gerenderd omdat ELK niet overal laadt. -->
+<pre class="mermaid-bron" hidden>---
+config:
+  layout: elk
+---
+flowchart TB
+  subgraph tech[&quot;Algemeen technisch&quot;]
+    direction LR
+    LLM[&quot;Groot taalmodel (LLM)&quot;]
+    NN[&quot;Neuraal netwerk&quot;]
+    MG[&quot;Modelgewicht&quot;]
+    TOK[&quot;Token&quot;]
+    ATT[&quot;Attention&quot;]
+    CV[&quot;Contextvenster&quot;]
+    HAL[&quot;Hallucinatie&quot;]
+  end
+  subgraph essay[&quot;Gebruik in dit essay&quot;]
+    direction LR
+    AS[&quot;Agentisch systeem&quot;]
+    DB[&quot;Domeinbegrip&quot;]
+    SM[&quot;Semantic model&quot;]
+    ONT[&quot;Ontologie&quot;]
+    KG[&quot;Knowledge graph&quot;]
+  end
+  subgraph entoli[&quot;Entoli&quot;]
+    direction LR
+    CAN[&quot;Canon&quot;]
+    ESM[&quot;Semantic Model (Entoli)&quot;]
+    EL[&quot;Element&quot;]
+    REL[&quot;Relationship&quot;]
+    RU[&quot;Rule (Meta Concept)&quot;]
+    REG[&quot;Register&quot;]
+    GR[&quot;Afgeleide semantic graph&quot;]
+  end
+  LLM -- &quot;is gebouwd als&quot; --&gt; NN
+  NN -- &quot;heeft&quot; --&gt; MG
+  LLM -- &quot;verwerkt tekst in&quot; --&gt; TOK
+  LLM -- &quot;past doorgaans toe&quot; --&gt; ATT
+  CV -- &quot;begrenst&quot; --&gt; TOK
+  SM -- &quot;legt vast&quot; --&gt; DB
+  SM -- &quot;wordt meegegeven via&quot; --&gt; CV
+  SM -. &quot;kan richting geven aan&quot; .-&gt; LLM
+  AS -- &quot;kan raadplegen&quot; --&gt; SM
+  AS -- &quot;wordt uitgevoerd met&quot; --&gt; LLM
+  ONT -. &quot;scherpt aan&quot; .-&gt; SM
+  KG -. &quot;kan als schema gebruiken&quot; .-&gt; SM
+  ESM -- &quot;geeft eigen invulling aan&quot; --&gt; SM
+  CAN -- &quot;definieert (defines)&quot; --&gt; ESM
+  EL -- &quot;is onderdeel van (part-of)&quot; --&gt; ESM
+  REL -- &quot;is onderdeel van (part-of)&quot; --&gt; ESM
+  REL -- &quot;heeft als bron (from)&quot; --&gt; EL
+  REL -- &quot;heeft als doel (to)&quot; --&gt; EL
+  REG -. &quot;is de canonieke representatie van&quot; .-&gt; ESM
+  GR -- &quot;is afgeleid van&quot; --&gt; REG
+  GR -- &quot;lijkt structureel op&quot; --&gt; KG
+  LLM -- &quot;kan produceren&quot; --&gt; HAL
+  SM -. &quot;kan de kans verkleinen op&quot; .-&gt; HAL
+  CAN -- &quot;definieert instanties van&quot; --&gt; RU
+  RU -- &quot;begrenst interpretatie en gebruik van&quot; --&gt; EL
+  classDef tech fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#1e3a8a
+  classDef essay fill:#dcfce7,stroke:#16a34a,stroke-width:1.5px,color:#14532d
+  classDef entoli fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#78350f
+  class LLM,NN,MG,TOK,ATT,CV,HAL tech
+  class AS,DB,SM,ONT,KG essay
+  class CAN,ESM,EL,REL,RU,REG,GR entoli
+  style tech fill:#2563eb1a,stroke:#3b82f6,stroke-width:2px
+  style essay fill:#16a34a1a,stroke:#22c55e,stroke-width:2px
+  style entoli fill:#d977061a,stroke:#f59e0b,stroke-width:2px
+  linkStyle 7,10,11,18,22 stroke-dasharray:6 4,stroke:#6b7280
+</pre>
+<p><em>Figuur 6. Eigen visualisatie van de begrippen uit Bijlage D en hun relaties. Doorgetrokken pijlen steunen op een bron of de hoofdtekst, onderbroken pijlen zijn een interpretatie van de auteur.</em></p>
+</main>
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default" });
+await mermaid.run({ querySelector: "pre.mermaid" });
+</script>
+</body>
+</html>
