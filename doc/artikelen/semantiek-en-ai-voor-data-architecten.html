@@ -30,12 +30,16 @@ code { background:var(--code); padding:.1rem .3rem; border-radius:3px; font-size
 pre { background:var(--code); padding:1rem; overflow-x:auto; border-radius:4px; }
 pre code { background:none; padding:0; }
 pre.mermaid { background:transparent; text-align:center; }
+nav.terug { margin:0 0 1rem; font-size:.95rem; }
+nav.terug a { text-decoration:none; }
+nav.terug a:hover { text-decoration:underline; }
 .diagram-statisch { background:#fff; border-radius:6px; padding:.5rem; margin:1rem 0; overflow-x:auto; }
 .diagram-statisch svg { display:block; margin:0 auto; min-width:40rem; height:auto; }
 </style>
 </head>
 <body>
 <main>
+<nav class="terug" aria-label="Terug"><a href="../">← Home</a></nav>
 <div class="cover"><img class="cover-img" src="../assets/AI-verwerking%20tussen%20documenten%20en%20systemen.png" alt="Illustratie: links mensen in overleg bij documenten, rechts servers en schermen met diagrammen. In het midden stromen gegevens door de lagen van een neuraal netwerk; daarboven staat een model van verbonden begrippen."><p class="cover-meta">Hans Blok · 18 oktober 2026</p></div>
 <h1 id="wat-een-mens-stilzwijgend-weet-moet-voor-een-llm-op-papier-staan">Wat een mens stilzwijgend weet, moet voor een LLM op papier staan</h1>
 <p><em>Over semantic models, ontologieën, knowledge graphs en de vraag hoe ze in Entoli worden ingevuld. Een discussiestuk voor data-architecten.</em></p>
@@ -917,6 +921,7 @@ flowchart TB
   linkStyle 7,10,11,18,22 stroke-dasharray:6 4,stroke:#6b7280
 </pre>
 <p><em>Figuur 6. Eigen visualisatie van de begrippen uit Bijlage D en hun relaties. Doorgetrokken pijlen steunen op een bron of de hoofdtekst, onderbroken pijlen zijn een interpretatie van de auteur.</em></p>
+<nav class="terug" aria-label="Terug"><a href="../">← Home</a></nav>
 </main>
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
