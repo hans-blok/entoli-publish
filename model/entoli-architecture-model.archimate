@@ -3847,7 +3847,7 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
           <sourceConnection xsi:type="archimate:Connection" id="id-02cda352ca7b451dafbbb607f3bf25e2" source="id-b40d5f6661324d0fa6d5db3323b00b99" target="id-2e2645f3d8664b2d91daeb0109f5136c" archimateRelationship="id-e617219ea1d44ddda848bafc8aa91de8"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-70403b30d8244f42a66dfaaec346cf8c" source="id-b40d5f6661324d0fa6d5db3323b00b99" target="id-75f4c675f8cd4c82ba3c8b6f1b25cd79" archimateRelationship="id-aba60ccef7794a86b6ec9521783551e2"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-2e2645f3d8664b2d91daeb0109f5136c" targetConnections="id-02cda352ca7b451dafbbb607f3bf25e2 id-96d8599ca06c44899f9a7c36a5707a1c id-9497773202a04d1b928ca20c3f11594c id-c03824e9e3b842e0b6a0b7caea252570" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+        <child xsi:type="archimate:DiagramObject" id="id-2e2645f3d8664b2d91daeb0109f5136c" targetConnections="id-02cda352ca7b451dafbbb607f3bf25e2 id-9497773202a04d1b928ca20c3f11594c id-c03824e9e3b842e0b6a0b7caea252570" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
           <bounds x="673" y="792" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-c914654f55ff4a179a9f27fc59fcff81" source="id-2e2645f3d8664b2d91daeb0109f5136c" target="id-f0948afcb25c4e2888a123623d496630" archimateRelationship="id-8ef81509a3e145e38a07c7c0ffbaabf8">
             <bendpoint startX="-13" startY="273" endX="-617" endY="-267"/>
@@ -3858,11 +3858,9 @@ Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken expos
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-75f4c675f8cd4c82ba3c8b6f1b25cd79" targetConnections="id-70403b30d8244f42a66dfaaec346cf8c" textPosition="1" archimateElement="id-9c775a49c62f4d49a90673446cec6a64">
           <bounds x="481" y="792" width="120" height="55"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-c03824e9e3b842e0b6a0b7caea252570" source="id-75f4c675f8cd4c82ba3c8b6f1b25cd79" target="id-2e2645f3d8664b2d91daeb0109f5136c" archimateRelationship="id-6e02390b935e4dc7944d3e148dc29ae5"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-96d8599ca06c44899f9a7c36a5707a1c" source="id-75f4c675f8cd4c82ba3c8b6f1b25cd79" target="id-2e2645f3d8664b2d91daeb0109f5136c" archimateRelationship="id-a910f844d5e747cf921c8657b7088c32">
-            <bendpoint startX="24" startY="45" endX="-126" endY="45"/>
-            <bendpoint startX="36" startY="57" endX="-114" endY="57"/>
-            <bendpoint startX="228" startY="57" endX="-72" endY="57"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-c03824e9e3b842e0b6a0b7caea252570" source="id-75f4c675f8cd4c82ba3c8b6f1b25cd79" target="id-2e2645f3d8664b2d91daeb0109f5136c" archimateRelationship="id-6e02390b935e4dc7944d3e148dc29ae5">
+            <bendpoint startX="47" startY="57" endX="-145" endY="57"/>
+            <bendpoint startX="143" startY="57" endX="-49" endY="57"/>
           </sourceConnection>
           <sourceConnection xsi:type="archimate:Connection" id="id-9497773202a04d1b928ca20c3f11594c" source="id-75f4c675f8cd4c82ba3c8b6f1b25cd79" target="id-2e2645f3d8664b2d91daeb0109f5136c" archimateRelationship="id-a910f844d5e747cf921c8657b7088c32">
             <bendpoint startX="24" startY="-51" endX="-126" endY="-51"/>
@@ -5134,5 +5132,129 @@ no execution</documentation>
     <folder name="f.migration-planning" id="id-dbe265e1b0a34b18be1053bca9de601c"/>
     <folder name="g.implementation-governance" id="id-141aafc9447b48f284a3fff9b6c0504e"/>
     <folder name="h.architecture-change-management" id="id-50ca131bd7134a47b1a56961d41e604a"/>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="archimate-methode" id="id-9ae9c60d36f049c4a949ace7f240ecd0">
+      <child xsi:type="archimate:DiagramObject" id="id-31164367d8be4af78d1d62a94bb432ed" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
+        <bounds x="204" y="108" width="313" height="73"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-75d2f21abaa447b6bb89aedcd4047c47" source="id-31164367d8be4af78d1d62a94bb432ed" target="id-a9213a2a9db34447ab41e376bc77deeb" archimateRelationship="id-e617219ea1d44ddda848bafc8aa91de8"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-6dd3d545502f4f01982f89b9a81e20f9" source="id-31164367d8be4af78d1d62a94bb432ed" target="id-23a0f55ce5ee419f991eae671ebe2523" archimateRelationship="id-aba60ccef7794a86b6ec9521783551e2"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-a9213a2a9db34447ab41e376bc77deeb" targetConnections="id-75d2f21abaa447b6bb89aedcd4047c47 id-29277d3da8604e75bae6f547b318a690 id-6e3b2f2a84e84c6cb4525b05ef32f253" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+        <bounds x="396" y="288" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-23a0f55ce5ee419f991eae671ebe2523" targetConnections="id-6dd3d545502f4f01982f89b9a81e20f9" textPosition="1" archimateElement="id-9c775a49c62f4d49a90673446cec6a64">
+        <bounds x="204" y="288" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-6e3b2f2a84e84c6cb4525b05ef32f253" source="id-23a0f55ce5ee419f991eae671ebe2523" target="id-a9213a2a9db34447ab41e376bc77deeb" archimateRelationship="id-6e02390b935e4dc7944d3e148dc29ae5">
+          <bendpoint startX="36" startY="58" endX="-156" endY="58"/>
+          <bendpoint startX="84" startY="58" endX="-108" endY="58"/>
+          <bendpoint startX="144" startY="58" endX="-48" endY="58"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-29277d3da8604e75bae6f547b318a690" source="id-23a0f55ce5ee419f991eae671ebe2523" target="id-a9213a2a9db34447ab41e376bc77deeb" archimateRelationship="id-a910f844d5e747cf921c8657b7088c32">
+          <bendpoint startX="24" startY="-51" endX="-126" endY="-51"/>
+          <bendpoint startX="120" startY="-51" endX="-30" endY="-51"/>
+        </sourceConnection>
+      </child>
+      <documentation>DEFINITIE &#xD;
+Agent Development is het ontwikkelen van kennis, modellen, specificaties, software en andere professionele werkproducten met inzet van Agents als uitvoerende professionele functies. Het begrip beschrijft daarmee een manier van ontwikkelen mét Agents, niet uitsluitend het ontwikkelen ván Agents. Het ontwikkelen en onderhouden van Agents kan zelf onderdeel zijn van Agent Development, maar is slechts één mogelijke toepassing.&#xD;
+&#xD;
+DOEL &#xD;
+Deze view toont het conceptuele objectmodel dat nodig is om ontwikkelwerk met Agents expliciet te specificeren, te organiseren, uit te voeren en te beheersen. De view maakt zichtbaar hoe kennis en canon, professionele functies en intents, regels en execution regimes, orchestratie, modelkeuze, instructies, menselijke context en werkproducten samenkomen in concrete Executions.&#xD;
+&#xD;
+LEIDENDE VRAAG &#xD;
+Welke concepten en samenhangen zijn nodig om ontwikkelwerk met Agents op een expliciete, herhaalbare en beheerste manier te organiseren en uit te voeren?&#xD;
+&#xD;
+SCOPE &#xD;
+Agent Development omvat ontwikkelwerk waarbij Agents professionele werkzaamheden uitvoeren of ondersteunen. Dat kan bijvoorbeeld gaan om domeinanalyse door een NIAM-analist, conceptuele modellering, logisch modelleren, architectuurreview, specificatie, realisatie en testing. Het ontwikkelen of wijzigen van Agents, Agent Intents, Agent Packages en hun canon is eveneens een mogelijke vorm van Agent Development, maar vormt niet de definitie van het begrip.&#xD;
+&#xD;
+LEESWIJZE &#xD;
+De view kan globaal van links naar rechts en van boven naar beneden worden gelezen. Links ligt de semantische grondslag: Knowledge Domain, Knowledge Specification, Canon, Semantic Model, Element en Relationship. Centraal staan de professionele functie en haar contract: Agent, Agent Intent, Rules, Reasoning Mode en Execution Regime. Rechts ligt de operationele configuratie: Operational Context, Orchestration Specification, Execution Step Specification, LLM Model en Model Assignment. Onderaan wordt zichtbaar hoe deze onderdelen voor concrete uitvoering samenkomen in Instruction Set, Execution, Human Context, Handoff en Artifact.&#xD;
+&#xD;
+KERNSTRUCTUUR &#xD;
+Een Knowledge Specification specificeert kennis voor een Knowledge Domain, kan door een Canon worden gerealiseerd en scopet Agent Packages. Een Canon definieert een Semantic Model en canonieke Rules. Een Agent Package bevat Agents; een Agent exposeert Agent Intents. Reasoning Mode en Rules begrenzen het gedrag van Agent en Agent Intent. Voor cognitieve uitvoering worden Source Regime, Synthesis Regime en Task Regime gebruikt als onderscheiden dimensies van Execution Regime. Een Entoli Context gebruikt herbruikbare Orchestration Specifications, die uit Execution Step Specifications bestaan. Een Execution Step Specification roept een Agent Intent aan en kan met een Model Assignment worden geconfigureerd. Voor een concrete Execution wordt een Instruction Set samengesteld uit de relevante semantiek, regels en context. De Execution kan Artifacts en een Handoff produceren.&#xD;
+&#xD;
+ARCHITECTUURBETEKENIS &#xD;
+De view maakt een fundamentele scheiding zichtbaar tussen betekenis, professionele capability, configuratie en runtime. Een Agent is niet de Execution; een Agent Intent is niet de Execution Step Specification; een Semantic Model is niet het Instruction Set; een Orchestration Specification is niet een runtimeproces; en een Artifact is niet hetzelfde als een Handoff. Juist deze scheidingen maken het mogelijk om dezelfde canon, professionele functies en configuraties gecontroleerd in meerdere uitvoeringen en klantcontexten toe te passen.&#xD;
+&#xD;
+GRENZEN &#xD;
+Deze view beschrijft het conceptuele objectmodel en niet de technische implementatie ervan. Zij specificeert geen databaseschema, API-contract, bestandsformaat, deploymentmodel, runtime-infrastructuur of gebruikersinterface. De getoonde Business Objects zijn conceptuele typen; de view toont geen concrete instances. Ook procesvolgorde, lifecycle en technische dataflows worden alleen weergegeven voor zover zij noodzakelijk zijn om de conceptuele relaties te begrijpen.&#xD;
+&#xD;
+DETAILNIVEAU &#xD;
+De view is bedoeld als integrale overzichtsview. Voor precieze definities, invarianten, toegestane waarden en lokale relaties is de documentatie van de afzonderlijke Business Objects leidend. Gespecialiseerde views mogen subsets van dit model tonen om specifieke architectuurvragen te beantwoorden, maar mogen de betekenis van de Business Objects en relaties niet zelfstandig veranderen.&#xD;
+&#xD;
+VOORBEELD &#xD;
+Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken exposen. Een Orchestration Specification kan een Execution Step Specification bevatten die dit intent aanroept. Voor een concrete Execution wordt een Instruction Set samengesteld met toepasselijke canonieke semantiek, Rules, Human Context en eventuele bestaande Artifacts of Handoffs. De uitvoering kan vervolgens een conceptueel model als Artifact en relevante interpretatie voor een Logisch modelleur als Handoff produceren.</documentation>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="canon" id="id-6715b550f4d24b86baa877297e393eed">
+      <child xsi:type="archimate:DiagramObject" id="id-9e3cf760aa0a4b549813f9008ad516fc" targetConnections="id-35ce3a70906e4c2daae3065b7a1ccca1 id-805ad6c2ae964496a57512e74f035694" textPosition="2" archimateElement="id-d9f34a0d340843fdb0bd11abfca6ed80">
+        <bounds x="876" y="594" width="205" height="139"/>
+        <child xsi:type="archimate:DiagramObject" id="id-b8ad77ebc57246beabf83d9c824b730f" targetConnections="id-8376dcf79da54f3d9d1fde83039b1393" textPosition="2" archimateElement="id-160fad28dcac4d0fb6f313dbc389f49b">
+          <bounds x="17" y="15" width="164" height="94"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-35ce3a70906e4c2daae3065b7a1ccca1" source="id-b8ad77ebc57246beabf83d9c824b730f" target="id-9e3cf760aa0a4b549813f9008ad516fc" archimateRelationship="id-02d3c16b25e84c8e9a102c8c5acd1bb1"/>
+          <child xsi:type="archimate:DiagramObject" id="id-7f37bf29b87e420892d5656ea9e61fc3" targetConnections="id-9de562e1747d4381826e5ca5ac8d3da8" textPosition="1" archimateElement="id-03e98ce0196345b599d814c30d4a986a">
+            <bounds x="24" y="12" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-8376dcf79da54f3d9d1fde83039b1393" source="id-7f37bf29b87e420892d5656ea9e61fc3" target="id-b8ad77ebc57246beabf83d9c824b730f" archimateRelationship="id-bdbf7066931b42988153e938b6965728"/>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-e973e5469b4446429de3b14f1e976da2" textPosition="1" archimateElement="id-6d66d6cdd2534270b0f3732e4ecec8cc">
+        <bounds x="481" y="456" width="600" height="73"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-f49e65711c2e420594931c5cee62df57" source="id-e973e5469b4446429de3b14f1e976da2" target="id-44ad74ad5ca444eca704954dfd3fb1bf" archimateRelationship="id-3a220be3cfb94eb3bcddc1a0ccdd9f8d"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-9de562e1747d4381826e5ca5ac8d3da8" source="id-e973e5469b4446429de3b14f1e976da2" target="id-7f37bf29b87e420892d5656ea9e61fc3" archimateRelationship="id-290269a462ea47a4a187c2eb39c96089">
+          <bendpoint startX="161" startY="96" endX="7" endY="-72"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-44ad74ad5ca444eca704954dfd3fb1bf" targetConnections="id-f49e65711c2e420594931c5cee62df57" textPosition="1" archimateElement="id-1fa6202fbcb84810a487e731d399058b">
+        <bounds x="481" y="594" width="313" height="91"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-4ca44c766c41490c99c30f01cc5054c6" source="id-44ad74ad5ca444eca704954dfd3fb1bf" target="id-774643d99dc442c39192c4dce7dda9f2" archimateRelationship="id-e617219ea1d44ddda848bafc8aa91de8"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-28e2be6e6bf847f2ad5405a40572ebca" source="id-44ad74ad5ca444eca704954dfd3fb1bf" target="id-bae1fff0f35b4490b5b1345293cc7fb8" archimateRelationship="id-aba60ccef7794a86b6ec9521783551e2"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-774643d99dc442c39192c4dce7dda9f2" targetConnections="id-4ca44c766c41490c99c30f01cc5054c6 id-2a5c5785f2f04c38b460b8089efc1e21 id-77d9cc85541f4581a31934c3d92fea2d id-7434efb6741947a0a8e66485ad71617f" textPosition="1" archimateElement="id-a248b6e4d5a04c6c995cc9ecb4872d2e">
+        <bounds x="673" y="792" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-805ad6c2ae964496a57512e74f035694" source="id-774643d99dc442c39192c4dce7dda9f2" target="id-9e3cf760aa0a4b549813f9008ad516fc" archimateRelationship="id-bcb53d4d82d04e49aa41d9c62996e6ce">
+          <bendpoint startX="239" startY="9" endX="-6" endY="165"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-bae1fff0f35b4490b5b1345293cc7fb8" targetConnections="id-28e2be6e6bf847f2ad5405a40572ebca" textPosition="1" archimateElement="id-9c775a49c62f4d49a90673446cec6a64">
+        <bounds x="481" y="792" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-7434efb6741947a0a8e66485ad71617f" source="id-bae1fff0f35b4490b5b1345293cc7fb8" target="id-774643d99dc442c39192c4dce7dda9f2" archimateRelationship="id-6e02390b935e4dc7944d3e148dc29ae5"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-2a5c5785f2f04c38b460b8089efc1e21" source="id-bae1fff0f35b4490b5b1345293cc7fb8" target="id-774643d99dc442c39192c4dce7dda9f2" archimateRelationship="id-a910f844d5e747cf921c8657b7088c32">
+          <bendpoint startX="24" startY="45" endX="-126" endY="45"/>
+          <bendpoint startX="36" startY="57" endX="-114" endY="57"/>
+          <bendpoint startX="228" startY="57" endX="-72" endY="57"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-77d9cc85541f4581a31934c3d92fea2d" source="id-bae1fff0f35b4490b5b1345293cc7fb8" target="id-774643d99dc442c39192c4dce7dda9f2" archimateRelationship="id-a910f844d5e747cf921c8657b7088c32">
+          <bendpoint startX="24" startY="-51" endX="-126" endY="-51"/>
+          <bendpoint startX="120" startY="-51" endX="-30" endY="-51"/>
+        </sourceConnection>
+      </child>
+      <documentation>DEFINITIE &#xD;
+Agent Development is het ontwikkelen van kennis, modellen, specificaties, software en andere professionele werkproducten met inzet van Agents als uitvoerende professionele functies. Het begrip beschrijft daarmee een manier van ontwikkelen mét Agents, niet uitsluitend het ontwikkelen ván Agents. Het ontwikkelen en onderhouden van Agents kan zelf onderdeel zijn van Agent Development, maar is slechts één mogelijke toepassing.&#xD;
+&#xD;
+DOEL &#xD;
+Deze view toont het conceptuele objectmodel dat nodig is om ontwikkelwerk met Agents expliciet te specificeren, te organiseren, uit te voeren en te beheersen. De view maakt zichtbaar hoe kennis en canon, professionele functies en intents, regels en execution regimes, orchestratie, modelkeuze, instructies, menselijke context en werkproducten samenkomen in concrete Executions.&#xD;
+&#xD;
+LEIDENDE VRAAG &#xD;
+Welke concepten en samenhangen zijn nodig om ontwikkelwerk met Agents op een expliciete, herhaalbare en beheerste manier te organiseren en uit te voeren?&#xD;
+&#xD;
+SCOPE &#xD;
+Agent Development omvat ontwikkelwerk waarbij Agents professionele werkzaamheden uitvoeren of ondersteunen. Dat kan bijvoorbeeld gaan om domeinanalyse door een NIAM-analist, conceptuele modellering, logisch modelleren, architectuurreview, specificatie, realisatie en testing. Het ontwikkelen of wijzigen van Agents, Agent Intents, Agent Packages en hun canon is eveneens een mogelijke vorm van Agent Development, maar vormt niet de definitie van het begrip.&#xD;
+&#xD;
+LEESWIJZE &#xD;
+De view kan globaal van links naar rechts en van boven naar beneden worden gelezen. Links ligt de semantische grondslag: Knowledge Domain, Knowledge Specification, Canon, Semantic Model, Element en Relationship. Centraal staan de professionele functie en haar contract: Agent, Agent Intent, Rules, Reasoning Mode en Execution Regime. Rechts ligt de operationele configuratie: Operational Context, Orchestration Specification, Execution Step Specification, LLM Model en Model Assignment. Onderaan wordt zichtbaar hoe deze onderdelen voor concrete uitvoering samenkomen in Instruction Set, Execution, Human Context, Handoff en Artifact.&#xD;
+&#xD;
+KERNSTRUCTUUR &#xD;
+Een Knowledge Specification specificeert kennis voor een Knowledge Domain, kan door een Canon worden gerealiseerd en scopet Agent Packages. Een Canon definieert een Semantic Model en canonieke Rules. Een Agent Package bevat Agents; een Agent exposeert Agent Intents. Reasoning Mode en Rules begrenzen het gedrag van Agent en Agent Intent. Voor cognitieve uitvoering worden Source Regime, Synthesis Regime en Task Regime gebruikt als onderscheiden dimensies van Execution Regime. Een Entoli Context gebruikt herbruikbare Orchestration Specifications, die uit Execution Step Specifications bestaan. Een Execution Step Specification roept een Agent Intent aan en kan met een Model Assignment worden geconfigureerd. Voor een concrete Execution wordt een Instruction Set samengesteld uit de relevante semantiek, regels en context. De Execution kan Artifacts en een Handoff produceren.&#xD;
+&#xD;
+ARCHITECTUURBETEKENIS &#xD;
+De view maakt een fundamentele scheiding zichtbaar tussen betekenis, professionele capability, configuratie en runtime. Een Agent is niet de Execution; een Agent Intent is niet de Execution Step Specification; een Semantic Model is niet het Instruction Set; een Orchestration Specification is niet een runtimeproces; en een Artifact is niet hetzelfde als een Handoff. Juist deze scheidingen maken het mogelijk om dezelfde canon, professionele functies en configuraties gecontroleerd in meerdere uitvoeringen en klantcontexten toe te passen.&#xD;
+&#xD;
+GRENZEN &#xD;
+Deze view beschrijft het conceptuele objectmodel en niet de technische implementatie ervan. Zij specificeert geen databaseschema, API-contract, bestandsformaat, deploymentmodel, runtime-infrastructuur of gebruikersinterface. De getoonde Business Objects zijn conceptuele typen; de view toont geen concrete instances. Ook procesvolgorde, lifecycle en technische dataflows worden alleen weergegeven voor zover zij noodzakelijk zijn om de conceptuele relaties te begrijpen.&#xD;
+&#xD;
+DETAILNIVEAU &#xD;
+De view is bedoeld als integrale overzichtsview. Voor precieze definities, invarianten, toegestane waarden en lokale relaties is de documentatie van de afzonderlijke Business Objects leidend. Gespecialiseerde views mogen subsets van dit model tonen om specifieke architectuurvragen te beantwoorden, maar mogen de betekenis van de Business Objects en relaties niet zelfstandig veranderen.&#xD;
+&#xD;
+VOORBEELD &#xD;
+Een NIAM-analist kan als Agent een Agent Intent Analyseer domeinuitspraken exposen. Een Orchestration Specification kan een Execution Step Specification bevatten die dit intent aanroept. Voor een concrete Execution wordt een Instruction Set samengesteld met toepasselijke canonieke semantiek, Rules, Human Context en eventuele bestaande Artifacts of Handoffs. De uitvoering kan vervolgens een conceptueel model als Artifact en relevante interpretatie voor een Logisch modelleur als Handoff produceren.</documentation>
+    </element>
   </folder>
 </archimate:model>
