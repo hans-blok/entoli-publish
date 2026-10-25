@@ -155,6 +155,11 @@ nav:
       - fysiek-datamodel/index.md
       - Diagrammen: fysiek-datamodel/diagrammen.md
       - Naslag voor ontwikkelaars: fysiek-datamodel/tdm-developer-reference.md
+  - Casus Bibliotheek Lexis:
+      - bibliotheek-lexis/index.md
+      - Toelichting: bibliotheek-lexis/toelichting-casus-bibliotheek-lexis.md
+      - Persona-schetsen: bibliotheek-lexis/persona-schetsen.md
+      - "H1 - Eerst de woorden": "bibliotheek-lexis/H1 - eerst de woorden.md"
   - Regels:
       - regels/index.md
       - Operational Rules: regels/entoli-agent-development.operational-rules.nl.html
